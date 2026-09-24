@@ -5,6 +5,7 @@ import '../data/database.dart';
 import '../data/word_repository.dart';
 import '../services/morphology_service.dart';
 import '../services/settings_service.dart';
+import '../services/translation_service.dart';
 import '../services/tts_service.dart';
 
 // ── Shared Preferences ────────────────────────────────────────────────────────
@@ -35,6 +36,10 @@ final morphologyServiceProvider = Provider<MorphologyService>((_) {
 
 final ttsServiceProvider = Provider<TtsService>((ref) {
   return TtsService(ref.watch(settingsServiceProvider));
+});
+
+final translationServiceProvider = Provider<TranslationService>((_) {
+  return TranslationService();
 });
 
 // ── Data providers ────────────────────────────────────────────────────────────

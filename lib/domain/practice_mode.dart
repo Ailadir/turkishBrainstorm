@@ -13,6 +13,7 @@ enum PracticeMode {
   static const List<PracticeMode> initialModes = [
     recognitionTrEn,
     recognitionEnTr,
+    writing,
   ];
 
   bool get isRecognition =>

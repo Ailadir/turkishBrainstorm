@@ -66,9 +66,11 @@ class _WritingCardState extends State<WritingCard> {
     final tt = Theme.of(context).textTheme;
     final word = widget.card.word;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
         Text('Writing', style: tt.labelLarge?.copyWith(color: Colors.grey)),
         const SizedBox(height: 24),
         Text(word.english, style: tt.displaySmall),
@@ -119,6 +121,8 @@ class _WritingCardState extends State<WritingCard> {
             GradeButtons(onGrade: widget.onGrade),
         ],
       ],
+        ),
+      ),
     );
   }
 }

@@ -9,7 +9,8 @@ WordRepository _makeRepo() =>
 
 void main() {
   group('WordRepository', () {
-    test('addWord creates word + 2 recognition states due immediately', () async {
+    test('addWord creates word + 3 initial states (recognition×2 + writing) due immediately',
+        () async {
       final repo = _makeRepo();
       final now = DateTime(2026, 1, 1, 12);
       final id = await repo.addWord(
@@ -20,9 +21,13 @@ void main() {
       expect(id, greaterThan(0));
 
       final queue = await repo.dueQueue(now: now);
-      expect(queue.length, 2);
+      expect(queue.length, 3);
       final modes = queue.map((c) => c.mode).toSet();
-      expect(modes, {PracticeMode.recognitionTrEn, PracticeMode.recognitionEnTr});
+      expect(modes, {
+        PracticeMode.recognitionTrEn,
+        PracticeMode.recognitionEnTr,
+        PracticeMode.writing,
+      });
       for (final card in queue) {
         expect(card.word.id, id);
         expect(card.state.repetitions, 0);
@@ -35,30 +40,31 @@ void main() {
       await repo.addWord(turkish: 'ev', english: 'house', now: now);
 
       var queue = await repo.dueQueue(now: now);
-      expect(queue.length, 2);
+      expect(queue.length, 3); // recognition×2 + writing
 
       await repo.applyReview(queue.first, ReviewGrade.good, now: now);
 
-      // Move time forward 10 minutes — still same moment for new cards.
       queue = await repo.dueQueue(now: now);
-      // The reviewed card is due in ~1 day, so only 1 card remains.
-      expect(queue.length, 1);
+      // The reviewed card is due in ~1 day, so 2 cards remain.
+      expect(queue.length, 2);
     });
 
-    test('ensureModeState(writing) adds a 3rd state and is idempotent', () async {
+    test('ensureModeState(listening) adds a 4th state and is idempotent',
+        () async {
       final repo = _makeRepo();
       final now = DateTime(2026, 1, 1, 12);
       final id =
           await repo.addWord(turkish: 'kitap', english: 'book', now: now);
 
-      await repo.ensureModeState(id, PracticeMode.writing, now: now);
+      // Listening is NOT in initialModes — this call should add it.
+      await repo.ensureModeState(id, PracticeMode.listening, now: now);
       var queue = await repo.dueQueue(now: now);
-      expect(queue.length, 3);
+      expect(queue.length, 4);
 
       // Second call is a no-op.
-      await repo.ensureModeState(id, PracticeMode.writing, now: now);
+      await repo.ensureModeState(id, PracticeMode.listening, now: now);
       queue = await repo.dueQueue(now: now);
-      expect(queue.length, 3);
+      expect(queue.length, 4);
     });
 
     test('withMastery reflects repetitions', () async {
@@ -71,7 +77,7 @@ void main() {
 
       final wm = await repo.withMastery(words.first);
       expect(wm.mastery, 0.0); // no reps yet
-      expect(wm.activeModes.length, 2);
+      expect(wm.activeModes.length, 3); // recognition×2 + writing
     });
 
     test('stats counts words, due, reviewsToday', () async {
@@ -82,7 +88,7 @@ void main() {
 
       final s = await repo.stats(now: now);
       expect(s.totalWords, 2);
-      expect(s.dueNow, 4); // 2 words × 2 recognition modes
+      expect(s.dueNow, 6); // 2 words × 3 modes (recognition×2 + writing)
       expect(s.reviewsToday, 0);
     });
 
@@ -95,8 +101,7 @@ void main() {
       await repo.addWord(turkish: 'kuş', english: 'bird', now: now);
       await repo.addWord(turkish: 'balık', english: 'fish', now: now);
 
-      final distractors =
-          await repo.randomEnglishDistractors(id, 3);
+      final distractors = await repo.randomEnglishDistractors(id, 3);
       expect(distractors.length, 3);
       expect(distractors, isNot(contains('cat')));
     });
@@ -106,13 +111,15 @@ void main() {
       final now = DateTime(2026, 1, 1, 12);
       final id =
           await repo.addWord(turkish: 'gitmek', english: 'to go', now: now);
-      await repo.ensureModeState(id, PracticeMode.writing, now: now);
+
+      // Writing is already in initialModes; ensure listening separately.
+      await repo.ensureModeState(id, PracticeMode.listening, now: now);
 
       final counts = await repo.dueCountByMode(now: now);
       expect(counts[PracticeMode.recognitionTrEn], 1);
       expect(counts[PracticeMode.recognitionEnTr], 1);
       expect(counts[PracticeMode.writing], 1);
-      expect(counts[PracticeMode.listening], isNull);
+      expect(counts[PracticeMode.listening], 1);
     });
   });
 }

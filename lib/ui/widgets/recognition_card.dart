@@ -41,9 +41,11 @@ class _RecognitionCardState extends State<RecognitionCard> {
     final prompt = _isTrEn ? word.turkish : word.english;
     final answer = _isTrEn ? word.english : word.turkish;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
         Text(
           widget.card.mode.label,
           style: tt.labelLarge?.copyWith(color: Colors.grey),
@@ -89,6 +91,8 @@ class _RecognitionCardState extends State<RecognitionCard> {
           GradeButtons(onGrade: widget.onGrade),
         ],
       ],
+        ),
+      ),
     );
   }
 }

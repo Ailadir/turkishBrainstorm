@@ -71,9 +71,11 @@ class _ListeningCardState extends State<ListeningCard> {
   Widget build(BuildContext context) {
     final tt = Theme.of(context).textTheme;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
+    return Center(
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
         Text('Listening', style: tt.labelLarge?.copyWith(color: Colors.grey)),
         const SizedBox(height: 24),
         IconButton(
@@ -128,6 +130,8 @@ class _ListeningCardState extends State<ListeningCard> {
             const Text('Listen first, then pick'),
         ],
       ],
+        ),
+      ),
     );
   }
 }
