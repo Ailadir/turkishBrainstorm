@@ -6,6 +6,7 @@ import '../../providers/providers.dart';
 import 'add_word_screen.dart';
 import 'browse_screen.dart';
 import 'review_screen.dart';
+import 'settings_screen.dart';
 import 'stats_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
@@ -20,6 +21,16 @@ class HomeScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text('Turkish Vocab'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.settings_outlined),
+            tooltip: 'Settings',
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SettingsScreen()),
+            ),
+          ),
+        ],
       ),
       body: statsAsync.when(
         loading: () => const Center(child: CircularProgressIndicator()),
