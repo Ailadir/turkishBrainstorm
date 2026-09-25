@@ -1,13 +1,18 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'settings_service.dart';
 
 /// Gemini-Flash translation for Turkish word parts.
 /// Free tier: 1 500 req/day, 1M tokens/day — more than enough for a vocab app.
 class GeminiService {
-  static const _model =
-      'https://generativelanguage.googleapis.com/v1beta/models/'
-      'gemini-2.0-flash:generateContent';
+  static const _baseUrl =
+      'https://generativelanguage.googleapis.com/v1beta/models/';
+  // Primary: 3.8-flash. Fallback: 3.5-flash-lite (budget, always available).
+  static const _models = [
+    'gemini-3.8-flash',
+    'gemini-3.5-flash-lite',
+  ];
 
   final SettingsService _settings;
   GeminiService(this._settings);
@@ -62,36 +67,73 @@ class GeminiService {
     }
   }
 
-  Future<String?> _call(String prompt) async {
+  /// Tries each model in [_models] order; returns first success or last error.
+  Future<(String?, String?)> _callWithError(String prompt) async {
     final apiKey = _settings.geminiApiKey!;
-    try {
-      final uri = Uri.parse('$_model?key=$apiKey');
-      final response = await http.post(
-        uri,
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({
-          'contents': [
-            {
-              'parts': [
-                {'text': prompt}
-              ]
-            }
-          ],
-          'generationConfig': {'responseMimeType': 'application/json'},
-        }),
-      ).timeout(const Duration(seconds: 15));
+    String lastError = 'Unknown error';
 
-      if (response.statusCode == 200) {
+    for (final model in _models) {
+      try {
+        final uri = Uri.parse('$_baseUrl$model:generateContent?key=$apiKey');
+        final response = await http.post(
+          uri,
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({
+            'contents': [
+              {
+                'parts': [
+                  {'text': prompt}
+                ]
+              }
+            ],
+            'generationConfig': {'responseMimeType': 'application/json'},
+          }),
+        ).timeout(const Duration(seconds: 15));
+
+        debugPrint('[Gemini] $model → ${response.statusCode}');
+        if (response.statusCode == 503 || response.statusCode == 404) {
+          // Overloaded or removed — try next model.
+          lastError = 'HTTP ${response.statusCode} ($model): ${response.body}';
+          debugPrint('[Gemini] trying next model...');
+          continue;
+        }
+        if (response.statusCode != 200) {
+          debugPrint('[Gemini] error body: ${response.body}');
+          return (null, 'HTTP ${response.statusCode}: ${response.body}');
+        }
+
         final json = jsonDecode(response.body) as Map<String, dynamic>;
         final candidates = json['candidates'] as List?;
-        if (candidates == null || candidates.isEmpty) return null;
+        if (candidates == null || candidates.isEmpty) {
+          return (null, 'Empty candidates in response: ${response.body}');
+        }
         final content = candidates[0]['content'] as Map?;
         final parts = content?['parts'] as List?;
-        return parts?.isNotEmpty == true
-            ? parts![0]['text'] as String?
-            : null;
+        final text = parts?.isNotEmpty == true ? parts![0]['text'] as String? : null;
+        if (text == null) return (null, 'No text in response: ${response.body}');
+        debugPrint('[Gemini] ok via $model');
+        return (text, null);
+      } catch (e) {
+        debugPrint('[Gemini] $model exception: $e');
+        lastError = e.toString();
       }
-    } catch (_) {}
-    return null;
+    }
+    return (null, lastError);
+  }
+
+  Future<String?> _call(String prompt) async {
+    final (result, _) = await _callWithError(prompt);
+    return result;
+  }
+
+  /// Test call used by the Settings screen — returns the raw text or an error.
+  Future<String> testTranslation(String word) async {
+    if (!isConfigured) return 'Error: Gemini API key not set';
+    final prompt = 'Translate this Turkish word to English concisely.\n'
+        'Word: "$word"\n'
+        'Reply with JSON only: {"translation": "..."}';
+    final (result, error) = await _callWithError(prompt);
+    if (error != null) return 'Error: $error';
+    return result ?? 'Error: null result';
   }
 }

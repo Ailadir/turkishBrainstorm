@@ -86,6 +86,37 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     ref.read(ttsServiceProvider).speak('Merhaba, nasılsın?');
   }
 
+  Future<void> _testGemini() async {
+    await _save();
+    final gemini = ref.read(geminiServiceProvider);
+    if (!gemini.isConfigured) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text('Enter and save a Gemini API key first')));
+      }
+      return;
+    }
+    if (mounted) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Testing Gemini...')));
+    }
+    final result = await gemini.testTranslation('gitmek');
+    if (mounted) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Gemini test result'),
+          content: SelectableText(result),
+          actions: [
+            TextButton(
+                onPressed: () => Navigator.pop(ctx),
+                child: const Text('OK')),
+          ],
+        ),
+      );
+    }
+  }
+
   Future<void> _clearAudioCache() async {
     final docs = await getApplicationDocumentsDirectory();
     final cacheDir = Directory(p.join(docs.path, 'tts_cache'));
@@ -168,6 +199,12 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
                     setState(() => _obscureGeminiKey = !_obscureGeminiKey),
               ),
             ),
+          ),
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            icon: const Icon(Icons.science_outlined),
+            label: const Text('Test Gemini translation'),
+            onPressed: _testGemini,
           ),
 
           const SizedBox(height: 28),
