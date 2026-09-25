@@ -191,6 +191,20 @@ class WordRepository {
     return sel.get();
   }
 
+  /// Reactive version — emits a new list whenever the words table changes.
+  Stream<List<Word>> watchWords(String query) {
+    final sel = db.select(db.words)
+      ..orderBy([(w) => OrderingTerm.desc(w.createdAt)]);
+    if (query.trim().isNotEmpty) {
+      final q = '%${query.trim()}%';
+      sel.where((w) => w.turkish.like(q) | w.english.like(q));
+    }
+    return sel.watch();
+  }
+
+  /// Delete every word (cascades to practice states and review log).
+  Future<void> deleteAllWords() => db.delete(db.words).go();
+
   /// A word with its derived mastery indicator (plan §3).
   Future<WordWithMastery> withMastery(Word word) async {
     final states = await (db.select(db.practiceStates)

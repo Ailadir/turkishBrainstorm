@@ -33,26 +33,37 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
     super.dispose();
   }
 
+  /// Run morphology analysis, fill root+suffixes, then auto-translate.
   Future<void> _analyze() async {
     final word = _turkishCtrl.text.trim();
     if (word.isEmpty) return;
     setState(() => _analyzing = true);
     try {
-      final result =
-          await ref.read(morphologyServiceProvider).analyze(word);
+      final result = await ref.read(morphologyServiceProvider).analyze(word);
       _rootCtrl.text = result.root;
       setState(() => _suffixes = result.suffixes);
     } finally {
       setState(() => _analyzing = false);
     }
+    // Auto-fill English after morphology, if field is still empty.
+    if (_englishCtrl.text.trim().isEmpty) {
+      await _translateEnglish();
+    }
   }
 
+  /// Translate the Turkish word to English and fill the field.
+  /// Prefers Gemini if configured, falls back to MyMemory.
   Future<void> _translateEnglish() async {
     final word = _turkishCtrl.text.trim();
     if (word.isEmpty) return;
     setState(() => _translating = true);
     try {
-      final translation =
+      String? translation;
+      final gemini = ref.read(geminiServiceProvider);
+      if (gemini.isConfigured) {
+        translation = await gemini.translateWord(word);
+      }
+      translation ??=
           await ref.read(translationServiceProvider).translate(word);
       if (translation != null && mounted) {
         _englishCtrl.text = translation;
@@ -62,13 +73,14 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
     }
   }
 
-  /// Save the main word, then translate + save root and each suffix as
-  /// separate vocabulary entries.
+  /// Save the main word, then translate root+suffixes via Gemini (batch)
+  /// and save each as a separate vocabulary entry.
   Future<void> _save() async {
     if (!(_formKey.currentState?.validate() ?? false)) return;
     setState(() => _saving = true);
     try {
       final repo = ref.read(wordRepositoryProvider);
+      final gemini = ref.read(geminiServiceProvider);
       final translator = ref.read(translationServiceProvider);
 
       // 1. Save the main inflected form.
@@ -78,40 +90,66 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
         root: _rootCtrl.text.trim(),
         suffixes: _suffixes,
         note: _noteCtrl.text.trim().isEmpty ? null : _noteCtrl.text.trim(),
-        source: _sourceCtrl.text.trim().isEmpty
-            ? null
-            : _sourceCtrl.text.trim(),
+        source:
+            _sourceCtrl.text.trim().isEmpty ? null : _sourceCtrl.text.trim(),
       );
 
-      // 2. Collect root + suffixes (de-duped, skip blank).
+      // 2. Collect root + suffixes (skip blank, skip if same as the main word).
       final mainTurkish = _turkishCtrl.text.trim().toLowerCase();
-      final parts = <String>{};
       final root = _rootCtrl.text.trim();
-      if (root.isNotEmpty && root.toLowerCase() != mainTurkish) {
-        parts.add(root);
-      }
-      for (final s in _suffixes) {
-        if (s.trim().isNotEmpty) parts.add(s.trim());
+      final suffixParts = _suffixes.where((s) => s.trim().isNotEmpty).toList();
+      final hasRoot = root.isNotEmpty && root.toLowerCase() != mainTurkish;
+
+      if (!hasRoot && suffixParts.isEmpty) {
+        if (mounted) Navigator.pop(context);
+        return;
       }
 
-      if (parts.isNotEmpty) {
-        // 3. Translate all parts in parallel.
-        final partList = parts.toList();
-        final translations = await Future.wait(
-          partList.map((p) => translator.translate(p)),
+      // 3. Translate all parts in one Gemini call (or fall back per-part).
+      if (gemini.isConfigured && hasRoot) {
+        final parts = await gemini.translateParts(
+          root: root,
+          suffixes: suffixParts,
         );
-
-        // 4. Save each part that translated successfully.
-        for (var i = 0; i < partList.length; i++) {
-          final eng = translations[i];
-          if (eng != null) {
+        if (parts != null) {
+          // Save root.
+          if (parts.root.isNotEmpty) {
             await repo.addWord(
-              turkish: partList[i],
-              english: eng,
-              root: partList[i],
-              suffixes: [],
-            );
+                turkish: root, english: parts.root, root: root, suffixes: []);
           }
+          // Save each suffix (only if translation non-empty and list aligns).
+          for (var i = 0; i < suffixParts.length; i++) {
+            final eng =
+                i < parts.suffixes.length ? parts.suffixes[i] : null;
+            if (eng != null && eng.isNotEmpty) {
+              await repo.addWord(
+                  turkish: suffixParts[i],
+                  english: eng,
+                  root: suffixParts[i],
+                  suffixes: []);
+            }
+          }
+          if (mounted) Navigator.pop(context);
+          return;
+        }
+      }
+
+      // Fallback: translate each part individually via MyMemory.
+      final allParts = <String>[
+        if (hasRoot) root,
+        ...suffixParts,
+      ];
+      final translations = await Future.wait(
+        allParts.map((p) => translator.translate(p)),
+      );
+      for (var i = 0; i < allParts.length; i++) {
+        final eng = translations[i];
+        if (eng != null) {
+          await repo.addWord(
+              turkish: allParts[i],
+              english: eng,
+              root: allParts[i],
+              suffixes: []);
         }
       }
 
@@ -172,7 +210,7 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
                       )
                     : IconButton(
                         icon: const Icon(Icons.auto_fix_high),
-                        tooltip: 'Analyse morphology',
+                        tooltip: 'Analyse morphology + auto-translate',
                         onPressed: _analyze,
                       ),
               ),
@@ -194,8 +232,7 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
 
             // ── Suffixes ──────────────────────────────────────────────────
             if (_suffixes.isNotEmpty) ...[
-              Text('Suffixes',
-                  style: Theme.of(context).textTheme.labelMedium),
+              Text('Suffixes', style: Theme.of(context).textTheme.labelMedium),
               const SizedBox(height: 6),
               Wrap(
                 spacing: 6,
@@ -208,7 +245,7 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
                   ActionChip(
                     avatar: const Icon(Icons.add, size: 16),
                     label: const Text('Add'),
-                    onPressed: () => _showAddSuffixDialog(),
+                    onPressed: _showAddSuffixDialog,
                   ),
                 ],
               ),
@@ -217,7 +254,7 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
               ActionChip(
                 avatar: const Icon(Icons.add, size: 16),
                 label: const Text('Add suffix'),
-                onPressed: () => _showAddSuffixDialog(),
+                onPressed: _showAddSuffixDialog,
               ),
               const SizedBox(height: 16),
             ],
@@ -248,7 +285,6 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
                   (v == null || v.trim().isEmpty) ? 'Required' : null,
             ),
             const SizedBox(height: 6),
-            // Hint about what Save will do
             if (_rootCtrl.text.isNotEmpty || _suffixes.isNotEmpty)
               Text(
                 'Saving will also auto-translate & add the root'
@@ -292,8 +328,7 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
         content: TextField(
           controller: ctrl,
           autofocus: true,
-          decoration:
-              const InputDecoration(labelText: 'Suffix morpheme id'),
+          decoration: const InputDecoration(labelText: 'Suffix morpheme'),
           onSubmitted: (v) {
             _addSuffix(v);
             Navigator.pop(ctx);

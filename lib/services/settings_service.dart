@@ -22,4 +22,12 @@ class SettingsService {
 
   Future<void> setElevenLabsVoiceId(String id) =>
       _prefs.setString('el_voice_id', id);
+
+  // ── Gemini ────────────────────────────────────────────────────────────────
+
+  String? get geminiApiKey => _prefs.getString('gemini_api_key');
+  bool get hasGemini => geminiApiKey?.isNotEmpty == true;
+
+  Future<void> setGeminiApiKey(String key) =>
+      _prefs.setString('gemini_api_key', key);
 }
