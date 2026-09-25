@@ -158,6 +158,17 @@ class GeminiService {
           uri,
           headers: {'Content-Type': 'application/json'},
           body: jsonEncode({
+            'system_instruction': {
+              'parts': [
+                {
+                  'text': 'You are an expert Turkish linguist and translator. '
+                      'Provide accurate, natural translations and correct '
+                      'morphological analysis. Never add conversational filler '
+                      'or unsolicited explanations. Always reply with valid JSON '
+                      'exactly matching the requested structure.'
+                }
+              ]
+            },
             'contents': [
               {
                 'parts': [
@@ -165,7 +176,10 @@ class GeminiService {
                 ]
               }
             ],
-            'generationConfig': {'responseMimeType': 'application/json'},
+            'generationConfig': {
+              'responseMimeType': 'application/json',
+              'temperature': 0.3,
+            },
           }),
         ).timeout(const Duration(seconds: 20));
 
