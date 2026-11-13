@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:turkish_vocab/services/piper_engine.dart';
 import 'package:turkish_vocab/services/settings_service.dart';
 import 'package:turkish_vocab/services/tts_service.dart';
 
@@ -133,5 +134,16 @@ void main() {
     expect(await tts.prefetch('ev'), isTrue);
     expect(played, isEmpty);
     expect(await tts.isCached('ev'), isTrue);
+  });
+
+  test('piperInput: short words get help, phrases are left alone', () {
+    expect(piperInput('ve', 0.8).text, 'veee!');
+    expect(piperInput('ev', 0.8).text, 'eeev!');
+    expect(piperInput('altı', 0.8).text, 'altı!');
+    expect(piperInput('altı', 0.8).speed, closeTo(0.7, 1e-9));
+    expect(piperInput('merhaba', 0.8).text, 'merhaba.');
+    expect(piperInput('merhaba', 0.8).speed, 0.8);
+    expect(piperInput('iyi günler', 0.8).text, 'iyi günler.');
+    expect(piperInput('Nasılsın?', 0.8).text, 'Nasılsın?');
   });
 }

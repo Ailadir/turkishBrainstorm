@@ -4,6 +4,10 @@ Add a section at the top for every release: `## <version>+<build>` matching
 `version:` in pubspec.yaml, then `- ` bullet lines. The release workflow fails
 if the section is missing.
 
+## 1.1.5+7
+- New default offline voice: fahrettin (male), clearer than dfki
+- Short words like ve and altı are pronounced properly instead of swallowed
+
 ## 1.1.4+6
 - Short words (ve, ne, bir) sound clearer: the offline voice speaks them slower and no longer clips them
 - The offline voice is slowed natively instead of stretched, so it sounds more natural

@@ -10,10 +10,36 @@ import 'package:path_provider/path_provider.dart';
 import 'package:sherpa_onnx/sherpa_onnx.dart' as sherpa;
 
 const piperVoices = {
-  'dfki': 'dfki (female)',
   'fahrettin': 'fahrettin (male)',
   'fettah': 'fettah (male)',
+  'dfki': 'dfki (female)',
 };
+
+const _vowels = 'aeıioöuüâîû';
+
+/// Text and speed actually sent to Piper. Piper swallows short words said
+/// alone: "ve" lasts 0.09 s and "altı" starts with a made-up "f". Tested by
+/// ear with fahrettin: an exclamation mark fixes short words, and a held
+/// vowel ("veee") fixes two-letter ones.
+({String text, double speed}) piperInput(String raw, double speed) {
+  final t = raw.trim();
+  if (t.contains(' ') || t.length > 5) {
+    return (
+      text: RegExp(r'[.!?…]$').hasMatch(t) ? t : '$t.',
+      speed: speed,
+    );
+  }
+  var word = t.replaceFirst(RegExp(r'[.!?…,]+$'), '');
+  if (word.length <= 2) {
+    final i = word.split('').lastIndexWhere(
+      (c) => _vowels.contains(c.toLowerCase()),
+    );
+    if (i >= 0) {
+      word = word.substring(0, i + 1) + word[i] * 2 + word.substring(i + 1);
+    }
+  }
+  return (text: '$word!', speed: speed * 0.875);
+}
 
 String piperArchiveUrl(String voice) =>
     'https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/'
@@ -164,19 +190,16 @@ void _worker(List<Object> args) {
               model: p.join(dir, 'tr_TR-$voice-medium.onnx'),
               tokens: p.join(dir, 'tokens.txt'),
               dataDir: p.join(dir, 'espeak-ng-data'),
+              // Less slurring than the defaults (0.667 / 0.8).
+              noiseScale: 0.333,
+              noiseScaleW: 0.4,
             ),
             numThreads: 2,
           ),
         ),
       );
-      // A bare short word ("ve") gets clipped; as a sentence it is read
-      // with a proper ending.
-      var text = (m[0] as String).trim();
-      if (!RegExp(r'[.!?…]$').hasMatch(text)) text = '$text.';
-      // Tiny words (ve, ne, bir) come out in a blink; give them more time.
-      var speed = m[2] as double;
-      if (!text.contains(' ') && text.length <= 4) speed *= 0.75;
-      final audio = tts!.generate(text: text, speed: speed);
+      final input = piperInput(m[0] as String, m[2] as double);
+      final audio = tts!.generate(text: input.text, speed: input.speed);
       if (audio.samples.isEmpty) {
         reply.send('The voice produced no audio for "${m[0]}"');
         return;

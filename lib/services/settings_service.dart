@@ -40,8 +40,8 @@ class SettingsService {
 
   // ── Offline voice (Piper) ───────────────────────────────────────────────
 
-  /// `dfki` (female), `fahrettin` or `fettah` (male).
-  String get piperVoice => _prefs.getString('piper_voice') ?? 'dfki';
+  /// `fahrettin` or `fettah` (male), `dfki` (female).
+  String get piperVoice => _prefs.getString('piper_voice') ?? 'fahrettin';
   Future<void> setPiperVoice(String v) => _prefs.setString('piper_voice', v);
 
   // ── Gemini ────────────────────────────────────────────────────────────────
