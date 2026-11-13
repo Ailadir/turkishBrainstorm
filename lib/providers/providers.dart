@@ -4,7 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../data/database.dart';
 import '../data/word_repository.dart';
 import '../services/analysis_job.dart';
-import '../services/gemini_service.dart';
+import '../services/llm_service.dart';
 import '../services/morphology_service.dart';
 import '../services/settings_service.dart';
 import '../services/translation_service.dart';
@@ -44,8 +44,9 @@ final translationServiceProvider = Provider<TranslationService>((_) {
   return TranslationService();
 });
 
-final geminiServiceProvider = Provider<GeminiService>((ref) {
-  return GeminiService(ref.watch(settingsServiceProvider));
+// Gemini → Groq → OpenRouter; moves on when one hits its free limit.
+final llmServiceProvider = Provider<LlmService>((ref) {
+  return LlmService.fromSettings(ref.watch(settingsServiceProvider));
 });
 
 final analysisJobProvider = Provider<AnalysisJob>((ref) {

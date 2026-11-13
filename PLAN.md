@@ -953,5 +953,6 @@ validated in Phase 5, and own words can be re-analyzed or edited.
 - [x] Phase 4: Brainstorm + per-word review. Done 2026-11-13. Deviations: `listen_choice_exercise.dart` is folded into `choice_exercise.dart`; choice answers are final on the first tap (wrong taps are only counted in Construct); Practice settings are in Settings. 50 tests pass, `flutter analyze` clean. NOT yet verified on a phone: the 3-5 min / 5-words feel.
 - [ ] Phase 5: Word packs A1–B2 + grammar packs + download/import
 - [ ] Phase 6: Local-first translation, multi-provider AI, fast add flow, share-to-app
+  - Partly done early (owner request): `lib/services/llm_service.dart` chains Gemini → Groq → OpenRouter with a 2-minute cooldown on 429/5xx/timeouts. Keys and model names are set in Settings (never in code). Still to do for Phase 6: local-first dictionary lookup, translation cache use, share-to-app. `gemini_service.dart` was deleted (its phrase-breakdown methods were unused).
 - [ ] Phase 7: Reliable audio (ElevenLabs prefetch + offline Piper)
 - [ ] Phase 8: Suffix drill with CEFR levels

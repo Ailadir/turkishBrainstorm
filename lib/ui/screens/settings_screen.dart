@@ -39,9 +39,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   late TextEditingController _elKeyCtrl;
   late TextEditingController _customVoiceCtrl;
   late TextEditingController _geminiKeyCtrl;
+  late TextEditingController _geminiModelCtrl;
+  late TextEditingController _groqKeyCtrl;
+  late TextEditingController _groqModelCtrl;
+  late TextEditingController _orKeyCtrl;
+  late TextEditingController _orModelCtrl;
   bool _obscureElKey = true;
   bool _obscureGeminiKey = true;
-  String _selectedVoiceId = '';  // preset voice id or __custom__
+  bool _obscureGroqKey = true;
+  bool _obscureOrKey = true;
+  String _selectedVoiceId = ''; // preset voice id or __custom__
 
   @override
   void initState() {
@@ -49,10 +56,17 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     final settings = ref.read(settingsServiceProvider);
     _elKeyCtrl = TextEditingController(text: settings.elevenLabsApiKey ?? '');
     _geminiKeyCtrl = TextEditingController(text: settings.geminiApiKey ?? '');
+    _geminiModelCtrl = TextEditingController(text: settings.geminiModel);
+    _groqKeyCtrl = TextEditingController(text: settings.groqApiKey ?? '');
+    _groqModelCtrl = TextEditingController(text: settings.groqModel);
+    _orKeyCtrl = TextEditingController(text: settings.openRouterApiKey ?? '');
+    _orModelCtrl = TextEditingController(text: settings.openRouterModel);
 
     final savedId = settings.elevenLabsVoiceId ?? '';
     final isPreset = _voices.any((v) => v.id == savedId);
-    _selectedVoiceId = isPreset ? savedId : (savedId.isEmpty ? '' : _customVoiceId);
+    _selectedVoiceId = isPreset
+        ? savedId
+        : (savedId.isEmpty ? '' : _customVoiceId);
     _customVoiceCtrl = TextEditingController(
       text: isPreset || savedId.isEmpty ? '' : savedId,
     );
@@ -63,6 +77,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     _elKeyCtrl.dispose();
     _customVoiceCtrl.dispose();
     _geminiKeyCtrl.dispose();
+    _geminiModelCtrl.dispose();
+    _groqKeyCtrl.dispose();
+    _groqModelCtrl.dispose();
+    _orKeyCtrl.dispose();
+    _orModelCtrl.dispose();
     super.dispose();
   }
 
@@ -75,42 +94,89 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     await settings.setElevenLabsApiKey(_elKeyCtrl.text.trim());
     await settings.setElevenLabsVoiceId(_effectiveVoiceId);
     await settings.setGeminiApiKey(_geminiKeyCtrl.text.trim());
+    await settings.setGeminiModel(
+      _orDefault(_geminiModelCtrl, 'gemini-3.8-flash'),
+    );
+    await settings.setGroqApiKey(_groqKeyCtrl.text.trim());
+    await settings.setGroqModel(
+      _orDefault(_groqModelCtrl, 'llama-3.3-70b-versatile'),
+    );
+    await settings.setOpenRouterApiKey(_orKeyCtrl.text.trim());
+    await settings.setOpenRouterModel(
+      _orDefault(_orModelCtrl, 'openrouter/free'),
+    );
     if (mounted) {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text('Settings saved')));
     }
   }
 
+  Widget _keyField(
+    TextEditingController c,
+    String label,
+    bool obscure,
+    VoidCallback toggle,
+  ) => TextField(
+    controller: c,
+    obscureText: obscure,
+    autocorrect: false,
+    enableSuggestions: false,
+    decoration: InputDecoration(
+      labelText: label,
+      border: const OutlineInputBorder(),
+      suffixIcon: IconButton(
+        icon: Icon(obscure ? Icons.visibility : Icons.visibility_off),
+        onPressed: toggle,
+      ),
+    ),
+  );
+
+  Widget _modelField(TextEditingController c, String label) => TextField(
+    controller: c,
+    autocorrect: false,
+    enableSuggestions: false,
+    decoration: InputDecoration(
+      labelText: label,
+      border: const OutlineInputBorder(),
+      isDense: true,
+    ),
+  );
+
+  String _orDefault(TextEditingController c, String fallback) =>
+      c.text.trim().isEmpty ? fallback : c.text.trim();
+
   Future<void> _testVoice() async {
     await _save();
     ref.read(ttsServiceProvider).speak('Merhaba, nasılsın?');
   }
 
-  Future<void> _testGemini() async {
+  Future<void> _testAi() async {
     await _save();
-    final gemini = ref.read(geminiServiceProvider);
-    if (!gemini.isConfigured) {
+    final llm = ref.read(llmServiceProvider);
+    if (!llm.isConfigured) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Enter and save a Gemini API key first')));
+          const SnackBar(content: Text('Enter and save at least one AI key')),
+        );
       }
       return;
     }
     if (mounted) {
       ScaffoldMessenger.of(context)
-          .showSnackBar(const SnackBar(content: Text('Testing Gemini...')));
+          .showSnackBar(const SnackBar(content: Text('Testing AI...')));
     }
-    final result = await gemini.testTranslation('gitmek');
+    final result = await llm.test('gitmek');
     if (mounted) {
       showDialog(
         context: context,
         builder: (ctx) => AlertDialog(
-          title: const Text('Gemini test result'),
+          title: const Text('AI test result'),
           content: SelectableText(result),
           actions: [
             TextButton(
-                onPressed: () => Navigator.pop(ctx),
-                child: const Text('OK')),
+              onPressed: () => Navigator.pop(ctx),
+              child: const Text('OK'),
+            ),
           ],
         ),
       );
@@ -126,10 +192,13 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       await cacheDir.delete(recursive: true);
     }
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(
-            'Cleared $count cached audio clip${count == 1 ? '' : 's'}'),
-      ));
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text(
+            'Cleared $count cached audio clip${count == 1 ? '' : 's'}',
+          ),
+        ),
+      );
     }
   }
 
@@ -139,15 +208,16 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
       builder: (ctx) => AlertDialog(
         title: const Text('Clear dictionary?'),
         content: const Text(
-            'This will permanently delete ALL words, practice history, and review '
-            'data. Audio cache is kept. This cannot be undone.'),
+          'This will permanently delete ALL words, practice history, and review '
+          'data. Audio cache is kept. This cannot be undone.',
+        ),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('Cancel')),
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Cancel'),
+          ),
           FilledButton(
-            style: FilledButton.styleFrom(
-                backgroundColor: Colors.red),
+            style: FilledButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () => Navigator.pop(ctx, true),
             child: const Text('Delete everything'),
           ),
@@ -158,8 +228,8 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     await ref.read(wordRepositoryProvider).deleteAllWords();
     ref.invalidate(statsProvider);
     if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Dictionary cleared')));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('Dictionary cleared')));
     }
   }
 
@@ -237,36 +307,50 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           const Divider(),
           const SizedBox(height: 12),
 
-          // ── Gemini AI Translation ─────────────────────────────────────────
-          Text('Gemini AI Translation', style: theme.textTheme.titleMedium),
+          // ── AI translation (3 free providers, tried in this order) ────────
+          Text('AI translation', style: theme.textTheme.titleMedium),
           const SizedBox(height: 6),
           Text(
-            'Used to translate Turkish roots and grammatical suffixes. '
-            'Get a free API key at aistudio.google.com → "Get API key". '
-            'Free tier: 1 500 requests/day.',
+            'Tried in order: Gemini, then Groq, then OpenRouter. When one hits '
+            'its free limit the next one is used. Fill in any or all. Keys '
+            'stay on this phone.',
             style: theme.textTheme.bodySmall,
           ),
           const SizedBox(height: 12),
-          TextField(
-            controller: _geminiKeyCtrl,
-            obscureText: _obscureGeminiKey,
-            decoration: InputDecoration(
-              labelText: 'Gemini API Key',
-              border: const OutlineInputBorder(),
-              suffixIcon: IconButton(
-                icon: Icon(_obscureGeminiKey
-                    ? Icons.visibility
-                    : Icons.visibility_off),
-                onPressed: () =>
-                    setState(() => _obscureGeminiKey = !_obscureGeminiKey),
-              ),
-            ),
+          _keyField(
+            _geminiKeyCtrl,
+            'Gemini API key (aistudio.google.com)',
+            _obscureGeminiKey,
+            () => setState(() => _obscureGeminiKey = !_obscureGeminiKey),
+          ),
+          const SizedBox(height: 8),
+          _modelField(_geminiModelCtrl, 'Gemini model'),
+          const SizedBox(height: 16),
+          _keyField(
+            _groqKeyCtrl,
+            'Groq API key (console.groq.com)',
+            _obscureGroqKey,
+            () => setState(() => _obscureGroqKey = !_obscureGroqKey),
+          ),
+          const SizedBox(height: 8),
+          _modelField(_groqModelCtrl, 'Groq model'),
+          const SizedBox(height: 16),
+          _keyField(
+            _orKeyCtrl,
+            'OpenRouter API key (openrouter.ai)',
+            _obscureOrKey,
+            () => setState(() => _obscureOrKey = !_obscureOrKey),
+          ),
+          const SizedBox(height: 8),
+          _modelField(
+            _orModelCtrl,
+            'OpenRouter model (openrouter/free = any free model)',
           ),
           const SizedBox(height: 10),
           OutlinedButton.icon(
             icon: const Icon(Icons.science_outlined),
-            label: const Text('Test Gemini translation'),
-            onPressed: _testGemini,
+            label: const Text('Test AI translation'),
+            onPressed: _testAi,
           ),
 
           const SizedBox(height: 28),
@@ -289,11 +373,10 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
               labelText: 'ElevenLabs API Key',
               border: const OutlineInputBorder(),
               suffixIcon: IconButton(
-                icon: Icon(_obscureElKey
-                    ? Icons.visibility
-                    : Icons.visibility_off),
-                onPressed: () =>
-                    setState(() => _obscureElKey = !_obscureElKey),
+                icon: Icon(
+                  _obscureElKey ? Icons.visibility : Icons.visibility_off,
+                ),
+                onPressed: () => setState(() => _obscureElKey = !_obscureElKey),
               ),
             ),
           ),
@@ -302,33 +385,43 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           // Voice selector ──────────────────────────────────────────────────
           Text('Voice', style: theme.textTheme.labelLarge),
           const SizedBox(height: 4),
-          Text('Male voices', style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey)),
+          Text(
+            'Male voices',
+            style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey),
+          ),
           const SizedBox(height: 6),
           Wrap(
             spacing: 8,
             runSpacing: 6,
             children: _voices
                 .where((v) => v.isMale)
-                .map((v) => _VoiceChip(
-                      voice: v,
-                      selected: _selectedVoiceId == v.id,
-                      onTap: () => setState(() => _selectedVoiceId = v.id),
-                    ))
+                .map(
+                  (v) => _VoiceChip(
+                    voice: v,
+                    selected: _selectedVoiceId == v.id,
+                    onTap: () => setState(() => _selectedVoiceId = v.id),
+                  ),
+                )
                 .toList(),
           ),
           const SizedBox(height: 10),
-          Text('Female voices', style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey)),
+          Text(
+            'Female voices',
+            style: theme.textTheme.labelSmall?.copyWith(color: Colors.grey),
+          ),
           const SizedBox(height: 6),
           Wrap(
             spacing: 8,
             runSpacing: 6,
             children: _voices
                 .where((v) => !v.isMale)
-                .map((v) => _VoiceChip(
-                      voice: v,
-                      selected: _selectedVoiceId == v.id,
-                      onTap: () => setState(() => _selectedVoiceId = v.id),
-                    ))
+                .map(
+                  (v) => _VoiceChip(
+                    voice: v,
+                    selected: _selectedVoiceId == v.id,
+                    onTap: () => setState(() => _selectedVoiceId = v.id),
+                  ),
+                )
                 .toList(),
           ),
           const SizedBox(height: 10),
@@ -390,10 +483,11 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           const SizedBox(height: 10),
           OutlinedButton.icon(
             icon: Icon(Icons.delete_forever, color: cs.error),
-            label: Text('Clear dictionary (delete all words)',
-                style: TextStyle(color: cs.error)),
-            style: OutlinedButton.styleFrom(
-                side: BorderSide(color: cs.error)),
+            label: Text(
+              'Clear dictionary (delete all words)',
+              style: TextStyle(color: cs.error),
+            ),
+            style: OutlinedButton.styleFrom(side: BorderSide(color: cs.error)),
             onPressed: _clearDictionary,
           ),
           const SizedBox(height: 24),
@@ -407,8 +501,11 @@ class _VoiceChip extends StatelessWidget {
   final _Voice voice;
   final bool selected;
   final VoidCallback onTap;
-  const _VoiceChip(
-      {required this.voice, required this.selected, required this.onTap});
+  const _VoiceChip({
+    required this.voice,
+    required this.selected,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {

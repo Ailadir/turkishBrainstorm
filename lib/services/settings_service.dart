@@ -31,6 +31,31 @@ class SettingsService {
   Future<void> setGeminiApiKey(String key) =>
       _prefs.setString('gemini_api_key', key);
 
+  String get geminiModel =>
+      _prefs.getString('gemini_model') ?? 'gemini-3.8-flash';
+  Future<void> setGeminiModel(String v) => _prefs.setString('gemini_model', v);
+
+  // ── Groq (free, OpenAI-compatible) ──────────────────────────────────────
+
+  String? get groqApiKey => _prefs.getString('groq_api_key');
+  Future<void> setGroqApiKey(String v) => _prefs.setString('groq_api_key', v);
+
+  String get groqModel =>
+      _prefs.getString('groq_model') ?? 'llama-3.3-70b-versatile';
+  Future<void> setGroqModel(String v) => _prefs.setString('groq_model', v);
+
+  // ── OpenRouter (free models) ────────────────────────────────────────────
+
+  String? get openRouterApiKey => _prefs.getString('openrouter_api_key');
+  Future<void> setOpenRouterApiKey(String v) =>
+      _prefs.setString('openrouter_api_key', v);
+
+  // `openrouter/free` lets OpenRouter pick any currently-free model.
+  String get openRouterModel =>
+      _prefs.getString('openrouter_model') ?? 'openrouter/free';
+  Future<void> setOpenRouterModel(String v) =>
+      _prefs.setString('openrouter_model', v);
+
   // ── Practice ──────────────────────────────────────────────────────────────
 
   int get wordsPerBrainstorm =>

@@ -46,3 +46,8 @@ app.*.map.json
 
 # Widget Preview related
 .widget_preview/
+
+# Local data dumps for pack building (Phase 5); large, licensed, not for git
+/kaikki.org-dictionary-Turkish.jsonl
+/tr_50k.txt
+/tr_full.txt

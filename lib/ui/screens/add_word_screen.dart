@@ -104,9 +104,9 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
     setState(() => _translating = true);
     try {
       String? translation;
-      final gemini = ref.read(geminiServiceProvider);
-      if (gemini.isConfigured) {
-        translation = await gemini.translateWord(word);
+      final llm = ref.read(llmServiceProvider);
+      if (llm.isConfigured) {
+        translation = await llm.translate(word);
       }
       translation ??= await ref
           .read(translationServiceProvider)
