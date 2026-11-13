@@ -20,7 +20,7 @@ class UpdateFlow {
 
   Future<void> run() async {
     final package = await PackageInfo.fromPlatform();
-    final cur = int.tryParse(package.buildNumber) ?? 0;
+    final cur = appBuild(package.buildNumber);
 
     if (hasReleaseRepo && shouldShowWhatsNew(cur, settings.lastSeenBuild)) {
       final notes = await service.notesForTag('v${package.version}+$cur');

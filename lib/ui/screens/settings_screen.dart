@@ -439,7 +439,7 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             future: PackageInfo.fromPlatform(),
             builder: (context, snap) => Text(
               snap.hasData
-                  ? 'Version ${snap.data!.version} (build ${snap.data!.buildNumber})'
+                  ? 'Version ${snap.data!.version} (build ${appBuild(snap.data!.buildNumber)})'
                   : 'Version…',
             ),
           ),

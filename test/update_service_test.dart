@@ -132,4 +132,11 @@ void main() {
       expect(shouldShowWhatsNew(8, 0), isFalse);
     });
   });
+
+  test('appBuild strips the per-ABI offset', () {
+    expect(appBuild('2002'), 2);
+    expect(appBuild('1003'), 3);
+    expect(appBuild('4010'), 10);
+    expect(appBuild('7'), 7);
+  });
 }

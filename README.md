@@ -82,6 +82,11 @@ GitHub Actions builds a signed arm64 APK and publishes a release with `version.j
 and your patch notes. A missing changelog section or a tag that doesn't match
 `pubspec.yaml` fails the build.
 
+The release APK is built with `--split-per-abi`, so Android reports the build as
+`2000 + N`. The app strips that offset (`appBuild` in `update_service.dart`) before
+comparing with `version.json`. The first install of a new version after a bug in
+the updater must be done by hand from the Releases page.
+
 ### One-time setup
 
 1. Create the keystore (keep the file and passwords somewhere safe; if you lose it,
@@ -111,8 +116,12 @@ Never commit the keystore, `key.properties` or any API key.
 - Dictionary and word meanings: Wiktionary via [kaikki.org](https://kaikki.org),
   CC BY-SA 4.0.
 - Word frequencies: FrequencyWords (OpenSubtitles), `hermitdave/FrequencyWords`.
-  Check that repo's licence before redistributing the packs.
-- Morphology: Zemberek-NLP. Offline voice: Piper `tr_TR` voices via sherpa-onnx.
+  Code is MIT, content is CC BY-SA 4.0. The packs are derived from it, so they
+  are published under CC BY-SA 4.0 too (see `license` and `attribution` in each pack).
+- Morphology: Zemberek-NLP.
+- Offline voice: Piper `tr_TR` voices run with sherpa-onnx (pinned to 1.13.8;
+  2.0.x cannot synthesise Turkish). The default `dfki` voice is CC BY-NC-SA 4.0,
+  non-commercial only. This is a free personal app, so that is fine.
 
 ## Project structure
 

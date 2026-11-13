@@ -56,6 +56,11 @@ class AppInstaller {
       _channel.invokeMethod('installApk', {'path': path});
 }
 
+/// Build number as written in pubspec. `flutter build --split-per-abi` adds
+/// 1000 (armv7), 2000 (arm64) or 4000 (x86_64) to the installed versionCode,
+/// so the phone reports 2002 for build 2.
+int appBuild(String reported) => (int.tryParse(reported) ?? 0) % 1000;
+
 /// Checks GitHub Releases for a newer build and installs it.
 class UpdateService {
   final String repo;
@@ -74,7 +79,7 @@ class UpdateService {
        cacheDir = cacheDir ?? _defaultCacheDir;
 
   static Future<int> _packageBuild() async =>
-      int.tryParse((await PackageInfo.fromPlatform()).buildNumber) ?? 0;
+      appBuild((await PackageInfo.fromPlatform()).buildNumber);
 
   static Future<Directory> _defaultCacheDir() async {
     final base = await getTemporaryDirectory();
