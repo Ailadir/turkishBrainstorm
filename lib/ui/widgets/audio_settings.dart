@@ -92,6 +92,10 @@ class _AudioSettingsState extends ConsumerState<AudioSettings> {
     final tts = ref.read(ttsServiceProvider);
     final s = ref.read(settingsServiceProvider);
     final texts = await repo.ownWordTexts();
+    if (texts.isEmpty) {
+      _toast("You haven't added any words of your own yet");
+      return;
+    }
     final missing = <String>[];
     for (final t in texts) {
       if (!await tts.isCached(t)) missing.add(t);
@@ -181,7 +185,13 @@ class _AudioSettingsState extends ConsumerState<AudioSettings> {
                 onPressed: () => ref
                     .read(ttsServiceProvider)
                     .speak('Merhaba, nasılsın?')
-                    .then((o) => _toast('Played via ${o.via}')),
+                    .then(
+                      (o) => _toast(
+                        o.ok
+                            ? 'Played via ${o.via}'
+                            : 'No sound: ${ref.read(piperEngineProvider).lastError ?? o.problem}',
+                      ),
+                    ),
                 child: const Text('Test'),
               ),
             ],

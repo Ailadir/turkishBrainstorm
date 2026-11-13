@@ -25,6 +25,9 @@ class PiperEngine {
   SendPort? _send;
   String? _loadedVoice;
 
+  /// Why the last [synthesize] failed (shown in Settings), or null.
+  String? lastError;
+
   Future<Directory> _modelDir(String voice) async {
     final base = await getApplicationSupportDirectory();
     return Directory(
@@ -57,14 +60,25 @@ class PiperEngine {
       }
       final total = resp.contentLength ?? 0;
       var got = 0;
+      var lastTick = DateTime.now();
       final sink = tmp.openWrite();
       await for (final chunk in resp.stream) {
         sink.add(chunk);
         got += chunk.length;
-        if (total > 0) onProgress?.call(got / total);
+        // Update the UI a few times per second, not once per chunk.
+        final now = DateTime.now();
+        if (total > 0 && now.difference(lastTick).inMilliseconds > 250) {
+          lastTick = now;
+          onProgress?.call(got / total * 0.8); // last 20% is unpacking
+        }
       }
       await sink.close();
-      await extractFileToDisk(tmp.path, root.path);
+      onProgress?.call(0.8);
+      // Unpacking a .tar.bz2 is CPU-heavy: do it off the UI thread.
+      final archivePath = tmp.path;
+      final outPath = root.path;
+      await Isolate.run(() => extractFileToDisk(archivePath, outPath));
+      onProgress?.call(1);
     } finally {
       client.close();
       if (tmp.existsSync()) tmp.deleteSync();
@@ -90,12 +104,18 @@ class PiperEngine {
     _loadedVoice = voice;
     final reply = ReceivePort();
     _send!.send([text, outPath, reply.sendPort]);
-    final ok = await reply.first.timeout(
-      const Duration(seconds: 30),
-      onTimeout: () => false,
+    final answer = await reply.first.timeout(
+      const Duration(seconds: 90), // the first call also loads the model
+      onTimeout: () => 'Timed out while loading the voice',
     );
     reply.close();
-    return ok == true;
+    if (answer == true) {
+      lastError = null;
+      return true;
+    }
+    lastError = answer is String ? answer : 'Synthesis failed';
+    await _stop(); // start fresh next time
+    return false;
   }
 
   Future<SendPort> _spawn(String voice, String dir) async {
@@ -144,7 +164,7 @@ void _worker(List<Object> args) {
       );
       final audio = tts!.generate(text: m[0] as String, speed: 0.95);
       if (audio.samples.isEmpty) {
-        reply.send(false);
+        reply.send('The voice produced no audio for "${m[0]}"');
         return;
       }
       final ok = sherpa.writeWave(
@@ -152,9 +172,9 @@ void _worker(List<Object> args) {
         samples: audio.samples,
         sampleRate: audio.sampleRate,
       );
-      reply.send(ok);
-    } catch (_) {
-      reply.send(false);
+      reply.send(ok ? true : 'Could not write the audio file');
+    } catch (e) {
+      reply.send('Voice error: $e');
     }
   });
 }
