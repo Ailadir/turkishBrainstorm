@@ -48,6 +48,7 @@ dependencies:
   sqlite3: ^3.9.1
   file_picker: ^13.3.3
   archive: ^4.7.0
+  # Don't upgrade: 2.0.x has a bug that makes the offline Turkish voice silent.
   sherpa_onnx: 1.13.8
   package_info_plus: ^10.2.2
 
