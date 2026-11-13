@@ -132,11 +132,9 @@ class TtsService {
     Future<Directory> Function()? cacheDir,
     this.onProblem,
   }) : isPackWord = isPackWord ?? ((_) async => false),
-       playFile = playFile ?? _defaultPlayer().play,
-       phoneSpeak = phoneSpeak ?? _PhoneTts().speak,
+       playFile = playFile ?? _Player(() => _settings.speechSpeed).play,
+       phoneSpeak = phoneSpeak ?? _PhoneTts(() => _settings.speechSpeed).speak,
        cacheDir = cacheDir ?? _defaultCacheDir;
-
-  static _Player _defaultPlayer() => _Player();
 
   static Future<Directory> _defaultCacheDir() async {
     final docs = await getApplicationDocumentsDirectory();
@@ -240,15 +238,21 @@ class TtsService {
 }
 
 class _Player {
+  final double Function() speed;
+  _Player(this.speed);
   final AudioPlayer _player = AudioPlayer();
   Future<void> play(String path) async {
     await _player.stop();
+    // Android keeps the pitch when slowing down.
+    await _player.setPlaybackRate(speed());
     await _player.play(DeviceFileSource(path));
   }
 }
 
 /// Phone TTS, used only when the phone really has a Turkish voice.
 class _PhoneTts {
+  final double Function() speed;
+  _PhoneTts(this.speed);
   final FlutterTts _tts = FlutterTts();
   bool _ready = false;
 
@@ -258,9 +262,9 @@ class _PhoneTts {
         final available = await _tts.isLanguageAvailable('tr-TR');
         if (available != true && available != 1) return false;
         await _tts.setLanguage('tr-TR');
-        await _tts.setSpeechRate(0.45);
         _ready = true;
       }
+      await _tts.setSpeechRate(0.5 * speed());
       await _tts.stop();
       await _tts.speak(text);
       return true;

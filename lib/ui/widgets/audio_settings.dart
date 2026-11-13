@@ -143,6 +143,28 @@ class _AudioSettingsState extends ConsumerState<AudioSettings> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Text('Speech speed', style: theme.textTheme.titleMedium),
+        Row(
+          children: [
+            Expanded(
+              child: Slider(
+                value: s.speechSpeed,
+                min: 0.5,
+                max: 1.0,
+                divisions: 10,
+                label: '${s.speechSpeed.toStringAsFixed(2)}×',
+                onChanged: (v) {
+                  s.setSpeechSpeed(v);
+                  setState(() {});
+                },
+                onChangeEnd: (_) =>
+                    ref.read(ttsServiceProvider).speak('Merhaba, nasılsın?'),
+              ),
+            ),
+            Text('${s.speechSpeed.toStringAsFixed(2)}×'),
+          ],
+        ),
+        const SizedBox(height: 12),
         Text('Offline voice', style: theme.textTheme.titleMedium),
         const SizedBox(height: 6),
         Text(

@@ -4,6 +4,9 @@ Add a section at the top for every release: `## <version>+<build>` matching
 `version:` in pubspec.yaml, then `- ` bullet lines. The release workflow fails
 if the section is missing.
 
+## 1.1.3+5
+- Speech speed setting (Settings → Speech speed); words now play slower by default
+
 ## 1.1.2+4
 - Fixed the update check: the app always said it was up to date
 

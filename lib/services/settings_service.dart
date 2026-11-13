@@ -34,6 +34,10 @@ class SettingsService {
   Future<void> setElevenLabsForPackWords(bool v) =>
       _prefs.setBool('el_pack_words', v);
 
+  /// Playback speed for every voice (1.0 = as generated).
+  double get speechSpeed => _prefs.getDouble('speech_speed') ?? 0.8;
+  Future<void> setSpeechSpeed(double v) => _prefs.setDouble('speech_speed', v);
+
   // ── Offline voice (Piper) ───────────────────────────────────────────────
 
   /// `dfki` (female), `fahrettin` or `fettah` (male).
