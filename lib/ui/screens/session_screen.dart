@@ -37,6 +37,12 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
   AnswerResult? _result;
   Timer? _timer;
   int _counter = 0;
+  final _scroll = ScrollController();
+
+  /// Brainstorm: the current word is shown as a card before its first
+  /// exercise.
+  bool _intro = false;
+  final Set<int> _introduced = {};
 
   int _learned = 0;
   int _answers = 0;
@@ -54,6 +60,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
   @override
   void dispose() {
     _timer?.cancel();
+    _scroll.dispose();
     super.dispose();
   }
 
@@ -64,6 +71,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
       _finished = false;
       _result = null;
       _learned = 0;
+      _intro = false;
       _answers = 0;
       _correctAnswers = 0;
       _startedAt = DateTime.now();
@@ -88,6 +96,7 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     final pool = await repo.distractorPool(
       exceptIds: {for (final w in words) w.id},
     );
+    _introduced.clear();
     _words
       ..clear()
       ..addEntries(words.map((w) => MapEntry(w.id, w)));
@@ -117,8 +126,10 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
       _result = null;
       _exercise = next;
       _finished = next == null;
+      _intro = _isBrain && next != null && _introduced.add(next.wordId);
       _counter++;
     });
+    if (_scroll.hasClients) _scroll.jumpTo(0);
     if (next == null) ref.invalidate(statsProvider);
   }
 
@@ -130,6 +141,16 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
       _result = r;
       _answers++;
       if (r.correct) _correctAnswers++;
+    });
+    // Bring the explanation and its Continue button into view.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (_scroll.hasClients) {
+        _scroll.animateTo(
+          _scroll.position.maxScrollExtent,
+          duration: const Duration(milliseconds: 250),
+          curve: Curves.easeOut,
+        );
+      }
     });
 
     // Persist after every answer.
@@ -208,30 +229,45 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
       ),
       body: SafeArea(
         child: ListView(
-          padding: const EdgeInsets.all(24),
+          controller: _scroll,
+          padding: const EdgeInsets.fromLTRB(20, 16, 20, 24),
           children: [
-            if (ex.isReask)
-              Padding(
-                padding: const EdgeInsets.only(bottom: 12),
-                child: Text(
-                  'One more try',
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.labelLarge
-                      ?.copyWith(color: Colors.orange),
-                ),
-              ),
-            // Keyed so each exercise starts with fresh state.
-            KeyedSubtree(key: ValueKey(_counter), child: _exerciseView(ex)),
-            if (result != null) ...[
-              const SizedBox(height: 20),
+            if (_intro)
               ResultPanel(
-                key: ValueKey('r$_counter'),
+                key: ValueKey('i$_counter'),
                 word: _words[ex.wordId]!,
-                correct: result.correct,
+                correct: true,
+                intro: true,
                 tts: ref.read(ttsServiceProvider),
-                autoplay: ex.type != ExerciseType.listenChoose,
-                onContinue: advancesAlone ? null : _advance,
-              ),
+                onContinue: () => setState(() {
+                  _intro = false;
+                  _counter++;
+                }),
+              )
+            else ...[
+              if (ex.isReask)
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 12),
+                  child: Text(
+                    'One more try',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelLarge
+                        ?.copyWith(color: Colors.orange),
+                  ),
+                ),
+              // Keyed so each exercise starts with fresh state.
+              KeyedSubtree(key: ValueKey(_counter), child: _exerciseView(ex)),
+              if (result != null) ...[
+                const SizedBox(height: 20),
+                ResultPanel(
+                  key: ValueKey('r$_counter'),
+                  word: _words[ex.wordId]!,
+                  correct: result.correct,
+                  tts: ref.read(ttsServiceProvider),
+                  autoplay: ex.type != ExerciseType.listenChoose,
+                  onContinue: advancesAlone ? null : _advance,
+                ),
+              ],
             ],
           ],
         ),

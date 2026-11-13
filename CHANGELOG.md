@@ -4,6 +4,12 @@ Add a section at the top for every release: `## <version>+<build>` matching
 `version:` in pubspec.yaml, then `- ` bullet lines. The release workflow fails
 if the section is missing.
 
+## 1.1.7+9
+- Brainstorm shows each new word first (meaning, audio, suffixes) before testing it
+- The explanation stays after a correct answer until you tap Continue (change it in Settings)
+- The explanation and Continue button now scroll into view
+- Fixed answer buttons whose borders lagged behind the text when you pull the screen
+
 ## 1.1.6+8
 - The offline voice pronounces words properly (altı no longer sounds like artı) and no longer cuts off their start
 

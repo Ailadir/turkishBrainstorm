@@ -18,6 +18,9 @@ class ResultPanel extends StatefulWidget {
   /// Null when the screen advances by itself.
   final VoidCallback? onContinue;
 
+  /// Brainstorm shows the panel once before a new word's first exercise.
+  final bool intro;
+
   const ResultPanel({
     super.key,
     required this.word,
@@ -25,6 +28,7 @@ class ResultPanel extends StatefulWidget {
     required this.tts,
     this.autoplay = true,
     this.onContinue,
+    this.intro = false,
   });
 
   @override
@@ -46,7 +50,11 @@ class _ResultPanelState extends State<ResultPanel> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final w = widget.word;
-    final color = widget.correct ? Colors.green : Colors.red;
+    final color = widget.intro
+        ? theme.colorScheme.primary
+        : widget.correct
+        ? Colors.green
+        : Colors.red;
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -59,7 +67,11 @@ class _ResultPanelState extends State<ResultPanel> {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            widget.correct ? '✓ Correct' : '✗ Not quite',
+            widget.intro
+                ? 'New word'
+                : widget.correct
+                ? '✓ Correct'
+                : '✗ Not quite',
             style: theme.textTheme.titleMedium?.copyWith(
               color: color,
               fontWeight: FontWeight.bold,
@@ -108,7 +120,7 @@ class _ResultPanelState extends State<ResultPanel> {
             const SizedBox(height: 12),
             FilledButton(
               onPressed: widget.onContinue,
-              child: const Text('Continue'),
+              child: Text(widget.intro ? 'Got it' : 'Continue'),
             ),
           ],
         ],

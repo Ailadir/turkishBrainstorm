@@ -143,9 +143,9 @@ class SettingsService {
   bool get typingEnabled => _prefs.getBool('typing_enabled') ?? false;
   Future<void> setTypingEnabled(bool v) => _prefs.setBool('typing_enabled', v);
 
-  bool get autoAdvanceOnCorrect => _prefs.getBool('auto_advance') ?? true;
+  bool get autoAdvanceOnCorrect => _prefs.getBool('auto_advance_v2') ?? false;
   Future<void> setAutoAdvanceOnCorrect(bool v) =>
-      _prefs.setBool('auto_advance', v);
+      _prefs.setBool('auto_advance_v2', v);
 
   bool get usePackWords => _prefs.getBool('use_pack_words') ?? true;
   Future<void> setUsePackWords(bool v) => _prefs.setBool('use_pack_words', v);

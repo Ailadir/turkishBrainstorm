@@ -62,7 +62,7 @@ class _ChoiceExerciseState extends State<ChoiceExercise> {
       children: [
         Text(label, style: tt.labelLarge?.copyWith(color: Colors.grey)),
         Text(hint, style: tt.bodySmall?.copyWith(color: Colors.grey)),
-        const SizedBox(height: 20),
+        const SizedBox(height: 12),
         if (_type == ExerciseType.chooseMeaning)
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -98,7 +98,7 @@ class _ChoiceExerciseState extends State<ChoiceExercise> {
               child: const Text("Can't hear? Show text"),
             ),
         ],
-        const SizedBox(height: 24),
+        const SizedBox(height: 16),
         for (final opt in widget.exercise.options)
           _OptionTile(
             text: opt,
@@ -131,15 +131,26 @@ class _OptionTile extends StatelessWidget {
         ? Colors.red
         : null;
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
-      child: ListTile(
-        tileColor: color?.withValues(alpha: 0.15),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-          side: BorderSide(color: color ?? Colors.grey.shade400),
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      // Own Material: ListTile paints its border and colour on the nearest
+      // Material, which otherwise stays put during the overscroll stretch.
+      child: Material(
+        type: MaterialType.transparency,
+        child: ListTile(
+          dense: true,
+          visualDensity: VisualDensity.compact,
+          tileColor: color?.withValues(alpha: 0.15),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+            side: BorderSide(color: color ?? Colors.grey.shade400),
+          ),
+          title: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.titleMedium,
+          ),
+          onTap: onTap,
         ),
-        title: Text(text, textAlign: TextAlign.center),
-        onTap: onTap,
       ),
     );
   }
