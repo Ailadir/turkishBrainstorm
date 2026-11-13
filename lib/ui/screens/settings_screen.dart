@@ -157,7 +157,6 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     if (confirmed != true) return;
     await ref.read(wordRepositoryProvider).deleteAllWords();
     ref.invalidate(statsProvider);
-    ref.invalidate(dueQueueProvider);
     if (mounted) {
       ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(content: Text('Dictionary cleared')));
@@ -168,12 +167,75 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final cs = theme.colorScheme;
+    final settings = ref.read(settingsServiceProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Settings'), centerTitle: true),
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
+          // ── Practice ──────────────────────────────────────────────────────
+          Text('Practice', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          Text('Words per Brainstorm round: ${settings.wordsPerBrainstorm}'),
+          Slider(
+            min: 3,
+            max: 10,
+            divisions: 7,
+            value: settings.wordsPerBrainstorm.toDouble(),
+            label: '${settings.wordsPerBrainstorm}',
+            onChanged: (v) async {
+              await settings.setWordsPerBrainstorm(v.round());
+              setState(() {});
+            },
+          ),
+          Text('Max cards per review: ${settings.maxReviewsPerSession}'),
+          Slider(
+            min: 10,
+            max: 200,
+            divisions: 19,
+            value: settings.maxReviewsPerSession.clamp(10, 200).toDouble(),
+            label: '${settings.maxReviewsPerSession}',
+            onChanged: (v) async {
+              await settings.setMaxReviewsPerSession(v.round());
+              setState(() {});
+            },
+          ),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Typing exercises'),
+            subtitle: const Text('Type the Turkish word (harder, slower)'),
+            value: settings.typingEnabled,
+            onChanged: (v) async {
+              await settings.setTypingEnabled(v);
+              setState(() {});
+            },
+          ),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Auto-advance after a correct answer'),
+            subtitle: const Text('Moves on after about 1 second'),
+            value: settings.autoAdvanceOnCorrect,
+            onChanged: (v) async {
+              await settings.setAutoAdvanceOnCorrect(v);
+              setState(() {});
+            },
+          ),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Use pack words in Brainstorm'),
+            subtitle: const Text('Your own words always come first'),
+            value: settings.usePackWords,
+            onChanged: (v) async {
+              await settings.setUsePackWords(v);
+              ref.invalidate(statsProvider);
+              setState(() {});
+            },
+          ),
+
+          const SizedBox(height: 20),
+          const Divider(),
+          const SizedBox(height: 12),
 
           // ── Gemini AI Translation ─────────────────────────────────────────
           Text('Gemini AI Translation', style: theme.textTheme.titleMedium),

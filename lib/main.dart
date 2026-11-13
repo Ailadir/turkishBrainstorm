@@ -14,6 +14,8 @@ void main() async {
   );
   // Warm up the Zemberek bridge once (fire-and-forget; falls back gracefully).
   container.read(morphologyServiceProvider).analyze('test').ignore();
+  // Analyse any words still waiting for their morphology breakdown.
+  container.read(analysisJobProvider).run().ignore();
 
   runApp(
     UncontrolledProviderScope(

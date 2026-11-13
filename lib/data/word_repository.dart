@@ -1,27 +1,32 @@
 import 'package:drift/drift.dart';
 
+import '../domain/exercise.dart';
 import '../domain/mastery.dart';
-import '../domain/practice_mode.dart';
+import '../domain/morpheme_ref.dart';
 import '../domain/srs.dart';
 import '../domain/turkish_text.dart';
 import 'database.dart';
 
-/// A due card: the word plus one of its practice states, ready to review.
-class ReviewCard {
-  final Word word;
-  final PracticeState state;
-  PracticeMode get mode => PracticeMode.fromDb(state.mode);
+extension WordX on Word {
+  List<MorphemeRef> get morphemeRefs => MorphemeRef.decodeList(morphemes);
+  double get mastery => Mastery.ofWord(status: status, repetitions: repetitions);
 
-  const ReviewCard(this.word, this.state);
-}
+  VocabItem toItem() => VocabItem(
+        id: id,
+        turkish: turkish,
+        english: english,
+        kind: kind,
+        repetitions: repetitions,
+      );
 
-/// A word plus a derived mastery indicator and its active modes, for browse.
-class WordWithMastery {
-  final Word word;
-  final double mastery;
-  final List<PracticeMode> activeModes;
-
-  const WordWithMastery(this.word, this.mastery, this.activeModes);
+  SrsState get srs => SrsState(
+        intervalDays: intervalDays,
+        easeFactor: easeFactor,
+        repetitions: repetitions,
+        lapses: lapses,
+        dueAt: dueAt,
+        lastReviewedAt: lastReviewedAt,
+      );
 }
 
 /// All reads/writes against the DB. Ties the drift schema to the SRS domain
@@ -30,68 +35,83 @@ class WordRepository {
   final AppDatabase db;
   WordRepository(this.db);
 
+  static const _levelOrder = {'A1': 0, 'A2': 1, 'B1': 2, 'B2': 3};
+
   // ---- Adding & editing ----
 
-  /// Add a word and immediately create its two recognition practice states
-  /// (plan §2: writing/listening are created lazily later).
+  /// Add a word. Dedupes on the Turkish-normalised text; a duplicate returns
+  /// the existing id with `existed: true`. Pass [lemma]/[morphemes] when the
+  /// analysis is already known, otherwise the background job fills them in.
   Future<({int id, bool existed})> addWord({
     required String turkish,
     required String english,
-    String root = '',
-    List<String> suffixes = const [],
+    String? lemma,
+    String? pos,
+    List<MorphemeRef> morphemes = const [],
     String? note,
+    String? noteEn,
     String? source,
-    DateTime? now,
+    String? level,
+    bool englishEdited = false,
+    bool? needsAnalysis,
   }) async {
     final normalized = trNormalize(turkish);
-    // Compare in Dart: SQLite's lower()/LIKE are not Turkish-aware (İ/I/ı/i).
-    final all = await (db.selectOnly(
-      db.words,
-    )..addColumns([db.words.id, db.words.turkish])).get();
-    for (final row in all) {
-      if (trNormalize(row.read(db.words.turkish)!) == normalized) {
-        return (id: row.read(db.words.id)!, existed: true);
-      }
-    }
+    final existing = await (db.select(db.words)
+          ..where((w) => w.normalized.equals(normalized)))
+        .getSingleOrNull();
+    if (existing != null) return (id: existing.id, existed: true);
 
-    final at = now ?? DateTime.now();
-    return db.transaction(() async {
-      final wordId = await db
-          .into(db.words)
-          .insert(
+    final kind = inferKind(turkish);
+    final analysed = lemma != null && lemma.isNotEmpty;
+    final id = await db.transaction(() async {
+      final wordId = await db.into(db.words).insert(
             WordsCompanion.insert(
-              turkish: turkish,
+              turkish: turkish.trim(),
+              normalized: normalized,
               english: english,
-              root: Value(root),
-              suffixes: Value(_encodeSuffixes(suffixes)),
+              englishEdited: Value(englishEdited),
+              kind: Value(kind),
+              lemma: Value(lemma),
+              pos: Value(pos),
+              morphemes: Value(MorphemeRef.encodeList(morphemes)),
               note: Value(note),
+              noteEn: Value(noteEn),
               source: Value(source),
+              level: Value(level),
+              needsAnalysis: Value(needsAnalysis ?? !analysed),
             ),
           );
-      for (final mode in PracticeMode.initialModes) {
-        await _insertState(wordId, mode, at);
-      }
-      return (id: wordId, existed: false);
+      if (analysed) await _writeMorphemes(wordId, morphemes);
+      return wordId;
     });
+    return (id: id, existed: false);
   }
 
   Future<void> updateWordFields({
     required int wordId,
     String? turkish,
     String? english,
-    String? root,
-    List<String>? suffixes,
+    String? lemma,
     String? note,
     String? source,
   }) async {
+    final current = await wordById(wordId);
+    if (current == null) return;
+    final turkishChanged = turkish != null && turkish != current.turkish;
+    final englishChanged = english != null && english != current.english;
     await (db.update(db.words)..where((w) => w.id.equals(wordId))).write(
       WordsCompanion(
         turkish: turkish == null ? const Value.absent() : Value(turkish),
+        normalized: turkishChanged
+            ? Value(trNormalize(turkish))
+            : const Value.absent(),
+        kind: turkishChanged ? Value(inferKind(turkish)) : const Value.absent(),
+        needsAnalysis:
+            turkishChanged ? const Value(true) : const Value.absent(),
         english: english == null ? const Value.absent() : Value(english),
-        root: root == null ? const Value.absent() : Value(root),
-        suffixes: suffixes == null
-            ? const Value.absent()
-            : Value(_encodeSuffixes(suffixes)),
+        englishEdited:
+            englishChanged ? const Value(true) : const Value.absent(),
+        lemma: lemma == null ? const Value.absent() : Value(lemma),
         note: note == null ? const Value.absent() : Value(note),
         source: source == null ? const Value.absent() : Value(source),
       ),
@@ -102,138 +122,181 @@ class WordRepository {
     await (db.delete(db.words)..where((w) => w.id.equals(wordId))).go();
   }
 
-  /// Lazily create a writing/listening state the first time the user opts in.
-  Future<void> ensureModeState(
-    int wordId,
-    PracticeMode mode, {
-    DateTime? now,
+  /// Delete every word (cascades to morphemes, pack links and the log).
+  Future<void> deleteAllWords() => db.delete(db.words).go();
+
+  // ---- Morphology analysis job ----
+
+  Future<List<Word>> wordsNeedingAnalysis(int limit) =>
+      (db.select(db.words)
+            ..where((w) => w.needsAnalysis.equals(true))
+            ..orderBy([(w) => OrderingTerm.asc(w.id)])
+            ..limit(limit))
+          .get();
+
+  /// Store an analysis: lemma/pos/morphemes on the word, one `WordMorphemes`
+  /// row per suffix, and a `Morphemes` row for every id seen for the first time.
+  Future<void> applyAnalysis(
+    int wordId, {
+    required String lemma,
+    String? pos,
+    required List<MorphemeRef> morphemes,
   }) async {
-    final existing =
-        await (db.select(db.practiceStates)..where(
-              (s) => s.wordId.equals(wordId) & s.mode.equals(mode.dbValue),
-            ))
-            .getSingleOrNull();
-    if (existing == null) {
-      await _insertState(wordId, mode, now ?? DateTime.now());
-    }
-  }
-
-  Future<void> _insertState(int wordId, PracticeMode mode, DateTime at) async {
-    final fresh = SrsState.fresh(now: at);
-    await db
-        .into(db.practiceStates)
-        .insert(
-          PracticeStatesCompanion.insert(
-            wordId: wordId,
-            mode: mode.dbValue,
-            intervalDays: Value(fresh.intervalDays),
-            easeFactor: Value(fresh.easeFactor),
-            repetitions: Value(fresh.repetitions),
-            dueAt: fresh.dueAt!,
-          ),
-        );
-  }
-
-  // ---- Review queue ----
-
-  static const _modePriority = [
-    PracticeMode.recognitionTrEn,
-    PracticeMode.recognitionEnTr,
-    PracticeMode.listening,
-    PracticeMode.writing,
-  ];
-
-  /// Due cards, **at most one per word** (so siblings never come back to
-  /// back), preferring the earliest mode in [_modePriority]. Deterministic:
-  /// ordered by due date, then word id.
-  Future<List<ReviewCard>> dueQueue({DateTime? now, int? limit}) async {
-    final at = now ?? DateTime.now();
-    final query =
-        db.select(db.practiceStates).join([
-            innerJoin(
-              db.words,
-              db.words.id.equalsExp(db.practiceStates.wordId),
-            ),
-          ])
-          ..where(db.practiceStates.dueAt.isSmallerOrEqualValue(at))
-          ..orderBy([
-            OrderingTerm.asc(db.practiceStates.dueAt),
-            OrderingTerm.asc(db.practiceStates.wordId),
-            OrderingTerm.asc(db.practiceStates.id),
-          ]);
-
-    final rows = await query.get();
-    final best = <int, ReviewCard>{};
-    for (final r in rows) {
-      final card = ReviewCard(
-        r.readTable(db.words),
-        r.readTable(db.practiceStates),
+    await db.transaction(() async {
+      await (db.update(db.words)..where((w) => w.id.equals(wordId))).write(
+        WordsCompanion(
+          lemma: Value(lemma),
+          pos: Value(pos),
+          morphemes: Value(MorphemeRef.encodeList(morphemes)),
+          needsAnalysis: const Value(false),
+        ),
       );
-      final cur = best[card.word.id];
-      if (cur == null ||
-          _modePriority.indexOf(card.mode) < _modePriority.indexOf(cur.mode)) {
-        best[card.word.id] = card;
-      }
-    }
-    final cards = best.values.toList()
-      ..sort((a, b) {
-        final c = a.state.dueAt.compareTo(b.state.dueAt);
-        return c != 0 ? c : a.word.id.compareTo(b.word.id);
-      });
-    return limit != null && cards.length > limit
-        ? cards.sublist(0, limit)
-        : cards;
+      await _writeMorphemes(wordId, morphemes);
+    });
   }
 
-  /// Number of words with at least one due state.
+  Future<void> _writeMorphemes(int wordId, List<MorphemeRef> list) async {
+    await (db.delete(db.wordMorphemes)..where((m) => m.wordId.equals(wordId)))
+        .go();
+    for (var i = 0; i < list.length; i++) {
+      await db.into(db.wordMorphemes).insert(WordMorphemesCompanion.insert(
+            wordId: wordId,
+            morphemeId: list[i].id,
+            surface: list[i].surface,
+            position: i,
+          ));
+      await db
+          .into(db.morphemes)
+          .insert(MorphemesCompanion.insert(id: list[i].id),
+              mode: InsertMode.insertOrIgnore);
+    }
+  }
+
+  // ---- Brainstorm / Review ----
+
+  /// New words for a Brainstorm round: own words (not from any pack) newest
+  /// first, then — if [usePackWords] — pack words by CEFR level and rank.
+  Future<List<Word>> pickNewWords(int n, {bool usePackWords = true}) async {
+    final fresh = await (db.select(db.words)
+          ..where((w) => w.status.equals('new')))
+        .get();
+    final packRows = await db.select(db.wordPacks).get();
+    final rankByWord = <int, int>{};
+    for (final r in packRows) {
+      final cur = rankByWord[r.wordId];
+      if (cur == null || r.rank < cur) rankByWord[r.wordId] = r.rank;
+    }
+    final own = fresh.where((w) => !rankByWord.containsKey(w.id)).toList()
+      ..sort((a, b) => b.createdAt.compareTo(a.createdAt) != 0
+          ? b.createdAt.compareTo(a.createdAt)
+          : b.id.compareTo(a.id));
+    final result = <Word>[...own];
+    if (usePackWords) {
+      final pack = fresh.where((w) => rankByWord.containsKey(w.id)).toList()
+        ..sort((a, b) {
+          final la = _levelOrder[a.level] ?? 9;
+          final lb = _levelOrder[b.level] ?? 9;
+          if (la != lb) return la.compareTo(lb);
+          return rankByWord[a.id]!.compareTo(rankByWord[b.id]!);
+        });
+      result.addAll(pack);
+    }
+    return result.take(n).toList();
+  }
+
+  /// Number of words a Brainstorm could serve (own words, plus pack words
+  /// when [usePackWords]).
+  Future<int> newCount({bool usePackWords = true}) async =>
+      (await pickNewWords(1 << 30, usePackWords: usePackWords)).length;
+
+  /// A word passed every Brainstorm step: schedule its first review for
+  /// tomorrow; more [mistakes] lower the starting ease (2.5 − 0.15×min(m,3)).
+  Future<void> finishBrainstorm(int wordId, int mistakes, {DateTime? now}) {
+    final at = now ?? DateTime.now();
+    return (db.update(db.words)..where((w) => w.id.equals(wordId))).write(
+      WordsCompanion(
+        status: const Value('review'),
+        repetitions: const Value(1),
+        intervalDays: const Value(1),
+        easeFactor: Value(2.5 - 0.15 * (mistakes > 3 ? 3 : mistakes)),
+        dueAt: Value(at.add(const Duration(days: 1))),
+        lastReviewedAt: Value(at),
+      ),
+    );
+  }
+
+  /// Words due for review (`status = review`, `dueAt <= now`), most overdue
+  /// first, capped at [limit].
+  Future<List<Word>> dueWords({DateTime? now, int? limit}) async {
+    final at = now ?? DateTime.now();
+    final q = db.select(db.words)
+      ..where((w) => w.status.equals('review') & w.dueAt.isSmallerOrEqualValue(at))
+      ..orderBy([(w) => OrderingTerm.asc(w.dueAt), (w) => OrderingTerm.asc(w.id)]);
+    if (limit != null) q.limit(limit);
+    return q.get();
+  }
+
   Future<int> dueCount({DateTime? now}) async {
     final at = now ?? DateTime.now();
-    final distinctWords = db.practiceStates.wordId.count(distinct: true);
-    final query = db.selectOnly(db.practiceStates)
-      ..addColumns([distinctWords])
-      ..where(db.practiceStates.dueAt.isSmallerOrEqualValue(at));
-    final row = await query.getSingle();
-    return row.read(distinctWords) ?? 0;
+    final c = db.words.id.count();
+    final row = await (db.selectOnly(db.words)
+          ..addColumns([c])
+          ..where(db.words.status.equals('review') &
+              db.words.dueAt.isSmallerOrEqualValue(at)))
+        .getSingle();
+    return row.read(c) ?? 0;
   }
 
-  /// Apply a grade to a card: recompute SM-2 state, persist, and log it.
-  Future<void> applyReview(
-    ReviewCard card,
-    ReviewGrade grade, {
+  /// Apply an auto-graded review to the word's SRS state and log it.
+  Future<void> applyWordReview(
+    int wordId,
+    ReviewGrade grade,
+    ExerciseType exercise, {
     DateTime? now,
   }) async {
     final at = now ?? DateTime.now();
-    final current = SrsState(
-      intervalDays: card.state.intervalDays,
-      easeFactor: card.state.easeFactor,
-      repetitions: card.state.repetitions,
-      dueAt: card.state.dueAt,
-      lastReviewedAt: card.state.lastReviewedAt,
-    );
-    final next = SrsScheduler.review(current, grade, card.mode, now: at);
-
+    final word = await wordById(wordId);
+    if (word == null) return;
+    final next = SrsScheduler.reviewWord(word.srs, grade, now: at);
     await db.transaction(() async {
-      await (db.update(
-        db.practiceStates,
-      )..where((s) => s.id.equals(card.state.id))).write(
-        PracticeStatesCompanion(
+      await (db.update(db.words)..where((w) => w.id.equals(wordId))).write(
+        WordsCompanion(
           intervalDays: Value(next.intervalDays),
           easeFactor: Value(next.easeFactor),
           repetitions: Value(next.repetitions),
-          dueAt: Value(next.dueAt!),
+          lapses: Value(next.lapses),
+          dueAt: Value(next.dueAt),
           lastReviewedAt: Value(next.lastReviewedAt),
         ),
       );
-      await db
-          .into(db.reviewLog)
-          .insert(
-            ReviewLogCompanion.insert(
-              wordId: card.word.id,
-              mode: card.mode.dbValue,
-              result: grade.dbValue,
-            ),
-          );
+      await _log(wordId, exercise, grade.dbValue, at);
     });
+  }
+
+  /// Log one Brainstorm answer (`pass` / `fail`).
+  Future<void> logBrainstorm(int wordId, ExerciseType exercise, bool correct,
+      {DateTime? now}) {
+    return _log(wordId, exercise, correct ? 'pass' : 'fail',
+        now ?? DateTime.now());
+  }
+
+  Future<void> _log(
+      int wordId, ExerciseType exercise, String result, DateTime at) {
+    return db.into(db.reviewLog).insert(ReviewLogCompanion.insert(
+          wordId: Value(wordId),
+          exercise: exercise.name,
+          result: result,
+          reviewedAt: Value(at),
+        ));
+  }
+
+  /// Words used as multiple-choice distractors (everything but [exceptIds]).
+  Future<List<VocabItem>> distractorPool({Set<int> exceptIds = const {}}) async {
+    final rows = await db.select(db.words).get();
+    return [
+      for (final w in rows)
+        if (!exceptIds.contains(w.id)) w.toItem(),
+    ];
   }
 
   // ---- Browse & stats ----
@@ -259,107 +322,55 @@ class WordRepository {
     return sel.watch();
   }
 
-  /// Delete every word (cascades to practice states and review log).
-  Future<void> deleteAllWords() => db.delete(db.words).go();
-
-  /// A word with its derived mastery indicator (plan §3).
-  Future<WordWithMastery> withMastery(Word word) async {
-    final states = await (db.select(
-      db.practiceStates,
-    )..where((s) => s.wordId.equals(word.id))).get();
-    final byMode = <PracticeMode, int>{
-      for (final s in states) PracticeMode.fromDb(s.mode): s.repetitions,
-    };
-    return WordWithMastery(word, Mastery.overall(byMode), byMode.keys.toList());
-  }
-
-  /// Aggregate stats for the dashboard.
-  Future<VocabStats> stats({DateTime? now}) async {
-    final at = now ?? DateTime.now();
-    final totalWords = await db.words.count().getSingle();
-    final due = await dueCount(now: at);
-    final states = await db.select(db.practiceStates).get();
-    final reviewsToday = await _reviewsSince(
-      DateTime(at.year, at.month, at.day),
-    );
-
-    // Group repetitions by word to compute an average mastery.
-    final byWord = <int, Map<PracticeMode, int>>{};
-    for (final s in states) {
-      byWord.putIfAbsent(s.wordId, () => {})[PracticeMode.fromDb(s.mode)] =
-          s.repetitions;
-    }
-    final masteries = byWord.values.map(Mastery.overall).toList();
-    final avgMastery = masteries.isEmpty
-        ? 0.0
-        : masteries.reduce((a, b) => a + b) / masteries.length;
-
-    return VocabStats(
-      totalWords: totalWords,
-      dueNow: due,
-      reviewsToday: reviewsToday,
-      averageMastery: avgMastery,
-    );
-  }
-
   Future<Word?> wordById(int id) =>
       (db.select(db.words)..where((w) => w.id.equals(id))).getSingleOrNull();
 
-  /// Three random English translations from words other than [exceptWordId],
-  /// used as distractors in listening multiple-choice (plan §4.4).
-  Future<List<String>> randomEnglishDistractors(int exceptWordId, int n) async {
-    final rows =
-        await (db.select(db.words)
-              ..where((w) => w.id.equals(exceptWordId).not())
-              ..orderBy([
-                (w) => OrderingTerm(
-                  expression: FunctionCallExpression('random', []),
-                ),
-              ])
-              ..limit(n))
-            .get();
-    return rows.map((w) => w.english).toList();
-  }
-
-  /// Per-mode due counts for the stats screen (one card per word, as in the
-  /// review queue).
-  Future<Map<PracticeMode, int>> dueCountByMode({DateTime? now}) async {
-    final queue = await dueQueue(now: now);
-    final result = <PracticeMode, int>{};
-    for (final c in queue) {
-      result[c.mode] = (result[c.mode] ?? 0) + 1;
-    }
-    return result;
+  /// Aggregate stats for the dashboard.
+  Future<VocabStats> stats({DateTime? now, bool usePackWords = true}) async {
+    final at = now ?? DateTime.now();
+    final words = await db.select(db.words).get();
+    final reviewsToday =
+        await _reviewsSince(DateTime(at.year, at.month, at.day));
+    final avg = words.isEmpty
+        ? 0.0
+        : words.map((w) => w.mastery).reduce((a, b) => a + b) / words.length;
+    return VocabStats(
+      totalWords: words.length,
+      dueNow: await dueCount(now: at),
+      newCount: await newCount(usePackWords: usePackWords),
+      reviewsToday: reviewsToday,
+      averageMastery: avg,
+      byStatus: {
+        for (final s in ['new', 'learning', 'review', 'suspended'])
+          s: words.where((w) => w.status == s).length,
+      },
+    );
   }
 
   Future<int> _reviewsSince(DateTime since) async {
     final count = db.reviewLog.id.count();
-    final query = db.selectOnly(db.reviewLog)
-      ..addColumns([count])
-      ..where(db.reviewLog.reviewedAt.isBiggerOrEqualValue(since));
-    final row = await query.getSingle();
+    final row = await (db.selectOnly(db.reviewLog)
+          ..addColumns([count])
+          ..where(db.reviewLog.reviewedAt.isBiggerOrEqualValue(since)))
+        .getSingle();
     return row.read(count) ?? 0;
-  }
-
-  static String _encodeSuffixes(List<String> suffixes) {
-    // Simple JSON array of strings.
-    final escaped = suffixes
-        .map((s) => '"${s.replaceAll('"', '\\"')}"')
-        .join(',');
-    return '[$escaped]';
   }
 }
 
 class VocabStats {
   final int totalWords;
   final int dueNow;
+  final int newCount;
   final int reviewsToday;
   final double averageMastery;
+  final Map<String, int> byStatus;
 
   const VocabStats({
     required this.totalWords,
     required this.dueNow,
+    required this.newCount,
     required this.reviewsToday,
     required this.averageMastery,
+    this.byStatus = const {},
   });
 }

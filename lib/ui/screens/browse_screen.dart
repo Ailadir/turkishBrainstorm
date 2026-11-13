@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../data/word_repository.dart';
 import '../../providers/providers.dart';
 import 'word_edit_screen.dart';
 
@@ -37,25 +38,27 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                 itemCount: words.length,
                 itemBuilder: (ctx, i) {
                   final word = words[i];
-                  return FutureBuilder(
-                    future: ref.read(wordRepositoryProvider).withMastery(word),
-                    builder: (ctx, snap) {
-                      final mastery = snap.data?.mastery ?? 0;
-                      final pct = (mastery * 100).round();
+                  final mastery = word.mastery;
+                  final pct = (mastery * 100).round();
+                  return Builder(
+                    builder: (ctx) {
                       return ListTile(
-                        title: Text(word.turkish,
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold)),
+                        title: Text(
+                          word.turkish,
+                          style: const TextStyle(fontWeight: FontWeight.bold),
+                        ),
                         subtitle: Text(word.english),
                         trailing: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
-                            Text('$pct%',
-                                style: TextStyle(
-                                  color: _masteryColor(mastery),
-                                  fontWeight: FontWeight.bold,
-                                )),
+                            Text(
+                              '$pct%',
+                              style: TextStyle(
+                                color: _masteryColor(mastery),
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                             const SizedBox(height: 4),
                             SizedBox(
                               width: 60,
@@ -67,15 +70,16 @@ class _BrowseScreenState extends ConsumerState<BrowseScreen> {
                             ),
                           ],
                         ),
-                        onTap: () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (_) => WordEditScreen(word: word),
-                          ),
-                        ).then((_) {
-                          ref.invalidate(wordSearchProvider(_query));
-                          ref.invalidate(statsProvider);
-                        }),
+                        onTap: () =>
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => WordEditScreen(word: word),
+                              ),
+                            ).then((_) {
+                              ref.invalidate(wordSearchProvider(_query));
+                              ref.invalidate(statsProvider);
+                            }),
                       );
                     },
                   );

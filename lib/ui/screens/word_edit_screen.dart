@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../data/database.dart';
-import '../../domain/practice_mode.dart';
+import '../../data/word_repository.dart';
+import '../../domain/morpheme_ref.dart';
 import '../../providers/providers.dart';
+import '../widgets/breakdown_view.dart';
 
 class WordEditScreen extends ConsumerStatefulWidget {
   final Word word;
@@ -16,10 +18,13 @@ class WordEditScreen extends ConsumerStatefulWidget {
 class _WordEditScreenState extends ConsumerState<WordEditScreen> {
   late final _turkishCtrl = TextEditingController(text: widget.word.turkish);
   late final _englishCtrl = TextEditingController(text: widget.word.english);
-  late final _rootCtrl = TextEditingController(text: widget.word.root);
+  late final _rootCtrl = TextEditingController(text: widget.word.lemma ?? '');
   late final _noteCtrl = TextEditingController(text: widget.word.note ?? '');
-  late final _sourceCtrl = TextEditingController(text: widget.word.source ?? '');
+  late final _sourceCtrl = TextEditingController(
+    text: widget.word.source ?? '',
+  );
   bool _saving = false;
+  late List<MorphemeRef> _morphemes = widget.word.morphemeRefs;
 
   @override
   void dispose() {
@@ -34,11 +39,13 @@ class _WordEditScreenState extends ConsumerState<WordEditScreen> {
   Future<void> _save() async {
     setState(() => _saving = true);
     try {
-      await ref.read(wordRepositoryProvider).updateWordFields(
+      await ref
+          .read(wordRepositoryProvider)
+          .updateWordFields(
             wordId: widget.word.id,
             turkish: _turkishCtrl.text.trim(),
             english: _englishCtrl.text.trim(),
-            root: _rootCtrl.text.trim(),
+            lemma: _rootCtrl.text.trim(),
             note: _noteCtrl.text.trim().isEmpty ? null : _noteCtrl.text.trim(),
             source: _sourceCtrl.text.trim().isEmpty
                 ? null
@@ -58,11 +65,11 @@ class _WordEditScreenState extends ConsumerState<WordEditScreen> {
         content: Text('Delete "${widget.word.turkish}"?'),
         actions: [
           TextButton(
-              onPressed: () => Navigator.pop(ctx, false),
-              child: const Text('Cancel')),
+            onPressed: () => Navigator.pop(ctx, false),
+            child: const Text('Cancel'),
+          ),
           FilledButton(
-            style: FilledButton.styleFrom(
-                backgroundColor: Colors.red),
+            style: FilledButton.styleFrom(backgroundColor: Colors.red),
             onPressed: () => Navigator.pop(ctx, true),
             child: const Text('Delete'),
           ),
@@ -76,21 +83,22 @@ class _WordEditScreenState extends ConsumerState<WordEditScreen> {
   }
 
   Future<void> _reanalyze() async {
-    final result = await ref
+    final r = await ref
         .read(morphologyServiceProvider)
         .analyze(_turkishCtrl.text.trim());
-    _rootCtrl.text = result.root;
-  }
-
-  Future<void> _enableMode(PracticeMode mode) async {
     await ref
         .read(wordRepositoryProvider)
-        .ensureModeState(widget.word.id, mode);
-    if (mounted) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('${mode.label} enabled')),
-      );
-    }
+        .applyAnalysis(
+          widget.word.id,
+          lemma: r.lemma,
+          pos: r.pos,
+          morphemes: r.morphemes,
+        );
+    if (!mounted) return;
+    setState(() {
+      _rootCtrl.text = r.lemma;
+      _morphemes = r.morphemes;
+    });
   }
 
   @override
@@ -100,14 +108,17 @@ class _WordEditScreenState extends ConsumerState<WordEditScreen> {
         title: const Text('Edit word'),
         actions: [
           IconButton(
-              onPressed: _delete,
-              icon: const Icon(Icons.delete),
-              color: Colors.red),
+            onPressed: _delete,
+            icon: const Icon(Icons.delete),
+            color: Colors.red,
+          ),
           if (_saving)
             const Padding(
               padding: EdgeInsets.all(16),
               child: SizedBox.square(
-                  dimension: 20, child: CircularProgressIndicator()),
+                dimension: 20,
+                child: CircularProgressIndicator(),
+              ),
             )
           else
             TextButton(onPressed: _save, child: const Text('Save')),
@@ -132,47 +143,41 @@ class _WordEditScreenState extends ConsumerState<WordEditScreen> {
           TextFormField(
             controller: _rootCtrl,
             decoration: const InputDecoration(
-                labelText: 'Root', border: OutlineInputBorder()),
+              labelText: 'Root / lemma',
+              border: OutlineInputBorder(),
+            ),
           ),
           const SizedBox(height: 12),
           TextFormField(
             controller: _englishCtrl,
             decoration: const InputDecoration(
-                labelText: 'English', border: OutlineInputBorder()),
+              labelText: 'English',
+              border: OutlineInputBorder(),
+            ),
           ),
           const SizedBox(height: 12),
           TextFormField(
             controller: _noteCtrl,
             decoration: const InputDecoration(
-                labelText: 'Note / example', border: OutlineInputBorder()),
+              labelText: 'Note / example',
+              border: OutlineInputBorder(),
+            ),
             maxLines: 2,
           ),
           const SizedBox(height: 12),
           TextFormField(
             controller: _sourceCtrl,
             decoration: const InputDecoration(
-                labelText: 'Source', border: OutlineInputBorder()),
+              labelText: 'Source',
+              border: OutlineInputBorder(),
+            ),
           ),
-          const SizedBox(height: 24),
-          const Divider(),
-          const SizedBox(height: 8),
-          Text('Enable practice modes',
-              style: Theme.of(context).textTheme.titleSmall),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            children: [
-              ActionChip(
-                label: const Text('Writing'),
-                avatar: const Icon(Icons.edit, size: 16),
-                onPressed: () => _enableMode(PracticeMode.writing),
-              ),
-              ActionChip(
-                label: const Text('Listening'),
-                avatar: const Icon(Icons.hearing, size: 16),
-                onPressed: () => _enableMode(PracticeMode.listening),
-              ),
-            ],
+          const SizedBox(height: 16),
+          BreakdownView(lemma: _rootCtrl.text, morphemes: _morphemes),
+          TextButton.icon(
+            icon: const Icon(Icons.auto_fix_high),
+            label: const Text('Re-analyze'),
+            onPressed: _reanalyze,
           ),
         ],
       ),

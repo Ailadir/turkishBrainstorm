@@ -49,10 +49,8 @@ void main() {
       expect(EditDistance.isCloseEnough('ev', 'ev'), isTrue);
     });
     test('explicit tolerance override', () {
-      expect(
-          EditDistance.isCloseEnough('abcd', 'abef', tolerance: 2), isTrue);
-      expect(
-          EditDistance.isCloseEnough('abcd', 'wxyz', tolerance: 2), isFalse);
+      expect(EditDistance.isCloseEnough('abcd', 'abef', tolerance: 2), isTrue);
+      expect(EditDistance.isCloseEnough('abcd', 'wxyz', tolerance: 2), isFalse);
     });
   });
 }

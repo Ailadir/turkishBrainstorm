@@ -5,17 +5,23 @@ import '../../data/word_repository.dart';
 import '../../providers/providers.dart';
 import 'add_word_screen.dart';
 import 'browse_screen.dart';
-import 'review_screen.dart';
+import 'session_screen.dart';
 import 'settings_screen.dart';
 import 'stats_screen.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
+  void _open(BuildContext context, WidgetRef ref, SessionKind kind) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => SessionScreen(kind: kind)),
+    ).then((_) => ref.invalidate(statsProvider));
+  }
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final statsAsync = ref.watch(statsProvider);
-    final dueAsync = ref.watch(dueQueueProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -40,31 +46,39 @@ class HomeScreen extends ConsumerWidget {
           children: [
             _StatCards(stats: stats),
             const SizedBox(height: 24),
-            dueAsync.when(
-              loading: () => const SizedBox.shrink(),
-              error: (err, st) => const SizedBox.shrink(),
-              data: (queue) => FilledButton.icon(
-                icon: const Icon(Icons.play_arrow),
-                label: Text(
-                  queue.isEmpty
-                      ? 'No cards due'
-                      : 'Start review (${queue.length} due)',
-                ),
-                style: FilledButton.styleFrom(
-                  minimumSize: const Size.fromHeight(56),
-                ),
-                onPressed: queue.isEmpty
-                    ? null
-                    : () => Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (_) => const ReviewScreen()),
-                        ).then((_) {
-                          ref.invalidate(dueQueueProvider);
-                          ref.invalidate(statsProvider);
-                        }),
-              ),
+            _SessionButton(
+              icon: Icons.bolt,
+              label: 'Brainstorm (${stats.newCount} new)',
+              enabled: stats.newCount > 0,
+              primary: true,
+              onPressed: () => _open(context, ref, SessionKind.brainstorm),
             ),
+            const SizedBox(height: 12),
+            _SessionButton(
+              icon: Icons.replay,
+              label: 'Review (${stats.dueNow} due)',
+              enabled: stats.dueNow > 0,
+              primary: false,
+              onPressed: () => _open(context, ref, SessionKind.review),
+            ),
+            if (stats.totalWords == 0)
+              const Padding(
+                padding: EdgeInsets.only(top: 12),
+                child: Text(
+                  'Add words to get started.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey),
+                ),
+              )
+            else if (stats.newCount == 0 && stats.dueNow == 0)
+              const Padding(
+                padding: EdgeInsets.only(top: 12),
+                child: Text(
+                  'All caught up. Add more words or come back later.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.grey),
+                ),
+              ),
             const SizedBox(height: 16),
             Row(
               children: [
@@ -98,10 +112,7 @@ class HomeScreen extends ConsumerWidget {
         onPressed: () => Navigator.push(
           context,
           MaterialPageRoute(builder: (_) => const AddWordScreen()),
-        ).then((_) {
-          ref.invalidate(statsProvider);
-          ref.invalidate(dueQueueProvider);
-        }),
+        ).then((_) => ref.invalidate(statsProvider)),
       ),
     );
   }
@@ -177,5 +188,37 @@ class _Card extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _SessionButton extends StatelessWidget {
+  final IconData icon;
+  final String label;
+  final bool enabled;
+  final bool primary;
+  final VoidCallback onPressed;
+  const _SessionButton({
+    required this.icon,
+    required this.label,
+    required this.enabled,
+    required this.primary,
+    required this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final size = const Size.fromHeight(56);
+    final cb = enabled ? onPressed : null;
+    return primary
+        ? FilledButton.icon(
+            icon: Icon(icon),
+            label: Text(label),
+            style: FilledButton.styleFrom(minimumSize: size),
+            onPressed: cb)
+        : FilledButton.tonalIcon(
+            icon: Icon(icon),
+            label: Text(label),
+            style: FilledButton.styleFrom(minimumSize: size),
+            onPressed: cb);
   }
 }

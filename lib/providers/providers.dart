@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../data/database.dart';
 import '../data/word_repository.dart';
+import '../services/analysis_job.dart';
 import '../services/gemini_service.dart';
 import '../services/morphology_service.dart';
 import '../services/settings_service.dart';
@@ -47,13 +48,18 @@ final geminiServiceProvider = Provider<GeminiService>((ref) {
   return GeminiService(ref.watch(settingsServiceProvider));
 });
 
-// ── Data providers ────────────────────────────────────────────────────────────
-final dueQueueProvider = FutureProvider<List<ReviewCard>>((ref) {
-  return ref.watch(wordRepositoryProvider).dueQueue();
+final analysisJobProvider = Provider<AnalysisJob>((ref) {
+  return AnalysisJob(
+    ref.watch(wordRepositoryProvider),
+    ref.watch(morphologyServiceProvider),
+  );
 });
 
+// ── Data providers ────────────────────────────────────────────────────────────
 final statsProvider = FutureProvider<VocabStats>((ref) {
-  return ref.watch(wordRepositoryProvider).stats();
+  return ref.watch(wordRepositoryProvider).stats(
+        usePackWords: ref.watch(settingsServiceProvider).usePackWords,
+      );
 });
 
 // Reactive — emits automatically when the words table changes.

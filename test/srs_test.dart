@@ -1,123 +1,58 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:turkish_vocab/domain/practice_mode.dart';
 import 'package:turkish_vocab/domain/srs.dart';
 
 void main() {
-  final now = DateTime(2026, 1, 1, 12, 0, 0);
+  final now = DateTime(2026, 1, 1, 12);
+  SrsState review(SrsState s, ReviewGrade g) =>
+      SrsScheduler.reviewWord(s, g, now: now);
 
-  group('SM-2 base behaviour', () {
-    test('fresh card is due immediately with default ease', () {
-      final s = SrsState.fresh(now: now);
-      expect(s.repetitions, 0);
-      expect(s.easeFactor, SrsScheduler.defaultEaseFactor);
-      expect(s.dueAt, now);
-    });
-
-    test('first good review graduates to ~1 day', () {
-      final s = SrsScheduler.review(
-        SrsState.fresh(now: now),
-        ReviewGrade.good,
-        PracticeMode.recognitionTrEn,
-        now: now,
-      );
-      expect(s.repetitions, 1);
-      expect(s.intervalDays, closeTo(1, 0.001));
-      expect(s.lastReviewedAt, now);
-    });
-
-    test('second good review graduates to ~6 days', () {
-      var s = SrsScheduler.review(
-          SrsState.fresh(now: now), ReviewGrade.good,
-          PracticeMode.recognitionTrEn, now: now);
-      s = SrsScheduler.review(
-          s, ReviewGrade.good, PracticeMode.recognitionTrEn, now: now);
-      expect(s.repetitions, 2);
-      expect(s.intervalDays, closeTo(6, 0.001));
-    });
-
-    test('third good review multiplies by ease factor', () {
-      var s = SrsScheduler.review(
-          SrsState.fresh(now: now), ReviewGrade.good,
-          PracticeMode.recognitionTrEn, now: now);
-      s = SrsScheduler.review(
-          s, ReviewGrade.good, PracticeMode.recognitionTrEn, now: now);
-      final beforeInterval = s.intervalDays;
-      final ease = s.easeFactor;
-      s = SrsScheduler.review(
-          s, ReviewGrade.good, PracticeMode.recognitionTrEn, now: now);
-      expect(s.intervalDays, closeTo(beforeInterval * ease, 0.001));
-    });
-
-    test('again resets repetitions and shortens to the lapse step', () {
-      var s = SrsScheduler.review(
-          SrsState.fresh(now: now), ReviewGrade.good,
-          PracticeMode.recognitionTrEn, now: now);
-      s = SrsScheduler.review(
-          s, ReviewGrade.good, PracticeMode.recognitionTrEn, now: now);
-      final s2 = SrsScheduler.review(
-          s, ReviewGrade.again, PracticeMode.recognitionTrEn, now: now);
-      expect(s2.repetitions, 0);
-      expect(s2.intervalDays, SrsScheduler.lapseIntervalDays);
-      expect(s2.easeFactor, lessThan(s.easeFactor));
-    });
-
-    test('ease never drops below the floor', () {
-      var s = SrsState.fresh(now: now);
-      for (var i = 0; i < 20; i++) {
-        s = SrsScheduler.review(
-            s, ReviewGrade.again, PracticeMode.recognitionTrEn, now: now);
-      }
-      expect(s.easeFactor, greaterThanOrEqualTo(SrsScheduler.minEaseFactor));
-    });
-
-    test('easy grows faster than good', () {
-      final base = SrsScheduler.review(
-          SrsState.fresh(now: now), ReviewGrade.good,
-          PracticeMode.recognitionTrEn, now: now);
-      final good = SrsScheduler.review(
-          base, ReviewGrade.good, PracticeMode.recognitionTrEn, now: now);
-      final easy = SrsScheduler.review(
-          base, ReviewGrade.easy, PracticeMode.recognitionTrEn, now: now);
-      expect(easy.intervalDays, greaterThan(good.intervalDays));
-    });
-
-    test('hard grows slower than good', () {
-      final base = SrsScheduler.review(
-          SrsState.fresh(now: now), ReviewGrade.good,
-          PracticeMode.recognitionTrEn, now: now);
-      final good = SrsScheduler.review(
-          base, ReviewGrade.good, PracticeMode.recognitionTrEn, now: now);
-      final hard = SrsScheduler.review(
-          base, ReviewGrade.hard, PracticeMode.recognitionTrEn, now: now);
-      expect(hard.intervalDays, lessThan(good.intervalDays));
-    });
+  test('fresh state is due immediately with default ease', () {
+    final s = SrsState.fresh(now: now);
+    expect(s.repetitions, 0);
+    expect(s.easeFactor, SrsScheduler.defaultEaseFactor);
+    expect(s.dueAt, now);
   });
 
-  group('per-mode weighting', () {
-    test('writing grows the interval more than recognition on success', () {
-      // Advance both to rep 2 so the ease-based step applies.
-      SrsState advance(PracticeMode mode) {
-        var s = SrsScheduler.review(
-            SrsState.fresh(now: now), ReviewGrade.good, mode, now: now);
-        s = SrsScheduler.review(s, ReviewGrade.good, mode, now: now);
-        return SrsScheduler.review(s, ReviewGrade.good, mode, now: now);
-      }
+  test('good: 1 day, then 3 days, then 3 x ease', () {
+    var s = review(SrsState.fresh(now: now), ReviewGrade.good);
+    expect(s.repetitions, 1);
+    expect(s.intervalDays, closeTo(1, 1e-9));
+    expect(s.dueAt, now.add(const Duration(days: 1)));
 
-      final rec = advance(PracticeMode.recognitionTrEn);
-      final listen = advance(PracticeMode.listening);
-      final write = advance(PracticeMode.writing);
-      expect(listen.intervalDays, greaterThan(rec.intervalDays));
-      expect(write.intervalDays, greaterThan(listen.intervalDays));
-    });
+    s = review(s, ReviewGrade.good);
+    expect(s.repetitions, 2);
+    expect(s.intervalDays, closeTo(3, 1e-9));
 
-    test('writing penalises ease harder on failure', () {
-      final recFail = SrsScheduler.review(
-          SrsState.fresh(now: now), ReviewGrade.again,
-          PracticeMode.recognitionTrEn, now: now);
-      final writeFail = SrsScheduler.review(
-          SrsState.fresh(now: now), ReviewGrade.again,
-          PracticeMode.writing, now: now);
-      expect(writeFail.easeFactor, lessThan(recFail.easeFactor));
-    });
+    final before = s.intervalDays;
+    s = review(s, ReviewGrade.good);
+    expect(s.intervalDays, closeTo(before * s.easeFactor, 1e-9));
+  });
+
+  test('again lapses: reps reset, lapses++, due in 10 minutes', () {
+    var s = review(SrsState.fresh(now: now), ReviewGrade.good);
+    s = review(s, ReviewGrade.good);
+    s = review(s, ReviewGrade.again);
+    expect(s.repetitions, 0);
+    expect(s.lapses, 1);
+    expect(s.dueAt, now.add(const Duration(minutes: 10)));
+    expect(s.easeFactor, lessThan(2.5));
+  });
+
+  test('ease never drops below the minimum', () {
+    var s = SrsState.fresh(now: now);
+    for (var i = 0; i < 20; i++) {
+      s = review(s, ReviewGrade.again);
+    }
+    expect(s.easeFactor, SrsScheduler.minEaseFactor);
+  });
+
+  test('hard grows slower than good, easy faster', () {
+    var base = review(SrsState.fresh(now: now), ReviewGrade.good);
+    base = review(base, ReviewGrade.good);
+    final hard = review(base, ReviewGrade.hard);
+    final good = review(base, ReviewGrade.good);
+    final easy = review(base, ReviewGrade.easy);
+    expect(hard.intervalDays, lessThan(good.intervalDays));
+    expect(easy.intervalDays, greaterThan(good.intervalDays));
   });
 }

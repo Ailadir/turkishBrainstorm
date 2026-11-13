@@ -30,7 +30,21 @@ class MainActivity : FlutterActivity() {
                     // Zemberek is slow on first use: keep it off the main thread.
                     executor.execute {
                         val analysis = MorphologyPlugin.analyze(word)
-                        // null → Dart side uses its fallback (root = word)
+                        // null -> Dart side uses its fallback (lemma = word)
+                        mainHandler.post { result.success(analysis) }
+                    }
+                }
+                "analyzeSentence" -> {
+                    val text = call.argument<String>("text") ?: ""
+                    executor.execute {
+                        val analysis = MorphologyPlugin.analyzeSentence(text)
+                        mainHandler.post { result.success(analysis) }
+                    }
+                }
+                "analyzeBatch" -> {
+                    val words = call.argument<List<String>>("words") ?: emptyList()
+                    executor.execute {
+                        val analysis = MorphologyPlugin.analyzeBatch(words)
                         mainHandler.post { result.success(analysis) }
                     }
                 }

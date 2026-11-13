@@ -949,8 +949,8 @@ validated in Phase 5, and own words can be re-analyzed or edited.
 
 - [x] Phase 1: Stop the bleeding (no schema change). Done 2026-11-13: `flutter analyze` clean, 41 tests pass. Deviation: `addWord` dedupes by loading all `turkish` values and comparing with `trNormalize` in Dart (SQLite `like` is not Turkish-aware, so `IŞIK` vs `ışık` would miss). Kotlin changes are not compiled or device-tested yet.
 - [ ] Phase 2: Public repo, CI/CD releases, in-app updater with one-time patch-notes alert
-- [ ] Phase 3: Fresh schema v2, morphology IDs, breakdown on cards
-- [ ] Phase 4: Brainstorm + per-word review
+- [x] Phase 3: Fresh schema v2, morphology IDs, breakdown on cards. Done 2026-11-13 together with Phase 4 (the temporary PracticeStates bridge was skipped since Phase 4 replaced the review loop in the same session). Deviations: `tts_cache` is not deleted on upgrade (cached audio is keyed by text and still valid); the Add screen shows the breakdown read-only instead of editable suffix chips; the root chip caption says "root" (English root gloss needs the Phase 5/6 dictionary). Suffix IDs were checked against the bundled jar. Debug APK builds (Kotlin compiles). NOT yet verified on a phone: ID strings on a real analysis, `analyzeSentence`.
+- [x] Phase 4: Brainstorm + per-word review. Done 2026-11-13. Deviations: `listen_choice_exercise.dart` is folded into `choice_exercise.dart`; choice answers are final on the first tap (wrong taps are only counted in Construct); Practice settings are in Settings. 50 tests pass, `flutter analyze` clean. NOT yet verified on a phone: the 3-5 min / 5-words feel.
 - [ ] Phase 5: Word packs A1–B2 + grammar packs + download/import
 - [ ] Phase 6: Local-first translation, multi-provider AI, fast add flow, share-to-app
 - [ ] Phase 7: Reliable audio (ElevenLabs prefetch + offline Piper)

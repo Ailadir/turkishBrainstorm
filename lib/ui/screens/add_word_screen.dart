@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../domain/morpheme_ref.dart';
 import '../../providers/providers.dart';
+import '../widgets/breakdown_view.dart';
 
 // One Zemberek result per word in the phrase.
-typedef _WordPart = ({String word, String root, List<String> suffixes});
+typedef _WordPart = ({String word, String root, List<MorphemeRef> morphemes});
 
 class AddWordScreen extends ConsumerStatefulWidget {
   const AddWordScreen({super.key});
@@ -22,7 +24,8 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
   final _formKey = GlobalKey<FormState>();
 
   // Single-word state.
-  List<String> _suffixes = [];
+  List<MorphemeRef> _morphemes = [];
+  String? _pos;
 
   // Multi-word / phrase state (non-empty means phrase mode).
   List<_WordPart> _wordParts = [];
@@ -31,6 +34,7 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
   bool _analyzing = false;
   bool _translating = false;
   bool _saving = false;
+  bool _englishEdited = false;
 
   @override
   void dispose() {
@@ -57,9 +61,10 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
       final morphService = ref.read(morphologyServiceProvider);
       if (words.length == 1) {
         final result = await morphService.analyze(input);
-        _rootCtrl.text = result.root;
+        _rootCtrl.text = result.lemma;
         setState(() {
-          _suffixes = result.suffixes;
+          _morphemes = result.morphemes;
+          _pos = result.pos;
           _wordParts = [];
         });
       } else {
@@ -72,11 +77,12 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
             for (var i = 0; i < words.length; i++)
               (
                 word: words[i],
-                root: results[i].root,
-                suffixes: results[i].suffixes,
+                root: results[i].lemma,
+                morphemes: results[i].morphemes,
               ),
           ];
-          _suffixes = [];
+          _morphemes = [];
+          _pos = null;
           _rootCtrl.clear();
         });
       }
@@ -131,15 +137,19 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
       final result = await repo.addWord(
         turkish: _turkishCtrl.text.trim(),
         english: _englishCtrl.text.trim(),
-        root: _isPhrase
+        lemma: _isPhrase
             ? _wordParts.map((p) => p.root).join(' ')
-            : _rootCtrl.text.trim(),
-        suffixes: _isPhrase ? const [] : _suffixes,
+            : (_rootCtrl.text.trim().isEmpty ? null : _rootCtrl.text.trim()),
+        pos: _isPhrase ? null : _pos,
+        morphemes: _isPhrase ? const [] : _morphemes,
+        englishEdited: _englishEdited,
         note: _noteCtrl.text.trim().isEmpty ? null : _noteCtrl.text.trim(),
         source: _sourceCtrl.text.trim().isEmpty
             ? null
             : _sourceCtrl.text.trim(),
       );
+      // Pick up the breakdown in the background if it wasn't analysed yet.
+      ref.read(analysisJobProvider).run().ignore();
       if (!mounted) return;
       if (result.existed) {
         ScaffoldMessenger.of(
@@ -149,18 +159,6 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
       Navigator.pop(context);
     } finally {
       if (mounted) setState(() => _saving = false);
-    }
-  }
-
-  // ── Suffix editing (single-word mode only) ────────────────────────────────
-
-  void _removeSuffix(int i) =>
-      setState(() => _suffixes = List.from(_suffixes)..removeAt(i));
-
-  void _addSuffix(String s) {
-    final trimmed = s.trim();
-    if (trimmed.isNotEmpty) {
-      setState(() => _suffixes = [..._suffixes, trimmed]);
     }
   }
 
@@ -228,38 +226,8 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
                 ),
               ),
               const SizedBox(height: 12),
-              if (_suffixes.isNotEmpty) ...[
-                Text(
-                  'Suffixes',
-                  style: Theme.of(context).textTheme.labelMedium,
-                ),
-                const SizedBox(height: 6),
-                Wrap(
-                  spacing: 6,
-                  runSpacing: 6,
-                  children: [
-                    ..._suffixes.asMap().entries.map(
-                      (e) => Chip(
-                        label: Text(e.value),
-                        onDeleted: () => _removeSuffix(e.key),
-                      ),
-                    ),
-                    ActionChip(
-                      avatar: const Icon(Icons.add, size: 16),
-                      label: const Text('Add'),
-                      onPressed: _showAddSuffixDialog,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 12),
-              ] else ...[
-                ActionChip(
-                  avatar: const Icon(Icons.add, size: 16),
-                  label: const Text('Add suffix'),
-                  onPressed: _showAddSuffixDialog,
-                ),
-                const SizedBox(height: 12),
-              ],
+              BreakdownView(lemma: _rootCtrl.text, morphemes: _morphemes),
+              if (_morphemes.isNotEmpty) const SizedBox(height: 12),
             ],
 
             // ── Phrase: per-word breakdown ────────────────────────────────
@@ -279,6 +247,7 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
             // ── English translation ───────────────────────────────────────
             TextFormField(
               controller: _englishCtrl,
+              onChanged: (_) => _englishEdited = true,
               decoration: InputDecoration(
                 labelText: 'English translation *',
                 border: const OutlineInputBorder(),
@@ -323,38 +292,6 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
       ),
     );
   }
-
-  void _showAddSuffixDialog() {
-    final ctrl = TextEditingController();
-    showDialog(
-      context: context,
-      builder: (ctx) => AlertDialog(
-        title: const Text('Add suffix'),
-        content: TextField(
-          controller: ctrl,
-          autofocus: true,
-          decoration: const InputDecoration(labelText: 'Suffix morpheme'),
-          onSubmitted: (v) {
-            _addSuffix(v);
-            Navigator.pop(ctx);
-          },
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(ctx),
-            child: const Text('Cancel'),
-          ),
-          FilledButton(
-            onPressed: () {
-              _addSuffix(ctrl.text);
-              Navigator.pop(ctx);
-            },
-            child: const Text('Add'),
-          ),
-        ],
-      ),
-    );
-  }
 }
 
 // ── Per-word breakdown tile (phrase mode) ─────────────────────────────────────
@@ -393,22 +330,7 @@ class _WordPartTile extends StatelessWidget {
               ],
             ],
           ),
-          if (part.suffixes.isNotEmpty) ...[
-            const SizedBox(height: 4),
-            Wrap(
-              spacing: 6,
-              runSpacing: 4,
-              children: part.suffixes
-                  .map(
-                    (s) => Chip(
-                      label: Text(s),
-                      padding: EdgeInsets.zero,
-                      materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    ),
-                  )
-                  .toList(),
-            ),
-          ],
+          BreakdownView(lemma: part.root, morphemes: part.morphemes),
         ],
       ),
     );

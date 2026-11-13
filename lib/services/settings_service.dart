@@ -30,4 +30,25 @@ class SettingsService {
 
   Future<void> setGeminiApiKey(String key) =>
       _prefs.setString('gemini_api_key', key);
+
+  // ── Practice ──────────────────────────────────────────────────────────────
+
+  int get wordsPerBrainstorm =>
+      (_prefs.getInt('words_per_brainstorm') ?? 5).clamp(3, 10);
+  Future<void> setWordsPerBrainstorm(int v) =>
+      _prefs.setInt('words_per_brainstorm', v.clamp(3, 10));
+
+  int get maxReviewsPerSession => _prefs.getInt('max_reviews') ?? 50;
+  Future<void> setMaxReviewsPerSession(int v) =>
+      _prefs.setInt('max_reviews', v);
+
+  bool get typingEnabled => _prefs.getBool('typing_enabled') ?? false;
+  Future<void> setTypingEnabled(bool v) => _prefs.setBool('typing_enabled', v);
+
+  bool get autoAdvanceOnCorrect => _prefs.getBool('auto_advance') ?? true;
+  Future<void> setAutoAdvanceOnCorrect(bool v) =>
+      _prefs.setBool('auto_advance', v);
+
+  bool get usePackWords => _prefs.getBool('use_pack_words') ?? true;
+  Future<void> setUsePackWords(bool v) => _prefs.setBool('use_pack_words', v);
 }
