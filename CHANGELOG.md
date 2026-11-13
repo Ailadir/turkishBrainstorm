@@ -4,6 +4,10 @@ Add a section at the top for every release: `## <version>+<build>` matching
 `version:` in pubspec.yaml, then `- ` bullet lines. The release workflow fails
 if the section is missing.
 
+## 1.1.4+6
+- Short words (ve, ne, bir) sound clearer: the offline voice speaks them slower and no longer clips them
+- The offline voice is slowed natively instead of stretched, so it sounds more natural
+
 ## 1.1.3+5
 - Speech speed setting (Settings → Speech speed); words now play slower by default
 

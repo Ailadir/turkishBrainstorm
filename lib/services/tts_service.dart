@@ -104,7 +104,7 @@ class PiperVoice implements OfflineVoice {
   Future<bool> isInstalled() => engine.isInstalled(voice);
   @override
   Future<bool> synth(String text, String outPath) =>
-      engine.synthesize(voice, text, outPath);
+      engine.synthesize(voice, text, outPath, speed: _s.speechSpeed);
 }
 
 /// Plays Turkish audio, always trying to produce *something*:
@@ -151,8 +151,10 @@ class TtsService {
   String cloudFileName(String text) =>
       '${cloud?.voiceId ?? 'v'}_${_sha('${cloud?.model}|$text')}.mp3';
 
+  /// Includes the speed, because Piper bakes it into the audio.
   String offlineFileName(String text) =>
-      'piper_${offline?.voice ?? 'x'}_${_sha(text)}.wav';
+      'piper_${offline?.voice ?? 'x'}_${_sha(text)}'
+      '_s${(_settings.speechSpeed * 100).round()}.wav';
 
   Future<File?> _cached(String text) async {
     final dir = await cacheDir();
@@ -243,8 +245,10 @@ class _Player {
   final AudioPlayer _player = AudioPlayer();
   Future<void> play(String path) async {
     await _player.stop();
-    // Android keeps the pitch when slowing down.
-    await _player.setPlaybackRate(speed());
+    // Piper audio is already generated at the chosen speed; other audio is
+    // slowed on playback (Android keeps the pitch).
+    final piper = p.basename(path).startsWith('piper_');
+    await _player.setPlaybackRate(piper ? 1.0 : speed());
     await _player.play(DeviceFileSource(path));
   }
 }

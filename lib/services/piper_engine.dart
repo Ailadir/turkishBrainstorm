@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:io';
 import 'dart:isolate';
+import 'dart:typed_data';
 
 import 'package:archive/archive_io.dart';
 import 'package:http/http.dart' as http;
@@ -96,14 +97,20 @@ class PiperEngine {
 
   /// Writes a WAV for [text] to [outPath]. Runs in a long-lived isolate so the
   /// UI never stalls; returns false if synthesis failed.
-  Future<bool> synthesize(String voice, String text, String outPath) async {
+  /// [speed] < 1 speaks slower (natural, not stretched).
+  Future<bool> synthesize(
+    String voice,
+    String text,
+    String outPath, {
+    double speed = 1.0,
+  }) async {
     if (!await isInstalled(voice)) return false;
     if (_loadedVoice != voice) await _stop();
     final dir = (await _modelDir(voice)).path;
     _send ??= await _spawn(voice, dir);
     _loadedVoice = voice;
     final reply = ReceivePort();
-    _send!.send([text, outPath, reply.sendPort]);
+    _send!.send([text, outPath, speed, reply.sendPort]);
     final answer = await reply.first.timeout(
       const Duration(seconds: 90), // the first call also loads the model
       onTimeout: () => 'Timed out while loading the voice',
@@ -147,7 +154,7 @@ void _worker(List<Object> args) {
   sherpa.OfflineTts? tts;
   inbox.listen((msg) {
     final m = msg as List;
-    final reply = m[2] as SendPort;
+    final reply = m[3] as SendPort;
     try {
       sherpa.initBindings();
       tts ??= sherpa.OfflineTts(
@@ -162,14 +169,25 @@ void _worker(List<Object> args) {
           ),
         ),
       );
-      final audio = tts!.generate(text: m[0] as String, speed: 0.95);
+      // A bare short word ("ve") gets clipped; as a sentence it is read
+      // with a proper ending.
+      var text = (m[0] as String).trim();
+      if (!RegExp(r'[.!?…]$').hasMatch(text)) text = '$text.';
+      // Tiny words (ve, ne, bir) come out in a blink; give them more time.
+      var speed = m[2] as double;
+      if (!text.contains(' ') && text.length <= 4) speed *= 0.75;
+      final audio = tts!.generate(text: text, speed: speed);
       if (audio.samples.isEmpty) {
         reply.send('The voice produced no audio for "${m[0]}"');
         return;
       }
+      // Silence around the word so the player doesn't swallow its start.
+      final pad = (audio.sampleRate * 0.15).round();
+      final samples = Float32List(audio.samples.length + 2 * pad)
+        ..setRange(pad, pad + audio.samples.length, audio.samples);
       final ok = sherpa.writeWave(
         filename: m[1] as String,
-        samples: audio.samples,
+        samples: samples,
         sampleRate: audio.sampleRate,
       );
       reply.send(ok ? true : 'Could not write the audio file');
