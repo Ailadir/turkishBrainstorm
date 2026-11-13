@@ -36,15 +36,17 @@ class _ChoiceExerciseState extends State<ChoiceExercise> {
     if (_type == ExerciseType.listenChoose) _play();
   }
 
-  void _play() => widget.tts.speak(widget.word.turkish).catchError((_) {});
+  void _play() => widget.tts.speak(widget.word.turkish).ignore();
 
   void _pick(String option) {
     if (_selected != null) return;
     setState(() => _selected = option);
-    widget.onAnswered(AnswerResult(
-      correct: option == widget.exercise.answer,
-      took: _clock.elapsed,
-    ));
+    widget.onAnswered(
+      AnswerResult(
+        correct: option == widget.exercise.answer,
+        took: _clock.elapsed,
+      ),
+    );
   }
 
   @override
@@ -66,24 +68,35 @@ class _ChoiceExerciseState extends State<ChoiceExercise> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                  child: Text(widget.word.turkish,
-                      textAlign: TextAlign.center, style: tt.displaySmall)),
+                child: Text(
+                  widget.word.turkish,
+                  textAlign: TextAlign.center,
+                  style: tt.displaySmall,
+                ),
+              ),
               IconButton(icon: const Icon(Icons.volume_up), onPressed: _play),
             ],
           )
         else if (_type == ExerciseType.chooseTurkish)
-          Text(widget.word.english,
-              textAlign: TextAlign.center, style: tt.displaySmall)
+          Text(
+            widget.word.english,
+            textAlign: TextAlign.center,
+            style: tt.displaySmall,
+          )
         else ...[
           IconButton(
-              icon: const Icon(Icons.hearing), iconSize: 64, onPressed: _play),
+            icon: const Icon(Icons.hearing),
+            iconSize: 64,
+            onPressed: _play,
+          ),
           // No Turkish voice on the device? Let the user read the word.
           if (_showText)
             Text(widget.word.turkish, style: tt.headlineSmall)
           else
             TextButton(
-                onPressed: () => setState(() => _showText = true),
-                child: const Text("Can't hear? Show text")),
+              onPressed: () => setState(() => _showText = true),
+              child: const Text("Can't hear? Show text"),
+            ),
         ],
         const SizedBox(height: 24),
         for (final opt in widget.exercise.options)
@@ -103,19 +116,20 @@ class _OptionTile extends StatelessWidget {
   final bool correct;
   final bool wrong;
   final VoidCallback? onTap;
-  const _OptionTile(
-      {required this.text,
-      required this.correct,
-      required this.wrong,
-      required this.onTap});
+  const _OptionTile({
+    required this.text,
+    required this.correct,
+    required this.wrong,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     final color = correct
         ? Colors.green
         : wrong
-            ? Colors.red
-            : null;
+        ? Colors.red
+        : null;
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 4),
       child: ListTile(

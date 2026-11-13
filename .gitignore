@@ -51,3 +51,8 @@ app.*.map.json
 /kaikki.org-dictionary-Turkish.jsonl
 /tr_50k.txt
 /tr_full.txt
+
+# Signing material: never commit
+/android/key.properties
+*.jks
+*.keystore

@@ -2031,7 +2031,7 @@ class MorphemesCompanion extends UpdateCompanion<Morpheme> {
   }
 }
 
-class $PacksTable extends Packs with TableInfo<$PacksTable, Pack> {
+class $PacksTable extends Packs with TableInfo<$PacksTable, PackRow> {
   @override
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
@@ -2111,7 +2111,7 @@ class $PacksTable extends Packs with TableInfo<$PacksTable, Pack> {
   static const String $name = 'packs';
   @override
   VerificationContext validateIntegrity(
-    Insertable<Pack> instance, {
+    Insertable<PackRow> instance, {
     bool isInserting = false,
   }) {
     final context = VerificationContext();
@@ -2166,9 +2166,9 @@ class $PacksTable extends Packs with TableInfo<$PacksTable, Pack> {
   @override
   Set<GeneratedColumn> get $primaryKey => {id};
   @override
-  Pack map(Map<String, dynamic> data, {String? tablePrefix}) {
+  PackRow map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
-    return Pack(
+    return PackRow(
       id: attachedDatabase.typeMapping.read(
         DriftSqlType.string,
         data['${effectivePrefix}id'],
@@ -2202,7 +2202,7 @@ class $PacksTable extends Packs with TableInfo<$PacksTable, Pack> {
   }
 }
 
-class Pack extends DataClass implements Insertable<Pack> {
+class PackRow extends DataClass implements Insertable<PackRow> {
   final String id;
   final String title;
   final String? level;
@@ -2211,7 +2211,7 @@ class Pack extends DataClass implements Insertable<Pack> {
   final String kind;
   final int version;
   final DateTime installedAt;
-  const Pack({
+  const PackRow({
     required this.id,
     required this.title,
     this.level,
@@ -2246,12 +2246,12 @@ class Pack extends DataClass implements Insertable<Pack> {
     );
   }
 
-  factory Pack.fromJson(
+  factory PackRow.fromJson(
     Map<String, dynamic> json, {
     ValueSerializer? serializer,
   }) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Pack(
+    return PackRow(
       id: serializer.fromJson<String>(json['id']),
       title: serializer.fromJson<String>(json['title']),
       level: serializer.fromJson<String?>(json['level']),
@@ -2273,14 +2273,14 @@ class Pack extends DataClass implements Insertable<Pack> {
     };
   }
 
-  Pack copyWith({
+  PackRow copyWith({
     String? id,
     String? title,
     Value<String?> level = const Value.absent(),
     String? kind,
     int? version,
     DateTime? installedAt,
-  }) => Pack(
+  }) => PackRow(
     id: id ?? this.id,
     title: title ?? this.title,
     level: level.present ? level.value : this.level,
@@ -2288,8 +2288,8 @@ class Pack extends DataClass implements Insertable<Pack> {
     version: version ?? this.version,
     installedAt: installedAt ?? this.installedAt,
   );
-  Pack copyWithCompanion(PacksCompanion data) {
-    return Pack(
+  PackRow copyWithCompanion(PacksCompanion data) {
+    return PackRow(
       id: data.id.present ? data.id.value : this.id,
       title: data.title.present ? data.title.value : this.title,
       level: data.level.present ? data.level.value : this.level,
@@ -2303,7 +2303,7 @@ class Pack extends DataClass implements Insertable<Pack> {
 
   @override
   String toString() {
-    return (StringBuffer('Pack(')
+    return (StringBuffer('PackRow(')
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('level: $level, ')
@@ -2319,7 +2319,7 @@ class Pack extends DataClass implements Insertable<Pack> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is Pack &&
+      (other is PackRow &&
           other.id == this.id &&
           other.title == this.title &&
           other.level == this.level &&
@@ -2328,7 +2328,7 @@ class Pack extends DataClass implements Insertable<Pack> {
           other.installedAt == this.installedAt);
 }
 
-class PacksCompanion extends UpdateCompanion<Pack> {
+class PacksCompanion extends UpdateCompanion<PackRow> {
   final Value<String> id;
   final Value<String> title;
   final Value<String?> level;
@@ -2357,7 +2357,7 @@ class PacksCompanion extends UpdateCompanion<Pack> {
        title = Value(title),
        kind = Value(kind),
        version = Value(version);
-  static Insertable<Pack> custom({
+  static Insertable<PackRow> custom({
     Expression<String>? id,
     Expression<String>? title,
     Expression<String>? level,
@@ -5257,7 +5257,7 @@ typedef $$PacksTableUpdateCompanionBuilder = PacksCompanion Function({
 });
 
 final class $$PacksTableReferences
-    extends BaseReferences<_$AppDatabase, $PacksTable, Pack> {
+    extends BaseReferences<_$AppDatabase, $PacksTable, PackRow> {
   $$PacksTableReferences(super.$_db, super.$_table, super.$_typedResult);
 
   static MultiTypedResultKey<$MorphemeExamplesTable, List<MorphemeExample>>
@@ -5513,14 +5513,14 @@ class $$PacksTableTableManager
         RootTableManager<
           _$AppDatabase,
           $PacksTable,
-          Pack,
+          PackRow,
           $$PacksTableFilterComposer,
           $$PacksTableOrderingComposer,
           $$PacksTableAnnotationComposer,
           $$PacksTableCreateCompanionBuilder,
           $$PacksTableUpdateCompanionBuilder,
-          (Pack, $$PacksTableReferences),
-          Pack,
+          (PackRow, $$PacksTableReferences),
+          PackRow,
           PrefetchHooks Function({
             bool morphemeExamplesRefs,
             bool wordPacksRefs,
@@ -5576,7 +5576,7 @@ class $$PacksTableTableManager
           withReferenceMapper: (p0) => p0
               .map(
                 (e) => (
-                  e.readTable<$PacksTable, Pack>(table),
+                  e.readTable<$PacksTable, PackRow>(table),
                   $$PacksTableReferences(db, table, e),
                 ),
               )
@@ -5594,7 +5594,7 @@ class $$PacksTableTableManager
                     return [
                       if (morphemeExamplesRefs)
                         await $_getPrefetchedData<
-                          Pack,
+                          PackRow,
                           $PacksTable,
                           MorphemeExample
                         >(
@@ -5614,7 +5614,11 @@ class $$PacksTableTableManager
                           typedResults: items,
                         ),
                       if (wordPacksRefs)
-                        await $_getPrefetchedData<Pack, $PacksTable, WordPack>(
+                        await $_getPrefetchedData<
+                          PackRow,
+                          $PacksTable,
+                          WordPack
+                        >(
                           currentTable: table,
                           referencedTable: $$PacksTableReferences
                               ._wordPacksRefsTable(db),
@@ -5642,14 +5646,14 @@ typedef $$PacksTableProcessedTableManager =
     ProcessedTableManager<
       _$AppDatabase,
       $PacksTable,
-      Pack,
+      PackRow,
       $$PacksTableFilterComposer,
       $$PacksTableOrderingComposer,
       $$PacksTableAnnotationComposer,
       $$PacksTableCreateCompanionBuilder,
       $$PacksTableUpdateCompanionBuilder,
-      (Pack, $$PacksTableReferences),
-      Pack,
+      (PackRow, $$PacksTableReferences),
+      PackRow,
       PrefetchHooks Function({bool morphemeExamplesRefs, bool wordPacksRefs})
     >;
 typedef $$MorphemeExamplesTableCreateCompanionBuilder =

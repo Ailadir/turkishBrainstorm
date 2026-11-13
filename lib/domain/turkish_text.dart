@@ -38,8 +38,7 @@ String stripDiacritics(String s) =>
 /// `word`, `phrase` or `sentence`, from the shape of the Turkish text.
 String inferKind(String turkish) {
   final text = turkish.trim();
-  final tokens =
-      text.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).length;
+  final tokens = text.split(RegExp(r'\s+')).where((t) => t.isNotEmpty).length;
   if (tokens <= 1) return 'word';
   if (tokens >= 5 || RegExp(r'[.!?…]$').hasMatch(text)) return 'sentence';
   return 'phrase';

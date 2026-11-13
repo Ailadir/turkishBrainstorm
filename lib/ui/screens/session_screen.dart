@@ -71,10 +71,23 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     final repo = ref.read(wordRepositoryProvider);
     final settings = ref.read(settingsServiceProvider);
     final List<Word> words = _isBrain
-        ? await repo.pickNewWords(settings.wordsPerBrainstorm,
-            usePackWords: settings.usePackWords)
+        ? await repo.pickNewWords(
+            settings.wordsPerBrainstorm,
+            usePackWords: settings.usePackWords,
+          )
         : await repo.dueWords(limit: settings.maxReviewsPerSession);
-    final pool = await repo.distractorPool(exceptIds: {for (final w in words) w.id});
+    // Audio for this round and the next two is generated in the background.
+    ref.read(ttsServiceProvider).resetNotice();
+    if (_isBrain) {
+      final ahead = await repo.pickNewWords(
+        settings.wordsPerBrainstorm * 3,
+        usePackWords: settings.usePackWords,
+      );
+      ref.read(audioPrefetchProvider).enqueue(ahead.map((w) => w.turkish));
+    }
+    final pool = await repo.distractorPool(
+      exceptIds: {for (final w in words) w.id},
+    );
     _words
       ..clear()
       ..addEntries(words.map((w) => MapEntry(w.id, w)));
@@ -142,15 +155,28 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     return switch (ex.type) {
       ExerciseType.chooseMeaning ||
       ExerciseType.chooseTurkish ||
-      ExerciseType.listenChoose =>
-        ChoiceExercise(
-            exercise: ex, word: word, tts: tts, onAnswered: _onAnswered),
-      ExerciseType.construct =>
-        ConstructExercise(exercise: ex, word: word, onAnswered: _onAnswered),
-      ExerciseType.typing =>
-        TypingExercise(exercise: ex, word: word, onAnswered: _onAnswered),
-      ExerciseType.reveal =>
-        RevealExercise(exercise: ex, word: word, tts: tts, onAnswered: _onAnswered),
+      ExerciseType.listenChoose => ChoiceExercise(
+        exercise: ex,
+        word: word,
+        tts: tts,
+        onAnswered: _onAnswered,
+      ),
+      ExerciseType.construct => ConstructExercise(
+        exercise: ex,
+        word: word,
+        onAnswered: _onAnswered,
+      ),
+      ExerciseType.typing => TypingExercise(
+        exercise: ex,
+        word: word,
+        onAnswered: _onAnswered,
+      ),
+      ExerciseType.reveal => RevealExercise(
+        exercise: ex,
+        word: word,
+        tts: tts,
+        onAnswered: _onAnswered,
+      ),
     };
   }
 
@@ -159,8 +185,9 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
     final title = _isBrain ? 'Brainstorm' : 'Review';
     if (_loading) {
       return Scaffold(
-          appBar: AppBar(title: Text(title)),
-          body: const Center(child: CircularProgressIndicator()));
+        appBar: AppBar(title: Text(title)),
+        body: const Center(child: CircularProgressIndicator()),
+      );
     }
     if (_finished) return _endScreen(title);
 
@@ -186,12 +213,12 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
             if (ex.isReask)
               Padding(
                 padding: const EdgeInsets.only(bottom: 12),
-                child: Text('One more try',
-                    textAlign: TextAlign.center,
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelLarge
-                        ?.copyWith(color: Colors.orange)),
+                child: Text(
+                  'One more try',
+                  textAlign: TextAlign.center,
+                  style: Theme.of(context).textTheme.labelLarge
+                      ?.copyWith(color: Colors.orange),
+                ),
               ),
             // Keyed so each exercise starts with fresh state.
             KeyedSubtree(key: ValueKey(_counter), child: _exerciseView(ex)),
@@ -215,8 +242,9 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
   Widget _endScreen(String title) {
     final theme = Theme.of(context);
     final empty = _answers == 0;
-    final accuracy =
-        _answers == 0 ? 0 : (_correctAnswers * 100 / _answers).round();
+    final accuracy = _answers == 0
+        ? 0
+        : (_correctAnswers * 100 / _answers).round();
     final mins = DateTime.now().difference(_startedAt).inSeconds;
     return Scaffold(
       appBar: AppBar(title: Text('$title complete')),
@@ -226,29 +254,38 @@ class _SessionScreenState extends ConsumerState<SessionScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(empty ? Icons.inbox_outlined : Icons.check_circle_outline,
-                  size: 80, color: empty ? Colors.grey : Colors.green),
+              Icon(
+                empty ? Icons.inbox_outlined : Icons.check_circle_outline,
+                size: 80,
+                color: empty ? Colors.grey : Colors.green,
+              ),
               const SizedBox(height: 16),
               if (empty)
-                Text(_isBrain ? 'No new words to learn.' : 'Nothing due.',
-                    style: theme.textTheme.headlineSmall)
+                Text(
+                  _isBrain ? 'No new words to learn.' : 'Nothing due.',
+                  style: theme.textTheme.headlineSmall,
+                )
               else ...[
                 Text(
-                    _isBrain
-                        ? 'Learned $_learned word${_learned == 1 ? '' : 's'}'
-                        : 'Reviewed $_answers',
-                    style: theme.textTheme.headlineSmall),
+                  _isBrain
+                      ? 'Learned $_learned word${_learned == 1 ? '' : 's'}'
+                      : 'Reviewed $_answers',
+                  style: theme.textTheme.headlineSmall,
+                ),
                 const SizedBox(height: 8),
                 Text('Accuracy $accuracy% · ${mins ~/ 60}m ${mins % 60}s'),
               ],
               const SizedBox(height: 24),
               if (!empty)
                 FilledButton(
-                    onPressed: _start, child: const Text('Another round')),
+                  onPressed: _start,
+                  child: const Text('Another round'),
+                ),
               const SizedBox(height: 8),
               OutlinedButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: const Text('Home')),
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Home'),
+              ),
             ],
           ),
         ),

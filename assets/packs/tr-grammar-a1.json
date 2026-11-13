@@ -1,0 +1,1047 @@
+{
+ "format": 1,
+ "id": "tr-grammar-a1",
+ "version": 1,
+ "kind": "grammar",
+ "title": "A1 suffixes",
+ "level": "A1",
+ "license": "CC BY-SA 4.0",
+ "attribution": "Wiktionary via kaikki.org (CC BY-SA 4.0); word frequencies from FrequencyWords / OpenSubtitles",
+ "suffixes": [
+  {
+   "id": "A3pl",
+   "examples": [
+    {
+     "tr": "teşekkürler",
+     "en": "a thanking (+ plural)"
+    },
+    {
+     "tr": "şeyler",
+     "en": "thing (+ plural)"
+    },
+    {
+     "tr": "onları",
+     "en": "he, she, it (+ plural)"
+    },
+    {
+     "tr": "neler",
+     "en": "what (+ plural)"
+    },
+    {
+     "tr": "bunlar",
+     "en": "this (+ plural)"
+    },
+    {
+     "tr": "insanlar",
+     "en": "human (+ plural)"
+    },
+    {
+     "tr": "dolar",
+     "en": "C (musical note) (+ plural)"
+    },
+    {
+     "tr": "beyler",
+     "en": "gentleman (+ plural)"
+    },
+    {
+     "tr": "geceler",
+     "en": "night (+ plural)"
+    },
+    {
+     "tr": "kızlar",
+     "en": "girl (+ plural)"
+    }
+   ]
+  },
+  {
+   "id": "A1sg",
+   "examples": [
+    {
+     "tr": "beni",
+     "en": "I (+ I)"
+    },
+    {
+     "tr": "biliyorum",
+     "en": "to know (+ I)"
+    },
+    {
+     "tr": "istiyorum",
+     "en": "to want (+ I)"
+    },
+    {
+     "tr": "sanırım",
+     "en": "to suppose (+ I)"
+    },
+    {
+     "tr": "ederim",
+     "en": "to do (+ I)"
+    },
+    {
+     "tr": "dilerim",
+     "en": "to slice (+ I)"
+    },
+    {
+     "tr": "seviyorum",
+     "en": "to love (+ I)"
+    },
+    {
+     "tr": "dedim",
+     "en": "to say (+ I)"
+    },
+    {
+     "tr": "umarım",
+     "en": "to hope (+ I)"
+    },
+    {
+     "tr": "yaptım",
+     "en": "to do (+ I)"
+    }
+   ]
+  },
+  {
+   "id": "A2sg",
+   "examples": [
+    {
+     "tr": "seni",
+     "en": "you (+ you)"
+    },
+    {
+     "tr": "bak",
+     "en": "to look (at) (+ you)"
+    },
+    {
+     "tr": "gel",
+     "en": "to come (+ you)"
+    },
+    {
+     "tr": "ver",
+     "en": "to give (+ you)"
+    },
+    {
+     "tr": "buna",
+     "en": "to become senile (+ you)"
+    },
+    {
+     "tr": "dur",
+     "en": "to stop (+ you)"
+    },
+    {
+     "tr": "git",
+     "en": "to go (+ you)"
+    },
+    {
+     "tr": "söyle",
+     "en": "to say (+ you)"
+    },
+    {
+     "tr": "biliyorsun",
+     "en": "to know (+ you)"
+    },
+    {
+     "tr": "istiyorsun",
+     "en": "to want (+ you)"
+    }
+   ]
+  },
+  {
+   "id": "A1pl",
+   "examples": [
+    {
+     "tr": "bizi",
+     "en": "we (+ we)"
+    },
+    {
+     "tr": "bakalım",
+     "en": "to look (at) (+ we)"
+    },
+    {
+     "tr": "gidelim",
+     "en": "to go (+ we)"
+    },
+    {
+     "tr": "görüşürüz",
+     "en": "to meet (+ we)"
+    },
+    {
+     "tr": "yapacağız",
+     "en": "to do (+ we)"
+    },
+    {
+     "tr": "biliyoruz",
+     "en": "to know (+ we)"
+    },
+    {
+     "tr": "geldik",
+     "en": "to come (+ we)"
+    },
+    {
+     "tr": "istiyoruz",
+     "en": "to want (+ we)"
+    },
+    {
+     "tr": "olacağız",
+     "en": "to be; to become (+ we)"
+    },
+    {
+     "tr": "edelim",
+     "en": "to do (+ we)"
+    }
+   ]
+  },
+  {
+   "id": "A2pl",
+   "examples": [
+    {
+     "tr": "sizi",
+     "en": "you (plural) (+ you (pl.))"
+    },
+    {
+     "tr": "bakın",
+     "en": "to look (at) (+ you (pl.))"
+    },
+    {
+     "tr": "edin",
+     "en": "to do (+ you (pl.))"
+    },
+    {
+     "tr": "olun",
+     "en": "to be; to become (+ you (pl.))"
+    },
+    {
+     "tr": "verin",
+     "en": "to give (+ you (pl.))"
+    },
+    {
+     "tr": "durun",
+     "en": "to stop (+ you (pl.))"
+    },
+    {
+     "tr": "bırakın",
+     "en": "to let go (+ you (pl.))"
+    },
+    {
+     "tr": "affedersiniz",
+     "en": "to forgive (+ you (pl.))"
+    },
+    {
+     "tr": "kızın",
+     "en": "to get hot (+ you (pl.))"
+    },
+    {
+     "tr": "gidin",
+     "en": "to go (+ you (pl.))"
+    }
+   ]
+  },
+  {
+   "id": "P1sg",
+   "examples": [
+    {
+     "tr": "tanrım",
+     "en": "god (+ my)"
+    },
+    {
+     "tr": "dostum",
+     "en": "friend (+ my)"
+    },
+    {
+     "tr": "tatlım",
+     "en": "dessert (+ my)"
+    },
+    {
+     "tr": "eminim",
+     "en": "secure (+ my)"
+    },
+    {
+     "tr": "ihtiyacım",
+     "en": "need (+ my)"
+    },
+    {
+     "tr": "babam",
+     "en": "father (+ my)"
+    },
+    {
+     "tr": "kendimi",
+     "en": "own; self (+ my)"
+    },
+    {
+     "tr": "olduğumu",
+     "en": "to be; to become (+ my)"
+    },
+    {
+     "tr": "istediğim",
+     "en": "to want (+ my)"
+    },
+    {
+     "tr": "oğlum",
+     "en": "son (+ my)"
+    }
+   ]
+  },
+  {
+   "id": "P2sg",
+   "examples": [
+    {
+     "tr": "olduğunu",
+     "en": "to be; to become (+ your)"
+    },
+    {
+     "tr": "kendini",
+     "en": "own; self (+ your)"
+    },
+    {
+     "tr": "zorunda",
+     "en": "hard (+ your)"
+    },
+    {
+     "tr": "den",
+     "en": "also; too (+ your)"
+    },
+    {
+     "tr": "başına",
+     "en": "head (+ your)"
+    },
+    {
+     "tr": "yaptığını",
+     "en": "to do (+ your)"
+    },
+    {
+     "tr": "baban",
+     "en": "father (+ your)"
+    },
+    {
+     "tr": "dışında",
+     "en": "out (+ your)"
+    },
+    {
+     "tr": "yolunda",
+     "en": "path (+ your)"
+    },
+    {
+     "tr": "gerektiğini",
+     "en": "to be necessary (+ your)"
+    }
+   ]
+  },
+  {
+   "id": "P3sg",
+   "examples": [
+    {
+     "tr": "olduğu",
+     "en": "to be; to become (+ his/her)"
+    },
+    {
+     "tr": "konusunda",
+     "en": "topic (+ his/her)"
+    },
+    {
+     "tr": "arasında",
+     "en": "space or time between two things (+ his/her)"
+    },
+    {
+     "tr": "kendisi",
+     "en": "own; self (+ his/her)"
+    },
+    {
+     "tr": "yaptığı",
+     "en": "to do (+ his/her)"
+    },
+    {
+     "tr": "babası",
+     "en": "father (+ his/her)"
+    },
+    {
+     "tr": "parçası",
+     "en": "component (+ his/her)"
+    },
+    {
+     "tr": "iyisi",
+     "en": "the good (+ his/her)"
+    },
+    {
+     "tr": "istediği",
+     "en": "to want (+ his/her)"
+    },
+    {
+     "tr": "ilgisi",
+     "en": "relation (+ his/her)"
+    }
+   ]
+  },
+  {
+   "id": "P1pl",
+   "examples": [
+    {
+     "tr": "ihtiyacımız",
+     "en": "need (+ our)"
+    },
+    {
+     "tr": "olduğumuzu",
+     "en": "to be; to become (+ our)"
+    },
+    {
+     "tr": "elimizde",
+     "en": "hand (+ our)"
+    },
+    {
+     "tr": "aramızda",
+     "en": "space or time between two things (+ our)"
+    },
+    {
+     "tr": "yapmamız",
+     "en": "to do (+ our)"
+    },
+    {
+     "tr": "konuşmamız",
+     "en": "to mention (+ our)"
+    },
+    {
+     "tr": "işimiz",
+     "en": "work (+ our)"
+    },
+    {
+     "tr": "zamanımız",
+     "en": "duration (+ our)"
+    },
+    {
+     "tr": "şansımız",
+     "en": "chance (+ our)"
+    },
+    {
+     "tr": "önümüzdeki",
+     "en": "front (+ our)"
+    }
+   ]
+  },
+  {
+   "id": "P2pl",
+   "examples": [
+    {
+     "tr": "olduğunuzu",
+     "en": "to be; to become (+ your (pl.))"
+    },
+    {
+     "tr": "ihtiyacınız",
+     "en": "need (+ your (pl.))"
+    },
+    {
+     "tr": "kendinizi",
+     "en": "own; self (+ your (pl.))"
+    },
+    {
+     "tr": "istediğiniz",
+     "en": "to want (+ your (pl.))"
+    },
+    {
+     "tr": "izninizle",
+     "en": "permission (+ your (pl.))"
+    },
+    {
+     "tr": "gördüğünüz",
+     "en": "to see (+ your (pl.))"
+    },
+    {
+     "tr": "geldiğiniz",
+     "en": "to come (+ your (pl.))"
+    },
+    {
+     "tr": "yaptığınız",
+     "en": "to do (+ your (pl.))"
+    },
+    {
+     "tr": "aranızda",
+     "en": "space or time between two things (+ your (pl.))"
+    },
+    {
+     "tr": "işiniz",
+     "en": "work (+ your (pl.))"
+    }
+   ]
+  },
+  {
+   "id": "P3pl",
+   "examples": [
+    {
+     "tr": "şeyleri",
+     "en": "thing (+ their)"
+    },
+    {
+     "tr": "insanları",
+     "en": "human (+ their)"
+    },
+    {
+     "tr": "işleri",
+     "en": "work (+ their)"
+    },
+    {
+     "tr": "ellerini",
+     "en": "hand (+ their)"
+    },
+    {
+     "tr": "olanları",
+     "en": "to be; to become (+ their)"
+    },
+    {
+     "tr": "gözlerini",
+     "en": "eye (+ their)"
+    },
+    {
+     "tr": "diğerleri",
+     "en": "other (+ their)"
+    },
+    {
+     "tr": "adamları",
+     "en": "man (+ their)"
+    },
+    {
+     "tr": "kızları",
+     "en": "girl (+ their)"
+    },
+    {
+     "tr": "kuralları",
+     "en": "rule (+ their)"
+    }
+   ]
+  },
+  {
+   "id": "Loc",
+   "examples": [
+    {
+     "tr": "burada",
+     "en": "here (this place) (+ in/at)"
+    },
+    {
+     "tr": "şekilde",
+     "en": "shape (+ in/at)"
+    },
+    {
+     "tr": "anda",
+     "en": "moment (+ in/at)"
+    },
+    {
+     "tr": "zorunda",
+     "en": "hard (+ in/at)"
+    },
+    {
+     "tr": "yerde",
+     "en": "place (+ in/at)"
+    },
+    {
+     "tr": "evde",
+     "en": "family (+ in/at)"
+    },
+    {
+     "tr": "konusunda",
+     "en": "topic (+ in/at)"
+    },
+    {
+     "tr": "altında",
+     "en": "gold (+ in/at)"
+    },
+    {
+     "tr": "halde",
+     "en": "covered market (+ in/at)"
+    },
+    {
+     "tr": "arada",
+     "en": "space or time between two things (+ in/at)"
+    }
+   ]
+  },
+  {
+   "id": "Dat",
+   "examples": [
+    {
+     "tr": "buraya",
+     "en": "here (this place) (+ to)"
+    },
+    {
+     "tr": "eve",
+     "en": "family (+ to)"
+    },
+    {
+     "tr": "nereye",
+     "en": "where (what place) (+ to)"
+    },
+    {
+     "tr": "onlara",
+     "en": "he, she, it (+ to)"
+    },
+    {
+     "tr": "kendine",
+     "en": "own; self (+ to)"
+    },
+    {
+     "tr": "başına",
+     "en": "head (+ to)"
+    },
+    {
+     "tr": "olduğuna",
+     "en": "to be; to become (+ to)"
+    },
+    {
+     "tr": "ortaya",
+     "en": "middle (+ to)"
+    },
+    {
+     "tr": "içine",
+     "en": "inside (+ to)"
+    },
+    {
+     "tr": "kusura",
+     "en": "defect (+ to)"
+    }
+   ]
+  },
+  {
+   "id": "Abl",
+   "examples": [
+    {
+     "tr": "yüzden",
+     "en": "face (+ from)"
+    },
+    {
+     "tr": "buradan",
+     "en": "here (this place) (+ from)"
+    },
+    {
+     "tr": "benden",
+     "en": "I (+ from)"
+    },
+    {
+     "tr": "bundan",
+     "en": "this (+ from)"
+    },
+    {
+     "tr": "senden",
+     "en": "you (+ from)"
+    },
+    {
+     "tr": "ondan",
+     "en": "he, she, it (+ from)"
+    },
+    {
+     "tr": "nereden",
+     "en": "where (what place) (+ from)"
+    },
+    {
+     "tr": "olduğundan",
+     "en": "to be; to become (+ from)"
+    },
+    {
+     "tr": "şeyden",
+     "en": "thing (+ from)"
+    },
+    {
+     "tr": "bizden",
+     "en": "we (+ from)"
+    }
+   ]
+  },
+  {
+   "id": "Acc",
+   "examples": [
+    {
+     "tr": "bunu",
+     "en": "this (+ (object))"
+    },
+    {
+     "tr": "onu",
+     "en": "he, she, it (+ (object))"
+    },
+    {
+     "tr": "beni",
+     "en": "I (+ (object))"
+    },
+    {
+     "tr": "seni",
+     "en": "you (+ (object))"
+    },
+    {
+     "tr": "olduğunu",
+     "en": "to be; to become (+ (object))"
+    },
+    {
+     "tr": "bizi",
+     "en": "we (+ (object))"
+    },
+    {
+     "tr": "sizi",
+     "en": "you (plural) (+ (object))"
+    },
+    {
+     "tr": "kendini",
+     "en": "own; self (+ (object))"
+    },
+    {
+     "tr": "işi",
+     "en": "work (+ (object))"
+    },
+    {
+     "tr": "adı",
+     "en": "name (+ (object))"
+    }
+   ]
+  },
+  {
+   "id": "Gen",
+   "examples": [
+    {
+     "tr": "benim",
+     "en": "I (+ 's)"
+    },
+    {
+     "tr": "bunun",
+     "en": "this (+ 's)"
+    },
+    {
+     "tr": "bizim",
+     "en": "we (+ 's)"
+    },
+    {
+     "tr": "sizin",
+     "en": "you (plural) (+ 's)"
+    },
+    {
+     "tr": "onların",
+     "en": "he, she, it (+ 's)"
+    },
+    {
+     "tr": "adamın",
+     "en": "man (+ 's)"
+    },
+    {
+     "tr": "işin",
+     "en": "work (+ 's)"
+    },
+    {
+     "tr": "şeyin",
+     "en": "thing (+ 's)"
+    },
+    {
+     "tr": "neyin",
+     "en": "what (+ 's)"
+    },
+    {
+     "tr": "ihtiyacın",
+     "en": "need (+ 's)"
+    }
+   ]
+  },
+  {
+   "id": "Prog1",
+   "examples": [
+    {
+     "tr": "biliyorum",
+     "en": "to know (+ -ing)"
+    },
+    {
+     "tr": "istiyorum",
+     "en": "to want (+ -ing)"
+    },
+    {
+     "tr": "oluyor",
+     "en": "to be; to become (+ -ing)"
+    },
+    {
+     "tr": "geliyor",
+     "en": "to come (+ -ing)"
+    },
+    {
+     "tr": "yapıyorsun",
+     "en": "to do (+ -ing)"
+    },
+    {
+     "tr": "gerekiyor",
+     "en": "to be necessary (+ -ing)"
+    },
+    {
+     "tr": "ediyorum",
+     "en": "to do (+ -ing)"
+    },
+    {
+     "tr": "seviyorum",
+     "en": "to love (+ -ing)"
+    },
+    {
+     "tr": "gidiyor",
+     "en": "to go (+ -ing)"
+    },
+    {
+     "tr": "görünüyor",
+     "en": "to seem (+ -ing)"
+    }
+   ]
+  },
+  {
+   "id": "Past",
+   "examples": [
+    {
+     "tr": "oldu",
+     "en": "to be; to become (+ did)"
+    },
+    {
+     "tr": "vardı",
+     "en": "to arrive (+ did)"
+    },
+    {
+     "tr": "geldi",
+     "en": "to come (+ did)"
+    },
+    {
+     "tr": "söyledi",
+     "en": "to say (+ did)"
+    },
+    {
+     "tr": "dedim",
+     "en": "to say (+ did)"
+    },
+    {
+     "tr": "gitti",
+     "en": "to go (+ did)"
+    },
+    {
+     "tr": "etti",
+     "en": "to do (+ did)"
+    },
+    {
+     "tr": "yaptım",
+     "en": "to do (+ did)"
+    },
+    {
+     "tr": "gördün",
+     "en": "to see (+ did)"
+    },
+    {
+     "tr": "öldü",
+     "en": "to die (+ did)"
+    }
+   ]
+  },
+  {
+   "id": "Imp",
+   "examples": [
+    {
+     "tr": "bak",
+     "en": "to look (at) (+ command)"
+    },
+    {
+     "tr": "olsun",
+     "en": "to be; to become (+ command)"
+    },
+    {
+     "tr": "gel",
+     "en": "to come (+ command)"
+    },
+    {
+     "tr": "ver",
+     "en": "to give (+ command)"
+    },
+    {
+     "tr": "buna",
+     "en": "to become senile (+ command)"
+    },
+    {
+     "tr": "dur",
+     "en": "to stop (+ command)"
+    },
+    {
+     "tr": "git",
+     "en": "to go (+ command)"
+    },
+    {
+     "tr": "söyle",
+     "en": "to say (+ command)"
+    },
+    {
+     "tr": "bekle",
+     "en": "to wait for (+ command)"
+    },
+    {
+     "tr": "işe",
+     "en": "to piss (+ command)"
+    }
+   ]
+  },
+  {
+   "id": "Neg",
+   "examples": [
+    {
+     "tr": "bilmiyorum",
+     "en": "to know (+ not)"
+    },
+    {
+     "tr": "istemiyorum",
+     "en": "to want (+ not)"
+    },
+    {
+     "tr": "yapma",
+     "en": "to do (+ not)"
+    },
+    {
+     "tr": "etme",
+     "en": "to do (+ not)"
+    },
+    {
+     "tr": "sanmıyorum",
+     "en": "to suppose (+ not)"
+    },
+    {
+     "tr": "olmayacak",
+     "en": "to be; to become (+ not)"
+    },
+    {
+     "tr": "bakma",
+     "en": "to look (at) (+ not)"
+    },
+    {
+     "tr": "gitmem",
+     "en": "to go (+ not)"
+    },
+    {
+     "tr": "almaya",
+     "en": "to take (+ not)"
+    },
+    {
+     "tr": "anlamıyorum",
+     "en": "to understand (+ not)"
+    }
+   ]
+  },
+  {
+   "id": "Cop",
+   "examples": [
+    {
+     "tr": "nedir",
+     "en": "what (+ is)"
+    },
+    {
+     "tr": "zamandır",
+     "en": "duration (+ is)"
+    },
+    {
+     "tr": "yoktur",
+     "en": "there is not; no (+ is)"
+    },
+    {
+     "tr": "tamamdır",
+     "en": "all (+ is)"
+    },
+    {
+     "tr": "demektir",
+     "en": "to say (+ is)"
+    },
+    {
+     "tr": "iyidir",
+     "en": "the good (+ is)"
+    },
+    {
+     "tr": "olacaktır",
+     "en": "to be; to become (+ is)"
+    },
+    {
+     "tr": "süredir",
+     "en": "duration (+ is)"
+    },
+    {
+     "tr": "budur",
+     "en": "this (+ is)"
+    },
+    {
+     "tr": "şeydir",
+     "en": "thing (+ is)"
+    }
+   ]
+  },
+  {
+   "id": "With",
+   "examples": [
+    {
+     "tr": "farklı",
+     "en": "difference (+ with)"
+    },
+    {
+     "tr": "yaşlı",
+     "en": "age (length of time for which something… (+ with)"
+    },
+    {
+     "tr": "tehlikeli",
+     "en": "danger (+ with)"
+    },
+    {
+     "tr": "güvenli",
+     "en": "trust (+ with)"
+    },
+    {
+     "tr": "şanslı",
+     "en": "chance (+ with)"
+    },
+    {
+     "tr": "akıllı",
+     "en": "mind (+ with)"
+    },
+    {
+     "tr": "numaralı",
+     "en": "number (+ with)"
+    },
+    {
+     "tr": "ateşli",
+     "en": "fire (+ with)"
+    },
+    {
+     "tr": "kanlı",
+     "en": "blood (+ with)"
+    },
+    {
+     "tr": "adlı",
+     "en": "name (+ with)"
+    }
+   ]
+  },
+  {
+   "id": "Without",
+   "examples": [
+    {
+     "tr": "rahatsız",
+     "en": "comfort (+ without)"
+    },
+    {
+     "tr": "kusursuz",
+     "en": "defect (+ without)"
+    },
+    {
+     "tr": "sensiz",
+     "en": "you (+ without)"
+    },
+    {
+     "tr": "anlamsız",
+     "en": "meaning (+ without)"
+    },
+    {
+     "tr": "gereksiz",
+     "en": "necessity (+ without)"
+    },
+    {
+     "tr": "bensiz",
+     "en": "I (+ without)"
+    },
+    {
+     "tr": "saygısızlık",
+     "en": "respect (+ without)"
+    },
+    {
+     "tr": "onsuz",
+     "en": "he, she, it (+ without)"
+    },
+    {
+     "tr": "eşsiz",
+     "en": "match (+ without)"
+    },
+    {
+     "tr": "evsiz",
+     "en": "family (+ without)"
+    }
+   ]
+  }
+ ]
+}

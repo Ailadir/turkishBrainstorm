@@ -1,0 +1,732 @@
+{
+ "format": 1,
+ "id": "tr-grammar-b1",
+ "version": 1,
+ "kind": "grammar",
+ "title": "B1 suffixes",
+ "level": "B1",
+ "license": "CC BY-SA 4.0",
+ "attribution": "Wiktionary via kaikki.org (CC BY-SA 4.0); word frequencies from FrequencyWords / OpenSubtitles",
+ "suffixes": [
+  {
+   "id": "Equ",
+   "examples": [
+    {
+     "tr": "sence",
+     "en": "you (+ as…as)"
+    },
+    {
+     "tr": "sürece",
+     "en": "duration (+ as…as)"
+    },
+    {
+     "tr": "sizce",
+     "en": "you (plural) (+ as…as)"
+    },
+    {
+     "tr": "olabildiğince",
+     "en": "to be; to become (+ as…as)"
+    },
+    {
+     "tr": "sessizce",
+     "en": "consonant (+ as…as)"
+    },
+    {
+     "tr": "geldiğince",
+     "en": "to come (+ as…as)"
+    },
+    {
+     "tr": "tahminimce",
+     "en": "guess (+ as…as)"
+    },
+    {
+     "tr": "müddetçe",
+     "en": "period of time (+ as…as)"
+    },
+    {
+     "tr": "düzinelerce",
+     "en": "dozen (twelve) (+ as…as)"
+    },
+    {
+     "tr": "kilometrelerce",
+     "en": "kilometer/kilometre (unit of length) (+ as…as)"
+    }
+   ]
+  },
+  {
+   "id": "Cond",
+   "examples": [
+    {
+     "tr": "olursa",
+     "en": "to be; to become (+ if)"
+    },
+    {
+     "tr": "istersen",
+     "en": "to want (+ if)"
+    },
+    {
+     "tr": "gerekirse",
+     "en": "to be necessary (+ if)"
+    },
+    {
+     "tr": "edersen",
+     "en": "to do (+ if)"
+    },
+    {
+     "tr": "yaparsan",
+     "en": "to do (+ if)"
+    },
+    {
+     "tr": "gelirse",
+     "en": "to come (+ if)"
+    },
+    {
+     "tr": "bakarsan",
+     "en": "to look (at) (+ if)"
+    },
+    {
+     "tr": "verirsen",
+     "en": "to give (+ if)"
+    },
+    {
+     "tr": "kalırsa",
+     "en": "to remain (+ if)"
+    },
+    {
+     "tr": "bense",
+     "en": "I (+ if)"
+    }
+   ]
+  },
+  {
+   "id": "Desr",
+   "examples": [
+    {
+     "tr": "olsa",
+     "en": "to be; to become (+ wish)"
+    },
+    {
+     "tr": "varsa",
+     "en": "to arrive (+ wish)"
+    },
+    {
+     "tr": "giderse",
+     "en": "to remove (+ wish)"
+    },
+    {
+     "tr": "çıkarsa",
+     "en": "to remove (+ wish)"
+    },
+    {
+     "tr": "gitsem",
+     "en": "to go (+ wish)"
+    },
+    {
+     "tr": "derse",
+     "en": "to gather (+ wish)"
+    },
+    {
+     "tr": "bilseydim",
+     "en": "to know (+ wish)"
+    },
+    {
+     "tr": "etsem",
+     "en": "to do (+ wish)"
+    },
+    {
+     "tr": "desem",
+     "en": "to say (+ wish)"
+    },
+    {
+     "tr": "söylesem",
+     "en": "to say (+ wish)"
+    }
+   ]
+  },
+  {
+   "id": "Pass",
+   "examples": [
+    {
+     "tr": "anlaşıldı",
+     "en": "to come to agreement (+ is done)"
+    },
+    {
+     "tr": "edildi",
+     "en": "to do (+ is done)"
+    },
+    {
+     "tr": "sayılmaz",
+     "en": "to count (+ is done)"
+    },
+    {
+     "tr": "öldürüldü",
+     "en": "to kill (+ is done)"
+    },
+    {
+     "tr": "yapılmış",
+     "en": "to do (+ is done)"
+    },
+    {
+     "tr": "denen",
+     "en": "to say (+ is done)"
+    },
+    {
+     "tr": "bakılırsa",
+     "en": "to look (at) (+ is done)"
+    },
+    {
+     "tr": "verildi",
+     "en": "to give (+ is done)"
+    },
+    {
+     "tr": "yoruldum",
+     "en": "to interpret something as (good/bad) (+ is done)"
+    },
+    {
+     "tr": "açıldı",
+     "en": "to open (+ is done)"
+    }
+   ]
+  },
+  {
+   "id": "Caus",
+   "examples": [
+    {
+     "tr": "vardır",
+     "en": "to arrive (+ make do)"
+    },
+    {
+     "tr": "siktir",
+     "en": "to fuck (+ make do)"
+    },
+    {
+     "tr": "ilgilendirmez",
+     "en": "to be interested in (+ make do)"
+    },
+    {
+     "tr": "aydır",
+     "en": "to begin paying attention again (+ make do)"
+    },
+    {
+     "tr": "şaşırtıcı",
+     "en": "to be mixed up (+ make do)"
+    },
+    {
+     "tr": "değiştirmek",
+     "en": "to change (+ make do)"
+    },
+    {
+     "tr": "hissettiriyor",
+     "en": "to feel (+ make do)"
+    },
+    {
+     "tr": "tanıştırayım",
+     "en": "to meet (for the first time) (+ make do)"
+    },
+    {
+     "tr": "hatırlatıyor",
+     "en": "to remember (+ make do)"
+    },
+    {
+     "tr": "çalıştır",
+     "en": "to work (+ make do)"
+    }
+   ]
+  },
+  {
+   "id": "PastPart",
+   "examples": [
+    {
+     "tr": "olduğunu",
+     "en": "to be; to become (+ that did)"
+    },
+    {
+     "tr": "istediğim",
+     "en": "to want (+ that did)"
+    },
+    {
+     "tr": "yaptığını",
+     "en": "to do (+ that did)"
+    },
+    {
+     "tr": "gerektiğini",
+     "en": "to be necessary (+ that did)"
+    },
+    {
+     "tr": "geldiğini",
+     "en": "to come (+ that did)"
+    },
+    {
+     "tr": "ettiğini",
+     "en": "to do (+ that did)"
+    },
+    {
+     "tr": "gördüğüm",
+     "en": "to see (+ that did)"
+    },
+    {
+     "tr": "bildiğim",
+     "en": "to know (+ that did)"
+    },
+    {
+     "tr": "sevdiğim",
+     "en": "to love (+ that did)"
+    },
+    {
+     "tr": "gittiğini",
+     "en": "to go (+ that did)"
+    }
+   ]
+  },
+  {
+   "id": "FutPart",
+   "examples": [
+    {
+     "tr": "olacağını",
+     "en": "to be; to become (+ that will)"
+    },
+    {
+     "tr": "yapacağımı",
+     "en": "to do (+ that will)"
+    },
+    {
+     "tr": "edeceğini",
+     "en": "to do (+ that will)"
+    },
+    {
+     "tr": "gideceğini",
+     "en": "to go (+ that will)"
+    },
+    {
+     "tr": "diyeceğimi",
+     "en": "to say (+ that will)"
+    },
+    {
+     "tr": "söyleyeceğimi",
+     "en": "to say (+ that will)"
+    },
+    {
+     "tr": "döneceğini",
+     "en": "to turn (+ that will)"
+    },
+    {
+     "tr": "bulacağını",
+     "en": "to find (+ that will)"
+    },
+    {
+     "tr": "kalacağını",
+     "en": "to remain (+ that will)"
+    },
+    {
+     "tr": "öleceğini",
+     "en": "to die (+ that will)"
+    }
+   ]
+  },
+  {
+   "id": "PresPart",
+   "examples": [
+    {
+     "tr": "olan",
+     "en": "to be; to become (+ -ing (one))"
+    },
+    {
+     "tr": "gereken",
+     "en": "to be necessary (+ -ing (one))"
+    },
+    {
+     "tr": "eden",
+     "en": "to do (+ -ing (one))"
+    },
+    {
+     "tr": "yapan",
+     "en": "to do (+ -ing (one))"
+    },
+    {
+     "tr": "çalışan",
+     "en": "to work (+ -ing (one))"
+    },
+    {
+     "tr": "isteyen",
+     "en": "to want (+ -ing (one))"
+    },
+    {
+     "tr": "giden",
+     "en": "to go (+ -ing (one))"
+    },
+    {
+     "tr": "yaşayan",
+     "en": "to live (+ -ing (one))"
+    },
+    {
+     "tr": "çıkan",
+     "en": "to leave (+ -ing (one))"
+    },
+    {
+     "tr": "veren",
+     "en": "to give (+ -ing (one))"
+    }
+   ]
+  },
+  {
+   "id": "Inf2",
+   "examples": [
+    {
+     "tr": "olması",
+     "en": "to be; to become (+ the act of)"
+    },
+    {
+     "tr": "yapmayı",
+     "en": "to do (+ the act of)"
+    },
+    {
+     "tr": "etmeyi",
+     "en": "to do (+ the act of)"
+    },
+    {
+     "tr": "konuşmayı",
+     "en": "to mention (+ the act of)"
+    },
+    {
+     "tr": "gitmemiz",
+     "en": "to go (+ the act of)"
+    },
+    {
+     "tr": "almayı",
+     "en": "to take (+ the act of)"
+    },
+    {
+     "tr": "gelmesini",
+     "en": "to come (+ the act of)"
+    },
+    {
+     "tr": "bilmeni",
+     "en": "to know (+ the act of)"
+    },
+    {
+     "tr": "söylemeyi",
+     "en": "to say (+ the act of)"
+    },
+    {
+     "tr": "görmeyi",
+     "en": "to see (+ the act of)"
+    }
+   ]
+  },
+  {
+   "id": "When",
+   "examples": [
+    {
+     "tr": "gelince",
+     "en": "to come (+ when)"
+    },
+    {
+     "tr": "olunca",
+     "en": "to be; to become (+ when)"
+    },
+    {
+     "tr": "görünce",
+     "en": "to see (+ when)"
+    },
+    {
+     "tr": "bitince",
+     "en": "to end (+ when)"
+    },
+    {
+     "tr": "bakınca",
+     "en": "to look (at) (+ when)"
+    },
+    {
+     "tr": "duyunca",
+     "en": "to hear (+ when)"
+    },
+    {
+     "tr": "düşününce",
+     "en": "to think (+ when)"
+    },
+    {
+     "tr": "gidince",
+     "en": "to go (+ when)"
+    },
+    {
+     "tr": "çıkınca",
+     "en": "to leave (+ when)"
+    },
+    {
+     "tr": "dönünce",
+     "en": "to turn (+ when)"
+    }
+   ]
+  },
+  {
+   "id": "ByDoingSo",
+   "examples": [
+    {
+     "tr": "olarak",
+     "en": "to be; to become (+ by doing)"
+    },
+    {
+     "tr": "kullanarak",
+     "en": "to use (+ by doing)"
+    },
+    {
+     "tr": "ederek",
+     "en": "to do (+ by doing)"
+    },
+    {
+     "tr": "yaparak",
+     "en": "to do (+ by doing)"
+    },
+    {
+     "tr": "bakarak",
+     "en": "to look (at) (+ by doing)"
+    },
+    {
+     "tr": "dayanarak",
+     "en": "to lean on (+ by doing)"
+    },
+    {
+     "tr": "alarak",
+     "en": "to take (+ by doing)"
+    },
+    {
+     "tr": "düşünerek",
+     "en": "to think (+ by doing)"
+    },
+    {
+     "tr": "vererek",
+     "en": "to give (+ by doing)"
+    },
+    {
+     "tr": "söyleyerek",
+     "en": "to say (+ by doing)"
+    }
+   ]
+  },
+  {
+   "id": "While",
+   "examples": [
+    {
+     "tr": "yaparken",
+     "en": "to do (+ while)"
+    },
+    {
+     "tr": "varken",
+     "en": "there is; existing (+ while)"
+    },
+    {
+     "tr": "giderken",
+     "en": "to go (+ while)"
+    },
+    {
+     "tr": "çocukken",
+     "en": "child (+ while)"
+    },
+    {
+     "tr": "çalışırken",
+     "en": "to work (+ while)"
+    },
+    {
+     "tr": "ederken",
+     "en": "to do (+ while)"
+    },
+    {
+     "tr": "konuşurken",
+     "en": "to mention (+ while)"
+    },
+    {
+     "tr": "yokken",
+     "en": "there is not; no (+ while)"
+    },
+    {
+     "tr": "küçükken",
+     "en": "small (+ while)"
+    },
+    {
+     "tr": "çıkarken",
+     "en": "to leave (+ while)"
+    }
+   ]
+  },
+  {
+   "id": "AfterDoingSo",
+   "examples": [
+    {
+     "tr": "gidip",
+     "en": "to go (+ after doing)"
+    },
+    {
+     "tr": "gelip",
+     "en": "to come (+ after doing)"
+    },
+    {
+     "tr": "olup",
+     "en": "to be; to become (+ after doing)"
+    },
+    {
+     "tr": "alıp",
+     "en": "to take (+ after doing)"
+    },
+    {
+     "tr": "çıkıp",
+     "en": "to leave (+ after doing)"
+    },
+    {
+     "tr": "oturup",
+     "en": "to sit (+ after doing)"
+    },
+    {
+     "tr": "bırakıp",
+     "en": "to let go (+ after doing)"
+    },
+    {
+     "tr": "arayıp",
+     "en": "to seek (+ after doing)"
+    },
+    {
+     "tr": "girip",
+     "en": "to enter (+ after doing)"
+    },
+    {
+     "tr": "dönüp",
+     "en": "to turn (+ after doing)"
+    }
+   ]
+  },
+  {
+   "id": "SinceDoingSo",
+   "examples": [
+    {
+     "tr": "yaralı",
+     "en": "to split into two parts (+ since)"
+    },
+    {
+     "tr": "kuralı",
+     "en": "to assemble (+ since)"
+    },
+    {
+     "tr": "kanalı",
+     "en": "to believe (+ since)"
+    },
+    {
+     "tr": "süreli",
+     "en": "to operate a wheeled vehicle (+ since)"
+    },
+    {
+     "tr": "görüşmeyeli",
+     "en": "to meet (+ since)"
+    },
+    {
+     "tr": "öleli",
+     "en": "to die (+ since)"
+    },
+    {
+     "tr": "geleli",
+     "en": "to come (+ since)"
+    },
+    {
+     "tr": "gideli",
+     "en": "to go (+ since)"
+    },
+    {
+     "tr": "görmeyeli",
+     "en": "to see (+ since)"
+    },
+    {
+     "tr": "bileli",
+     "en": "to know (+ since)"
+    }
+   ]
+  },
+  {
+   "id": "Dim",
+   "examples": [
+    {
+     "tr": "babacığım",
+     "en": "father (+ little)"
+    },
+    {
+     "tr": "amcık",
+     "en": "cunt (+ little)"
+    },
+    {
+     "tr": "kedicik",
+     "en": "cat (+ little)"
+    },
+    {
+     "tr": "parçacık",
+     "en": "component (+ little)"
+    },
+    {
+     "tr": "domuzcuk",
+     "en": "pig (+ little)"
+    },
+    {
+     "tr": "zavallıcık",
+     "en": "poor (+ little)"
+    },
+    {
+     "tr": "ayıcık",
+     "en": "bear (+ little)"
+    },
+    {
+     "tr": "kerecik",
+     "en": "multiplied by (+ little)"
+    },
+    {
+     "tr": "köprücük",
+     "en": "bridge (+ little)"
+    },
+    {
+     "tr": "kısacık",
+     "en": "short (+ little)"
+    }
+   ]
+  },
+  {
+   "id": "Become",
+   "examples": [
+    {
+     "tr": "sakinleş",
+     "en": "tenant (+ become)"
+    },
+    {
+     "tr": "gerçekleşti",
+     "en": "truth (+ become)"
+    },
+    {
+     "tr": "iyileşeceksin",
+     "en": "the good (+ become)"
+    },
+    {
+     "tr": "eşleşme",
+     "en": "match (+ become)"
+    },
+    {
+     "tr": "kötüleşiyor",
+     "en": "villain (+ become)"
+    },
+    {
+     "tr": "zorlaştırıyor",
+     "en": "hard (+ become)"
+    },
+    {
+     "tr": "aptallaşma",
+     "en": "fool (+ become)"
+    },
+    {
+     "tr": "kolaylaştırır",
+     "en": "easy (+ become)"
+    },
+    {
+     "tr": "güzelleşiyor",
+     "en": "beauty (someone who is beautiful) (+ become)"
+    },
+    {
+     "tr": "kesinleşti",
+     "en": "certain (+ become)"
+    }
+   ]
+  }
+ ]
+}

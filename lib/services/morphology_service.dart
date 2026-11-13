@@ -26,10 +26,8 @@ class MorphologyResult {
   String get root => lemma;
   List<String> get suffixes => [for (final m in morphemes) m.surface];
 
-  factory MorphologyResult.fallback(String word) => MorphologyResult(
-        lemma: word,
-        analyzed: false,
-      );
+  factory MorphologyResult.fallback(String word) =>
+      MorphologyResult(lemma: word, analyzed: false);
 
   factory MorphologyResult.fromMap(Map<dynamic, dynamic> map, String word) {
     final lemma = (map['lemma'] as String?)?.trim();
@@ -56,8 +54,10 @@ class MorphologyService {
 
   Future<MorphologyResult> analyze(String word) async {
     try {
-      final result = await _channel
-          .invokeMethod<Map<dynamic, dynamic>>('analyze', {'word': word});
+      final result = await _channel.invokeMethod<Map<dynamic, dynamic>>(
+        'analyze',
+        {'word': word},
+      );
       if (result == null) return MorphologyResult.fallback(word);
       return MorphologyResult.fromMap(result, word);
     } on PlatformException {
@@ -71,9 +71,10 @@ class MorphologyService {
   /// Slower than [analyze]; use only for phrases and sentences.
   Future<List<MorphologyResult>> analyzeSentence(String text) async {
     try {
-      final result =
-          await _channel.invokeListMethod<Map<dynamic, dynamic>>(
-              'analyzeSentence', {'text': text});
+      final result = await _channel.invokeListMethod<Map<dynamic, dynamic>>(
+        'analyzeSentence',
+        {'text': text},
+      );
       if (result == null) return const [];
       return [for (final m in result) MorphologyResult.fromMap(m, text)];
     } on PlatformException {
@@ -86,9 +87,10 @@ class MorphologyService {
   /// One result per input word, in order (fallback where unknown).
   Future<List<MorphologyResult>> analyzeBatch(List<String> words) async {
     try {
-      final result = await _channel
-          .invokeListMethod<Map<dynamic, dynamic>?>(
-              'analyzeBatch', {'words': words});
+      final result = await _channel.invokeListMethod<Map<dynamic, dynamic>?>(
+        'analyzeBatch',
+        {'words': words},
+      );
       if (result == null || result.length != words.length) {
         return [for (final w in words) MorphologyResult.fallback(w)];
       }

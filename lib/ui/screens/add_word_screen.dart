@@ -1,15 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../domain/morpheme_ref.dart';
+import '../../domain/turkish_text.dart';
 import '../../providers/providers.dart';
+import '../../services/translation_pipeline.dart';
 import '../widgets/breakdown_view.dart';
 
-// One Zemberek result per word in the phrase.
-typedef _WordPart = ({String word, String root, List<MorphemeRef> morphemes});
-
 class AddWordScreen extends ConsumerStatefulWidget {
-  const AddWordScreen({super.key});
+  /// Pre-filled text, e.g. from "Add to Turkish Vocab" in another app.
+  final String? initialText;
+  const AddWordScreen({super.key, this.initialText});
 
   @override
   ConsumerState<AddWordScreen> createState() => _AddWordScreenState();
@@ -17,148 +20,209 @@ class AddWordScreen extends ConsumerStatefulWidget {
 
 class _AddWordScreenState extends ConsumerState<AddWordScreen> {
   final _turkishCtrl = TextEditingController();
+  final _contextCtrl = TextEditingController();
   final _englishCtrl = TextEditingController();
-  final _rootCtrl = TextEditingController();
-  final _noteCtrl = TextEditingController();
   final _sourceCtrl = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
-  // Single-word state.
-  List<MorphemeRef> _morphemes = [];
+  Timer? _debounce;
+  int _generation = 0; // drops results of superseded lookups
+
+  // Single-word analysis.
+  String? _lemma;
   String? _pos;
+  List<MorphemeRef> _morphemes = [];
 
-  // Multi-word / phrase state (non-empty means phrase mode).
-  List<_WordPart> _wordParts = [];
-  bool get _isPhrase => _wordParts.isNotEmpty;
-
-  bool _analyzing = false;
-  bool _translating = false;
-  bool _saving = false;
+  TranslationResult? _result;
   bool _englishEdited = false;
+  bool _busy = false; // network lookup or save in progress
+  final Set<String> _alsoSave = {};
+
+  List<String> get _tokens => _turkishCtrl.text
+      .split(RegExp(r'\s+'))
+      .map(trNormalize)
+      .where((t) => t.isNotEmpty)
+      .toSet()
+      .toList();
+  bool get _isWord => inferKind(_turkishCtrl.text) == 'word';
+
+  @override
+  void initState() {
+    super.initState();
+    _sourceCtrl.text = ref.read(settingsServiceProvider).lastSource;
+    final initial = widget.initialText?.trim();
+    if (initial != null && initial.isNotEmpty) {
+      _turkishCtrl.text = initial;
+      WidgetsBinding.instance.addPostFrameCallback((_) => _localLookup());
+    }
+  }
 
   @override
   void dispose() {
+    _debounce?.cancel();
     _turkishCtrl.dispose();
+    _contextCtrl.dispose();
     _englishCtrl.dispose();
-    _rootCtrl.dispose();
-    _noteCtrl.dispose();
     _sourceCtrl.dispose();
     super.dispose();
   }
 
-  // ── Analyse ──────────────────────────────────────────────────────────────
+  // ── Lookups ───────────────────────────────────────────────────────────────
 
-  Future<void> _analyze() async {
-    final input = _turkishCtrl.text.trim();
-    if (input.isEmpty) return;
+  void _onTurkishChanged(String _) {
+    _debounce?.cancel();
+    _debounce = Timer(const Duration(milliseconds: 400), _localLookup);
+  }
 
-    final words = input
-        .split(RegExp(r'\s+'))
-        .where((w) => w.isNotEmpty)
-        .toList();
-    setState(() => _analyzing = true);
-    try {
-      final morphService = ref.read(morphologyServiceProvider);
-      if (words.length == 1) {
-        final result = await morphService.analyze(input);
-        _rootCtrl.text = result.lemma;
-        setState(() {
-          _morphemes = result.morphemes;
-          _pos = result.pos;
-          _wordParts = [];
-        });
-      } else {
-        // Analyse all words in parallel.
-        final results = await Future.wait(
-          words.map((w) => morphService.analyze(w)),
-        );
-        setState(() {
-          _wordParts = [
-            for (var i = 0; i < words.length; i++)
-              (
-                word: words[i],
-                root: results[i].lemma,
-                morphemes: results[i].morphemes,
-              ),
-          ];
-          _morphemes = [];
-          _pos = null;
-          _rootCtrl.clear();
-        });
-      }
-    } finally {
-      setState(() => _analyzing = false);
+  /// Offline only: breakdown + dictionary gloss. Never touches the network.
+  Future<void> _localLookup() async {
+    final text = _turkishCtrl.text.trim();
+    final gen = ++_generation;
+    if (text.isEmpty) {
+      setState(() {
+        _lemma = null;
+        _morphemes = [];
+        _result = null;
+        _alsoSave.clear();
+      });
+      return;
     }
+    MorphologyResult0? morph;
+    if (_isWord) {
+      final r = await ref.read(morphologyServiceProvider).analyze(text);
+      morph = (lemma: r.lemma, pos: r.pos, morphemes: r.morphemes);
+    }
+    final result = await ref
+        .read(translationPipelineProvider)
+        .translate(text, localOnly: true);
+    if (!mounted || gen != _generation) return;
+    setState(() {
+      _lemma = morph?.lemma;
+      _pos = morph?.pos;
+      _morphemes = morph?.morphemes ?? [];
+      _result = result;
+      _alsoSave.removeWhere((t) => !_tokens.contains(t));
+      // A word-by-word gloss is a hint, not a translation: don't fill it in,
+      // so Save with an empty English still asks the AI.
+      if (!_englishEdited &&
+          result != null &&
+          result.source != TranslationSource.literal) {
+        _englishCtrl.text = result.english;
+      }
+    });
+  }
 
-    if (_englishCtrl.text.trim().isEmpty) {
-      await _translateEnglish();
+  /// May use the network (AI, then MyMemory).
+  Future<void> _translateOnline({bool forceAi = false}) async {
+    final text = _turkishCtrl.text.trim();
+    if (text.isEmpty) return;
+    final gen = ++_generation;
+    setState(() => _busy = true);
+    try {
+      final r = await ref
+          .read(translationPipelineProvider)
+          .translate(text, context: _contextCtrl.text, forceAi: forceAi);
+      if (!mounted || gen != _generation) return;
+      if (r == null) {
+        _snack('No translation found. Type the English meaning.');
+        return;
+      }
+      setState(() {
+        _result = r;
+        if (forceAi || !_englishEdited) {
+          _englishCtrl.text = r.english;
+          _englishEdited = false;
+        }
+      });
+      if (r.warning != null) _snack(r.warning!);
+    } finally {
+      if (mounted) setState(() => _busy = false);
     }
   }
 
-  // ── Translate ─────────────────────────────────────────────────────────────
-
-  /// Translates the full Turkish field (single word or whole phrase).
-  Future<void> _translateEnglish() async {
-    final word = _turkishCtrl.text.trim();
-    if (word.isEmpty) return;
-    setState(() => _translating = true);
-    try {
-      String? translation;
-      final llm = ref.read(llmServiceProvider);
-      if (llm.isConfigured) {
-        translation = await llm.translate(word);
-      }
-      translation ??= await ref
-          .read(translationServiceProvider)
-          .translate(word);
-      if (translation != null && mounted) {
-        _englishCtrl.text = translation;
-      } else if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            content: Text('Translation failed. Type the English meaning.'),
-          ),
-        );
-      }
-    } finally {
-      if (mounted) setState(() => _translating = false);
-    }
+  void _snack(String m) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(SnackBar(content: Text(m)));
   }
 
   // ── Save ──────────────────────────────────────────────────────────────────
 
-  Future<void> _save() async {
+  Future<void> _save({required bool addAnother}) async {
+    if (_turkishCtrl.text.trim().isEmpty) {
+      _formKey.currentState?.validate();
+      return;
+    }
+    // Save only waits for the network when English is still empty.
+    if (_englishCtrl.text.trim().isEmpty) await _translateOnline();
     if (!(_formKey.currentState?.validate() ?? false)) return;
-    setState(() => _saving = true);
+
+    setState(() => _busy = true);
     try {
       final repo = ref.read(wordRepositoryProvider);
-      // Exactly one row per save; root/suffixes are stored on it. Roots and
-      // suffixes are never created as separate vocabulary cards.
-      final result = await repo.addWord(
+      final settings = ref.read(settingsServiceProvider);
+      final source = _sourceCtrl.text.trim();
+      await settings.setLastSource(source);
+
+      final r = await repo.addWord(
         turkish: _turkishCtrl.text.trim(),
         english: _englishCtrl.text.trim(),
-        lemma: _isPhrase
-            ? _wordParts.map((p) => p.root).join(' ')
-            : (_rootCtrl.text.trim().isEmpty ? null : _rootCtrl.text.trim()),
-        pos: _isPhrase ? null : _pos,
-        morphemes: _isPhrase ? const [] : _morphemes,
+        lemma: _isWord && _lemma != null && _morphemes.isNotEmpty
+            ? _lemma
+            : null,
+        pos: _isWord ? _pos : null,
+        morphemes: _isWord ? _morphemes : const [],
         englishEdited: _englishEdited,
-        note: _noteCtrl.text.trim().isEmpty ? null : _noteCtrl.text.trim(),
-        source: _sourceCtrl.text.trim().isEmpty
+        note: _contextCtrl.text.trim().isEmpty
             ? null
-            : _sourceCtrl.text.trim(),
+            : _contextCtrl.text.trim(),
+        source: source.isEmpty ? null : source,
       );
-      // Pick up the breakdown in the background if it wasn't analysed yet.
-      ref.read(analysisJobProvider).run().ignore();
-      if (!mounted) return;
-      if (result.existed) {
-        ScaffoldMessenger.of(
-          context,
-        ).showSnackBar(const SnackBar(content: Text('Already in your list')));
+
+      var skipped = 0;
+      for (final token in _alsoSave) {
+        final t = await ref
+            .read(translationPipelineProvider)
+            .translate(token, localOnly: true);
+        if (t == null) {
+          skipped++;
+          continue;
+        }
+        await repo.addWord(
+          turkish: token,
+          english: t.english,
+          source: source.isEmpty ? null : source,
+        );
       }
-      Navigator.pop(context);
+      ref.read(analysisJobProvider).run().ignore();
+      // Generate the audio now so it plays offline later.
+      ref.read(audioPrefetchProvider).enqueue([_turkishCtrl.text]);
+      ref.invalidate(statsProvider);
+      if (!mounted) return;
+      _snack(
+        r.existed
+            ? 'Already in your list'
+            : skipped > 0
+            ? 'Saved ($skipped words had no known meaning and were skipped)'
+            : 'Saved',
+      );
+      if (addAnother) {
+        setState(() {
+          _turkishCtrl.clear();
+          _contextCtrl.clear();
+          _englishCtrl.clear();
+          _englishEdited = false;
+          _lemma = null;
+          _morphemes = [];
+          _result = null;
+          _alsoSave.clear();
+        });
+      } else {
+        Navigator.pop(context);
+      }
     } finally {
-      if (mounted) setState(() => _saving = false);
+      if (mounted) setState(() => _busy = false);
     }
   }
 
@@ -166,22 +230,27 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final busy = _analyzing || _translating || _saving;
+    final theme = Theme.of(context);
+    final tokens = _tokens;
+    final hasAi = ref.read(llmServiceProvider).isConfigured;
 
     return Scaffold(
       appBar: AppBar(
         title: const Text('Add word'),
         actions: [
-          if (busy)
+          if (_busy)
             const Padding(
               padding: EdgeInsets.all(16),
               child: SizedBox.square(
                 dimension: 20,
-                child: CircularProgressIndicator(),
+                child: CircularProgressIndicator(strokeWidth: 2),
               ),
             )
           else
-            TextButton(onPressed: _save, child: const Text('Save')),
+            TextButton(
+              onPressed: () => _save(addAnother: false),
+              child: const Text('Save'),
+            ),
         ],
       ),
       body: Form(
@@ -189,103 +258,133 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
         child: ListView(
           padding: const EdgeInsets.all(20),
           children: [
-            // ── Turkish word / phrase ─────────────────────────────────────
             TextFormField(
               controller: _turkishCtrl,
-              decoration: InputDecoration(
+              autofocus: widget.initialText == null,
+              decoration: const InputDecoration(
                 labelText: 'Turkish word or phrase *',
                 hintText: 'e.g. gitmek  or  eve gidiyorum',
-                border: const OutlineInputBorder(),
-                suffixIcon: _analyzing
-                    ? const Padding(
-                        padding: EdgeInsets.all(12),
-                        child: SizedBox.square(
-                          dimension: 20,
-                          child: CircularProgressIndicator(),
-                        ),
-                      )
-                    : IconButton(
-                        icon: const Icon(Icons.auto_fix_high),
-                        tooltip: 'Analyse morphology + auto-translate',
-                        onPressed: _analyze,
-                      ),
+                border: OutlineInputBorder(),
               ),
-              onFieldSubmitted: (_) => _analyze(),
+              onChanged: _onTurkishChanged,
+              onFieldSubmitted: (_) {
+                _debounce?.cancel();
+                // Done on a phrase asks for a full translation.
+                if (!_isWord) {
+                  _translateOnline();
+                } else {
+                  _localLookup();
+                }
+              },
+              textInputAction: TextInputAction.done,
               validator: (v) =>
                   (v == null || v.trim().isEmpty) ? 'Required' : null,
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 12),
 
-            // ── Single-word: root + suffixes ──────────────────────────────
-            if (!_isPhrase) ...[
-              TextFormField(
-                controller: _rootCtrl,
-                decoration: const InputDecoration(
-                  labelText: 'Root / lemma',
-                  border: OutlineInputBorder(),
-                ),
+            if (_isWord) BreakdownView(lemma: _lemma, morphemes: _morphemes),
+            if (_isWord && _morphemes.isNotEmpty) const SizedBox(height: 12),
+
+            if (!_isWord && tokens.length > 1) ...[
+              Text(
+                'Also save as separate cards:',
+                style: theme.textTheme.labelMedium,
+              ),
+              const SizedBox(height: 6),
+              Wrap(
+                spacing: 8,
+                children: [
+                  for (final t in tokens)
+                    FilterChip(
+                      label: Text(t),
+                      selected: _alsoSave.contains(t),
+                      onSelected: (on) => setState(
+                        () => on ? _alsoSave.add(t) : _alsoSave.remove(t),
+                      ),
+                    ),
+                ],
               ),
               const SizedBox(height: 12),
-              BreakdownView(lemma: _rootCtrl.text, morphemes: _morphemes),
-              if (_morphemes.isNotEmpty) const SizedBox(height: 12),
             ],
 
-            // ── Phrase: per-word breakdown ────────────────────────────────
-            if (_isPhrase) ...[
-              Text(
-                'Word breakdown',
-                style: Theme.of(context).textTheme.labelMedium,
-              ),
-              const SizedBox(height: 8),
-              ..._wordParts.map((p) => _WordPartTile(part: p)),
-              const SizedBox(height: 4),
-            ],
-
-            const Divider(),
-            const SizedBox(height: 8),
-
-            // ── English translation ───────────────────────────────────────
             TextFormField(
-              controller: _englishCtrl,
-              onChanged: (_) => _englishEdited = true,
-              decoration: InputDecoration(
-                labelText: 'English translation *',
-                border: const OutlineInputBorder(),
-                suffixIcon: _translating
-                    ? const Padding(
-                        padding: EdgeInsets.all(12),
-                        child: SizedBox.square(
-                          dimension: 20,
-                          child: CircularProgressIndicator(),
-                        ),
-                      )
-                    : IconButton(
-                        icon: const Icon(Icons.translate),
-                        tooltip: 'Auto-translate',
-                        onPressed: _translateEnglish,
-                      ),
-              ),
-              validator: (v) =>
-                  (v == null || v.trim().isEmpty) ? 'Required' : null,
-            ),
-            const SizedBox(height: 16),
-
-            // ── Note / Source ─────────────────────────────────────────────
-            TextFormField(
-              controller: _noteCtrl,
+              controller: _contextCtrl,
               decoration: const InputDecoration(
-                labelText: 'Note / example sentence',
+                labelText: 'Context sentence (optional)',
+                helperText: 'Where you saw it. Helps the AI and your memory.',
                 border: OutlineInputBorder(),
               ),
               maxLines: 2,
             ),
             const SizedBox(height: 16),
+
+            TextFormField(
+              controller: _englishCtrl,
+              onChanged: (_) => _englishEdited = true,
+              decoration: InputDecoration(
+                labelText: 'English *',
+                border: const OutlineInputBorder(),
+                suffixIcon: IconButton(
+                  icon: const Icon(Icons.auto_awesome),
+                  tooltip: hasAi ? 'Ask AI' : 'Translate online',
+                  onPressed: _busy
+                      ? null
+                      : () => _translateOnline(forceAi: hasAi),
+                ),
+              ),
+              validator: (v) =>
+                  (v == null || v.trim().isEmpty) ? 'Required' : null,
+            ),
+            if (_result != null) ...[
+              const SizedBox(height: 8),
+              Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                children: [
+                  Chip(
+                    label: Text(_result!.sourceLabel),
+                    visualDensity: VisualDensity.compact,
+                  ),
+                  for (final alt in _result!.alternatives.take(3))
+                    ActionChip(
+                      label: Text(alt),
+                      visualDensity: VisualDensity.compact,
+                      onPressed: () => setState(() {
+                        _englishCtrl.text = alt;
+                        _englishEdited = true;
+                      }),
+                    ),
+                ],
+              ),
+              if (_result!.source == TranslationSource.literal)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(
+                    'Word by word: ${_result!.english}',
+                    style: theme.textTheme.bodySmall,
+                  ),
+                ),
+              if (_result!.note != null && _result!.note!.isNotEmpty)
+                Padding(
+                  padding: const EdgeInsets.only(top: 6),
+                  child: Text(_result!.note!, style: theme.textTheme.bodySmall),
+                ),
+            ],
+            const SizedBox(height: 16),
+
             TextFormField(
               controller: _sourceCtrl,
               decoration: const InputDecoration(
                 labelText: 'Source (manhwa, etc.)',
                 border: OutlineInputBorder(),
               ),
+            ),
+            const SizedBox(height: 20),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.playlist_add),
+              label: const Text('Save & add another'),
+              onPressed: _busy ? null : () => _save(addAnother: true),
             ),
           ],
         ),
@@ -294,45 +393,8 @@ class _AddWordScreenState extends ConsumerState<AddWordScreen> {
   }
 }
 
-// ── Per-word breakdown tile (phrase mode) ─────────────────────────────────────
-
-class _WordPartTile extends StatelessWidget {
-  final _WordPart part;
-  const _WordPartTile({required this.part});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(
-                part.word,
-                style: theme.textTheme.bodyMedium?.copyWith(
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              if (part.root.isNotEmpty &&
-                  part.root.toLowerCase() != part.word.toLowerCase()) ...[
-                const SizedBox(width: 6),
-                Text('→', style: TextStyle(color: Colors.grey.shade500)),
-                const SizedBox(width: 6),
-                Text(
-                  part.root,
-                  style: theme.textTheme.bodyMedium?.copyWith(
-                    color: Colors.grey.shade700,
-                  ),
-                ),
-              ],
-            ],
-          ),
-          BreakdownView(lemma: part.root, morphemes: part.morphemes),
-        ],
-      ),
-    );
-  }
-}
+typedef MorphologyResult0 = ({
+  String lemma,
+  String? pos,
+  List<MorphemeRef> morphemes,
+});

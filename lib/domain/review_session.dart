@@ -19,7 +19,9 @@ ReviewGrade gradeAnswer(AnswerResult r) {
 /// Exercise for a due word, chosen by its repetition count.
 ExerciseType exerciseFor(VocabItem w, {required bool typingEnabled}) {
   if (!w.isSimple) {
-    return w.repetitions.isEven ? ExerciseType.reveal : ExerciseType.listenChoose;
+    return w.repetitions.isEven
+        ? ExerciseType.reveal
+        : ExerciseType.listenChoose;
   }
   final r = w.repetitions;
   if (r <= 1) return ExerciseType.chooseMeaning;
@@ -55,10 +57,10 @@ class ReviewSession {
     List<VocabItem> pool = const [],
     this.typingEnabled = false,
     Random? rng,
-  })  : pool = [...pool, ...due],
-        _rng = rng ?? Random(),
-        _queue = List.of(due),
-        total = due.length;
+  }) : pool = [...pool, ...due],
+       _rng = rng ?? Random(),
+       _queue = List.of(due),
+       total = due.length;
 
   double get progress => total == 0 ? 1 : (_answered / total).clamp(0, 1);
   bool get isFinished => _queue.isEmpty && _reasks.isEmpty;
@@ -92,42 +94,58 @@ class ReviewSession {
 
   Exercise _build(VocabItem w, ExerciseType type, {bool isReask = false}) {
     Exercise reveal() => Exercise(
-        wordId: w.id,
-        type: ExerciseType.reveal,
-        answer: w.english,
-        isReask: isReask);
+      wordId: w.id,
+      type: ExerciseType.reveal,
+      answer: w.english,
+      isReask: isReask,
+    );
     switch (type) {
       case ExerciseType.chooseMeaning:
       case ExerciseType.listenChoose:
         final opts = buildChoiceOptions(
-            word: w, pool: pool, pick: (x) => x.english, rng: _rng);
+          word: w,
+          pool: pool,
+          pick: (x) => x.english,
+          rng: _rng,
+        );
         if (opts.length < 2) return reveal();
         return Exercise(
-            wordId: w.id,
-            type: type,
-            options: opts,
-            answer: w.english,
-            isReask: isReask);
+          wordId: w.id,
+          type: type,
+          options: opts,
+          answer: w.english,
+          isReask: isReask,
+        );
       case ExerciseType.chooseTurkish:
         final opts = buildChoiceOptions(
-            word: w, pool: pool, pick: (x) => x.turkish, rng: _rng);
+          word: w,
+          pool: pool,
+          pick: (x) => x.turkish,
+          rng: _rng,
+        );
         if (opts.length < 2) return reveal();
         return Exercise(
-            wordId: w.id,
-            type: type,
-            options: opts,
-            answer: w.turkish,
-            isReask: isReask);
+          wordId: w.id,
+          type: type,
+          options: opts,
+          answer: w.turkish,
+          isReask: isReask,
+        );
       case ExerciseType.construct:
         return Exercise(
-            wordId: w.id,
-            type: type,
-            options: constructLetters(w.turkish, _rng),
-            answer: trLower(w.turkish),
-            isReask: isReask);
+          wordId: w.id,
+          type: type,
+          options: constructLetters(w.turkish, _rng),
+          answer: trLower(w.turkish),
+          isReask: isReask,
+        );
       case ExerciseType.typing:
         return Exercise(
-            wordId: w.id, type: type, answer: w.turkish, isReask: isReask);
+          wordId: w.id,
+          type: type,
+          answer: w.turkish,
+          isReask: isReask,
+        );
       case ExerciseType.reveal:
         return reveal();
     }

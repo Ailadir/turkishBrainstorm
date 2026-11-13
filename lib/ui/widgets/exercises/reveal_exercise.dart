@@ -28,7 +28,7 @@ class _RevealExerciseState extends State<RevealExercise> {
   bool _revealed = false;
   bool _answered = false;
 
-  void _play() => widget.tts.speak(widget.word.turkish).catchError((_) {});
+  void _play() => widget.tts.speak(widget.word.turkish).ignore();
 
   void _answer(bool knew) {
     if (_answered) return;
@@ -43,31 +43,42 @@ class _RevealExerciseState extends State<RevealExercise> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text('Phrase', style: tt.labelLarge?.copyWith(color: Colors.grey)),
-        Text('Do you know what this means?',
-            style: tt.bodySmall?.copyWith(color: Colors.grey)),
+        Text(
+          'Do you know what this means?',
+          style: tt.bodySmall?.copyWith(color: Colors.grey),
+        ),
         const SizedBox(height: 20),
-        Text(widget.word.turkish,
-            textAlign: TextAlign.center, style: tt.headlineMedium),
+        Text(
+          widget.word.turkish,
+          textAlign: TextAlign.center,
+          style: tt.headlineMedium,
+        ),
         IconButton(icon: const Icon(Icons.volume_up), onPressed: _play),
         const SizedBox(height: 16),
         if (!_revealed)
           FilledButton(
-              onPressed: () => setState(() => _revealed = true),
-              child: const Text('Show meaning'))
+            onPressed: () => setState(() => _revealed = true),
+            child: const Text('Show meaning'),
+          )
         else ...[
-          Text(widget.word.english,
-              textAlign: TextAlign.center, style: tt.titleLarge),
+          Text(
+            widget.word.english,
+            textAlign: TextAlign.center,
+            style: tt.titleLarge,
+          ),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               FilledButton(
-                  onPressed: _answered ? null : () => _answer(true),
-                  child: const Text('Knew it')),
+                onPressed: _answered ? null : () => _answer(true),
+                child: const Text('Knew it'),
+              ),
               const SizedBox(width: 12),
               OutlinedButton(
-                  onPressed: _answered ? null : () => _answer(false),
-                  child: const Text("Didn't")),
+                onPressed: _answered ? null : () => _answer(false),
+                child: const Text("Didn't"),
+              ),
             ],
           ),
         ],

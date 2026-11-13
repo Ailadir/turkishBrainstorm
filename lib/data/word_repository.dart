@@ -9,24 +9,25 @@ import 'database.dart';
 
 extension WordX on Word {
   List<MorphemeRef> get morphemeRefs => MorphemeRef.decodeList(morphemes);
-  double get mastery => Mastery.ofWord(status: status, repetitions: repetitions);
+  double get mastery =>
+      Mastery.ofWord(status: status, repetitions: repetitions);
 
   VocabItem toItem() => VocabItem(
-        id: id,
-        turkish: turkish,
-        english: english,
-        kind: kind,
-        repetitions: repetitions,
-      );
+    id: id,
+    turkish: turkish,
+    english: english,
+    kind: kind,
+    repetitions: repetitions,
+  );
 
   SrsState get srs => SrsState(
-        intervalDays: intervalDays,
-        easeFactor: easeFactor,
-        repetitions: repetitions,
-        lapses: lapses,
-        dueAt: dueAt,
-        lastReviewedAt: lastReviewedAt,
-      );
+    intervalDays: intervalDays,
+    easeFactor: easeFactor,
+    repetitions: repetitions,
+    lapses: lapses,
+    dueAt: dueAt,
+    lastReviewedAt: lastReviewedAt,
+  );
 }
 
 /// All reads/writes against the DB. Ties the drift schema to the SRS domain
@@ -56,15 +57,17 @@ class WordRepository {
     bool? needsAnalysis,
   }) async {
     final normalized = trNormalize(turkish);
-    final existing = await (db.select(db.words)
-          ..where((w) => w.normalized.equals(normalized)))
-        .getSingleOrNull();
+    final existing = await (db.select(
+      db.words,
+    )..where((w) => w.normalized.equals(normalized))).getSingleOrNull();
     if (existing != null) return (id: existing.id, existed: true);
 
     final kind = inferKind(turkish);
     final analysed = lemma != null && lemma.isNotEmpty;
     final id = await db.transaction(() async {
-      final wordId = await db.into(db.words).insert(
+      final wordId = await db
+          .into(db.words)
+          .insert(
             WordsCompanion.insert(
               turkish: turkish.trim(),
               normalized: normalized,
@@ -106,11 +109,13 @@ class WordRepository {
             ? Value(trNormalize(turkish))
             : const Value.absent(),
         kind: turkishChanged ? Value(inferKind(turkish)) : const Value.absent(),
-        needsAnalysis:
-            turkishChanged ? const Value(true) : const Value.absent(),
+        needsAnalysis: turkishChanged
+            ? const Value(true)
+            : const Value.absent(),
         english: english == null ? const Value.absent() : Value(english),
-        englishEdited:
-            englishChanged ? const Value(true) : const Value.absent(),
+        englishEdited: englishChanged
+            ? const Value(true)
+            : const Value.absent(),
         lemma: lemma == null ? const Value.absent() : Value(lemma),
         note: note == null ? const Value.absent() : Value(note),
         source: source == null ? const Value.absent() : Value(source),
@@ -156,40 +161,92 @@ class WordRepository {
   }
 
   Future<void> _writeMorphemes(int wordId, List<MorphemeRef> list) async {
-    await (db.delete(db.wordMorphemes)..where((m) => m.wordId.equals(wordId)))
-        .go();
+    await (db.delete(
+      db.wordMorphemes,
+    )..where((m) => m.wordId.equals(wordId))).go();
     for (var i = 0; i < list.length; i++) {
-      await db.into(db.wordMorphemes).insert(WordMorphemesCompanion.insert(
-            wordId: wordId,
-            morphemeId: list[i].id,
-            surface: list[i].surface,
-            position: i,
-          ));
+      await db
+          .into(db.wordMorphemes)
+          .insert(
+            WordMorphemesCompanion.insert(
+              wordId: wordId,
+              morphemeId: list[i].id,
+              surface: list[i].surface,
+              position: i,
+            ),
+          );
       await db
           .into(db.morphemes)
-          .insert(MorphemesCompanion.insert(id: list[i].id),
-              mode: InsertMode.insertOrIgnore);
+          .insert(
+            MorphemesCompanion.insert(id: list[i].id),
+            mode: InsertMode.insertOrIgnore,
+          );
     }
   }
+
+  // ---- Translation helpers ----
+
+  /// English of an already-saved word, by normalized Turkish.
+  Future<String?> englishFor(String normalized) async => (await (db.select(
+    db.words,
+  )..where((w) => w.normalized.equals(normalized))).getSingleOrNull())?.english;
+
+  Future<String?> cacheGet(String key) async => (await (db.select(
+    db.translationCache,
+  )..where((c) => c.key.equals(key))).getSingleOrNull())?.payload;
+
+  Future<void> cachePut(String key, String payload, String provider) => db
+      .into(db.translationCache)
+      .insertOnConflictUpdate(
+        TranslationCacheCompanion.insert(
+          key: key,
+          payload: payload,
+          provider: provider,
+        ),
+      );
+
+  // ---- Audio helpers ----
+
+  Future<bool> isPackWordText(String normalized) async {
+    final w = await (db.select(
+      db.words,
+    )..where((x) => x.normalized.equals(normalized))).getSingleOrNull();
+    return w?.source?.startsWith('pack:') == true;
+  }
+
+  /// Turkish text of words the user added themselves (not from a pack).
+  Future<List<String>> ownWordTexts() async => [
+    for (final w in await db.select(db.words).get())
+      if (w.source?.startsWith('pack:') != true) w.turkish,
+  ];
 
   // ---- Brainstorm / Review ----
 
   /// New words for a Brainstorm round: own words (not from any pack) newest
   /// first, then — if [usePackWords] — pack words by CEFR level and rank.
   Future<List<Word>> pickNewWords(int n, {bool usePackWords = true}) async {
-    final fresh = await (db.select(db.words)
-          ..where((w) => w.status.equals('new')))
-        .get();
+    final fresh = await (db.select(
+      db.words,
+    )..where((w) => w.status.equals('new'))).get();
     final packRows = await db.select(db.wordPacks).get();
+    // Only words that came from a pack count as pack words; an own word that
+    // a pack also contains stays "own" (its source isn't `pack:...`).
+    final fromPack = {
+      for (final w in fresh)
+        if (w.source?.startsWith('pack:') == true) w.id,
+    };
     final rankByWord = <int, int>{};
     for (final r in packRows) {
+      if (!fromPack.contains(r.wordId)) continue;
       final cur = rankByWord[r.wordId];
       if (cur == null || r.rank < cur) rankByWord[r.wordId] = r.rank;
     }
     final own = fresh.where((w) => !rankByWord.containsKey(w.id)).toList()
-      ..sort((a, b) => b.createdAt.compareTo(a.createdAt) != 0
-          ? b.createdAt.compareTo(a.createdAt)
-          : b.id.compareTo(a.id));
+      ..sort(
+        (a, b) => b.createdAt.compareTo(a.createdAt) != 0
+            ? b.createdAt.compareTo(a.createdAt)
+            : b.id.compareTo(a.id),
+      );
     final result = <Word>[...own];
     if (usePackWords) {
       final pack = fresh.where((w) => rankByWord.containsKey(w.id)).toList()
@@ -230,8 +287,13 @@ class WordRepository {
   Future<List<Word>> dueWords({DateTime? now, int? limit}) async {
     final at = now ?? DateTime.now();
     final q = db.select(db.words)
-      ..where((w) => w.status.equals('review') & w.dueAt.isSmallerOrEqualValue(at))
-      ..orderBy([(w) => OrderingTerm.asc(w.dueAt), (w) => OrderingTerm.asc(w.id)]);
+      ..where(
+        (w) => w.status.equals('review') & w.dueAt.isSmallerOrEqualValue(at),
+      )
+      ..orderBy([
+        (w) => OrderingTerm.asc(w.dueAt),
+        (w) => OrderingTerm.asc(w.id),
+      ]);
     if (limit != null) q.limit(limit);
     return q.get();
   }
@@ -239,11 +301,14 @@ class WordRepository {
   Future<int> dueCount({DateTime? now}) async {
     final at = now ?? DateTime.now();
     final c = db.words.id.count();
-    final row = await (db.selectOnly(db.words)
-          ..addColumns([c])
-          ..where(db.words.status.equals('review') &
-              db.words.dueAt.isSmallerOrEqualValue(at)))
-        .getSingle();
+    final row =
+        await (db.selectOnly(db.words)
+              ..addColumns([c])
+              ..where(
+                db.words.status.equals('review') &
+                    db.words.dueAt.isSmallerOrEqualValue(at),
+              ))
+            .getSingle();
     return row.read(c) ?? 0;
   }
 
@@ -274,24 +339,42 @@ class WordRepository {
   }
 
   /// Log one Brainstorm answer (`pass` / `fail`).
-  Future<void> logBrainstorm(int wordId, ExerciseType exercise, bool correct,
-      {DateTime? now}) {
-    return _log(wordId, exercise, correct ? 'pass' : 'fail',
-        now ?? DateTime.now());
+  Future<void> logBrainstorm(
+    int wordId,
+    ExerciseType exercise,
+    bool correct, {
+    DateTime? now,
+  }) {
+    return _log(
+      wordId,
+      exercise,
+      correct ? 'pass' : 'fail',
+      now ?? DateTime.now(),
+    );
   }
 
   Future<void> _log(
-      int wordId, ExerciseType exercise, String result, DateTime at) {
-    return db.into(db.reviewLog).insert(ReviewLogCompanion.insert(
-          wordId: Value(wordId),
-          exercise: exercise.name,
-          result: result,
-          reviewedAt: Value(at),
-        ));
+    int wordId,
+    ExerciseType exercise,
+    String result,
+    DateTime at,
+  ) {
+    return db
+        .into(db.reviewLog)
+        .insert(
+          ReviewLogCompanion.insert(
+            wordId: Value(wordId),
+            exercise: exercise.name,
+            result: result,
+            reviewedAt: Value(at),
+          ),
+        );
   }
 
   /// Words used as multiple-choice distractors (everything but [exceptIds]).
-  Future<List<VocabItem>> distractorPool({Set<int> exceptIds = const {}}) async {
+  Future<List<VocabItem>> distractorPool({
+    Set<int> exceptIds = const {},
+  }) async {
     final rows = await db.select(db.words).get();
     return [
       for (final w in rows)
@@ -329,8 +412,9 @@ class WordRepository {
   Future<VocabStats> stats({DateTime? now, bool usePackWords = true}) async {
     final at = now ?? DateTime.now();
     final words = await db.select(db.words).get();
-    final reviewsToday =
-        await _reviewsSince(DateTime(at.year, at.month, at.day));
+    final reviewsToday = await _reviewsSince(
+      DateTime(at.year, at.month, at.day),
+    );
     final avg = words.isEmpty
         ? 0.0
         : words.map((w) => w.mastery).reduce((a, b) => a + b) / words.length;
@@ -349,10 +433,11 @@ class WordRepository {
 
   Future<int> _reviewsSince(DateTime since) async {
     final count = db.reviewLog.id.count();
-    final row = await (db.selectOnly(db.reviewLog)
-          ..addColumns([count])
-          ..where(db.reviewLog.reviewedAt.isBiggerOrEqualValue(since)))
-        .getSingle();
+    final row =
+        await (db.selectOnly(db.reviewLog)
+              ..addColumns([count])
+              ..where(db.reviewLog.reviewedAt.isBiggerOrEqualValue(since)))
+            .getSingle();
     return row.read(count) ?? 0;
   }
 }

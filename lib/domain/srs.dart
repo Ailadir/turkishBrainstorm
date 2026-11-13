@@ -13,11 +13,11 @@ enum ReviewGrade {
 
   /// SM-2 quality value in the 0–5 range. `again` is a lapse (< 3).
   int get quality => switch (this) {
-        again => 2,
-        hard => 3,
-        good => 4,
-        easy => 5,
-      };
+    again => 2,
+    hard => 3,
+    good => 4,
+    easy => 5,
+  };
 
   bool get isPass => quality >= 3;
 }
@@ -42,11 +42,11 @@ class SrsState {
 
   /// A brand-new item: due immediately, default ease.
   factory SrsState.fresh({DateTime? now}) => SrsState(
-        intervalDays: 0,
-        easeFactor: SrsScheduler.defaultEaseFactor,
-        repetitions: 0,
-        dueAt: now ?? DateTime.now(),
-      );
+    intervalDays: 0,
+    easeFactor: SrsScheduler.defaultEaseFactor,
+    repetitions: 0,
+    dueAt: now ?? DateTime.now(),
+  );
 }
 
 /// SM-2, one state per word. Intervals: 1 day → 3 days → interval × ease.
@@ -101,8 +101,10 @@ class SrsScheduler {
     if (grade == ReviewGrade.hard) {
       interval = state.repetitions == 0
           ? firstIntervalDays
-          : (state.intervalDays * hardGrowth)
-              .clamp(firstIntervalDays, double.infinity);
+          : (state.intervalDays * hardGrowth).clamp(
+              firstIntervalDays,
+              double.infinity,
+            );
     } else if (grade == ReviewGrade.easy) {
       interval *= easyBonus;
     }

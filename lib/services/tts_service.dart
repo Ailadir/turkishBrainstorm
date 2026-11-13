@@ -8,106 +8,264 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import 'piper_engine.dart';
 import 'settings_service.dart';
 
-/// Plays Turkish audio. Strategy:
-///   1. If ElevenLabs key+voice are set → cache-first TTS
-///      (local mp3 if exists, else fetch from API → save → play)
-///   2. Otherwise (no key, offline, API error) → device flutter_tts fallback.
-///
-/// The public interface is identical to the original: `speak(word)` / `stop()`.
-/// All call sites (recognition_card, writing_card, listening_card, review_screen)
-/// work without change.
+/// What happened when asked to speak.
+class AudioOutcome {
+  /// `cache`, `elevenlabs`, `piper`, `phone` or `none`.
+  final String via;
+  final String? problem;
+  const AudioOutcome(this.via, {this.problem});
+  bool get ok => via != 'none';
+}
+
+/// A cloud voice (ElevenLabs). Returns audio bytes, or null on ANY failure
+/// (bad key, quota, network) so the caller falls through to the next voice.
+abstract class CloudVoice {
+  bool get configured;
+  String get voiceId;
+  String get model;
+  Future<List<int>?> synth(String text);
+}
+
+/// An on-device voice (Piper).
+abstract class OfflineVoice {
+  String get voice;
+  Future<bool> isInstalled();
+  Future<bool> synth(String text, String outPath);
+}
+
+class ElevenLabsVoice implements CloudVoice {
+  final SettingsService _s;
+  ElevenLabsVoice(this._s);
+
+  @override
+  bool get configured => _s.hasElevenLabs;
+  @override
+  String get voiceId => _s.elevenLabsVoiceId ?? 'v';
+  @override
+  String get model => _s.elevenLabsModel;
+
+  @override
+  Future<List<int>?> synth(String text) async {
+    try {
+      final r = await http
+          .post(
+            Uri.parse(
+              'https://api.elevenlabs.io/v1/text-to-speech/${_s.elevenLabsVoiceId}'
+              '?output_format=mp3_44100_128',
+            ),
+            headers: {
+              'xi-api-key': _s.elevenLabsApiKey!,
+              'Content-Type': 'application/json',
+              'Accept': 'audio/mpeg',
+            },
+            body: jsonEncode({'text': text, 'model_id': model}),
+          )
+          .timeout(const Duration(seconds: 15));
+      // 401 bad key, 422 bad voice, 429/quota: all mean "use the next voice".
+      return r.statusCode == 200 && r.bodyBytes.isNotEmpty ? r.bodyBytes : null;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// Characters left this billing period, or null if unknown.
+  Future<({int used, int limit})?> quota() async {
+    if (!configured) return null;
+    try {
+      final r = await http
+          .get(
+            Uri.parse('https://api.elevenlabs.io/v1/user/subscription'),
+            headers: {'xi-api-key': _s.elevenLabsApiKey!},
+          )
+          .timeout(const Duration(seconds: 10));
+      if (r.statusCode != 200) return null;
+      final j = jsonDecode(r.body) as Map<String, dynamic>;
+      return (
+        used: (j['character_count'] as num).toInt(),
+        limit: (j['character_limit'] as num).toInt(),
+      );
+    } catch (_) {
+      return null;
+    }
+  }
+}
+
+class PiperVoice implements OfflineVoice {
+  final PiperEngine engine;
+  final SettingsService _s;
+  PiperVoice(this.engine, this._s);
+
+  @override
+  String get voice => _s.piperVoice;
+  @override
+  Future<bool> isInstalled() => engine.isInstalled(voice);
+  @override
+  Future<bool> synth(String text, String outPath) =>
+      engine.synthesize(voice, text, outPath);
+}
+
+/// Plays Turkish audio, always trying to produce *something*:
+///   cached file → ElevenLabs → Piper (offline) → phone TTS (only if it has
+///   Turkish) → `none` with a reason.
+/// Everything produced is cached, so a word is generated once.
 class TtsService {
   final SettingsService _settings;
-  final FlutterTts _tts = FlutterTts();
-  final AudioPlayer _player = AudioPlayer();
-  bool _ttsInitialized = false;
+  final CloudVoice? cloud;
+  final OfflineVoice? offline;
+  final Future<bool> Function(String text) isPackWord;
+  final Future<void> Function(String path) playFile;
+  final Future<bool> Function(String text) phoneSpeak;
+  final Future<Directory> Function() cacheDir;
+  final void Function(String message)? onProblem;
+  bool _problemShown = false;
 
-  static const String _model = 'eleven_multilingual_v2';
+  TtsService(
+    this._settings, {
+    this.cloud,
+    this.offline,
+    Future<bool> Function(String)? isPackWord,
+    Future<void> Function(String)? playFile,
+    Future<bool> Function(String)? phoneSpeak,
+    Future<Directory> Function()? cacheDir,
+    this.onProblem,
+  }) : isPackWord = isPackWord ?? ((_) async => false),
+       playFile = playFile ?? _defaultPlayer().play,
+       phoneSpeak = phoneSpeak ?? _PhoneTts().speak,
+       cacheDir = cacheDir ?? _defaultCacheDir;
 
-  TtsService(this._settings);
+  static _Player _defaultPlayer() => _Player();
 
-  Future<void> speak(String turkishWord) async {
-    final word = turkishWord.trim();
-    if (word.isEmpty) return;
-
-    if (!_settings.hasElevenLabs) {
-      await _speakWithPhoneTts(word);
-      return;
-    }
-
-    final cacheFile = await _cacheFileFor(word);
-    if (await cacheFile.exists()) {
-      await _playFile(cacheFile.path);
-      return;
-    }
-
-    await _fetchAndPlay(word, cacheFile);
-  }
-
-  // ── ElevenLabs fetch + cache ──────────────────────────────────────────────
-
-  Future<void> _fetchAndPlay(String text, File targetFile) async {
-    try {
-      final apiKey = _settings.elevenLabsApiKey!;
-      final voiceId = _settings.elevenLabsVoiceId!;
-      final uri = Uri.parse(
-        'https://api.elevenlabs.io/v1/text-to-speech/$voiceId?output_format=mp3_44100_128',
-      );
-      final response = await http.post(
-        uri,
-        headers: {
-          'xi-api-key': apiKey,
-          'Content-Type': 'application/json',
-          'Accept': 'audio/mpeg',
-        },
-        body: jsonEncode({'text': text, 'model_id': _model}),
-      );
-
-      if (response.statusCode == 200 && response.bodyBytes.isNotEmpty) {
-        await targetFile.writeAsBytes(response.bodyBytes);
-        await _playFile(targetFile.path);
-      } else {
-        // 401 bad key, 422 voice not found, 429 quota, etc.
-        await _speakWithPhoneTts(text);
-      }
-    } catch (_) {
-      // Network unavailable or any unexpected error.
-      await _speakWithPhoneTts(text);
-    }
-  }
-
-  /// Cache path: `<docs>/tts_cache/<voiceId>_<sha1(model|text)>.mp3`
-  /// SHA-1 of the model+text avoids Turkish characters in filenames.
-  Future<File> _cacheFileFor(String text) async {
+  static Future<Directory> _defaultCacheDir() async {
     final docs = await getApplicationDocumentsDirectory();
-    final cacheDir = Directory(p.join(docs.path, 'tts_cache'));
-    if (!await cacheDir.exists()) await cacheDir.create(recursive: true);
-    final voiceId = _settings.elevenLabsVoiceId ?? 'v';
-    final hash = sha1.convert(utf8.encode('$_model|$text')).toString();
-    return File(p.join(cacheDir.path, '${voiceId}_$hash.mp3'));
+    final d = Directory(p.join(docs.path, 'tts_cache'));
+    if (!await d.exists()) await d.create(recursive: true);
+    return d;
   }
 
-  Future<void> _playFile(String path) async {
+  // ── Cache keys (stable: tests rely on them) ───────────────────────────────
+
+  static String _sha(String s) => sha1.convert(utf8.encode(s)).toString();
+
+  /// Same scheme as before, so audio cached by older versions still plays.
+  String cloudFileName(String text) =>
+      '${cloud?.voiceId ?? 'v'}_${_sha('${cloud?.model}|$text')}.mp3';
+
+  String offlineFileName(String text) =>
+      'piper_${offline?.voice ?? 'x'}_${_sha(text)}.wav';
+
+  Future<File?> _cached(String text) async {
+    final dir = await cacheDir();
+    if (cloud?.configured == true) {
+      final f = File(p.join(dir.path, cloudFileName(text)));
+      if (await f.exists()) return f;
+    }
+    if (offline != null) {
+      final f = File(p.join(dir.path, offlineFileName(text)));
+      if (await f.exists()) return f;
+    }
+    return null;
+  }
+
+  Future<bool> isCached(String text) async =>
+      await _cached(text.trim()) != null;
+
+  Future<bool> _useCloud(String text) async =>
+      cloud?.configured == true &&
+      (_settings.elevenLabsForPackWords || !await isPackWord(text));
+
+  // ── Public API ────────────────────────────────────────────────────────────
+
+  Future<AudioOutcome> speak(String turkishWord) async {
+    final text = turkishWord.trim();
+    if (text.isEmpty) return const AudioOutcome('none');
+
+    final hit = await _cached(text);
+    if (hit != null) {
+      await playFile(hit.path);
+      return const AudioOutcome('cache');
+    }
+
+    final made = await _generate(text);
+    if (made != null) {
+      await playFile(made.file.path);
+      return AudioOutcome(made.via);
+    }
+
+    if (await phoneSpeak(text)) return const AudioOutcome('phone');
+
+    const reason =
+        'No Turkish voice available. Download the offline voice in Settings.';
+    if (!_problemShown) {
+      _problemShown = true;
+      onProblem?.call(reason);
+    }
+    return const AudioOutcome('none', problem: reason);
+  }
+
+  /// Make sure [text] is cached without playing it. Used by the prefetch
+  /// queue. Quiet on failure; returns true when a file exists afterwards.
+  Future<bool> prefetch(String text, {bool allowOffline = true}) async {
+    final t = text.trim();
+    if (t.isEmpty) return false;
+    if (await _cached(t) != null) return true;
+    return await _generate(t, allowOffline: allowOffline) != null;
+  }
+
+  void resetNotice() => _problemShown = false;
+
+  Future<({File file, String via})?> _generate(
+    String text, {
+    bool allowOffline = true,
+  }) async {
+    final dir = await cacheDir();
+    if (await _useCloud(text)) {
+      final bytes = await cloud!.synth(text);
+      if (bytes != null) {
+        final f = File(p.join(dir.path, cloudFileName(text)));
+        await f.writeAsBytes(bytes);
+        return (file: f, via: 'elevenlabs');
+      }
+    }
+    if (allowOffline && offline != null && await offline!.isInstalled()) {
+      final f = File(p.join(dir.path, offlineFileName(text)));
+      if (await offline!.synth(text, f.path) && await f.exists()) {
+        return (file: f, via: 'piper');
+      }
+    }
+    return null;
+  }
+}
+
+class _Player {
+  final AudioPlayer _player = AudioPlayer();
+  Future<void> play(String path) async {
     await _player.stop();
     await _player.play(DeviceFileSource(path));
   }
+}
 
-  // ── Phone TTS fallback ────────────────────────────────────────────────────
+/// Phone TTS, used only when the phone really has a Turkish voice.
+class _PhoneTts {
+  final FlutterTts _tts = FlutterTts();
+  bool _ready = false;
 
-  Future<void> _speakWithPhoneTts(String text) async {
-    if (!_ttsInitialized) {
-      await _tts.setLanguage('tr-TR');
-      await _tts.setSpeechRate(0.45);
-      _ttsInitialized = true;
+  Future<bool> speak(String text) async {
+    try {
+      if (!_ready) {
+        final available = await _tts.isLanguageAvailable('tr-TR');
+        if (available != true && available != 1) return false;
+        await _tts.setLanguage('tr-TR');
+        await _tts.setSpeechRate(0.45);
+        _ready = true;
+      }
+      await _tts.stop();
+      await _tts.speak(text);
+      return true;
+    } catch (_) {
+      return false;
     }
-    await _tts.stop();
-    await _tts.speak(text);
-  }
-
-  Future<void> stop() async {
-    await _player.stop();
-    await _tts.stop();
   }
 }

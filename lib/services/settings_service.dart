@@ -1,5 +1,7 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../config.dart';
+
 /// Persists user configuration on-device. Loaded once at startup and passed
 /// through the provider graph so all services read the same live instance.
 class SettingsService {
@@ -22,6 +24,21 @@ class SettingsService {
 
   Future<void> setElevenLabsVoiceId(String id) =>
       _prefs.setString('el_voice_id', id);
+
+  String get elevenLabsModel =>
+      _prefs.getString('el_model') ?? 'eleven_multilingual_v2';
+  Future<void> setElevenLabsModel(String v) => _prefs.setString('el_model', v);
+
+  /// Spend ElevenLabs characters on pack words too (default: only your own).
+  bool get elevenLabsForPackWords => _prefs.getBool('el_pack_words') ?? false;
+  Future<void> setElevenLabsForPackWords(bool v) =>
+      _prefs.setBool('el_pack_words', v);
+
+  // ── Offline voice (Piper) ───────────────────────────────────────────────
+
+  /// `dfki` (female), `fahrettin` or `fettah` (male).
+  String get piperVoice => _prefs.getString('piper_voice') ?? 'dfki';
+  Future<void> setPiperVoice(String v) => _prefs.setString('piper_voice', v);
 
   // ── Gemini ────────────────────────────────────────────────────────────────
 
@@ -55,6 +72,58 @@ class SettingsService {
       _prefs.getString('openrouter_model') ?? 'openrouter/free';
   Future<void> setOpenRouterModel(String v) =>
       _prefs.setString('openrouter_model', v);
+
+  // ── AI call counter (for the Settings display) ──────────────────────────
+
+  int get aiCallsToday {
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    return _prefs.getString('ai_calls_day') == today
+        ? (_prefs.getInt('ai_calls') ?? 0)
+        : 0;
+  }
+
+  void countAiCall() {
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    final n = aiCallsToday + 1;
+    _prefs.setString('ai_calls_day', today);
+    _prefs.setInt('ai_calls', n);
+  }
+
+  String get lastSource => _prefs.getString('last_source') ?? '';
+  Future<void> setLastSource(String v) => _prefs.setString('last_source', v);
+
+  // ── Suffix drill ────────────────────────────────────────────────────────
+
+  /// Highest CEFR level whose suffixes the drill may ask (A1..B2).
+  String get grammarLevel => _prefs.getString('grammar_level') ?? 'A1';
+  Future<void> setGrammarLevel(String v) =>
+      _prefs.setString('grammar_level', v);
+
+  // ── App updates ─────────────────────────────────────────────────────────
+
+  bool get autoCheckUpdates => _prefs.getBool('auto_update_check') ?? true;
+  Future<void> setAutoCheckUpdates(bool v) =>
+      _prefs.setBool('auto_update_check', v);
+
+  int get lastUpdateCheckMs => _prefs.getInt('last_update_check') ?? 0;
+  Future<void> setLastUpdateCheckMs(int v) =>
+      _prefs.setInt('last_update_check', v);
+
+  /// Build number of the release whose alert the user already closed.
+  int get dismissedUpdateBuild => _prefs.getInt('dismissed_update_build') ?? 0;
+  Future<void> setDismissedUpdateBuild(int v) =>
+      _prefs.setInt('dismissed_update_build', v);
+
+  /// Highest build the user has opened (0 = fresh install).
+  int get lastSeenBuild => _prefs.getInt('last_seen_build') ?? 0;
+  Future<void> setLastSeenBuild(int v) => _prefs.setInt('last_seen_build', v);
+
+  // ── Packs ───────────────────────────────────────────────────────────────
+
+  String get packIndexUrl =>
+      _prefs.getString('pack_index_url') ?? defaultPackIndexUrl();
+  Future<void> setPackIndexUrl(String v) =>
+      _prefs.setString('pack_index_url', v);
 
   // ── Practice ──────────────────────────────────────────────────────────────
 

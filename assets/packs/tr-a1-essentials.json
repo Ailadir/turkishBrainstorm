@@ -1,0 +1,942 @@
+{
+ "format": 1,
+ "id": "tr-a1-essentials",
+ "version": 1,
+ "kind": "words",
+ "title": "A1 essentials",
+ "level": "A1",
+ "license": "CC BY-SA 4.0",
+ "attribution": "Wiktionary via kaikki.org (CC BY-SA 4.0); word frequencies from FrequencyWords / OpenSubtitles",
+ "words": [
+  {
+   "tr": "sıfır",
+   "en": "zero",
+   "pos": "Num",
+   "rank": 1
+  },
+  {
+   "tr": "bir",
+   "en": "one",
+   "pos": "Num",
+   "rank": 2
+  },
+  {
+   "tr": "iki",
+   "en": "two",
+   "pos": "Num",
+   "rank": 3
+  },
+  {
+   "tr": "üç",
+   "en": "three",
+   "pos": "Num",
+   "rank": 4
+  },
+  {
+   "tr": "dört",
+   "en": "four",
+   "pos": "Num",
+   "rank": 5
+  },
+  {
+   "tr": "beş",
+   "en": "five",
+   "pos": "Num",
+   "rank": 6
+  },
+  {
+   "tr": "altı",
+   "en": "six",
+   "pos": "Num",
+   "rank": 7
+  },
+  {
+   "tr": "yedi",
+   "en": "seven",
+   "pos": "Num",
+   "rank": 8
+  },
+  {
+   "tr": "sekiz",
+   "en": "eight",
+   "pos": "Num",
+   "rank": 9
+  },
+  {
+   "tr": "dokuz",
+   "en": "nine",
+   "pos": "Num",
+   "rank": 10
+  },
+  {
+   "tr": "on",
+   "en": "ten",
+   "pos": "Num",
+   "rank": 11
+  },
+  {
+   "tr": "on bir",
+   "en": "eleven",
+   "pos": "Num",
+   "rank": 12
+  },
+  {
+   "tr": "on iki",
+   "en": "twelve",
+   "pos": "Num",
+   "rank": 13
+  },
+  {
+   "tr": "on üç",
+   "en": "thirteen",
+   "pos": "Num",
+   "rank": 14
+  },
+  {
+   "tr": "on dört",
+   "en": "fourteen",
+   "pos": "Num",
+   "rank": 15
+  },
+  {
+   "tr": "on beş",
+   "en": "fifteen",
+   "pos": "Num",
+   "rank": 16
+  },
+  {
+   "tr": "on altı",
+   "en": "sixteen",
+   "pos": "Num",
+   "rank": 17
+  },
+  {
+   "tr": "on yedi",
+   "en": "seventeen",
+   "pos": "Num",
+   "rank": 18
+  },
+  {
+   "tr": "on sekiz",
+   "en": "eighteen",
+   "pos": "Num",
+   "rank": 19
+  },
+  {
+   "tr": "on dokuz",
+   "en": "nineteen",
+   "pos": "Num",
+   "rank": 20
+  },
+  {
+   "tr": "yirmi",
+   "en": "twenty",
+   "pos": "Num",
+   "rank": 21
+  },
+  {
+   "tr": "otuz",
+   "en": "thirty",
+   "pos": "Num",
+   "rank": 22
+  },
+  {
+   "tr": "kırk",
+   "en": "forty",
+   "pos": "Num",
+   "rank": 23
+  },
+  {
+   "tr": "elli",
+   "en": "fifty",
+   "pos": "Num",
+   "rank": 24
+  },
+  {
+   "tr": "altmış",
+   "en": "sixty",
+   "pos": "Num",
+   "rank": 25
+  },
+  {
+   "tr": "yetmiş",
+   "en": "seventy",
+   "pos": "Num",
+   "rank": 26
+  },
+  {
+   "tr": "seksen",
+   "en": "eighty",
+   "pos": "Num",
+   "rank": 27
+  },
+  {
+   "tr": "doksan",
+   "en": "ninety",
+   "pos": "Num",
+   "rank": 28
+  },
+  {
+   "tr": "yüz",
+   "en": "hundred; face",
+   "pos": "Num",
+   "rank": 29
+  },
+  {
+   "tr": "bin",
+   "en": "thousand",
+   "pos": "Num",
+   "rank": 30
+  },
+  {
+   "tr": "pazartesi",
+   "en": "Monday",
+   "pos": "Noun",
+   "rank": 31
+  },
+  {
+   "tr": "salı",
+   "en": "Tuesday",
+   "pos": "Noun",
+   "rank": 32
+  },
+  {
+   "tr": "çarşamba",
+   "en": "Wednesday",
+   "pos": "Noun",
+   "rank": 33
+  },
+  {
+   "tr": "perşembe",
+   "en": "Thursday",
+   "pos": "Noun",
+   "rank": 34
+  },
+  {
+   "tr": "cuma",
+   "en": "Friday",
+   "pos": "Noun",
+   "rank": 35
+  },
+  {
+   "tr": "cumartesi",
+   "en": "Saturday",
+   "pos": "Noun",
+   "rank": 36
+  },
+  {
+   "tr": "pazar",
+   "en": "Sunday",
+   "pos": "Noun",
+   "rank": 37
+  },
+  {
+   "tr": "ocak",
+   "en": "January",
+   "pos": "Noun",
+   "rank": 38
+  },
+  {
+   "tr": "şubat",
+   "en": "February",
+   "pos": "Noun",
+   "rank": 39
+  },
+  {
+   "tr": "mart",
+   "en": "March",
+   "pos": "Noun",
+   "rank": 40
+  },
+  {
+   "tr": "nisan",
+   "en": "April",
+   "pos": "Noun",
+   "rank": 41
+  },
+  {
+   "tr": "mayıs",
+   "en": "May",
+   "pos": "Noun",
+   "rank": 42
+  },
+  {
+   "tr": "haziran",
+   "en": "June",
+   "pos": "Noun",
+   "rank": 43
+  },
+  {
+   "tr": "temmuz",
+   "en": "July",
+   "pos": "Noun",
+   "rank": 44
+  },
+  {
+   "tr": "ağustos",
+   "en": "August",
+   "pos": "Noun",
+   "rank": 45
+  },
+  {
+   "tr": "eylül",
+   "en": "September",
+   "pos": "Noun",
+   "rank": 46
+  },
+  {
+   "tr": "ekim",
+   "en": "October",
+   "pos": "Noun",
+   "rank": 47
+  },
+  {
+   "tr": "kasım",
+   "en": "November",
+   "pos": "Noun",
+   "rank": 48
+  },
+  {
+   "tr": "aralık",
+   "en": "December",
+   "pos": "Noun",
+   "rank": 49
+  },
+  {
+   "tr": "kırmızı",
+   "en": "red",
+   "pos": "Adj",
+   "rank": 50
+  },
+  {
+   "tr": "mavi",
+   "en": "blue",
+   "pos": "Adj",
+   "rank": 51
+  },
+  {
+   "tr": "yeşil",
+   "en": "green",
+   "pos": "Adj",
+   "rank": 52
+  },
+  {
+   "tr": "sarı",
+   "en": "yellow",
+   "pos": "Adj",
+   "rank": 53
+  },
+  {
+   "tr": "siyah",
+   "en": "black",
+   "pos": "Adj",
+   "rank": 54
+  },
+  {
+   "tr": "beyaz",
+   "en": "white",
+   "pos": "Adj",
+   "rank": 55
+  },
+  {
+   "tr": "turuncu",
+   "en": "orange (colour)",
+   "pos": "Adj",
+   "rank": 56
+  },
+  {
+   "tr": "mor",
+   "en": "purple",
+   "pos": "Adj",
+   "rank": 57
+  },
+  {
+   "tr": "pembe",
+   "en": "pink",
+   "pos": "Adj",
+   "rank": 58
+  },
+  {
+   "tr": "gri",
+   "en": "grey",
+   "pos": "Adj",
+   "rank": 59
+  },
+  {
+   "tr": "kahverengi",
+   "en": "brown",
+   "pos": "Adj",
+   "rank": 60
+  },
+  {
+   "tr": "anne",
+   "en": "mother",
+   "pos": "Noun",
+   "rank": 61
+  },
+  {
+   "tr": "baba",
+   "en": "father",
+   "pos": "Noun",
+   "rank": 62
+  },
+  {
+   "tr": "kardeş",
+   "en": "sibling",
+   "pos": "Noun",
+   "rank": 63
+  },
+  {
+   "tr": "abla",
+   "en": "older sister",
+   "pos": "Noun",
+   "rank": 64
+  },
+  {
+   "tr": "ağabey",
+   "en": "older brother",
+   "pos": "Noun",
+   "rank": 65
+  },
+  {
+   "tr": "kız kardeş",
+   "en": "sister",
+   "pos": "Noun",
+   "rank": 66
+  },
+  {
+   "tr": "erkek kardeş",
+   "en": "brother",
+   "pos": "Noun",
+   "rank": 67
+  },
+  {
+   "tr": "oğul",
+   "en": "son",
+   "pos": "Noun",
+   "rank": 68
+  },
+  {
+   "tr": "kız",
+   "en": "girl, daughter",
+   "pos": "Noun",
+   "rank": 69
+  },
+  {
+   "tr": "dede",
+   "en": "grandfather",
+   "pos": "Noun",
+   "rank": 70
+  },
+  {
+   "tr": "nine",
+   "en": "grandmother",
+   "pos": "Noun",
+   "rank": 71
+  },
+  {
+   "tr": "amca",
+   "en": "paternal uncle",
+   "pos": "Noun",
+   "rank": 72
+  },
+  {
+   "tr": "teyze",
+   "en": "maternal aunt",
+   "pos": "Noun",
+   "rank": 73
+  },
+  {
+   "tr": "eş",
+   "en": "spouse",
+   "pos": "Noun",
+   "rank": 74
+  },
+  {
+   "tr": "çocuk",
+   "en": "child",
+   "pos": "Noun",
+   "rank": 75
+  },
+  {
+   "tr": "arkadaş",
+   "en": "friend",
+   "pos": "Noun",
+   "rank": 76
+  },
+  {
+   "tr": "aile",
+   "en": "family",
+   "pos": "Noun",
+   "rank": 77
+  },
+  {
+   "tr": "ben",
+   "en": "I",
+   "pos": "Pron",
+   "rank": 78
+  },
+  {
+   "tr": "sen",
+   "en": "you (singular)",
+   "pos": "Pron",
+   "rank": 79
+  },
+  {
+   "tr": "o",
+   "en": "he, she, it",
+   "pos": "Pron",
+   "rank": 80
+  },
+  {
+   "tr": "biz",
+   "en": "we",
+   "pos": "Pron",
+   "rank": 81
+  },
+  {
+   "tr": "siz",
+   "en": "you (plural, polite)",
+   "pos": "Pron",
+   "rank": 82
+  },
+  {
+   "tr": "onlar",
+   "en": "they",
+   "pos": "Pron",
+   "rank": 83
+  },
+  {
+   "tr": "ne",
+   "en": "what",
+   "pos": "Pron",
+   "rank": 84
+  },
+  {
+   "tr": "kim",
+   "en": "who",
+   "pos": "Pron",
+   "rank": 85
+  },
+  {
+   "tr": "nerede",
+   "en": "where (at)",
+   "pos": "Adv",
+   "rank": 86
+  },
+  {
+   "tr": "nereye",
+   "en": "where to",
+   "pos": "Adv",
+   "rank": 87
+  },
+  {
+   "tr": "nereden",
+   "en": "where from",
+   "pos": "Adv",
+   "rank": 88
+  },
+  {
+   "tr": "ne zaman",
+   "en": "when",
+   "pos": "Adv",
+   "rank": 89
+  },
+  {
+   "tr": "neden",
+   "en": "why",
+   "pos": "Adv",
+   "rank": 90
+  },
+  {
+   "tr": "nasıl",
+   "en": "how",
+   "pos": "Adv",
+   "rank": 91
+  },
+  {
+   "tr": "kaç",
+   "en": "how many",
+   "pos": "Adj",
+   "rank": 92
+  },
+  {
+   "tr": "hangi",
+   "en": "which",
+   "pos": "Det",
+   "rank": 93
+  },
+  {
+   "tr": "merhaba",
+   "en": "hello",
+   "pos": "Interj",
+   "rank": 94
+  },
+  {
+   "tr": "günaydın",
+   "en": "good morning",
+   "pos": "Interj",
+   "rank": 95
+  },
+  {
+   "tr": "iyi akşamlar",
+   "en": "good evening",
+   "pos": "Interj",
+   "rank": 96
+  },
+  {
+   "tr": "iyi geceler",
+   "en": "good night",
+   "pos": "Interj",
+   "rank": 97
+  },
+  {
+   "tr": "hoş geldiniz",
+   "en": "welcome",
+   "pos": "Interj",
+   "rank": 98
+  },
+  {
+   "tr": "hoşça kal",
+   "en": "goodbye (to the one staying)",
+   "pos": "Interj",
+   "rank": 99
+  },
+  {
+   "tr": "güle güle",
+   "en": "goodbye (to the one leaving)",
+   "pos": "Interj",
+   "rank": 100
+  },
+  {
+   "tr": "teşekkürler",
+   "en": "thanks",
+   "pos": "Interj",
+   "rank": 101
+  },
+  {
+   "tr": "teşekkür ederim",
+   "en": "thank you",
+   "pos": "Interj",
+   "rank": 102
+  },
+  {
+   "tr": "lütfen",
+   "en": "please",
+   "pos": "Adv",
+   "rank": 103
+  },
+  {
+   "tr": "özür dilerim",
+   "en": "I apologise",
+   "pos": "Interj",
+   "rank": 104
+  },
+  {
+   "tr": "pardon",
+   "en": "excuse me",
+   "pos": "Interj",
+   "rank": 105
+  },
+  {
+   "tr": "evet",
+   "en": "yes",
+   "pos": "Interj",
+   "rank": 106
+  },
+  {
+   "tr": "hayır",
+   "en": "no",
+   "pos": "Interj",
+   "rank": 107
+  },
+  {
+   "tr": "tamam",
+   "en": "okay",
+   "pos": "Interj",
+   "rank": 108
+  },
+  {
+   "tr": "baş",
+   "en": "head",
+   "pos": "Noun",
+   "rank": 109
+  },
+  {
+   "tr": "göz",
+   "en": "eye",
+   "pos": "Noun",
+   "rank": 110
+  },
+  {
+   "tr": "kulak",
+   "en": "ear",
+   "pos": "Noun",
+   "rank": 111
+  },
+  {
+   "tr": "burun",
+   "en": "nose",
+   "pos": "Noun",
+   "rank": 112
+  },
+  {
+   "tr": "ağız",
+   "en": "mouth",
+   "pos": "Noun",
+   "rank": 113
+  },
+  {
+   "tr": "diş",
+   "en": "tooth",
+   "pos": "Noun",
+   "rank": 114
+  },
+  {
+   "tr": "el",
+   "en": "hand",
+   "pos": "Noun",
+   "rank": 115
+  },
+  {
+   "tr": "kol",
+   "en": "arm",
+   "pos": "Noun",
+   "rank": 116
+  },
+  {
+   "tr": "ayak",
+   "en": "foot",
+   "pos": "Noun",
+   "rank": 117
+  },
+  {
+   "tr": "bacak",
+   "en": "leg",
+   "pos": "Noun",
+   "rank": 118
+  },
+  {
+   "tr": "kalp",
+   "en": "heart",
+   "pos": "Noun",
+   "rank": 119
+  },
+  {
+   "tr": "saç",
+   "en": "hair",
+   "pos": "Noun",
+   "rank": 120
+  },
+  {
+   "tr": "su",
+   "en": "water",
+   "pos": "Noun",
+   "rank": 121
+  },
+  {
+   "tr": "ekmek",
+   "en": "bread",
+   "pos": "Noun",
+   "rank": 122
+  },
+  {
+   "tr": "süt",
+   "en": "milk",
+   "pos": "Noun",
+   "rank": 123
+  },
+  {
+   "tr": "çay",
+   "en": "tea",
+   "pos": "Noun",
+   "rank": 124
+  },
+  {
+   "tr": "kahve",
+   "en": "coffee",
+   "pos": "Noun",
+   "rank": 125
+  },
+  {
+   "tr": "et",
+   "en": "meat",
+   "pos": "Noun",
+   "rank": 126
+  },
+  {
+   "tr": "tavuk",
+   "en": "chicken",
+   "pos": "Noun",
+   "rank": 127
+  },
+  {
+   "tr": "balık",
+   "en": "fish",
+   "pos": "Noun",
+   "rank": 128
+  },
+  {
+   "tr": "yumurta",
+   "en": "egg",
+   "pos": "Noun",
+   "rank": 129
+  },
+  {
+   "tr": "peynir",
+   "en": "cheese",
+   "pos": "Noun",
+   "rank": 130
+  },
+  {
+   "tr": "pirinç",
+   "en": "rice",
+   "pos": "Noun",
+   "rank": 131
+  },
+  {
+   "tr": "elma",
+   "en": "apple",
+   "pos": "Noun",
+   "rank": 132
+  },
+  {
+   "tr": "meyve",
+   "en": "fruit",
+   "pos": "Noun",
+   "rank": 133
+  },
+  {
+   "tr": "sebze",
+   "en": "vegetable",
+   "pos": "Noun",
+   "rank": 134
+  },
+  {
+   "tr": "yemek",
+   "en": "food, meal",
+   "pos": "Noun",
+   "rank": 135
+  },
+  {
+   "tr": "şeker",
+   "en": "sugar, candy",
+   "pos": "Noun",
+   "rank": 136
+  },
+  {
+   "tr": "tuz",
+   "en": "salt",
+   "pos": "Noun",
+   "rank": 137
+  },
+  {
+   "tr": "bugün",
+   "en": "today",
+   "pos": "Adv",
+   "rank": 138
+  },
+  {
+   "tr": "yarın",
+   "en": "tomorrow",
+   "pos": "Adv",
+   "rank": 139
+  },
+  {
+   "tr": "dün",
+   "en": "yesterday",
+   "pos": "Adv",
+   "rank": 140
+  },
+  {
+   "tr": "şimdi",
+   "en": "now",
+   "pos": "Adv",
+   "rank": 141
+  },
+  {
+   "tr": "sabah",
+   "en": "morning",
+   "pos": "Noun",
+   "rank": 142
+  },
+  {
+   "tr": "akşam",
+   "en": "evening",
+   "pos": "Noun",
+   "rank": 143
+  },
+  {
+   "tr": "gece",
+   "en": "night",
+   "pos": "Noun",
+   "rank": 144
+  },
+  {
+   "tr": "öğlen",
+   "en": "noon",
+   "pos": "Noun",
+   "rank": 145
+  },
+  {
+   "tr": "hafta",
+   "en": "week",
+   "pos": "Noun",
+   "rank": 146
+  },
+  {
+   "tr": "ay",
+   "en": "month, moon",
+   "pos": "Noun",
+   "rank": 147
+  },
+  {
+   "tr": "yıl",
+   "en": "year",
+   "pos": "Noun",
+   "rank": 148
+  },
+  {
+   "tr": "saat",
+   "en": "hour, clock",
+   "pos": "Noun",
+   "rank": 149
+  },
+  {
+   "tr": "dakika",
+   "en": "minute",
+   "pos": "Noun",
+   "rank": 150
+  },
+  {
+   "tr": "gün",
+   "en": "day",
+   "pos": "Noun",
+   "rank": 151
+  },
+  {
+   "tr": "ev",
+   "en": "house, home",
+   "pos": "Noun",
+   "rank": 152
+  },
+  {
+   "tr": "okul",
+   "en": "school",
+   "pos": "Noun",
+   "rank": 153
+  },
+  {
+   "tr": "iş",
+   "en": "work, job",
+   "pos": "Noun",
+   "rank": 154
+  },
+  {
+   "tr": "para",
+   "en": "money",
+   "pos": "Noun",
+   "rank": 155
+  }
+ ]
+}

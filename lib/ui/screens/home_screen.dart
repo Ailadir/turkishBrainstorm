@@ -5,7 +5,9 @@ import '../../data/word_repository.dart';
 import '../../providers/providers.dart';
 import 'add_word_screen.dart';
 import 'browse_screen.dart';
+import 'packs_screen.dart';
 import 'session_screen.dart';
+import 'suffix_drill_screen.dart';
 import 'settings_screen.dart';
 import 'stats_screen.dart';
 
@@ -17,6 +19,14 @@ class HomeScreen extends ConsumerWidget {
       context,
       MaterialPageRoute(builder: (_) => SessionScreen(kind: kind)),
     ).then((_) => ref.invalidate(statsProvider));
+  }
+
+  Future<void> _installStarter(BuildContext context, WidgetRef ref) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final n = await ref.read(packServiceProvider).installStarter();
+    ref.read(analysisJobProvider).run().ignore();
+    ref.invalidate(statsProvider);
+    messenger.showSnackBar(SnackBar(content: Text('Added $n words')));
   }
 
   @override
@@ -61,13 +71,44 @@ class HomeScreen extends ConsumerWidget {
               primary: false,
               onPressed: () => _open(context, ref, SessionKind.review),
             ),
+            const SizedBox(height: 12),
+            Consumer(
+              builder: (context, ref, _) {
+                final drill = ref.watch(suffixDueProvider).value;
+                final k = (drill?.due ?? 0) + (drill?.fresh ?? 0);
+                return _SessionButton(
+                  icon: Icons.extension,
+                  label: drill == null || drill.due == 0
+                      ? 'Suffix drill ($k to learn)'
+                      : 'Suffix drill (${drill.due} due)',
+                  enabled: k > 0,
+                  primary: false,
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const SuffixDrillScreen(),
+                    ),
+                  ).then((_) => ref.invalidate(suffixDueProvider)),
+                );
+              },
+            ),
             if (stats.totalWords == 0)
-              const Padding(
-                padding: EdgeInsets.only(top: 12),
-                child: Text(
-                  'Add words to get started.',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(color: Colors.grey),
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: Column(
+                  children: [
+                    const Text(
+                      'Add words to get started, or load the ready-made A1 words.',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.grey),
+                    ),
+                    const SizedBox(height: 8),
+                    OutlinedButton.icon(
+                      icon: const Icon(Icons.library_add),
+                      label: const Text('Install A1 starter (~700 words)'),
+                      onPressed: () => _installStarter(context, ref),
+                    ),
+                  ],
                 ),
               )
             else if (stats.newCount == 0 && stats.dueNow == 0)
@@ -86,9 +127,10 @@ class HomeScreen extends ConsumerWidget {
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.list),
                     label: const Text('Browse'),
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: (_) => const BrowseScreen())),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const BrowseScreen()),
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -96,12 +138,22 @@ class HomeScreen extends ConsumerWidget {
                   child: OutlinedButton.icon(
                     icon: const Icon(Icons.bar_chart),
                     label: const Text('Stats'),
-                    onPressed: () => Navigator.push(context,
-                        MaterialPageRoute(
-                            builder: (_) => const StatsScreen())),
+                    onPressed: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (_) => const StatsScreen()),
+                    ),
                   ),
                 ),
               ],
+            ),
+            const SizedBox(height: 12),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.library_books_outlined),
+              label: const Text('Word packs'),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const PacksScreen()),
+              ).then((_) => ref.invalidate(statsProvider)),
             ),
           ],
         ),
@@ -173,16 +225,16 @@ class _Card extends StatelessWidget {
             children: [
               Icon(icon, color: cs.primary),
               const SizedBox(height: 8),
-              Text(value,
-                  style: Theme.of(context)
-                      .textTheme
-                      .headlineSmall
-                      ?.copyWith(fontWeight: FontWeight.bold)),
-              Text(label,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodySmall
-                      ?.copyWith(color: Colors.grey)),
+              Text(
+                value,
+                style: Theme.of(context).textTheme.headlineSmall
+                    ?.copyWith(fontWeight: FontWeight.bold),
+              ),
+              Text(
+                label,
+                style: Theme.of(context).textTheme.bodySmall
+                    ?.copyWith(color: Colors.grey),
+              ),
             ],
           ),
         ),
@@ -214,11 +266,13 @@ class _SessionButton extends StatelessWidget {
             icon: Icon(icon),
             label: Text(label),
             style: FilledButton.styleFrom(minimumSize: size),
-            onPressed: cb)
+            onPressed: cb,
+          )
         : FilledButton.tonalIcon(
             icon: Icon(icon),
             label: Text(label),
             style: FilledButton.styleFrom(minimumSize: size),
-            onPressed: cb);
+            onPressed: cb,
+          );
   }
 }

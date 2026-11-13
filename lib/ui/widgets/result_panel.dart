@@ -39,7 +39,7 @@ class _ResultPanelState extends State<ResultPanel> {
   }
 
   void _play() {
-    widget.tts.speak(widget.word.turkish).catchError((_) {});
+    widget.tts.speak(widget.word.turkish).ignore();
   }
 
   @override
@@ -58,43 +58,58 @@ class _ResultPanelState extends State<ResultPanel> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(widget.correct ? '✓ Correct' : '✗ Not quite',
-              style: theme.textTheme.titleMedium
-                  ?.copyWith(color: color, fontWeight: FontWeight.bold)),
+          Text(
+            widget.correct ? '✓ Correct' : '✗ Not quite',
+            style: theme.textTheme.titleMedium?.copyWith(
+              color: color,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
-                child: Text(w.turkish,
-                    textAlign: TextAlign.center,
-                    style: theme.textTheme.headlineSmall
-                        ?.copyWith(fontWeight: FontWeight.bold)),
+                child: Text(
+                  w.turkish,
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
-              IconButton(
-                  icon: const Icon(Icons.volume_up), onPressed: _play),
+              IconButton(icon: const Icon(Icons.volume_up), onPressed: _play),
             ],
           ),
-          Text(w.english,
-              textAlign: TextAlign.center, style: theme.textTheme.titleMedium),
+          Text(
+            w.english,
+            textAlign: TextAlign.center,
+            style: theme.textTheme.titleMedium,
+          ),
           const SizedBox(height: 10),
           BreakdownView(lemma: w.lemma, morphemes: w.morphemeRefs),
           if (w.note != null && w.note!.isNotEmpty) ...[
             const SizedBox(height: 10),
-            Text(w.note!,
-                textAlign: TextAlign.center,
-                style: theme.textTheme.bodySmall
-                    ?.copyWith(fontStyle: FontStyle.italic)),
+            Text(
+              w.note!,
+              textAlign: TextAlign.center,
+              style: theme.textTheme.bodySmall?.copyWith(
+                fontStyle: FontStyle.italic,
+              ),
+            ),
             if (w.noteEn != null && w.noteEn!.isNotEmpty)
-              Text(w.noteEn!,
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodySmall
-                      ?.copyWith(color: Colors.grey)),
+              Text(
+                w.noteEn!,
+                textAlign: TextAlign.center,
+                style: theme.textTheme.bodySmall?.copyWith(color: Colors.grey),
+              ),
           ],
           if (widget.onContinue != null) ...[
             const SizedBox(height: 12),
             FilledButton(
-                onPressed: widget.onContinue, child: const Text('Continue')),
+              onPressed: widget.onContinue,
+              child: const Text('Continue'),
+            ),
           ],
         ],
       ),

@@ -947,12 +947,17 @@ validated in Phase 5, and own words can be re-analyzed or edited.
 
 ## Status
 
-- [x] Phase 1: Stop the bleeding (no schema change). Done 2026-11-13: `flutter analyze` clean, 41 tests pass. Deviation: `addWord` dedupes by loading all `turkish` values and comparing with `trNormalize` in Dart (SQLite `like` is not Turkish-aware, so `IŞIK` vs `ışık` would miss). Kotlin changes are not compiled or device-tested yet.
-- [ ] Phase 2: Public repo, CI/CD releases, in-app updater with one-time patch-notes alert
-- [x] Phase 3: Fresh schema v2, morphology IDs, breakdown on cards. Done 2026-11-13 together with Phase 4 (the temporary PracticeStates bridge was skipped since Phase 4 replaced the review loop in the same session). Deviations: `tts_cache` is not deleted on upgrade (cached audio is keyed by text and still valid); the Add screen shows the breakdown read-only instead of editable suffix chips; the root chip caption says "root" (English root gloss needs the Phase 5/6 dictionary). Suffix IDs were checked against the bundled jar. Debug APK builds (Kotlin compiles). NOT yet verified on a phone: ID strings on a real analysis, `analyzeSentence`.
-- [x] Phase 4: Brainstorm + per-word review. Done 2026-11-13. Deviations: `listen_choice_exercise.dart` is folded into `choice_exercise.dart`; choice answers are final on the first tap (wrong taps are only counted in Construct); Practice settings are in Settings. 50 tests pass, `flutter analyze` clean. NOT yet verified on a phone: the 3-5 min / 5-words feel.
-- [ ] Phase 5: Word packs A1–B2 + grammar packs + download/import
-- [ ] Phase 6: Local-first translation, multi-provider AI, fast add flow, share-to-app
-  - Partly done early (owner request): `lib/services/llm_service.dart` chains Gemini → Groq → OpenRouter with a 2-minute cooldown on 429/5xx/timeouts. Keys and model names are set in Settings (never in code). Still to do for Phase 6: local-first dictionary lookup, translation cache use, share-to-app. `gemini_service.dart` was deleted (its phrase-breakdown methods were unused).
-- [ ] Phase 7: Reliable audio (ElevenLabs prefetch + offline Piper)
-- [ ] Phase 8: Suffix drill with CEFR levels
+- [x] Phase 1: Stop the bleeding
+- [~] Phase 2: Public repo, CI/CD releases, in-app updater. **Code done, needs the owner:** create the public repo and set `kReleaseRepo` in `lib/config.dart`, create the keystore, add the 4 GitHub secrets, push (see README "One-time setup"). Pre-publish secret scan run: clean (no tracked key/keystore files, no key patterns in history or the working tree). Verified locally: `CI=true` release build without `key.properties` fails as intended; release scripts pass `tool/test_scripts.sh`. Not verified: the workflows themselves (they only run on GitHub), the APK installer on a Huawei phone.
+- [x] Phase 3: Schema v2, real morphology data, breakdown on cards
+- [x] Phase 4: Brainstorm + per-word review
+- [x] Phase 5: Word packs (A1-B2) + grammar packs + download/import. Built from the owner's kaikki dump and tr_50k/tr_full. Packs are in `packs/`, A1 starter + dictionary bundled in `assets/`. Not yet published (no repo).
+  - Deviations: grammar-pack `en` is composed ("house (+ in/at)") because no dictionary has the inflected form's English; `tr_full.txt` is used to pick attested inflected forms (`tool/GrammarMiner.java`); lemma/analysis picks the analysis with the fewest morphemes (fixes `buna` -> `bunamak`); `LemmaCounter` skips capitalised lemmas; pack words carry `source = 'pack:<id>'` so an own word that a pack also contains still counts as an own word.
+  - Quality: levels are frequency-based. `~/turkish-data/review/*.csv` lists every pack for spot checks; fixes go in `tool/overrides.tsv`.
+- [x] Phase 6: Local-first translation, multi-provider AI, fast add flow, share-to-app
+  - Deviations: AI layer is `lib/services/llm_service.dart` (Gemini + Groq + OpenRouter, 10-minute cooldown on 429/5xx) instead of the planned `ai/` folder with 1 Gemini + 2 generic entries; `translation_service.dart` is kept as the MyMemory client (not deleted); models are editable in Settings; the daily AI call counter is shown in Settings.
+  - Not verified on a phone: PROCESS_TEXT ("Add to Turkish Vocab") depends on the ROM; Share is the fallback.
+- [x] Phase 7: Reliable audio. `TtsService` keeps its name (not renamed to `AudioService`) so no call site changed. ElevenLabs model editable, quota shown, prefetch queue, Piper via sherpa_onnx (voice choice dfki/fahrettin/fettah in Settings, default dfki). Not verified on a phone: the ~65 MB voice download/extract, first synthesis time, the native libs size.
+- [x] Phase 8: Suffix drill with CEFR levels
+
+Tests: `flutter test` 98 pass, `flutter analyze` clean, debug APK builds.

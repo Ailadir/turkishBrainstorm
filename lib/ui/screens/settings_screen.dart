@@ -2,10 +2,16 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
+import '../../config.dart';
 import '../../providers/providers.dart';
+import '../../services/update_service.dart';
+import '../widgets/update_dialog.dart';
+import '../widgets/audio_settings.dart';
+import 'packs_screen.dart';
 
 // ── Pre-configured ElevenLabs voices (multilingual_v2 compatible) ─────────────
 class _Voice {
@@ -150,6 +156,32 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
     ref.read(ttsServiceProvider).speak('Merhaba, nasılsın?');
   }
 
+  Future<void> _checkUpdates() async {
+    final service = ref.read(updateServiceProvider);
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      // Always checks; ignores "dismissed" so a closed alert can be reopened.
+      final info = await service.checkLatest();
+      if (!mounted) return;
+      if (info == null) {
+        messenger.showSnackBar(
+          const SnackBar(content: Text("You're up to date")),
+        );
+        return;
+      }
+      await showDialog<void>(
+        context: context,
+        builder: (_) => UpdateDialog(
+          info: info,
+          service: service,
+          installer: ref.read(appInstallerProvider),
+        ),
+      );
+    } on UpdateException catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(e.message)));
+    }
+  }
+
   Future<void> _testAi() async {
     await _save();
     final llm = ref.read(llmServiceProvider);
@@ -247,6 +279,25 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           // ── Practice ──────────────────────────────────────────────────────
           Text('Practice', style: theme.textTheme.titleMedium),
           const SizedBox(height: 8),
+          Row(
+            children: [
+              const Expanded(child: Text('Suffix drill level')),
+              DropdownButton<String>(
+                value: settings.grammarLevel,
+                items: [
+                  for (final l in const ['A1', 'A2', 'B1', 'B2'])
+                    DropdownMenuItem(value: l, child: Text(l)),
+                ],
+                onChanged: (v) async {
+                  if (v == null) return;
+                  await settings.setGrammarLevel(v);
+                  ref.invalidate(suffixDueProvider);
+                  setState(() {});
+                },
+              ),
+            ],
+          ),
+          const SizedBox(height: 8),
           Text('Words per Brainstorm round: ${settings.wordsPerBrainstorm}'),
           Slider(
             min: 3,
@@ -307,6 +358,20 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
           const Divider(),
           const SizedBox(height: 12),
 
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.library_books_outlined),
+            title: const Text('Word packs'),
+            subtitle: const Text('A1–B2 words and suffix examples'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const PacksScreen()),
+            ),
+          ),
+          const Divider(),
+          const SizedBox(height: 12),
+
           // ── AI translation (3 free providers, tried in this order) ────────
           Text('AI translation', style: theme.textTheme.titleMedium),
           const SizedBox(height: 6),
@@ -347,11 +412,66 @@ class _SettingsScreenState extends ConsumerState<SettingsScreen> {
             'OpenRouter model (openrouter/free = any free model)',
           ),
           const SizedBox(height: 10),
+          Text(
+            'AI calls today: ${ref.read(settingsServiceProvider).aiCallsToday}',
+            style: theme.textTheme.bodySmall,
+          ),
+          const SizedBox(height: 6),
           OutlinedButton.icon(
             icon: const Icon(Icons.science_outlined),
             label: const Text('Test AI translation'),
             onPressed: _testAi,
           ),
+
+          const SizedBox(height: 28),
+          const Divider(),
+          const SizedBox(height: 12),
+
+          const AudioSettings(),
+          const SizedBox(height: 28),
+          const Divider(),
+          const SizedBox(height: 12),
+
+          // ── About & updates ───────────────────────────────────────────────
+          Text('About & updates', style: theme.textTheme.titleMedium),
+          const SizedBox(height: 8),
+          FutureBuilder<PackageInfo>(
+            future: PackageInfo.fromPlatform(),
+            builder: (context, snap) => Text(
+              snap.hasData
+                  ? 'Version ${snap.data!.version} (build ${snap.data!.buildNumber})'
+                  : 'Version…',
+            ),
+          ),
+          if (!hasReleaseRepo)
+            Padding(
+              padding: const EdgeInsets.only(top: 6),
+              child: Text(
+                'Updates are off: no release repository is configured.',
+                style: theme.textTheme.bodySmall,
+              ),
+            )
+          else ...[
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Check automatically'),
+              value: settings.autoCheckUpdates,
+              onChanged: (v) async {
+                await settings.setAutoCheckUpdates(v);
+                setState(() {});
+              },
+            ),
+            OutlinedButton.icon(
+              icon: const Icon(Icons.system_update),
+              label: const Text('Check for updates'),
+              onPressed: _checkUpdates,
+            ),
+            const SizedBox(height: 8),
+            SelectableText(
+              'All releases: https://github.com/$kReleaseRepo/releases',
+              style: theme.textTheme.bodySmall,
+            ),
+          ],
 
           const SizedBox(height: 28),
           const Divider(),

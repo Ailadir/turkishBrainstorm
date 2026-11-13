@@ -1,0 +1,155 @@
+sıfır	zero	Num
+bir	one	Num
+iki	two	Num
+üç	three	Num
+dört	four	Num
+beş	five	Num
+altı	six	Num
+yedi	seven	Num
+sekiz	eight	Num
+dokuz	nine	Num
+on	ten	Num
+on bir	eleven	Num
+on iki	twelve	Num
+on üç	thirteen	Num
+on dört	fourteen	Num
+on beş	fifteen	Num
+on altı	sixteen	Num
+on yedi	seventeen	Num
+on sekiz	eighteen	Num
+on dokuz	nineteen	Num
+yirmi	twenty	Num
+otuz	thirty	Num
+kırk	forty	Num
+elli	fifty	Num
+altmış	sixty	Num
+yetmiş	seventy	Num
+seksen	eighty	Num
+doksan	ninety	Num
+yüz	hundred; face	Num
+bin	thousand	Num
+pazartesi	Monday	Noun
+salı	Tuesday	Noun
+çarşamba	Wednesday	Noun
+perşembe	Thursday	Noun
+cuma	Friday	Noun
+cumartesi	Saturday	Noun
+pazar	Sunday	Noun
+ocak	January	Noun
+şubat	February	Noun
+mart	March	Noun
+nisan	April	Noun
+mayıs	May	Noun
+haziran	June	Noun
+temmuz	July	Noun
+ağustos	August	Noun
+eylül	September	Noun
+ekim	October	Noun
+kasım	November	Noun
+aralık	December	Noun
+kırmızı	red	Adj
+mavi	blue	Adj
+yeşil	green	Adj
+sarı	yellow	Adj
+siyah	black	Adj
+beyaz	white	Adj
+turuncu	orange (colour)	Adj
+mor	purple	Adj
+pembe	pink	Adj
+gri	grey	Adj
+kahverengi	brown	Adj
+anne	mother	Noun
+baba	father	Noun
+kardeş	sibling	Noun
+abla	older sister	Noun
+ağabey	older brother	Noun
+kız kardeş	sister	Noun
+erkek kardeş	brother	Noun
+oğul	son	Noun
+kız	girl, daughter	Noun
+dede	grandfather	Noun
+nine	grandmother	Noun
+amca	paternal uncle	Noun
+teyze	maternal aunt	Noun
+eş	spouse	Noun
+çocuk	child	Noun
+arkadaş	friend	Noun
+aile	family	Noun
+ben	I	Pron
+sen	you (singular)	Pron
+o	he, she, it	Pron
+biz	we	Pron
+siz	you (plural, polite)	Pron
+onlar	they	Pron
+ne	what	Pron
+kim	who	Pron
+nerede	where (at)	Adv
+nereye	where to	Adv
+nereden	where from	Adv
+ne zaman	when	Adv
+neden	why	Adv
+nasıl	how	Adv
+kaç	how many	Adj
+hangi	which	Det
+merhaba	hello	Interj
+günaydın	good morning	Interj
+iyi akşamlar	good evening	Interj
+iyi geceler	good night	Interj
+hoş geldiniz	welcome	Interj
+hoşça kal	goodbye (to the one staying)	Interj
+güle güle	goodbye (to the one leaving)	Interj
+teşekkürler	thanks	Interj
+teşekkür ederim	thank you	Interj
+lütfen	please	Adv
+özür dilerim	I apologise	Interj
+pardon	excuse me	Interj
+evet	yes	Interj
+hayır	no	Interj
+tamam	okay	Interj
+baş	head	Noun
+göz	eye	Noun
+kulak	ear	Noun
+burun	nose	Noun
+ağız	mouth	Noun
+diş	tooth	Noun
+el	hand	Noun
+kol	arm	Noun
+ayak	foot	Noun
+bacak	leg	Noun
+kalp	heart	Noun
+saç	hair	Noun
+su	water	Noun
+ekmek	bread	Noun
+süt	milk	Noun
+çay	tea	Noun
+kahve	coffee	Noun
+et	meat	Noun
+tavuk	chicken	Noun
+balık	fish	Noun
+yumurta	egg	Noun
+peynir	cheese	Noun
+pirinç	rice	Noun
+elma	apple	Noun
+meyve	fruit	Noun
+sebze	vegetable	Noun
+yemek	food, meal	Noun
+şeker	sugar, candy	Noun
+tuz	salt	Noun
+bugün	today	Adv
+yarın	tomorrow	Adv
+dün	yesterday	Adv
+şimdi	now	Adv
+sabah	morning	Noun
+akşam	evening	Noun
+gece	night	Noun
+öğlen	noon	Noun
+hafta	week	Noun
+ay	month, moon	Noun
+yıl	year	Noun
+saat	hour, clock	Noun
+dakika	minute	Noun
+gün	day	Noun
+ev	house, home	Noun
+okul	school	Noun
+iş	work, job	Noun
+para	money	Noun

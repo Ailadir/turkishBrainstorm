@@ -36,13 +36,23 @@ class SuffixInfo {
 
 const Map<String, SuffixInfo> suffixGlosses = {
   // ── Plural ──
-  'A3pl': SuffixInfo('plural', 'plural: more than one (-ler/-lar)', 'plural', 'A1'),
+  'A3pl': SuffixInfo(
+    'plural',
+    'plural: more than one (-ler/-lar)',
+    'plural',
+    'A1',
+  ),
   // ── Person (verbs / copula) ──
   'A1sg': SuffixInfo('I', 'I (-im/-um/-m)', 'person', 'A1'),
   'A2sg': SuffixInfo('you', 'you, singular (-sin)', 'person', 'A1'),
   'A3sg': SuffixInfo('he/she/it', 'he/she/it (no ending)', 'person', 'A1'),
   'A1pl': SuffixInfo('we', 'we (-iz/-k)', 'person', 'A1'),
-  'A2pl': SuffixInfo('you (pl.)', 'you, plural or polite (-siniz)', 'person', 'A1'),
+  'A2pl': SuffixInfo(
+    'you (pl.)',
+    'you, plural or polite (-siniz)',
+    'person',
+    'A1',
+  ),
   // ── Possessive ──
   'P1sg': SuffixInfo('my', 'my (-im/-um)', 'possessive', 'A1'),
   'P2sg': SuffixInfo('your', 'your, singular (-in)', 'possessive', 'A1'),
@@ -63,11 +73,21 @@ const Map<String, SuffixInfo> suffixGlosses = {
   'Past': SuffixInfo('did', 'past tense (-di)', 'tense', 'A1'),
   'Fut': SuffixInfo('will', 'future (-ecek/-acak)', 'tense', 'A2'),
   'Aor': SuffixInfo('usually', 'habitual / general (-ir/-er)', 'tense', 'A2'),
-  'Narr': SuffixInfo('apparently', 'reported / evidential past (-miş)', 'tense', 'A2'),
+  'Narr': SuffixInfo(
+    'apparently',
+    'reported / evidential past (-miş)',
+    'tense',
+    'A2',
+  ),
   'Prog2': SuffixInfo('is doing', 'ongoing, formal (-mekte)', 'tense', 'B2'),
   // ── Mood ──
   'Imp': SuffixInfo('command', 'imperative (do it!)', 'mood', 'A1'),
-  'Opt': SuffixInfo('let me', 'optative: let me / let us (-eyim, -elim)', 'mood', 'A2'),
+  'Opt': SuffixInfo(
+    'let me',
+    'optative: let me / let us (-eyim, -elim)',
+    'mood',
+    'A2',
+  ),
   'Neces': SuffixInfo('must', 'must, should (-meli)', 'mood', 'A2'),
   'Cond': SuffixInfo('if', 'conditional (-se)', 'mood', 'B1'),
   'Desr': SuffixInfo('wish', 'wish, desire (-se, wishing)', 'mood', 'B1'),
@@ -79,15 +99,45 @@ const Map<String, SuffixInfo> suffixGlosses = {
   'Cop': SuffixInfo('is', 'copula: is/are (-dir, -im, -sin…)', 'copula', 'A1'),
   // ── Voice ──
   'Pass': SuffixInfo('is done', 'passive (-il, -in)', 'voice', 'B1'),
-  'Caus': SuffixInfo('make do', 'causative: make/let someone do (-dir, -t)', 'voice', 'B1'),
+  'Caus': SuffixInfo(
+    'make do',
+    'causative: make/let someone do (-dir, -t)',
+    'voice',
+    'B1',
+  ),
   'Reflex': SuffixInfo('oneself', 'reflexive (-in)', 'voice', 'B2'),
   'Recip': SuffixInfo('each other', 'reciprocal (-iş)', 'voice', 'B2'),
   // ── Participles / verbal nouns ──
-  'PastPart': SuffixInfo('that did', 'past participle (-dik)', 'participle', 'B1'),
-  'FutPart': SuffixInfo('that will', 'future participle (-ecek)', 'participle', 'B1'),
-  'PresPart': SuffixInfo('-ing (one)', 'present participle (-en)', 'participle', 'B1'),
-  'AorPart': SuffixInfo('habitual one', 'aorist participle (-ir/-er)', 'participle', 'B2'),
-  'NarrPart': SuffixInfo('having done', 'narrative participle (-miş)', 'participle', 'B2'),
+  'PastPart': SuffixInfo(
+    'that did',
+    'past participle (-dik)',
+    'participle',
+    'B1',
+  ),
+  'FutPart': SuffixInfo(
+    'that will',
+    'future participle (-ecek)',
+    'participle',
+    'B1',
+  ),
+  'PresPart': SuffixInfo(
+    '-ing (one)',
+    'present participle (-en)',
+    'participle',
+    'B1',
+  ),
+  'AorPart': SuffixInfo(
+    'habitual one',
+    'aorist participle (-ir/-er)',
+    'participle',
+    'B2',
+  ),
+  'NarrPart': SuffixInfo(
+    'having done',
+    'narrative participle (-miş)',
+    'participle',
+    'B2',
+  ),
   'Inf1': SuffixInfo('to …', 'infinitive (-mek/-mak)', 'participle', 'A2'),
   'Inf2': SuffixInfo('the act of', 'verbal noun (-me/-ma)', 'participle', 'B1'),
   'Inf3': SuffixInfo('the act of', 'verbal noun (-iş)', 'participle', 'B2'),
@@ -95,12 +145,27 @@ const Map<String, SuffixInfo> suffixGlosses = {
   'When': SuffixInfo('when', 'when… (-ince)', 'converb', 'B1'),
   'ByDoingSo': SuffixInfo('by doing', 'by doing (-erek)', 'converb', 'B1'),
   'While': SuffixInfo('while', 'while… (-ken)', 'converb', 'B1'),
-  'AfterDoingSo': SuffixInfo('after doing', 'after doing (-ip)', 'converb', 'B1'),
+  'AfterDoingSo': SuffixInfo(
+    'after doing',
+    'after doing (-ip)',
+    'converb',
+    'B1',
+  ),
   'SinceDoingSo': SuffixInfo('since', 'since doing (-eli)', 'converb', 'B1'),
   // ── Derivation ──
   'With': SuffixInfo('with', 'having, with (-li)', 'derivation', 'A1'),
-  'Without': SuffixInfo('without', 'lacking, without (-siz)', 'derivation', 'A1'),
-  'Agt': SuffixInfo('person who', 'person who does/has (-ci)', 'derivation', 'A2'),
+  'Without': SuffixInfo(
+    'without',
+    'lacking, without (-siz)',
+    'derivation',
+    'A1',
+  ),
+  'Agt': SuffixInfo(
+    'person who',
+    'person who does/has (-ci)',
+    'derivation',
+    'A2',
+  ),
   'Ness': SuffixInfo('-ness', 'abstract noun (-lik)', 'derivation', 'A2'),
   'Rel': SuffixInfo('of', 'relating to, of (-ki)', 'derivation', 'A2'),
   'Dim': SuffixInfo('little', 'diminutive (-cik)', 'derivation', 'B1'),

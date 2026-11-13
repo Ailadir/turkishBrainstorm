@@ -128,6 +128,7 @@ void main() {
           turkish: tr,
           english: tr,
           level: level,
+          source: 'pack:p',
         )).id;
         await db
             .into(db.wordPacks)

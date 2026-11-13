@@ -1,0 +1,104 @@
+{
+ "format": 1,
+ "packs": [
+  {
+   "id": "tr-a1-essentials",
+   "title": "A1 essentials",
+   "kind": "words",
+   "level": "A1",
+   "version": 1,
+   "count": 155,
+   "file": "tr-a1-essentials.json",
+   "sha256": "0dbdb171220df1cea30855b89068f7f15cfda6df09392fe9952ce72e11a50f39",
+   "size": 12591
+  },
+  {
+   "id": "tr-a1-core",
+   "title": "A1 core words",
+   "kind": "words",
+   "level": "A1",
+   "version": 1,
+   "count": 551,
+   "file": "tr-a1-core.json",
+   "sha256": "aa28b0a64c395018017ddab716eb85673019fddfd79aacc0842e30825821dfe5",
+   "size": 68049
+  },
+  {
+   "id": "tr-a2-core",
+   "title": "A2 core words",
+   "kind": "words",
+   "level": "A2",
+   "version": 1,
+   "count": 881,
+   "file": "tr-a2-core.json",
+   "sha256": "0355f75e9684e7b3b17480e1e445e816bd3151f4209c9046c5ef550324b9a48c",
+   "size": 94446
+  },
+  {
+   "id": "tr-b1-core",
+   "title": "B1 core words",
+   "kind": "words",
+   "level": "B1",
+   "version": 1,
+   "count": 1476,
+   "file": "tr-b1-core.json",
+   "sha256": "3aa97671750968aeb4179e416d1e1775f0571c3d16a4d468f595983751af6197",
+   "size": 148695
+  },
+  {
+   "id": "tr-b2-core",
+   "title": "B2 core words",
+   "kind": "words",
+   "level": "B2",
+   "version": 1,
+   "count": 1998,
+   "file": "tr-b2-core.json",
+   "sha256": "389747dc0a98fb4446739e1022964244ba862c5873f015a1f5230df269626209",
+   "size": 192635
+  },
+  {
+   "id": "tr-grammar-a1",
+   "title": "A1 suffixes",
+   "kind": "grammar",
+   "level": "A1",
+   "version": 1,
+   "count": 23,
+   "file": "tr-grammar-a1.json",
+   "sha256": "4a145be8d8da592d032144c37c48eaac79e5982d7b09d301a82a7329e83f6e3a",
+   "size": 16685
+  },
+  {
+   "id": "tr-grammar-a2",
+   "title": "A2 suffixes",
+   "kind": "grammar",
+   "level": "A2",
+   "version": 1,
+   "count": 11,
+   "file": "tr-grammar-a2.json",
+   "sha256": "41a8c22540090cb0fb3af669f4d711f42a6b554817912422405ea3a14c433153",
+   "size": 8484
+  },
+  {
+   "id": "tr-grammar-b1",
+   "title": "B1 suffixes",
+   "kind": "grammar",
+   "level": "B1",
+   "version": 1,
+   "count": 16,
+   "file": "tr-grammar-b1.json",
+   "sha256": "4ca70895be05b059504ba2a24edbddc49de00cb03532e0fca5b00612d018778b",
+   "size": 12516
+  },
+  {
+   "id": "tr-grammar-b2",
+   "title": "B2 suffixes",
+   "kind": "grammar",
+   "level": "B2",
+   "version": 1,
+   "count": 8,
+   "file": "tr-grammar-b2.json",
+   "sha256": "256d6469a4c6fcd821024b3cfd85c10aa667abb1635ecff69f0ffea6dcbdb660",
+   "size": 6374
+  }
+ ]
+}

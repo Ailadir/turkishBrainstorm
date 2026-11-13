@@ -1,0 +1,507 @@
+{
+ "format": 1,
+ "id": "tr-grammar-a2",
+ "version": 1,
+ "kind": "grammar",
+ "title": "A2 suffixes",
+ "level": "A2",
+ "license": "CC BY-SA 4.0",
+ "attribution": "Wiktionary via kaikki.org (CC BY-SA 4.0); word frequencies from FrequencyWords / OpenSubtitles",
+ "suffixes": [
+  {
+   "id": "Ins",
+   "examples": [
+    {
+     "tr": "seninle",
+     "en": "you (+ with)"
+    },
+    {
+     "tr": "benimle",
+     "en": "I (+ with)"
+    },
+    {
+     "tr": "onunla",
+     "en": "he, she, it (+ with)"
+    },
+    {
+     "tr": "sizinle",
+     "en": "you (plural) (+ with)"
+    },
+    {
+     "tr": "bizimle",
+     "en": "we (+ with)"
+    },
+    {
+     "tr": "bununla",
+     "en": "this (+ with)"
+    },
+    {
+     "tr": "adamla",
+     "en": "man (+ with)"
+    },
+    {
+     "tr": "kızla",
+     "en": "girl (+ with)"
+    },
+    {
+     "tr": "nedenle",
+     "en": "reason (+ with)"
+    },
+    {
+     "tr": "ihtimalle",
+     "en": "possibility (+ with)"
+    }
+   ]
+  },
+  {
+   "id": "Fut",
+   "examples": [
+    {
+     "tr": "olacak",
+     "en": "to be; to become (+ will)"
+    },
+    {
+     "tr": "yapacağım",
+     "en": "to do (+ will)"
+    },
+    {
+     "tr": "edecek",
+     "en": "to do (+ will)"
+    },
+    {
+     "tr": "alacağım",
+     "en": "to take (+ will)"
+    },
+    {
+     "tr": "vereceğim",
+     "en": "to give (+ will)"
+    },
+    {
+     "tr": "gidecek",
+     "en": "to go (+ will)"
+    },
+    {
+     "tr": "söyleyeceğim",
+     "en": "to say (+ will)"
+    },
+    {
+     "tr": "kalacak",
+     "en": "to remain (+ will)"
+    },
+    {
+     "tr": "gerekecek",
+     "en": "to be necessary (+ will)"
+    },
+    {
+     "tr": "diyeceğim",
+     "en": "to say (+ will)"
+    }
+   ]
+  },
+  {
+   "id": "Aor",
+   "examples": [
+    {
+     "tr": "sanırım",
+     "en": "to suppose (+ usually)"
+    },
+    {
+     "tr": "ederim",
+     "en": "to do (+ usually)"
+    },
+    {
+     "tr": "olabilir",
+     "en": "to be; to become (+ usually)"
+    },
+    {
+     "tr": "dilerim",
+     "en": "to slice (+ usually)"
+    },
+    {
+     "tr": "görüşürüz",
+     "en": "to meet (+ usually)"
+    },
+    {
+     "tr": "umarım",
+     "en": "to hope (+ usually)"
+    },
+    {
+     "tr": "bilirsin",
+     "en": "to know (+ usually)"
+    },
+    {
+     "tr": "dersin",
+     "en": "to say (+ usually)"
+    },
+    {
+     "tr": "yapamam",
+     "en": "to do (+ usually)"
+    },
+    {
+     "tr": "affedersiniz",
+     "en": "to forgive (+ usually)"
+    }
+   ]
+  },
+  {
+   "id": "Narr",
+   "examples": [
+    {
+     "tr": "söylemiştim",
+     "en": "to say (+ apparently)"
+    },
+    {
+     "tr": "düşünmüştüm",
+     "en": "to think (+ apparently)"
+    },
+    {
+     "tr": "sanmıştım",
+     "en": "to suppose (+ apparently)"
+    },
+    {
+     "tr": "demiştim",
+     "en": "to say (+ apparently)"
+    },
+    {
+     "tr": "olmuştu",
+     "en": "to be; to become (+ apparently)"
+    },
+    {
+     "tr": "neymiş",
+     "en": "what (+ apparently)"
+    },
+    {
+     "tr": "istemiştim",
+     "en": "to want (+ apparently)"
+    },
+    {
+     "tr": "güzelmiş",
+     "en": "beauty (someone who is beautiful) (+ apparently)"
+    },
+    {
+     "tr": "gelmişti",
+     "en": "to come (+ apparently)"
+    },
+    {
+     "tr": "görmüştüm",
+     "en": "to see (+ apparently)"
+    }
+   ]
+  },
+  {
+   "id": "Opt",
+   "examples": [
+    {
+     "tr": "bakalım",
+     "en": "to look (at) (+ let me)"
+    },
+    {
+     "tr": "gidelim",
+     "en": "to go (+ let me)"
+    },
+    {
+     "tr": "yere",
+     "en": "to satirize (+ let me)"
+    },
+    {
+     "tr": "güle",
+     "en": "to laugh (+ let me)"
+    },
+    {
+     "tr": "etmeye",
+     "en": "to do (+ let me)"
+    },
+    {
+     "tr": "yapmaya",
+     "en": "to do (+ let me)"
+    },
+    {
+     "tr": "kapa",
+     "en": "to snatch (+ let me)"
+    },
+    {
+     "tr": "almaya",
+     "en": "to take (+ let me)"
+    },
+    {
+     "tr": "olmaya",
+     "en": "to be; to become (+ let me)"
+    },
+    {
+     "tr": "görmeye",
+     "en": "to see (+ let me)"
+    }
+   ]
+  },
+  {
+   "id": "Neces",
+   "examples": [
+    {
+     "tr": "olmalı",
+     "en": "to be; to become (+ must)"
+    },
+    {
+     "tr": "gitmeliyim",
+     "en": "to go (+ must)"
+    },
+    {
+     "tr": "etmelisin",
+     "en": "to do (+ must)"
+    },
+    {
+     "tr": "yapmalıyız",
+     "en": "to do (+ must)"
+    },
+    {
+     "tr": "söylemeliyim",
+     "en": "to say (+ must)"
+    },
+    {
+     "tr": "bulmalıyız",
+     "en": "to find (+ must)"
+    },
+    {
+     "tr": "vermelisin",
+     "en": "to give (+ must)"
+    },
+    {
+     "tr": "konuşmalıyız",
+     "en": "to mention (+ must)"
+    },
+    {
+     "tr": "almalıyım",
+     "en": "to take (+ must)"
+    },
+    {
+     "tr": "bilmelisin",
+     "en": "to know (+ must)"
+    }
+   ]
+  },
+  {
+   "id": "Able",
+   "examples": [
+    {
+     "tr": "olabilir",
+     "en": "to be; to become (+ can)"
+    },
+    {
+     "tr": "alabilir",
+     "en": "to take (+ can)"
+    },
+    {
+     "tr": "yapabilirim",
+     "en": "to do (+ can)"
+    },
+    {
+     "tr": "edebilir",
+     "en": "to do (+ can)"
+    },
+    {
+     "tr": "konuşabilir",
+     "en": "to mention (+ can)"
+    },
+    {
+     "tr": "gelebilir",
+     "en": "to come (+ can)"
+    },
+    {
+     "tr": "söyleyebilirim",
+     "en": "to say (+ can)"
+    },
+    {
+     "tr": "gidebilir",
+     "en": "to go (+ can)"
+    },
+    {
+     "tr": "verebilir",
+     "en": "to give (+ can)"
+    },
+    {
+     "tr": "görebiliyorum",
+     "en": "to see (+ can)"
+    }
+   ]
+  },
+  {
+   "id": "Inf1",
+   "examples": [
+    {
+     "tr": "demektir",
+     "en": "to say (+ to …)"
+    },
+    {
+     "tr": "olmaktan",
+     "en": "to be; to become (+ to …)"
+    },
+    {
+     "tr": "değiştirmek",
+     "en": "to change (+ to …)"
+    },
+    {
+     "tr": "etmekten",
+     "en": "to do (+ to …)"
+    },
+    {
+     "tr": "yapmaktan",
+     "en": "to do (+ to …)"
+    },
+    {
+     "tr": "söylemekten",
+     "en": "to say (+ to …)"
+    },
+    {
+     "tr": "görmekten",
+     "en": "to see (+ to …)"
+    },
+    {
+     "tr": "öldürmekten",
+     "en": "to kill (+ to …)"
+    },
+    {
+     "tr": "tanıştırmak",
+     "en": "to meet (for the first time) (+ to …)"
+    },
+    {
+     "tr": "çalışmaktan",
+     "en": "to work (+ to …)"
+    }
+   ]
+  },
+  {
+   "id": "Agt",
+   "examples": [
+    {
+     "tr": "yalancı",
+     "en": "lie (+ person who)"
+    },
+    {
+     "tr": "edici",
+     "en": "to do (+ person who)"
+    },
+    {
+     "tr": "etkileyici",
+     "en": "to affect (+ person who)"
+    },
+    {
+     "tr": "şaşırtıcı",
+     "en": "to be mixed up (+ person who)"
+    },
+    {
+     "tr": "oyuncu",
+     "en": "game (+ person who)"
+    },
+    {
+     "tr": "korkutucu",
+     "en": "to scare (+ person who)"
+    },
+    {
+     "tr": "bozucu",
+     "en": "to blemish (+ person who)"
+    },
+    {
+     "tr": "koruyucu",
+     "en": "to protect (+ person who)"
+    },
+    {
+     "tr": "kalıcı",
+     "en": "to remain (+ person who)"
+    },
+    {
+     "tr": "gerçekçi",
+     "en": "truth (+ person who)"
+    }
+   ]
+  },
+  {
+   "id": "Ness",
+   "examples": [
+    {
+     "tr": "iyilik",
+     "en": "the good (+ -ness)"
+    },
+    {
+     "tr": "kırıklığına",
+     "en": "shard (+ -ness)"
+    },
+    {
+     "tr": "yolculuk",
+     "en": "passenger (+ -ness)"
+    },
+    {
+     "tr": "aşağılık",
+     "en": "lower part (+ -ness)"
+    },
+    {
+     "tr": "eşlik",
+     "en": "match (+ -ness)"
+    },
+    {
+     "tr": "dolarlık",
+     "en": "dollar (+ -ness)"
+    },
+    {
+     "tr": "mutluluk",
+     "en": "someone happy (+ -ness)"
+    },
+    {
+     "tr": "süreliğine",
+     "en": "duration (+ -ness)"
+    },
+    {
+     "tr": "delilik",
+     "en": "a crazy person (+ -ness)"
+    },
+    {
+     "tr": "sessizlik",
+     "en": "consonant (+ -ness)"
+    }
+   ]
+  },
+  {
+   "id": "Rel",
+   "examples": [
+    {
+     "tr": "sonraki",
+     "en": "aftermath (+ of)"
+    },
+    {
+     "tr": "buradaki",
+     "en": "here (this place) (+ of)"
+    },
+    {
+     "tr": "önceki",
+     "en": "before (+ of)"
+    },
+    {
+     "tr": "zamanki",
+     "en": "duration (+ of)"
+    },
+    {
+     "tr": "arasındaki",
+     "en": "space or time between two things (+ of)"
+    },
+    {
+     "tr": "sıradaki",
+     "en": "row (+ of)"
+    },
+    {
+     "tr": "önümüzdeki",
+     "en": "front (+ of)"
+    },
+    {
+     "tr": "içindeki",
+     "en": "inside (+ of)"
+    },
+    {
+     "tr": "şuradaki",
+     "en": "council (+ of)"
+    },
+    {
+     "tr": "dahaki",
+     "en": "more; still (+ of)"
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,368 @@
+{
+ "format": 1,
+ "id": "tr-grammar-b2",
+ "version": 1,
+ "kind": "grammar",
+ "title": "B2 suffixes",
+ "level": "B2",
+ "license": "CC BY-SA 4.0",
+ "attribution": "Wiktionary via kaikki.org (CC BY-SA 4.0); word frequencies from FrequencyWords / OpenSubtitles",
+ "suffixes": [
+  {
+   "id": "Prog2",
+   "examples": [
+    {
+     "tr": "yemekte",
+     "en": "meal (+ is doing)"
+    },
+    {
+     "tr": "etmekte",
+     "en": "to do (+ is doing)"
+    },
+    {
+     "tr": "gitmekte",
+     "en": "to go (+ is doing)"
+    },
+    {
+     "tr": "yapmakta",
+     "en": "to do (+ is doing)"
+    },
+    {
+     "tr": "bulmakta",
+     "en": "to find (+ is doing)"
+    },
+    {
+     "tr": "bulunmaktadır",
+     "en": "to be found (+ is doing)"
+    },
+    {
+     "tr": "olmakta",
+     "en": "to be; to become (+ is doing)"
+    },
+    {
+     "tr": "almakta",
+     "en": "to take (+ is doing)"
+    },
+    {
+     "tr": "inanmakta",
+     "en": "to believe (+ is doing)"
+    },
+    {
+     "tr": "ölmekte",
+     "en": "to die (+ is doing)"
+    }
+   ]
+  },
+  {
+   "id": "Unable",
+   "examples": [
+    {
+     "tr": "yapamam",
+     "en": "to do (+ cannot)"
+    },
+    {
+     "tr": "inanamıyorum",
+     "en": "to believe (+ cannot)"
+    },
+    {
+     "tr": "bilemiyorum",
+     "en": "to know (+ cannot)"
+    },
+    {
+     "tr": "edemem",
+     "en": "to do (+ cannot)"
+    },
+    {
+     "tr": "veremem",
+     "en": "to give (+ cannot)"
+    },
+    {
+     "tr": "göremiyorum",
+     "en": "to see (+ cannot)"
+    },
+    {
+     "tr": "söyleyemem",
+     "en": "to say (+ cannot)"
+    },
+    {
+     "tr": "olamazsın",
+     "en": "to be; to become (+ cannot)"
+    },
+    {
+     "tr": "anlayamadım",
+     "en": "to understand (+ cannot)"
+    },
+    {
+     "tr": "bulamadım",
+     "en": "to find (+ cannot)"
+    }
+   ]
+  },
+  {
+   "id": "Recip",
+   "examples": [
+    {
+     "tr": "savaşmaya",
+     "en": "to battle (+ each other)"
+    },
+    {
+     "tr": "öptüm",
+     "en": "to kiss (+ each other)"
+    },
+    {
+     "tr": "ödeştik",
+     "en": "to get even (+ each other)"
+    },
+    {
+     "tr": "atıştı",
+     "en": "to bicker (+ each other)"
+    },
+    {
+     "tr": "paylaşıyoruz",
+     "en": "to share (+ each other)"
+    },
+    {
+     "tr": "öpüşme",
+     "en": "reciprocal of öpmek (+ each other)"
+    },
+    {
+     "tr": "boğuşma",
+     "en": "to fly at each other's throat (+ each other)"
+    },
+    {
+     "tr": "gülüşün",
+     "en": "to laugh together (+ each other)"
+    },
+    {
+     "tr": "vuruştu",
+     "en": "to fight each other (+ each other)"
+    }
+   ]
+  },
+  {
+   "id": "NarrPart",
+   "examples": [
+    {
+     "tr": "olmuş",
+     "en": "to be; to become (+ having done)"
+    },
+    {
+     "tr": "varmış",
+     "en": "to arrive (+ having done)"
+    },
+    {
+     "tr": "gelmiş",
+     "en": "to come (+ having done)"
+    },
+    {
+     "tr": "ölmüş",
+     "en": "to die (+ having done)"
+    },
+    {
+     "tr": "yapmış",
+     "en": "to do (+ having done)"
+    },
+    {
+     "tr": "etmiş",
+     "en": "to do (+ having done)"
+    },
+    {
+     "tr": "almış",
+     "en": "to take (+ having done)"
+    },
+    {
+     "tr": "gitmiş",
+     "en": "to go (+ having done)"
+    },
+    {
+     "tr": "kalmış",
+     "en": "to remain (+ having done)"
+    },
+    {
+     "tr": "çıkmış",
+     "en": "to leave (+ having done)"
+    }
+   ]
+  },
+  {
+   "id": "Inf3",
+   "examples": [
+    {
+     "tr": "atış",
+     "en": "to throw (+ the act of)"
+    },
+    {
+     "tr": "yürüyüşe",
+     "en": "to walk (+ the act of)"
+    },
+    {
+     "tr": "vuruş",
+     "en": "to hit (+ the act of)"
+    },
+    {
+     "tr": "iniş",
+     "en": "to go down (+ the act of)"
+    },
+    {
+     "tr": "açılış",
+     "en": "to open (+ the act of)"
+    },
+    {
+     "tr": "dönüşü",
+     "en": "to turn (+ the act of)"
+    },
+    {
+     "tr": "kurtuluş",
+     "en": "to get loose (+ the act of)"
+    },
+    {
+     "tr": "dalış",
+     "en": "to dive (+ the act of)"
+    },
+    {
+     "tr": "gelişi",
+     "en": "to come (+ the act of)"
+    },
+    {
+     "tr": "içişleri",
+     "en": "to drink (+ the act of)"
+    }
+   ]
+  },
+  {
+   "id": "Ly",
+   "examples": [
+    {
+     "tr": "hoşça",
+     "en": "nice (+ -ly)"
+    },
+    {
+     "tr": "aptalca",
+     "en": "fool (+ -ly)"
+    },
+    {
+     "tr": "iyice",
+     "en": "the good (+ -ly)"
+    },
+    {
+     "tr": "açıkça",
+     "en": "open space or air (+ -ly)"
+    },
+    {
+     "tr": "gizlice",
+     "en": "secret (+ -ly)"
+    },
+    {
+     "tr": "çılgınca",
+     "en": "a crazy person (+ -ly)"
+    },
+    {
+     "tr": "yavaşça",
+     "en": "slow (+ -ly)"
+    },
+    {
+     "tr": "kolayca",
+     "en": "easy (+ -ly)"
+    },
+    {
+     "tr": "akıllıca",
+     "en": "mind (+ -ly)"
+    },
+    {
+     "tr": "zekice",
+     "en": "smart (+ -ly)"
+    }
+   ]
+  },
+  {
+   "id": "AsIf",
+   "examples": [
+    {
+     "tr": "aptalcaydı",
+     "en": "fool (+ as if)"
+    },
+    {
+     "tr": "çılgıncaydı",
+     "en": "a crazy person (+ as if)"
+    },
+    {
+     "tr": "zekiceydi",
+     "en": "smart (+ as if)"
+    },
+    {
+     "tr": "cesurcaydı",
+     "en": "bold (+ as if)"
+    },
+    {
+     "tr": "olasıcalar",
+     "en": "possible (+ as if)"
+    },
+    {
+     "tr": "boşanırcasına",
+     "en": "to get divorce (by the help of a judge (+ as if)"
+    },
+    {
+     "tr": "acımasızcaydı",
+     "en": "ruthless (+ as if)"
+    },
+    {
+     "tr": "salakçaydı",
+     "en": "fool (+ as if)"
+    },
+    {
+     "tr": "edercesine",
+     "en": "to do (+ as if)"
+    },
+    {
+     "tr": "zalimceydi",
+     "en": "cruel (+ as if)"
+    }
+   ]
+  },
+  {
+   "id": "Related",
+   "examples": [
+    {
+     "tr": "duygusal",
+     "en": "feeling (+ related)"
+    },
+    {
+     "tr": "geleneksel",
+     "en": "tradition (+ related)"
+    },
+    {
+     "tr": "zihinsel",
+     "en": "mind (+ related)"
+    },
+    {
+     "tr": "deneysel",
+     "en": "experiment (scientific) (+ related)"
+    },
+    {
+     "tr": "toplumsal",
+     "en": "society (+ related)"
+    },
+    {
+     "tr": "yüzeysel",
+     "en": "surface (+ related)"
+    },
+    {
+     "tr": "kırsal",
+     "en": "uncultivated area (+ related)"
+    },
+    {
+     "tr": "sanatsal",
+     "en": "art (+ related)"
+    },
+    {
+     "tr": "sinirsel",
+     "en": "sinew (+ related)"
+    },
+    {
+     "tr": "çevresel",
+     "en": "environment (+ related)"
+    }
+   ]
+  }
+ ]
+}

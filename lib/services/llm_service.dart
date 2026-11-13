@@ -205,7 +205,7 @@ class LlmService {
 
   LlmService(
     this.providers, {
-    this.cooldown = const Duration(minutes: 2),
+    this.cooldown = const Duration(minutes: 10),
     DateTime Function()? now,
   }) : _now = now ?? DateTime.now;
 

@@ -1,0 +1,9258 @@
+{
+ "format": 1,
+ "id": "tr-b1-core",
+ "version": 1,
+ "kind": "words",
+ "title": "B1 core words",
+ "level": "B1",
+ "license": "CC BY-SA 4.0",
+ "attribution": "Wiktionary via kaikki.org (CC BY-SA 4.0); word frequencies from FrequencyWords / OpenSubtitles",
+ "words": [
+  {
+   "tr": "aşama",
+   "en": "degree",
+   "pos": "Noun",
+   "rank": 1501
+  },
+  {
+   "tr": "umursamak",
+   "en": "to care",
+   "pos": "Verb",
+   "rank": 1502,
+   "example": "Keşke umursasam",
+   "example_en": "I wish I cared"
+  },
+  {
+   "tr": "süreç",
+   "en": "process",
+   "pos": "Noun",
+   "rank": 1503,
+   "example": "acılı bir süreç",
+   "example_en": "a painful process"
+  },
+  {
+   "tr": "seri",
+   "en": "quick",
+   "pos": "Adj",
+   "rank": 1504
+  },
+  {
+   "tr": "toplam",
+   "en": "sum",
+   "pos": "Noun",
+   "rank": 1505
+  },
+  {
+   "tr": "bitki",
+   "en": "plant",
+   "pos": "Noun",
+   "rank": 1506
+  },
+  {
+   "tr": "döner",
+   "en": "spinning",
+   "pos": "Adj",
+   "rank": 1507
+  },
+  {
+   "tr": "zihin",
+   "en": "mind",
+   "pos": "Noun",
+   "rank": 1508
+  },
+  {
+   "tr": "basınç",
+   "en": "pressure",
+   "pos": "Noun",
+   "rank": 1509
+  },
+  {
+   "tr": "yükselmek",
+   "en": "to rise",
+   "pos": "Verb",
+   "rank": 1510
+  },
+  {
+   "tr": "oymak",
+   "en": "to cut",
+   "pos": "Verb",
+   "rank": 1512
+  },
+  {
+   "tr": "pay",
+   "en": "portion",
+   "pos": "Noun",
+   "rank": 1513
+  },
+  {
+   "tr": "bizzat",
+   "en": "personally",
+   "pos": "Adv",
+   "rank": 1514
+  },
+  {
+   "tr": "incelemek",
+   "en": "to analyze",
+   "pos": "Verb",
+   "rank": 1515
+  },
+  {
+   "tr": "çorba",
+   "en": "soup",
+   "pos": "Noun",
+   "rank": 1516
+  },
+  {
+   "tr": "efsane",
+   "en": "tale",
+   "pos": "Noun",
+   "rank": 1517,
+   "example": "halk efsaneleri",
+   "example_en": "folk legends"
+  },
+  {
+   "tr": "icap",
+   "en": "necessity",
+   "pos": "Noun",
+   "rank": 1518
+  },
+  {
+   "tr": "hukuk",
+   "en": "law",
+   "pos": "Noun",
+   "rank": 1519
+  },
+  {
+   "tr": "emniyet",
+   "en": "security",
+   "pos": "Noun",
+   "rank": 1520
+  },
+  {
+   "tr": "hile",
+   "en": "deceit",
+   "pos": "Noun",
+   "rank": 1521
+  },
+  {
+   "tr": "gül",
+   "en": "rose",
+   "pos": "Noun",
+   "rank": 1522,
+   "example": "bir demet gül",
+   "example_en": "a bundle of roses"
+  },
+  {
+   "tr": "cüret",
+   "en": "courage",
+   "pos": "Noun",
+   "rank": 1523
+  },
+  {
+   "tr": "garson",
+   "en": "waitress",
+   "pos": "Noun",
+   "rank": 1524
+  },
+  {
+   "tr": "korkak",
+   "en": "cowardly",
+   "pos": "Adj",
+   "rank": 1525
+  },
+  {
+   "tr": "şişman",
+   "en": "fat",
+   "pos": "Adj",
+   "rank": 1526
+  },
+  {
+   "tr": "müvekkil",
+   "en": "client",
+   "pos": "Noun",
+   "rank": 1527
+  },
+  {
+   "tr": "yatırım",
+   "en": "investment",
+   "pos": "Noun",
+   "rank": 1528,
+   "example": "yatırım yapmak",
+   "example_en": "to invest"
+  },
+  {
+   "tr": "kalabalık",
+   "en": "crowded",
+   "pos": "Adj",
+   "rank": 1529
+  },
+  {
+   "tr": "yapı",
+   "en": "building",
+   "pos": "Noun",
+   "rank": 1530
+  },
+  {
+   "tr": "adli",
+   "en": "judicial",
+   "pos": "Adj",
+   "rank": 1531
+  },
+  {
+   "tr": "ödev",
+   "en": "homework",
+   "pos": "Noun",
+   "rank": 1532
+  },
+  {
+   "tr": "kıyı",
+   "en": "beach",
+   "pos": "Noun",
+   "rank": 1533
+  },
+  {
+   "tr": "tesadüf",
+   "en": "coincidence",
+   "pos": "Noun",
+   "rank": 1534
+  },
+  {
+   "tr": "ermek",
+   "en": "to attain",
+   "pos": "Verb",
+   "rank": 1535
+  },
+  {
+   "tr": "katmak",
+   "en": "to add",
+   "pos": "Verb",
+   "rank": 1536
+  },
+  {
+   "tr": "gittikçe",
+   "en": "gradually",
+   "pos": "Adv",
+   "rank": 1537,
+   "example": "Gittikçe daha çok anne emzirmeyi tercih ediyor.",
+   "example_en": "More and more mothers are choosing to breastfeed."
+  },
+  {
+   "tr": "kararmak",
+   "en": "to darken",
+   "pos": "Verb",
+   "rank": 1538
+  },
+  {
+   "tr": "şoför",
+   "en": "driver",
+   "pos": "Noun",
+   "rank": 1539
+  },
+  {
+   "tr": "teşhis",
+   "en": "diagnosis",
+   "pos": "Noun",
+   "rank": 1540
+  },
+  {
+   "tr": "bahane",
+   "en": "An excuse",
+   "pos": "Noun",
+   "rank": 1541,
+   "example": "Yenilme, bunların hepsi bahane.",
+   "example_en": "Don't be defeated, these are all excuses."
+  },
+  {
+   "tr": "deneyim",
+   "en": "experience",
+   "pos": "Noun",
+   "rank": 1542,
+   "example": "deneyim kazanmak",
+   "example_en": "to gain experience"
+  },
+  {
+   "tr": "subay",
+   "en": "officer",
+   "pos": "Noun",
+   "rank": 1543
+  },
+  {
+   "tr": "hazine",
+   "en": "treasure",
+   "pos": "Noun",
+   "rank": 1544
+  },
+  {
+   "tr": "kent",
+   "en": "city",
+   "pos": "Noun",
+   "rank": 1545,
+   "example": "Bu kentten bıktım.",
+   "example_en": "I am sick of this city."
+  },
+  {
+   "tr": "avcı",
+   "en": "hunter",
+   "pos": "Noun",
+   "rank": 1546
+  },
+  {
+   "tr": "mola",
+   "en": "rest",
+   "pos": "Noun",
+   "rank": 1547
+  },
+  {
+   "tr": "ata",
+   "en": "ancestor",
+   "pos": "Noun",
+   "rank": 1548
+  },
+  {
+   "tr": "harf",
+   "en": "letter (symbol)",
+   "pos": "Noun",
+   "rank": 1549
+  },
+  {
+   "tr": "ertesi",
+   "en": "following",
+   "pos": "Adj",
+   "rank": 1550
+  },
+  {
+   "tr": "aday",
+   "en": "candidate",
+   "pos": "Noun",
+   "rank": 1551
+  },
+  {
+   "tr": "duruşma",
+   "en": "The stage of a trial when both parties…",
+   "pos": "Noun",
+   "rank": 1552
+  },
+  {
+   "tr": "aziz",
+   "en": "dear",
+   "pos": "Adj",
+   "rank": 1553
+  },
+  {
+   "tr": "sıkışmak",
+   "en": "to get stuck",
+   "pos": "Verb",
+   "rank": 1554
+  },
+  {
+   "tr": "esas",
+   "en": "main",
+   "pos": "Adj",
+   "rank": 1555
+  },
+  {
+   "tr": "meme",
+   "en": "breast",
+   "pos": "Noun",
+   "rank": 1556
+  },
+  {
+   "tr": "fazlasıyla",
+   "en": "exceedingly",
+   "pos": "Adv",
+   "rank": 1557
+  },
+  {
+   "tr": "sıkılmak",
+   "en": "to be bored",
+   "pos": "Verb",
+   "rank": 1558
+  },
+  {
+   "tr": "çıldırmak",
+   "en": "to go mad",
+   "pos": "Verb",
+   "rank": 1559,
+   "example": "Çıldırdın mı sen?",
+   "example_en": "Are you crazy?"
+  },
+  {
+   "tr": "düz",
+   "en": "flat",
+   "pos": "Adj",
+   "rank": 1560
+  },
+  {
+   "tr": "engellemek",
+   "en": "to prevent",
+   "pos": "Verb",
+   "rank": 1561
+  },
+  {
+   "tr": "uygulamak",
+   "en": "to apply",
+   "pos": "Verb",
+   "rank": 1562
+  },
+  {
+   "tr": "yağ",
+   "en": "oil",
+   "pos": "Noun",
+   "rank": 1563
+  },
+  {
+   "tr": "sabırsızlanmak",
+   "en": "to get impatient",
+   "pos": "Verb",
+   "rank": 1564
+  },
+  {
+   "tr": "merhamet",
+   "en": "compassion",
+   "pos": "Noun",
+   "rank": 1565
+  },
+  {
+   "tr": "kum",
+   "en": "sand",
+   "pos": "Noun",
+   "rank": 1566
+  },
+  {
+   "tr": "hâlen",
+   "en": "still",
+   "pos": "Adv",
+   "rank": 1567
+  },
+  {
+   "tr": "hatun",
+   "en": "khatun",
+   "pos": "Noun",
+   "rank": 1568
+  },
+  {
+   "tr": "şişko",
+   "en": "fat",
+   "pos": "Adj",
+   "rank": 1569
+  },
+  {
+   "tr": "duman",
+   "en": "smoke",
+   "pos": "Noun",
+   "rank": 1570
+  },
+  {
+   "tr": "modern",
+   "en": "modern",
+   "pos": "Adj",
+   "rank": 1572
+  },
+  {
+   "tr": "tatmin",
+   "en": "satisfaction",
+   "pos": "Noun",
+   "rank": 1573
+  },
+  {
+   "tr": "örümcek",
+   "en": "spider",
+   "pos": "Noun",
+   "rank": 1574
+  },
+  {
+   "tr": "laboratuvar",
+   "en": "laboratory (room",
+   "pos": "Noun",
+   "rank": 1575
+  },
+  {
+   "tr": "bayram",
+   "en": "holiday, festival",
+   "pos": "Noun",
+   "rank": 1576,
+   "example": "Ramazan Bayramı",
+   "example_en": "Eid al-Fitr"
+  },
+  {
+   "tr": "perde",
+   "en": "curtain",
+   "pos": "Noun",
+   "rank": 1577
+  },
+  {
+   "tr": "sürücü",
+   "en": "driver",
+   "pos": "Noun",
+   "rank": 1578,
+   "example": "taksi sürücüsü",
+   "example_en": "a taxi driver"
+  },
+  {
+   "tr": "gündüz",
+   "en": "by day",
+   "pos": "Adv",
+   "rank": 1579,
+   "example": "Gündüzleri alkol tüketmiyorum.",
+   "example_en": "I don't drink (alcohol) in the daytime."
+  },
+  {
+   "tr": "torba",
+   "en": "bag",
+   "pos": "Noun",
+   "rank": 1580
+  },
+  {
+   "tr": "din",
+   "en": "System of beliefs dealing with soul",
+   "pos": "Noun",
+   "rank": 1582
+  },
+  {
+   "tr": "şampanya",
+   "en": "champagne",
+   "pos": "Noun",
+   "rank": 1583
+  },
+  {
+   "tr": "uyarı",
+   "en": "warning",
+   "pos": "Noun",
+   "rank": 1584
+  },
+  {
+   "tr": "senaryo",
+   "en": "scenario",
+   "pos": "Noun",
+   "rank": 1585
+  },
+  {
+   "tr": "sabit",
+   "en": "fixed",
+   "pos": "Adj",
+   "rank": 1586
+  },
+  {
+   "tr": "puan",
+   "en": "point (unit of scoring in a game or com…",
+   "pos": "Noun",
+   "rank": 1587
+  },
+  {
+   "tr": "rezil",
+   "en": "crappy",
+   "pos": "Adj",
+   "rank": 1588
+  },
+  {
+   "tr": "garaj",
+   "en": "garage",
+   "pos": "Noun",
+   "rank": 1589
+  },
+  {
+   "tr": "deney",
+   "en": "experiment (scientific)",
+   "pos": "Noun",
+   "rank": 1590
+  },
+  {
+   "tr": "gümüş",
+   "en": "silver",
+   "pos": "Adj",
+   "rank": 1591,
+   "example": "gümüş ayna",
+   "example_en": "a silver mirror"
+  },
+  {
+   "tr": "oran",
+   "en": "proportion",
+   "pos": "Noun",
+   "rank": 1592,
+   "example": "faiz oranı",
+   "example_en": "interest rate"
+  },
+  {
+   "tr": "belirti",
+   "en": "sign (indication)",
+   "pos": "Noun",
+   "rank": 1593
+  },
+  {
+   "tr": "torun",
+   "en": "grandchild",
+   "pos": "Noun",
+   "rank": 1594
+  },
+  {
+   "tr": "bodrum",
+   "en": "basement (floor below ground level)",
+   "pos": "Noun",
+   "rank": 1595
+  },
+  {
+   "tr": "yeğen",
+   "en": "nibling (nephew or niece)",
+   "pos": "Noun",
+   "rank": 1596
+  },
+  {
+   "tr": "boru",
+   "en": "duct",
+   "pos": "Noun",
+   "rank": 1597
+  },
+  {
+   "tr": "istifa",
+   "en": "resignation",
+   "pos": "Noun",
+   "rank": 1598
+  },
+  {
+   "tr": "kütüphane",
+   "en": "library",
+   "pos": "Noun",
+   "rank": 1599
+  },
+  {
+   "tr": "kurabiye",
+   "en": "biscuit",
+   "pos": "Noun",
+   "rank": 1600
+  },
+  {
+   "tr": "kanat",
+   "en": "wing (part of an animal)",
+   "pos": "Noun",
+   "rank": 1601,
+   "example": "kuş kanadı",
+   "example_en": "a bird's wing"
+  },
+  {
+   "tr": "işbirliği",
+   "en": "collaboration",
+   "pos": "Noun",
+   "rank": 1602
+  },
+  {
+   "tr": "evrak",
+   "en": "documents",
+   "pos": "Noun",
+   "rank": 1603
+  },
+  {
+   "tr": "acımasız",
+   "en": "ruthless",
+   "pos": "Adj",
+   "rank": 1604
+  },
+  {
+   "tr": "seyretmek",
+   "en": "to observe the state or development of…",
+   "pos": "Verb",
+   "rank": 1605
+  },
+  {
+   "tr": "boyut",
+   "en": "dimension",
+   "pos": "Noun",
+   "rank": 1606
+  },
+  {
+   "tr": "idam",
+   "en": "execution (the act of killing as punish…",
+   "pos": "Noun",
+   "rank": 1607
+  },
+  {
+   "tr": "dövmek",
+   "en": "to beat",
+   "pos": "Verb",
+   "rank": 1608,
+   "example": "1939 September 8, headline in Cumhuriyet",
+   "example_en": "French gunners shelled the Western front yesterday, operations continue"
+  },
+  {
+   "tr": "yanıt",
+   "en": "answer",
+   "pos": "Noun",
+   "rank": 1609
+  },
+  {
+   "tr": "ilham",
+   "en": "inspiration",
+   "pos": "Noun",
+   "rank": 1610
+  },
+  {
+   "tr": "omuz",
+   "en": "shoulder",
+   "pos": "Noun",
+   "rank": 1611
+  },
+  {
+   "tr": "market",
+   "en": "market",
+   "pos": "Noun",
+   "rank": 1613
+  },
+  {
+   "tr": "konum",
+   "en": "location",
+   "pos": "Noun",
+   "rank": 1614
+  },
+  {
+   "tr": "kül",
+   "en": "ash (solid remains of a fire)",
+   "pos": "Noun",
+   "rank": 1615
+  },
+  {
+   "tr": "ayrıntı",
+   "en": "detail",
+   "pos": "Noun",
+   "rank": 1616
+  },
+  {
+   "tr": "büyücü",
+   "en": "magician",
+   "pos": "Noun",
+   "rank": 1617
+  },
+  {
+   "tr": "kıskanmak",
+   "en": "to grudge",
+   "pos": "Verb",
+   "rank": 1618,
+   "example": "Oğlum kardeşini kıskanıyor.",
+   "example_en": "My son is jealous of his brother/sister."
+  },
+  {
+   "tr": "ırk",
+   "en": "lineage",
+   "pos": "Noun",
+   "rank": 1619
+  },
+  {
+   "tr": "mezun",
+   "en": "graduated",
+   "pos": "Adj",
+   "rank": 1620
+  },
+  {
+   "tr": "sıcaklık",
+   "en": "fever",
+   "pos": "Noun",
+   "rank": 1621
+  },
+  {
+   "tr": "mağara",
+   "en": "cave",
+   "pos": "Noun",
+   "rank": 1622
+  },
+  {
+   "tr": "manzara",
+   "en": "view",
+   "pos": "Noun",
+   "rank": 1623
+  },
+  {
+   "tr": "iblis",
+   "en": "devil",
+   "pos": "Noun",
+   "rank": 1624
+  },
+  {
+   "tr": "kopya",
+   "en": "copy",
+   "pos": "Noun",
+   "rank": 1625,
+   "example": "Rihanna'nın aynı kopyası: Tüm dünya bu kadını konuşuyor",
+   "example_en": "She's an exact clone of Rihanna: the whole world is talking about this woman"
+  },
+  {
+   "tr": "şahit",
+   "en": "witness",
+   "pos": "Noun",
+   "rank": 1626
+  },
+  {
+   "tr": "mevcut",
+   "en": "available",
+   "pos": "Adj",
+   "rank": 1627
+  },
+  {
+   "tr": "satıcı",
+   "en": "seller",
+   "pos": "Noun",
+   "rank": 1628
+  },
+  {
+   "tr": "düşünür",
+   "en": "thinker",
+   "pos": "Noun",
+   "rank": 1629
+  },
+  {
+   "tr": "tutar",
+   "en": "total",
+   "pos": "Noun",
+   "rank": 1630
+  },
+  {
+   "tr": "personel",
+   "en": "personnel (employees",
+   "pos": "Noun",
+   "rank": 1631
+  },
+  {
+   "tr": "bulut",
+   "en": "a cloud",
+   "pos": "Noun",
+   "rank": 1632
+  },
+  {
+   "tr": "sopa",
+   "en": "stick",
+   "pos": "Noun",
+   "rank": 1633
+  },
+  {
+   "tr": "bakanlık",
+   "en": "ministry",
+   "pos": "Noun",
+   "rank": 1634
+  },
+  {
+   "tr": "kanmak",
+   "en": "to believe",
+   "pos": "Verb",
+   "rank": 1635,
+   "example": "suya kanmak",
+   "example_en": "to quench one's thirst"
+  },
+  {
+   "tr": "eşmek",
+   "en": "to scratch",
+   "pos": "Verb",
+   "rank": 1636
+  },
+  {
+   "tr": "taciz",
+   "en": "harassment",
+   "pos": "Noun",
+   "rank": 1637
+  },
+  {
+   "tr": "yedek",
+   "en": "auxiliary",
+   "pos": "Adj",
+   "rank": 1638,
+   "example": "Yedek lastiği almaya unuttuğum o gün lastiğim patlamıştı.",
+   "example_en": "The day I forgot to take the spare tire with me, my tire burst."
+  },
+  {
+   "tr": "ihbar",
+   "en": "tip-off",
+   "pos": "Noun",
+   "rank": 1639
+  },
+  {
+   "tr": "kostüm",
+   "en": "costume",
+   "pos": "Noun",
+   "rank": 1640
+  },
+  {
+   "tr": "söylenti",
+   "en": "rumor",
+   "pos": "Noun",
+   "rank": 1641
+  },
+  {
+   "tr": "kilitlemek",
+   "en": "to lock",
+   "pos": "Verb",
+   "rank": 1642
+  },
+  {
+   "tr": "yönetmen",
+   "en": "director",
+   "pos": "Noun",
+   "rank": 1643
+  },
+  {
+   "tr": "üvey",
+   "en": "step- (Used in the words starting in En…",
+   "pos": "Adj",
+   "rank": 1644
+  },
+  {
+   "tr": "üs",
+   "en": "base",
+   "pos": "Noun",
+   "rank": 1645
+  },
+  {
+   "tr": "hizmetçi",
+   "en": "servant",
+   "pos": "Noun",
+   "rank": 1646
+  },
+  {
+   "tr": "bulaşmak",
+   "en": "to become dirty",
+   "pos": "Verb",
+   "rank": 1647,
+   "example": "çamur bulaşmak",
+   "example_en": "for mud to dirty"
+  },
+  {
+   "tr": "tablo",
+   "en": "painting",
+   "pos": "Noun",
+   "rank": 1648
+  },
+  {
+   "tr": "tekme",
+   "en": "step",
+   "pos": "Noun",
+   "rank": 1649
+  },
+  {
+   "tr": "liman",
+   "en": "port",
+   "pos": "Noun",
+   "rank": 1650
+  },
+  {
+   "tr": "devrim",
+   "en": "revolution",
+   "pos": "Noun",
+   "rank": 1651
+  },
+  {
+   "tr": "dişi",
+   "en": "female",
+   "pos": "Adj",
+   "rank": 1652
+  },
+  {
+   "tr": "düzenli",
+   "en": "regular",
+   "pos": "Adj",
+   "rank": 1653
+  },
+  {
+   "tr": "rakip",
+   "en": "rival",
+   "pos": "Noun",
+   "rank": 1654
+  },
+  {
+   "tr": "espri",
+   "en": "humour",
+   "pos": "Noun",
+   "rank": 1655
+  },
+  {
+   "tr": "ağrımak",
+   "en": "ache",
+   "pos": "Verb",
+   "rank": 1656,
+   "example": "Başım ağrıyor.",
+   "example_en": "My head hurts. I have a headache."
+  },
+  {
+   "tr": "stres",
+   "en": "stress (emotional pressure)",
+   "pos": "Noun",
+   "rank": 1657
+  },
+  {
+   "tr": "gezi",
+   "en": "journey",
+   "pos": "Noun",
+   "rank": 1658
+  },
+  {
+   "tr": "ebeveyn",
+   "en": "parents (mother and father)",
+   "pos": "Noun",
+   "rank": 1659
+  },
+  {
+   "tr": "kaplan",
+   "en": "tiger",
+   "pos": "Noun",
+   "rank": 1660
+  },
+  {
+   "tr": "çukur",
+   "en": "hole",
+   "pos": "Noun",
+   "rank": 1661
+  },
+  {
+   "tr": "tabanca",
+   "en": "pistol",
+   "pos": "Noun",
+   "rank": 1662
+  },
+  {
+   "tr": "pilot",
+   "en": "pilot",
+   "pos": "Adj",
+   "rank": 1663
+  },
+  {
+   "tr": "istihbarat",
+   "en": "news",
+   "pos": "Noun",
+   "rank": 1664
+  },
+  {
+   "tr": "kalkan",
+   "en": "shield",
+   "pos": "Noun",
+   "rank": 1665
+  },
+  {
+   "tr": "ayna",
+   "en": "mirror",
+   "pos": "Noun",
+   "rank": 1666,
+   "example": "Ayna, ayna, hadi söyle benden daha arsızı var mı?",
+   "example_en": "Mirror, mirror, come on, tell me, is there anyone more shameless than me?"
+  },
+  {
+   "tr": "çıkmaz",
+   "en": "dead end",
+   "pos": "Adj",
+   "rank": 1667
+  },
+  {
+   "tr": "yönetmek",
+   "en": "to govern",
+   "pos": "Verb",
+   "rank": 1668
+  },
+  {
+   "tr": "kazmak",
+   "en": "to dig",
+   "pos": "Verb",
+   "rank": 1669
+  },
+  {
+   "tr": "hayran",
+   "en": "admirer",
+   "pos": "Noun",
+   "rank": 1670
+  },
+  {
+   "tr": "beslemek",
+   "en": "to feed",
+   "pos": "Verb",
+   "rank": 1671,
+   "example": "bu krem ellerimi besliyor",
+   "example_en": "this cream nourishes my hands."
+  },
+  {
+   "tr": "ihtimalî",
+   "en": "synonym of muhtemel",
+   "pos": "Adj",
+   "rank": 1672
+  },
+  {
+   "tr": "yüzyıl",
+   "en": "century (100 years)",
+   "pos": "Noun",
+   "rank": 1673,
+   "example": "21. yüzyıl",
+   "example_en": "21st century"
+  },
+  {
+   "tr": "sin",
+   "en": "Letter of the Arabic alphabet: س",
+   "pos": "Noun",
+   "rank": 1674
+  },
+  {
+   "tr": "zincir",
+   "en": "chain",
+   "pos": "Noun",
+   "rank": 1675
+  },
+  {
+   "tr": "tapınak",
+   "en": "temple",
+   "pos": "Noun",
+   "rank": 1676
+  },
+  {
+   "tr": "vatandaş",
+   "en": "citizen",
+   "pos": "Noun",
+   "rank": 1677
+  },
+  {
+   "tr": "tetik",
+   "en": "trigger",
+   "pos": "Noun",
+   "rank": 1678
+  },
+  {
+   "tr": "kas",
+   "en": "A muscle",
+   "pos": "Noun",
+   "rank": 1679
+  },
+  {
+   "tr": "aşmak",
+   "en": "to overcome",
+   "pos": "Verb",
+   "rank": 1680,
+   "example": "dağları aşmak",
+   "example_en": "to traverse mountains"
+  },
+  {
+   "tr": "analiz",
+   "en": "analysis",
+   "pos": "Noun",
+   "rank": 1681
+  },
+  {
+   "tr": "ticaret",
+   "en": "trade",
+   "pos": "Noun",
+   "rank": 1682
+  },
+  {
+   "tr": "akraba",
+   "en": "relative",
+   "pos": "Noun",
+   "rank": 1683,
+   "example": "Akrabamın evinde kalıyorum.",
+   "example_en": "I'm staying at the house of a relative of mine."
+  },
+  {
+   "tr": "danışman",
+   "en": "advisor",
+   "pos": "Noun",
+   "rank": 1684
+  },
+  {
+   "tr": "yaka",
+   "en": "collar",
+   "pos": "Noun",
+   "rank": 1685,
+   "example": "gömleğimin yakası",
+   "example_en": "the collar of my shirt"
+  },
+  {
+   "tr": "peri",
+   "en": "fairy",
+   "pos": "Noun",
+   "rank": 1686
+  },
+  {
+   "tr": "meclis",
+   "en": "parliament",
+   "pos": "Noun",
+   "rank": 1687
+  },
+  {
+   "tr": "ayı",
+   "en": "bear",
+   "pos": "Noun",
+   "rank": 1688
+  },
+  {
+   "tr": "yaban",
+   "en": "wilderness",
+   "pos": "Noun",
+   "rank": 1689
+  },
+  {
+   "tr": "haberdar",
+   "en": "cognizant",
+   "pos": "Adj",
+   "rank": 1690,
+   "example": "Şu olaylardan haberdarım.",
+   "example_en": "I'm aware of those events."
+  },
+  {
+   "tr": "artı",
+   "en": "plus (being positive rather than negati…",
+   "pos": "Adj",
+   "rank": 1691
+  },
+  {
+   "tr": "öteki",
+   "en": "other",
+   "pos": "Adj",
+   "rank": 1693
+  },
+  {
+   "tr": "ziyaretçi",
+   "en": "visitor",
+   "pos": "Noun",
+   "rank": 1694
+  },
+  {
+   "tr": "güvenilir",
+   "en": "reliable",
+   "pos": "Adj",
+   "rank": 1695
+  },
+  {
+   "tr": "popüler",
+   "en": "popular",
+   "pos": "Adj",
+   "rank": 1696
+  },
+  {
+   "tr": "zar",
+   "en": "membrane",
+   "pos": "Noun",
+   "rank": 1697
+  },
+  {
+   "tr": "prova",
+   "en": "rehearsal",
+   "pos": "Noun",
+   "rank": 1698
+  },
+  {
+   "tr": "yakınmak",
+   "en": "to complain",
+   "pos": "Verb",
+   "rank": 1699
+  },
+  {
+   "tr": "ani",
+   "en": "sudden (happening quickly and with litt…",
+   "pos": "Adj",
+   "rank": 1700
+  },
+  {
+   "tr": "tüy",
+   "en": "body hair",
+   "pos": "Noun",
+   "rank": 1701
+  },
+  {
+   "tr": "kamyonet",
+   "en": "van",
+   "pos": "Noun",
+   "rank": 1702
+  },
+  {
+   "tr": "pazarlık",
+   "en": "bargaining",
+   "pos": "Noun",
+   "rank": 1703
+  },
+  {
+   "tr": "leke",
+   "en": "spot",
+   "pos": "Noun",
+   "rank": 1704
+  },
+  {
+   "tr": "ötürü",
+   "en": "because of",
+   "pos": "Postp",
+   "rank": 1705
+  },
+  {
+   "tr": "oksijen",
+   "en": "oxygen (chemical element)",
+   "pos": "Noun",
+   "rank": 1706
+  },
+  {
+   "tr": "devriye",
+   "en": "beat (rounds of a police officer)",
+   "pos": "Noun",
+   "rank": 1707
+  },
+  {
+   "tr": "koşul",
+   "en": "condition",
+   "pos": "Noun",
+   "rank": 1708,
+   "example": "Kimi ülkelerde yaşam koşulları bizden çok geridedir.",
+   "example_en": "Living standards in some countries are very much behind that of ours."
+  },
+  {
+   "tr": "karakol",
+   "en": "police station",
+   "pos": "Noun",
+   "rank": 1709
+  },
+  {
+   "tr": "kanka",
+   "en": "best friend",
+   "pos": "Noun",
+   "rank": 1710
+  },
+  {
+   "tr": "çiftlik",
+   "en": "farm",
+   "pos": "Noun",
+   "rank": 1711,
+   "example": "Hayvan Çiftliği",
+   "example_en": "Animal Farm"
+  },
+  {
+   "tr": "tünel",
+   "en": "tunnel",
+   "pos": "Noun",
+   "rank": 1712
+  },
+  {
+   "tr": "uluslararası",
+   "en": "international",
+   "pos": "Adj",
+   "rank": 1713
+  },
+  {
+   "tr": "düzine",
+   "en": "dozen (twelve)",
+   "pos": "Noun",
+   "rank": 1714
+  },
+  {
+   "tr": "organ",
+   "en": "organ",
+   "pos": "Noun",
+   "rank": 1715
+  },
+  {
+   "tr": "üstün",
+   "en": "superior",
+   "pos": "Adj",
+   "rank": 1716
+  },
+  {
+   "tr": "sapık",
+   "en": "Whose behaviour is against the social n…",
+   "pos": "Adj",
+   "rank": 1717
+  },
+  {
+   "tr": "yorum",
+   "en": "comment",
+   "pos": "Noun",
+   "rank": 1718
+  },
+  {
+   "tr": "servet",
+   "en": "riches",
+   "pos": "Noun",
+   "rank": 1719
+  },
+  {
+   "tr": "site",
+   "en": "gated community",
+   "pos": "Noun",
+   "rank": 1720
+  },
+  {
+   "tr": "uzamak",
+   "en": "to take a long time",
+   "pos": "Verb",
+   "rank": 1721,
+   "example": "saçları geri uzadı",
+   "example_en": "her hair grew back"
+  },
+  {
+   "tr": "müze",
+   "en": "museum",
+   "pos": "Noun",
+   "rank": 1722
+  },
+  {
+   "tr": "çaba",
+   "en": "effort",
+   "pos": "Noun",
+   "rank": 1723
+  },
+  {
+   "tr": "alçak",
+   "en": "Not tall",
+   "pos": "Adj",
+   "rank": 1724
+  },
+  {
+   "tr": "uslu",
+   "en": "good",
+   "pos": "Adj",
+   "rank": 1725
+  },
+  {
+   "tr": "yağmak",
+   "en": "to rain",
+   "pos": "Verb",
+   "rank": 1726
+  },
+  {
+   "tr": "kokain",
+   "en": "cocaine (the drug)",
+   "pos": "Noun",
+   "rank": 1727
+  },
+  {
+   "tr": "baymak",
+   "en": "to bore",
+   "pos": "Verb",
+   "rank": 1728
+  },
+  {
+   "tr": "hazırlık",
+   "en": "any action taken to get ready for a pur…",
+   "pos": "Noun",
+   "rank": 1729
+  },
+  {
+   "tr": "itmek",
+   "en": "to push",
+   "pos": "Verb",
+   "rank": 1730
+  },
+  {
+   "tr": "moral",
+   "en": "morale",
+   "pos": "Noun",
+   "rank": 1731,
+   "example": "Bu başarı morallerini yükseltti.",
+   "example_en": "This success boosted their morale."
+  },
+  {
+   "tr": "âşık",
+   "en": "lover",
+   "pos": "Noun",
+   "rank": 1732
+  },
+  {
+   "tr": "belirlemek",
+   "en": "to determine",
+   "pos": "Verb",
+   "rank": 1733
+  },
+  {
+   "tr": "şükran",
+   "en": "gratitude",
+   "pos": "Noun",
+   "rank": 1734
+  },
+  {
+   "tr": "müdahale",
+   "en": "interference",
+   "pos": "Noun",
+   "rank": 1735
+  },
+  {
+   "tr": "sarışın",
+   "en": "blond",
+   "pos": "Adj",
+   "rank": 1736
+  },
+  {
+   "tr": "koru",
+   "en": "grove",
+   "pos": "Noun",
+   "rank": 1737
+  },
+  {
+   "tr": "macera",
+   "en": "adventure",
+   "pos": "Noun",
+   "rank": 1738
+  },
+  {
+   "tr": "üniforma",
+   "en": "uniform",
+   "pos": "Noun",
+   "rank": 1739,
+   "example": "Okul üniformamız çok kötü.",
+   "example_en": "Our school uniforms are very bad."
+  },
+  {
+   "tr": "keser",
+   "en": "adze",
+   "pos": "Noun",
+   "rank": 1740
+  },
+  {
+   "tr": "mücevher",
+   "en": "jewellery",
+   "pos": "Noun",
+   "rank": 1741
+  },
+  {
+   "tr": "mum",
+   "en": "candle",
+   "pos": "Noun",
+   "rank": 1742
+  },
+  {
+   "tr": "ağırlık",
+   "en": "weight (force due to gravity)",
+   "pos": "Noun",
+   "rank": 1743
+  },
+  {
+   "tr": "ömür",
+   "en": "life",
+   "pos": "Noun",
+   "rank": 1744,
+   "example": "Dağın tepesinden manzara ömürdür.",
+   "example_en": "The view from the mountaintop is very pleasant."
+  },
+  {
+   "tr": "ısmarlamak",
+   "en": "to order",
+   "pos": "Verb",
+   "rank": 1745,
+   "example": "Elbise için kumaş ısmarladım.",
+   "example_en": "I ordered fabric for the dress"
+  },
+  {
+   "tr": "yemiş",
+   "en": "nut",
+   "pos": "Noun",
+   "rank": 1746
+  },
+  {
+   "tr": "set",
+   "en": "flat ground higher than one is situated",
+   "pos": "Noun",
+   "rank": 1747
+  },
+  {
+   "tr": "masaj",
+   "en": "massage (rubbing",
+   "pos": "Noun",
+   "rank": 1748
+  },
+  {
+   "tr": "ahmak",
+   "en": "fool",
+   "pos": "Adj",
+   "rank": 1749
+  },
+  {
+   "tr": "petrol",
+   "en": "petroleum",
+   "pos": "Noun",
+   "rank": 1750
+  },
+  {
+   "tr": "kuruş",
+   "en": "Kurus",
+   "pos": "Noun",
+   "rank": 1751
+  },
+  {
+   "tr": "silmek",
+   "en": "to wipe",
+   "pos": "Verb",
+   "rank": 1752
+  },
+  {
+   "tr": "gömmek",
+   "en": "to bury (place in the ground)",
+   "pos": "Verb",
+   "rank": 1753,
+   "example": "Altınları nereye gömdün?",
+   "example_en": "Where did you bury the gold?"
+  },
+  {
+   "tr": "tavan",
+   "en": "ceiling",
+   "pos": "Noun",
+   "rank": 1754
+  },
+  {
+   "tr": "rehine",
+   "en": "hostage",
+   "pos": "Noun",
+   "rank": 1755,
+   "example": "rehine kurtarıldı",
+   "example_en": "the hostage has been saved"
+  },
+  {
+   "tr": "oysa",
+   "en": "but",
+   "pos": "Conj",
+   "rank": 1756
+  },
+  {
+   "tr": "sinirlenmek",
+   "en": "to get angry",
+   "pos": "Verb",
+   "rank": 1757
+  },
+  {
+   "tr": "papaz",
+   "en": "clergyman",
+   "pos": "Noun",
+   "rank": 1758
+  },
+  {
+   "tr": "giderek",
+   "en": "gradually",
+   "pos": "Adv",
+   "rank": 1759
+  },
+  {
+   "tr": "kök",
+   "en": "root",
+   "pos": "Noun",
+   "rank": 1760
+  },
+  {
+   "tr": "dar",
+   "en": "narrow",
+   "pos": "Adj",
+   "rank": 1761,
+   "example": "badi tişört",
+   "example_en": "close-fitting t-shirt"
+  },
+  {
+   "tr": "çabucak",
+   "en": "quickly",
+   "pos": "Adv",
+   "rank": 1762
+  },
+  {
+   "tr": "damar",
+   "en": "vein",
+   "pos": "Noun",
+   "rank": 1763
+  },
+  {
+   "tr": "dana",
+   "en": "calf (young of cattle)",
+   "pos": "Noun",
+   "rank": 1764
+  },
+  {
+   "tr": "tecrübe",
+   "en": "experience",
+   "pos": "Noun",
+   "rank": 1765
+  },
+  {
+   "tr": "başbakan",
+   "en": "prime minister",
+   "pos": "Noun",
+   "rank": 1766
+  },
+  {
+   "tr": "stüdyo",
+   "en": "studio",
+   "pos": "Noun",
+   "rank": 1767
+  },
+  {
+   "tr": "vadi",
+   "en": "valley",
+   "pos": "Noun",
+   "rank": 1768
+  },
+  {
+   "tr": "nadir",
+   "en": "rare",
+   "pos": "Adj",
+   "rank": 1769
+  },
+  {
+   "tr": "meşhur",
+   "en": "famous",
+   "pos": "Adj",
+   "rank": 1770
+  },
+  {
+   "tr": "yıllarca",
+   "en": "for years",
+   "pos": "Adv",
+   "rank": 1771
+  },
+  {
+   "tr": "içermek",
+   "en": "to include",
+   "pos": "Verb",
+   "rank": 1772,
+   "example": "fiyat uçak biletini de içeriyor",
+   "example_en": "the price includes the plane ticket as well"
+  },
+  {
+   "tr": "ibaret",
+   "en": "consisting of",
+   "pos": "Adj",
+   "rank": 1773
+  },
+  {
+   "tr": "asistan",
+   "en": "assistant (professor)",
+   "pos": "Noun",
+   "rank": 1774
+  },
+  {
+   "tr": "mösyö",
+   "en": "monsieur",
+   "pos": "Noun",
+   "rank": 1775
+  },
+  {
+   "tr": "meslek",
+   "en": "profession (occupation)",
+   "pos": "Noun",
+   "rank": 1776
+  },
+  {
+   "tr": "sivil",
+   "en": "civil",
+   "pos": "Adj",
+   "rank": 1777
+  },
+  {
+   "tr": "kuyruk",
+   "en": "tail",
+   "pos": "Noun",
+   "rank": 1778,
+   "example": "Arık, zayıf bir buzağı kuyruğunu sallayarak gidiyordu.",
+   "example_en": "A thin calf was walking around wagging its tail."
+  },
+  {
+   "tr": "uyanık",
+   "en": "Not sleeping",
+   "pos": "Adj",
+   "rank": 1779
+  },
+  {
+   "tr": "hatıra",
+   "en": "memoir",
+   "pos": "Noun",
+   "rank": 1780
+  },
+  {
+   "tr": "çorap",
+   "en": "sock",
+   "pos": "Noun",
+   "rank": 1781
+  },
+  {
+   "tr": "ejderha",
+   "en": "dragon",
+   "pos": "Noun",
+   "rank": 1782
+  },
+  {
+   "tr": "bayrak",
+   "en": "flag",
+   "pos": "Noun",
+   "rank": 1783
+  },
+  {
+   "tr": "eşit",
+   "en": "equal of any material or spiritual value",
+   "pos": "Adj",
+   "rank": 1784
+  },
+  {
+   "tr": "yazılı",
+   "en": "written",
+   "pos": "Adj",
+   "rank": 1785
+  },
+  {
+   "tr": "büyütmek",
+   "en": "causative of büyümek",
+   "pos": "Verb",
+   "rank": 1786
+  },
+  {
+   "tr": "papa",
+   "en": "pope",
+   "pos": "Noun",
+   "rank": 1787
+  },
+  {
+   "tr": "sinirli",
+   "en": "angry",
+   "pos": "Adj",
+   "rank": 1788
+  },
+  {
+   "tr": "maruz",
+   "en": "exposed to",
+   "pos": "Adj",
+   "rank": 1789,
+   "example": "Herkes, her an müthiş bir tehlikeye maruzdur.",
+   "example_en": "Everyone, at all times, is subject to an awesome risk."
+  },
+  {
+   "tr": "terfi",
+   "en": "promotion",
+   "pos": "Noun",
+   "rank": 1790
+  },
+  {
+   "tr": "maya",
+   "en": "nature",
+   "pos": "Noun",
+   "rank": 1791
+  },
+  {
+   "tr": "sos",
+   "en": "sauce",
+   "pos": "Noun",
+   "rank": 1792
+  },
+  {
+   "tr": "bağış",
+   "en": "donation",
+   "pos": "Noun",
+   "rank": 1793
+  },
+  {
+   "tr": "delikanlı",
+   "en": "honest",
+   "pos": "Adj",
+   "rank": 1794
+  },
+  {
+   "tr": "avuç",
+   "en": "palm",
+   "pos": "Noun",
+   "rank": 1795
+  },
+  {
+   "tr": "yakıt",
+   "en": "fuel",
+   "pos": "Noun",
+   "rank": 1796
+  },
+  {
+   "tr": "dövüşmek",
+   "en": "to fight (with)",
+   "pos": "Verb",
+   "rank": 1797
+  },
+  {
+   "tr": "yakışmak",
+   "en": "to be appropriate",
+   "pos": "Verb",
+   "rank": 1798,
+   "example": "Davranışınız yakışmadı.",
+   "example_en": "Your behaviour was not appropriate."
+  },
+  {
+   "tr": "denge",
+   "en": "balance",
+   "pos": "Noun",
+   "rank": 1799
+  },
+  {
+   "tr": "tişört",
+   "en": "T-shirt",
+   "pos": "Noun",
+   "rank": 1800
+  },
+  {
+   "tr": "atlatmak",
+   "en": "causative of atlamak",
+   "pos": "Verb",
+   "rank": 1801
+  },
+  {
+   "tr": "politik",
+   "en": "political",
+   "pos": "Adj",
+   "rank": 1802
+  },
+  {
+   "tr": "travma",
+   "en": "trauma",
+   "pos": "Noun",
+   "rank": 1803
+  },
+  {
+   "tr": "şeklî",
+   "en": "formal",
+   "pos": "Adj",
+   "rank": 1804
+  },
+  {
+   "tr": "kanepe",
+   "en": "canapé (furniture)",
+   "pos": "Noun",
+   "rank": 1805
+  },
+  {
+   "tr": "soyadı",
+   "en": "surname",
+   "pos": "Noun",
+   "rank": 1806
+  },
+  {
+   "tr": "ek",
+   "en": "additional",
+   "pos": "Adj",
+   "rank": 1807
+  },
+  {
+   "tr": "boğmak",
+   "en": "to choke",
+   "pos": "Verb",
+   "rank": 1808
+  },
+  {
+   "tr": "dilim",
+   "en": "slice (thin",
+   "pos": "Noun",
+   "rank": 1809
+  },
+  {
+   "tr": "nehir",
+   "en": "river",
+   "pos": "Noun",
+   "rank": 1810
+  },
+  {
+   "tr": "mecbur",
+   "en": "forced",
+   "pos": "Adj",
+   "rank": 1811
+  },
+  {
+   "tr": "kablo",
+   "en": "cable (assembly of wires for electricit…",
+   "pos": "Noun",
+   "rank": 1812
+  },
+  {
+   "tr": "iade",
+   "en": "refund (amount of money returned)",
+   "pos": "Noun",
+   "rank": 1813
+  },
+  {
+   "tr": "şahane",
+   "en": "amazing",
+   "pos": "Adj",
+   "rank": 1814
+  },
+  {
+   "tr": "hisse",
+   "en": "A unit of equity ownership",
+   "pos": "Noun",
+   "rank": 1815
+  },
+  {
+   "tr": "sekreter",
+   "en": "secretary",
+   "pos": "Noun",
+   "rank": 1816
+  },
+  {
+   "tr": "aktif",
+   "en": "active",
+   "pos": "Adj",
+   "rank": 1817
+  },
+  {
+   "tr": "bilimsel",
+   "en": "scientific",
+   "pos": "Adj",
+   "rank": 1818
+  },
+  {
+   "tr": "müsait",
+   "en": "suitable",
+   "pos": "Adj",
+   "rank": 1819,
+   "example": "Müsait misiniz?",
+   "example_en": "Is this a convenient moment?"
+  },
+  {
+   "tr": "keşif",
+   "en": "discovery",
+   "pos": "Noun",
+   "rank": 1821
+  },
+  {
+   "tr": "taklit",
+   "en": "counterfeit",
+   "pos": "Noun",
+   "rank": 1822
+  },
+  {
+   "tr": "yetkili",
+   "en": "authority",
+   "pos": "Noun",
+   "rank": 1823
+  },
+  {
+   "tr": "şüphesiz",
+   "en": "doubtlessly",
+   "pos": "Adv",
+   "rank": 1824
+  },
+  {
+   "tr": "incelmek",
+   "en": "to lose weight",
+   "pos": "Verb",
+   "rank": 1825
+  },
+  {
+   "tr": "yoldaş",
+   "en": "fellow traveller",
+   "pos": "Noun",
+   "rank": 1826,
+   "example": "can yoldaşı",
+   "example_en": "bosom friend"
+  },
+  {
+   "tr": "muazzam",
+   "en": "enormous",
+   "pos": "Adj",
+   "rank": 1827
+  },
+  {
+   "tr": "hakaret",
+   "en": "insult",
+   "pos": "Noun",
+   "rank": 1828
+  },
+  {
+   "tr": "rehber",
+   "en": "guide (person)",
+   "pos": "Noun",
+   "rank": 1829
+  },
+  {
+   "tr": "iletmek",
+   "en": "to hand in",
+   "pos": "Verb",
+   "rank": 1830
+  },
+  {
+   "tr": "doz",
+   "en": "dose",
+   "pos": "Noun",
+   "rank": 1831
+  },
+  {
+   "tr": "eşek",
+   "en": "donkey",
+   "pos": "Noun",
+   "rank": 1832
+  },
+  {
+   "tr": "final",
+   "en": "the end",
+   "pos": "Noun",
+   "rank": 1833
+  },
+  {
+   "tr": "masraf",
+   "en": "expense",
+   "pos": "Noun",
+   "rank": 1834
+  },
+  {
+   "tr": "makyaj",
+   "en": "makeup",
+   "pos": "Noun",
+   "rank": 1835
+  },
+  {
+   "tr": "terapi",
+   "en": "therapy",
+   "pos": "Noun",
+   "rank": 1836
+  },
+  {
+   "tr": "seyirci",
+   "en": "spectator",
+   "pos": "Noun",
+   "rank": 1837
+  },
+  {
+   "tr": "tesis",
+   "en": "facility",
+   "pos": "Noun",
+   "rank": 1838
+  },
+  {
+   "tr": "heykel",
+   "en": "statue",
+   "pos": "Noun",
+   "rank": 1839,
+   "example": "heykel dikmek",
+   "example_en": "to erect a statue"
+  },
+  {
+   "tr": "departman",
+   "en": "department",
+   "pos": "Noun",
+   "rank": 1840
+  },
+  {
+   "tr": "sent",
+   "en": "cent (\"currency\")",
+   "pos": "Noun",
+   "rank": 1841
+  },
+  {
+   "tr": "içten",
+   "en": "sincere",
+   "pos": "Adj",
+   "rank": 1842
+  },
+  {
+   "tr": "nabız",
+   "en": "pulse",
+   "pos": "Noun",
+   "rank": 1843
+  },
+  {
+   "tr": "onay",
+   "en": "approval",
+   "pos": "Noun",
+   "rank": 1844
+  },
+  {
+   "tr": "nasılsa",
+   "en": "as it is",
+   "pos": "Adv",
+   "rank": 1845,
+   "example": "Adamı ikna etmeyi becerdi nasılsa.",
+   "example_en": "She somehow managed to convince him."
+  },
+  {
+   "tr": "hamle",
+   "en": "attack",
+   "pos": "Noun",
+   "rank": 1846
+  },
+  {
+   "tr": "onaylamak",
+   "en": "to confirm",
+   "pos": "Verb",
+   "rank": 1847
+  },
+  {
+   "tr": "eklemek",
+   "en": "to add",
+   "pos": "Verb",
+   "rank": 1848
+  },
+  {
+   "tr": "fakir",
+   "en": "poor",
+   "pos": "Adj",
+   "rank": 1849,
+   "example": "Paralarımla yardım edebileceğim fakir insanları düşün.",
+   "example_en": "Think of the poor people I could help with all my money."
+  },
+  {
+   "tr": "rota",
+   "en": "route",
+   "pos": "Noun",
+   "rank": 1850
+  },
+  {
+   "tr": "evre",
+   "en": "stage",
+   "pos": "Noun",
+   "rank": 1851
+  },
+  {
+   "tr": "esir",
+   "en": "prisoner of war",
+   "pos": "Noun",
+   "rank": 1852
+  },
+  {
+   "tr": "transfer",
+   "en": "transfer",
+   "pos": "Noun",
+   "rank": 1853
+  },
+  {
+   "tr": "paha",
+   "en": "price",
+   "pos": "Noun",
+   "rank": 1854
+  },
+  {
+   "tr": "rüşvet",
+   "en": "bribe",
+   "pos": "Noun",
+   "rank": 1855
+  },
+  {
+   "tr": "tavır",
+   "en": "manner",
+   "pos": "Noun",
+   "rank": 1856
+  },
+  {
+   "tr": "sıvı",
+   "en": "liquid",
+   "pos": "Noun",
+   "rank": 1857
+  },
+  {
+   "tr": "olumlu",
+   "en": "positive",
+   "pos": "Adj",
+   "rank": 1858
+  },
+  {
+   "tr": "aykırı",
+   "en": "contradictory",
+   "pos": "Adj",
+   "rank": 1859
+  },
+  {
+   "tr": "devasa",
+   "en": "colossal",
+   "pos": "Adj",
+   "rank": 1860
+  },
+  {
+   "tr": "şahsen",
+   "en": "personally",
+   "pos": "Adv",
+   "rank": 1861
+  },
+  {
+   "tr": "konferans",
+   "en": "conference",
+   "pos": "Noun",
+   "rank": 1862
+  },
+  {
+   "tr": "popo",
+   "en": "buttocks",
+   "pos": "Noun",
+   "rank": 1863,
+   "example": "Popom acıyor.",
+   "example_en": "My bottom hurts."
+  },
+  {
+   "tr": "kusmak",
+   "en": "to vomit",
+   "pos": "Verb",
+   "rank": 1864,
+   "example": "dün gece üç kez kustun",
+   "example_en": "you vomited three times last night"
+  },
+  {
+   "tr": "sıçmak",
+   "en": "to shit (to be stricken from fear)",
+   "pos": "Verb",
+   "rank": 1865,
+   "example": "Bu köpek yine halıya sıçtı!",
+   "example_en": "That dog shat on the carpet again!"
+  },
+  {
+   "tr": "kutlu",
+   "en": "fortunate",
+   "pos": "Adj",
+   "rank": 1866
+  },
+  {
+   "tr": "atılmak",
+   "en": "to be thrown",
+   "pos": "Verb",
+   "rank": 1867
+  },
+  {
+   "tr": "iri",
+   "en": "large",
+   "pos": "Adj",
+   "rank": 1868
+  },
+  {
+   "tr": "mutsuz",
+   "en": "sad",
+   "pos": "Adj",
+   "rank": 1869
+  },
+  {
+   "tr": "görünmez",
+   "en": "invisible",
+   "pos": "Adj",
+   "rank": 1870
+  },
+  {
+   "tr": "görgü",
+   "en": "good manners",
+   "pos": "Noun",
+   "rank": 1871
+  },
+  {
+   "tr": "dayak",
+   "en": "Beating an animal or a human being",
+   "pos": "Noun",
+   "rank": 1872
+  },
+  {
+   "tr": "rakam",
+   "en": "digit",
+   "pos": "Noun",
+   "rank": 1873,
+   "example": "Sayıları yazmak için kullanılan on rakam vardır.",
+   "example_en": "There are ten digits which are used to write numbers."
+  },
+  {
+   "tr": "röportaj",
+   "en": "report",
+   "pos": "Noun",
+   "rank": 1874
+  },
+  {
+   "tr": "çoğunlukla",
+   "en": "mostly",
+   "pos": "Adv",
+   "rank": 1875,
+   "example": "Bu çoğunlukla bitkilerde görülür",
+   "example_en": "This is generally seen in plants"
+  },
+  {
+   "tr": "bilinç",
+   "en": "awareness",
+   "pos": "Noun",
+   "rank": 1876
+  },
+  {
+   "tr": "yayılmak",
+   "en": "to expand",
+   "pos": "Verb",
+   "rank": 1877
+  },
+  {
+   "tr": "bot",
+   "en": "boot",
+   "pos": "Noun",
+   "rank": 1878
+  },
+  {
+   "tr": "kaydetmek",
+   "en": "to save (to write a file to a disk)",
+   "pos": "Verb",
+   "rank": 1879
+  },
+  {
+   "tr": "âdet",
+   "en": "custom",
+   "pos": "Noun",
+   "rank": 1880
+  },
+  {
+   "tr": "önemsemek",
+   "en": "to mind",
+   "pos": "Verb",
+   "rank": 1881
+  },
+  {
+   "tr": "geyik",
+   "en": "deer",
+   "pos": "Noun",
+   "rank": 1882,
+   "example": "Geyikler ormanda yaşarlar.",
+   "example_en": "Deer live in forests."
+  },
+  {
+   "tr": "mühendis",
+   "en": "engineer",
+   "pos": "Noun",
+   "rank": 1883
+  },
+  {
+   "tr": "keşfetmek",
+   "en": "to discover",
+   "pos": "Verb",
+   "rank": 1884
+  },
+  {
+   "tr": "gezmek",
+   "en": "to travel",
+   "pos": "Verb",
+   "rank": 1885
+  },
+  {
+   "tr": "gözyaşı",
+   "en": "tear",
+   "pos": "Noun",
+   "rank": 1886
+  },
+  {
+   "tr": "çizmek",
+   "en": "to draw (a line)",
+   "pos": "Verb",
+   "rank": 1887,
+   "example": "Bir kadın çizeceksin / Onun gibi bırakıp gitmeyecek",
+   "example_en": "You will draw a woman / She won't leave you like the last one"
+  },
+  {
+   "tr": "ekstra",
+   "en": "additional",
+   "pos": "Adj",
+   "rank": 1888
+  },
+  {
+   "tr": "uydurmak",
+   "en": "to make up (a story)",
+   "pos": "Verb",
+   "rank": 1889
+  },
+  {
+   "tr": "soymak",
+   "en": "to peel",
+   "pos": "Verb",
+   "rank": 1890
+  },
+  {
+   "tr": "tırnak",
+   "en": "nail (on fingers and toes)",
+   "pos": "Noun",
+   "rank": 1891
+  },
+  {
+   "tr": "bal",
+   "en": "honey",
+   "pos": "Noun",
+   "rank": 1892
+  },
+  {
+   "tr": "eldiven",
+   "en": "glove",
+   "pos": "Noun",
+   "rank": 1893
+  },
+  {
+   "tr": "çörek",
+   "en": "pastry",
+   "pos": "Noun",
+   "rank": 1894
+  },
+  {
+   "tr": "tutulmak",
+   "en": "to be eclipsed",
+   "pos": "Verb",
+   "rank": 1895
+  },
+  {
+   "tr": "fil",
+   "en": "elephant",
+   "pos": "Noun",
+   "rank": 1896
+  },
+  {
+   "tr": "derinlik",
+   "en": "The distance from the bottom of a thing…",
+   "pos": "Noun",
+   "rank": 1897
+  },
+  {
+   "tr": "sevişmek",
+   "en": "to make love",
+   "pos": "Verb",
+   "rank": 1898,
+   "example": "Başka bir kadınla sevişerek beni aldattı",
+   "example_en": "He cheated on me by sleeping with another woman"
+  },
+  {
+   "tr": "isyan",
+   "en": "insurgency",
+   "pos": "Noun",
+   "rank": 1899
+  },
+  {
+   "tr": "ima",
+   "en": "hint",
+   "pos": "Noun",
+   "rank": 1901
+  },
+  {
+   "tr": "gelenek",
+   "en": "tradition",
+   "pos": "Noun",
+   "rank": 1902
+  },
+  {
+   "tr": "havlu",
+   "en": "towel",
+   "pos": "Noun",
+   "rank": 1903
+  },
+  {
+   "tr": "bagaj",
+   "en": "luggage",
+   "pos": "Noun",
+   "rank": 1904
+  },
+  {
+   "tr": "icat",
+   "en": "invention",
+   "pos": "Noun",
+   "rank": 1905
+  },
+  {
+   "tr": "solucan",
+   "en": "worm",
+   "pos": "Noun",
+   "rank": 1906
+  },
+  {
+   "tr": "belirsiz",
+   "en": "uncertain",
+   "pos": "Adj",
+   "rank": 1908
+  },
+  {
+   "tr": "bilek",
+   "en": "wrist",
+   "pos": "Noun",
+   "rank": 1909
+  },
+  {
+   "tr": "dağılmak",
+   "en": "to scatter",
+   "pos": "Verb",
+   "rank": 1910
+  },
+  {
+   "tr": "azalmak",
+   "en": "to decrease",
+   "pos": "Verb",
+   "rank": 1911
+  },
+  {
+   "tr": "kurmay",
+   "en": "general staff",
+   "pos": "Noun",
+   "rank": 1912
+  },
+  {
+   "tr": "salata",
+   "en": "salad",
+   "pos": "Noun",
+   "rank": 1913
+  },
+  {
+   "tr": "cumhuriyet",
+   "en": "republic",
+   "pos": "Noun",
+   "rank": 1914
+  },
+  {
+   "tr": "pasaport",
+   "en": "passport (official document)",
+   "pos": "Noun",
+   "rank": 1915,
+   "example": "Pasaport lütfen",
+   "example_en": "Passport, please"
+  },
+  {
+   "tr": "sağır",
+   "en": "deaf",
+   "pos": "Adj",
+   "rank": 1916,
+   "example": "sağır dilsiz",
+   "example_en": "deaf and mute"
+  },
+  {
+   "tr": "hüküm",
+   "en": "verdict",
+   "pos": "Noun",
+   "rank": 1917
+  },
+  {
+   "tr": "demin",
+   "en": "just now",
+   "pos": "Adv",
+   "rank": 1918
+  },
+  {
+   "tr": "ateşlemek",
+   "en": "to fire",
+   "pos": "Verb",
+   "rank": 1919
+  },
+  {
+   "tr": "cerrah",
+   "en": "surgeon",
+   "pos": "Noun",
+   "rank": 1920
+  },
+  {
+   "tr": "erkenden",
+   "en": "early on",
+   "pos": "Adv",
+   "rank": 1921,
+   "example": "Yarın erkenden buluşacaksak benim de uyumam lazım.",
+   "example_en": "If we’re gonna meet early on tomorrow I have to go to sleep too."
+  },
+  {
+   "tr": "aldatmak",
+   "en": "to betray",
+   "pos": "Verb",
+   "rank": 1922,
+   "example": "Kocamı aldattım.",
+   "example_en": "I cheated on my husband."
+  },
+  {
+   "tr": "parçalamak",
+   "en": "to break up",
+   "pos": "Verb",
+   "rank": 1923
+  },
+  {
+   "tr": "kaçışmak",
+   "en": "to flee in confusion with one another",
+   "pos": "Verb",
+   "rank": 1924,
+   "example": "Onu gören köy halkı korku içinde kaçışmaya başlamış.",
+   "example_en": "The villagers who saw him started to flee in fear."
+  },
+  {
+   "tr": "fırın",
+   "en": "oven",
+   "pos": "Noun",
+   "rank": 1925
+  },
+  {
+   "tr": "çatlak",
+   "en": "split",
+   "pos": "Adj",
+   "rank": 1926
+  },
+  {
+   "tr": "yavaşlamak",
+   "en": "to slow down",
+   "pos": "Verb",
+   "rank": 1927
+  },
+  {
+   "tr": "kafe",
+   "en": "café",
+   "pos": "Noun",
+   "rank": 1928
+  },
+  {
+   "tr": "füze",
+   "en": "rocket (vehicle)",
+   "pos": "Noun",
+   "rank": 1929
+  },
+  {
+   "tr": "tutacak",
+   "en": "potholder",
+   "pos": "Noun",
+   "rank": 1930
+  },
+  {
+   "tr": "olumsuz",
+   "en": "negative",
+   "pos": "Adj",
+   "rank": 1931
+  },
+  {
+   "tr": "medya",
+   "en": "media",
+   "pos": "Noun",
+   "rank": 1932
+  },
+  {
+   "tr": "otomatik",
+   "en": "automatic (Capable of operating without…",
+   "pos": "Adj",
+   "rank": 1933
+  },
+  {
+   "tr": "kimyasal",
+   "en": "chemical",
+   "pos": "Adj",
+   "rank": 1934
+  },
+  {
+   "tr": "gem",
+   "en": "rein",
+   "pos": "Noun",
+   "rank": 1935
+  },
+  {
+   "tr": "sözleşme",
+   "en": "contract",
+   "pos": "Noun",
+   "rank": 1936
+  },
+  {
+   "tr": "sorgu",
+   "en": "the act of asking",
+   "pos": "Noun",
+   "rank": 1937
+  },
+  {
+   "tr": "festival",
+   "en": "festival",
+   "pos": "Noun",
+   "rank": 1938
+  },
+  {
+   "tr": "sürme",
+   "en": "kohl",
+   "pos": "Noun",
+   "rank": 1939,
+   "example": "Çekmiş kaşına gözüne sürme / Dudaklar kıpkırmızı kırıtıyor",
+   "example_en": "She's lined her eyes and eyebrows with mascara / Lips coquettishly bright red"
+  },
+  {
+   "tr": "yığın",
+   "en": "bulk (large in size",
+   "pos": "Noun",
+   "rank": 1940
+  },
+  {
+   "tr": "güverte",
+   "en": "deck",
+   "pos": "Noun",
+   "rank": 1941
+  },
+  {
+   "tr": "yutmak",
+   "en": "to swallow. (to cause to pass from the…",
+   "pos": "Verb",
+   "rank": 1942
+  },
+  {
+   "tr": "cin",
+   "en": "genie",
+   "pos": "Noun",
+   "rank": 1943
+  },
+  {
+   "tr": "bencil",
+   "en": "selfish",
+   "pos": "Adj",
+   "rank": 1944
+  },
+  {
+   "tr": "defalarca",
+   "en": "many times",
+   "pos": "Adv",
+   "rank": 1945
+  },
+  {
+   "tr": "koyu",
+   "en": "dark",
+   "pos": "Adj",
+   "rank": 1946
+  },
+  {
+   "tr": "akmak",
+   "en": "to flow (move as a fluid)",
+   "pos": "Verb",
+   "rank": 1947,
+   "example": "Eskiden ırmak, bu köprünün altından akarmış.",
+   "example_en": "In the past, the river used to flow under this bridge."
+  },
+  {
+   "tr": "çekecek",
+   "en": "shoehorn",
+   "pos": "Noun",
+   "rank": 1948
+  },
+  {
+   "tr": "muayene",
+   "en": "examination (particularly",
+   "pos": "Noun",
+   "rank": 1949
+  },
+  {
+   "tr": "azıcık",
+   "en": "a little bit",
+   "pos": "Adj",
+   "rank": 1950
+  },
+  {
+   "tr": "gol",
+   "en": "goal (point(s) scored)",
+   "pos": "Noun",
+   "rank": 1951
+  },
+  {
+   "tr": "albüm",
+   "en": "book (convenient collection of small pa…",
+   "pos": "Noun",
+   "rank": 1952
+  },
+  {
+   "tr": "ehliyet",
+   "en": "competence",
+   "pos": "Noun",
+   "rank": 1953
+  },
+  {
+   "tr": "biftek",
+   "en": "beefsteak",
+   "pos": "Noun",
+   "rank": 1954
+  },
+  {
+   "tr": "katlanmak",
+   "en": "to bear",
+   "pos": "Verb",
+   "rank": 1955,
+   "example": "Bu hakarete katlanamam!",
+   "example_en": "I cannot tolerate this insult!"
+  },
+  {
+   "tr": "hayalî",
+   "en": "imaginary",
+   "pos": "Adj",
+   "rank": 1956
+  },
+  {
+   "tr": "metro",
+   "en": "subway",
+   "pos": "Noun",
+   "rank": 1957
+  },
+  {
+   "tr": "yeryüzü",
+   "en": "ground",
+   "pos": "Noun",
+   "rank": 1958
+  },
+  {
+   "tr": "kovboy",
+   "en": "cowboy",
+   "pos": "Noun",
+   "rank": 1959
+  },
+  {
+   "tr": "buzdolabı",
+   "en": "refrigerator",
+   "pos": "Noun",
+   "rank": 1960
+  },
+  {
+   "tr": "gardiyan",
+   "en": "guard",
+   "pos": "Noun",
+   "rank": 1961
+  },
+  {
+   "tr": "itaat",
+   "en": "obedience (quality of being obedient)",
+   "pos": "Noun",
+   "rank": 1962
+  },
+  {
+   "tr": "açım",
+   "en": "an act of opening",
+   "pos": "Noun",
+   "rank": 1963
+  },
+  {
+   "tr": "şantaj",
+   "en": "blackmail",
+   "pos": "Noun",
+   "rank": 1964
+  },
+  {
+   "tr": "muhabbet",
+   "en": "chat",
+   "pos": "Noun",
+   "rank": 1965
+  },
+  {
+   "tr": "melek",
+   "en": "angel",
+   "pos": "Noun",
+   "rank": 1966
+  },
+  {
+   "tr": "konsantre",
+   "en": "concentrated",
+   "pos": "Adj",
+   "rank": 1967
+  },
+  {
+   "tr": "lamba",
+   "en": "lamp (oil device producing light)",
+   "pos": "Noun",
+   "rank": 1968
+  },
+  {
+   "tr": "koma",
+   "en": "coma",
+   "pos": "Noun",
+   "rank": 1969
+  },
+  {
+   "tr": "razı",
+   "en": "Approving",
+   "pos": "Adj",
+   "rank": 1970,
+   "example": "Sağlık ekibi bu riski almaya razı.",
+   "example_en": "The medical team is consenting to take this risk."
+  },
+  {
+   "tr": "muamele",
+   "en": "treatment",
+   "pos": "Noun",
+   "rank": 1971
+  },
+  {
+   "tr": "bel",
+   "en": "waist",
+   "pos": "Noun",
+   "rank": 1972
+  },
+  {
+   "tr": "fincan",
+   "en": "cup",
+   "pos": "Noun",
+   "rank": 1973
+  },
+  {
+   "tr": "sersem",
+   "en": "stunned",
+   "pos": "Adj",
+   "rank": 1974
+  },
+  {
+   "tr": "kampanya",
+   "en": "campaign",
+   "pos": "Noun",
+   "rank": 1975
+  },
+  {
+   "tr": "yazın",
+   "en": "in the summer",
+   "pos": "Adv",
+   "rank": 1976,
+   "example": "Yazın hava sıcak olur.",
+   "example_en": "The weather is hot in summer."
+  },
+  {
+   "tr": "otopsi",
+   "en": "autopsy",
+   "pos": "Noun",
+   "rank": 1977
+  },
+  {
+   "tr": "imha",
+   "en": "destruction",
+   "pos": "Noun",
+   "rank": 1979,
+   "example": "1940 June 10, subheadline in Ulus",
+   "example_en": "Many German troops and tanks destroyed"
+  },
+  {
+   "tr": "lakin",
+   "en": "but",
+   "pos": "Conj",
+   "rank": 1980
+  },
+  {
+   "tr": "flört",
+   "en": "flirt",
+   "pos": "Noun",
+   "rank": 1981
+  },
+  {
+   "tr": "bastırmak",
+   "en": "to overwhelm",
+   "pos": "Verb",
+   "rank": 1982
+  },
+  {
+   "tr": "aleyh",
+   "en": "Being in opposition",
+   "pos": "Noun",
+   "rank": 1983,
+   "example": "1946 January 6, headline on page 1 of Cumhuriyet",
+   "example_en": "Lawsuits filed against two newspapers"
+  },
+  {
+   "tr": "makul",
+   "en": "reasonable",
+   "pos": "Adj",
+   "rank": 1985
+  },
+  {
+   "tr": "orijinal",
+   "en": "original",
+   "pos": "Adj",
+   "rank": 1986
+  },
+  {
+   "tr": "belirli",
+   "en": "definite",
+   "pos": "Adj",
+   "rank": 1987
+  },
+  {
+   "tr": "samimi",
+   "en": "sincere",
+   "pos": "Adj",
+   "rank": 1988
+  },
+  {
+   "tr": "konsey",
+   "en": "council",
+   "pos": "Noun",
+   "rank": 1989
+  },
+  {
+   "tr": "kafatası",
+   "en": "skull (cranium)",
+   "pos": "Noun",
+   "rank": 1990
+  },
+  {
+   "tr": "uçurmak",
+   "en": "to fly",
+   "pos": "Verb",
+   "rank": 1991,
+   "example": "Evlerin damlarını uçuruyor",
+   "example_en": "[The storms] are blowing the roofs off houses"
+  },
+  {
+   "tr": "çap",
+   "en": "diameter",
+   "pos": "Noun",
+   "rank": 1992
+  },
+  {
+   "tr": "kont",
+   "en": "count",
+   "pos": "Noun",
+   "rank": 1993
+  },
+  {
+   "tr": "minibüs",
+   "en": "minibus",
+   "pos": "Noun",
+   "rank": 1994
+  },
+  {
+   "tr": "muhtemel",
+   "en": "probable",
+   "pos": "Adj",
+   "rank": 1995
+  },
+  {
+   "tr": "lokanta",
+   "en": "restaurant",
+   "pos": "Noun",
+   "rank": 1996
+  },
+  {
+   "tr": "beyzbol",
+   "en": "baseball",
+   "pos": "Noun",
+   "rank": 1997
+  },
+  {
+   "tr": "taktik",
+   "en": "tactic (tactics in plural)",
+   "pos": "Noun",
+   "rank": 1998
+  },
+  {
+   "tr": "birleşmek",
+   "en": "to merge",
+   "pos": "Verb",
+   "rank": 1999
+  },
+  {
+   "tr": "delmek",
+   "en": "to broach",
+   "pos": "Verb",
+   "rank": 2000,
+   "example": "kulağını deldirdin mi?",
+   "example_en": "did you (singular, informal) have your ear pierced?"
+  },
+  {
+   "tr": "ördek",
+   "en": "duck",
+   "pos": "Noun",
+   "rank": 2001
+  },
+  {
+   "tr": "önlem",
+   "en": "precaution",
+   "pos": "Noun",
+   "rank": 2002,
+   "example": "önlem almak",
+   "example_en": "to take precautions"
+  },
+  {
+   "tr": "bağımlı",
+   "en": "addict",
+   "pos": "Noun",
+   "rank": 2003,
+   "example": "uyuşturucu bağımlısı",
+   "example_en": "drug addict"
+  },
+  {
+   "tr": "pist",
+   "en": "stage",
+   "pos": "Noun",
+   "rank": 2004,
+   "example": "dans pisti",
+   "example_en": "dance stage"
+  },
+  {
+   "tr": "tüp",
+   "en": "tube",
+   "pos": "Noun",
+   "rank": 2005
+  },
+  {
+   "tr": "sör",
+   "en": "sir (all senses)",
+   "pos": "Noun",
+   "rank": 2006
+  },
+  {
+   "tr": "heyecanlanmak",
+   "en": "to get excited",
+   "pos": "Verb",
+   "rank": 2007
+  },
+  {
+   "tr": "hitap",
+   "en": "address",
+   "pos": "Noun",
+   "rank": 2008
+  },
+  {
+   "tr": "aktör",
+   "en": "actor (man who performs in a theatrical…",
+   "pos": "Noun",
+   "rank": 2009
+  },
+  {
+   "tr": "kaçık",
+   "en": "crazy",
+   "pos": "Adj",
+   "rank": 2010
+  },
+  {
+   "tr": "sinek",
+   "en": "fly (insect)",
+   "pos": "Noun",
+   "rank": 2011
+  },
+  {
+   "tr": "çiftçi",
+   "en": "farmer (person who works the land or wh…",
+   "pos": "Noun",
+   "rank": 2012
+  },
+  {
+   "tr": "abartmak",
+   "en": "to exaggerate",
+   "pos": "Verb",
+   "rank": 2013
+  },
+  {
+   "tr": "itfaiye",
+   "en": "fire brigade",
+   "pos": "Noun",
+   "rank": 2014
+  },
+  {
+   "tr": "sembol",
+   "en": "symbol",
+   "pos": "Noun",
+   "rank": 2015
+  },
+  {
+   "tr": "açacak",
+   "en": "key",
+   "pos": "Noun",
+   "rank": 2016
+  },
+  {
+   "tr": "af",
+   "en": "pardon",
+   "pos": "Noun",
+   "rank": 2017
+  },
+  {
+   "tr": "mazeret",
+   "en": "A valid justification that allows a mis…",
+   "pos": "Noun",
+   "rank": 2018
+  },
+  {
+   "tr": "kur",
+   "en": "exchange rate",
+   "pos": "Noun",
+   "rank": 2019
+  },
+  {
+   "tr": "pratik",
+   "en": "practical",
+   "pos": "Adj",
+   "rank": 2020
+  },
+  {
+   "tr": "birdenbire",
+   "en": "all of a sudden",
+   "pos": "Adv",
+   "rank": 2021
+  },
+  {
+   "tr": "sorgulamak",
+   "en": "to question",
+   "pos": "Verb",
+   "rank": 2022
+  },
+  {
+   "tr": "kullanım",
+   "en": "use",
+   "pos": "Noun",
+   "rank": 2023
+  },
+  {
+   "tr": "durak",
+   "en": "stop",
+   "pos": "Noun",
+   "rank": 2024
+  },
+  {
+   "tr": "tank",
+   "en": "tank",
+   "pos": "Noun",
+   "rank": 2025
+  },
+  {
+   "tr": "kültür",
+   "en": "culture",
+   "pos": "Noun",
+   "rank": 2026
+  },
+  {
+   "tr": "yüklemek",
+   "en": "to load",
+   "pos": "Verb",
+   "rank": 2027
+  },
+  {
+   "tr": "şık",
+   "en": "chic",
+   "pos": "Adj",
+   "rank": 2028
+  },
+  {
+   "tr": "talimat",
+   "en": "instructions",
+   "pos": "Noun",
+   "rank": 2029
+  },
+  {
+   "tr": "yastık",
+   "en": "pillow",
+   "pos": "Noun",
+   "rank": 2030
+  },
+  {
+   "tr": "kır",
+   "en": "gray",
+   "pos": "Adj",
+   "rank": 2031
+  },
+  {
+   "tr": "kollamak",
+   "en": "to protect",
+   "pos": "Verb",
+   "rank": 2032,
+   "example": "Kardeşini orada kolla",
+   "example_en": "Protect your brother there"
+  },
+  {
+   "tr": "zemin",
+   "en": "ground",
+   "pos": "Noun",
+   "rank": 2033
+  },
+  {
+   "tr": "dalmak",
+   "en": "to dive",
+   "pos": "Verb",
+   "rank": 2034,
+   "example": "adam odaya daldı",
+   "example_en": "the man entered the room"
+  },
+  {
+   "tr": "çifte",
+   "en": "twofold",
+   "pos": "Adj",
+   "rank": 2035,
+   "example": "çifte hasat",
+   "example_en": "a twofold harvest"
+  },
+  {
+   "tr": "elmas",
+   "en": "diamond",
+   "pos": "Adj",
+   "rank": 2036
+  },
+  {
+   "tr": "dövme",
+   "en": "tattoo",
+   "pos": "Noun",
+   "rank": 2037
+  },
+  {
+   "tr": "bıçaklamak",
+   "en": "to stab",
+   "pos": "Verb",
+   "rank": 2038
+  },
+  {
+   "tr": "psikolojik",
+   "en": "psychological",
+   "pos": "Adj",
+   "rank": 2039
+  },
+  {
+   "tr": "haydut",
+   "en": "thug",
+   "pos": "Noun",
+   "rank": 2040
+  },
+  {
+   "tr": "adamak",
+   "en": "to intend or to vow to make an offering…",
+   "pos": "Verb",
+   "rank": 2041,
+   "example": "Bütün hayatını oğluna adadı.",
+   "example_en": "She devoted her whole life to her son."
+  },
+  {
+   "tr": "komplo",
+   "en": "plot",
+   "pos": "Noun",
+   "rank": 2042
+  },
+  {
+   "tr": "delice",
+   "en": "Behaving excessively",
+   "pos": "Adj",
+   "rank": 2043
+  },
+  {
+   "tr": "biyolojik",
+   "en": "biological",
+   "pos": "Adj",
+   "rank": 2044
+  },
+  {
+   "tr": "dolayısıyla",
+   "en": "consequently",
+   "pos": "Adv",
+   "rank": 2045
+  },
+  {
+   "tr": "kalıntı",
+   "en": "A mark",
+   "pos": "Noun",
+   "rank": 2046
+  },
+  {
+   "tr": "inşaat",
+   "en": "construction (as in “under construction…",
+   "pos": "Noun",
+   "rank": 2047
+  },
+  {
+   "tr": "kolye",
+   "en": "necklace",
+   "pos": "Noun",
+   "rank": 2048
+  },
+  {
+   "tr": "komite",
+   "en": "committee",
+   "pos": "Noun",
+   "rank": 2049
+  },
+  {
+   "tr": "desteklemek",
+   "en": "to support",
+   "pos": "Verb",
+   "rank": 2050
+  },
+  {
+   "tr": "plaka",
+   "en": "sheet",
+   "pos": "Noun",
+   "rank": 2051
+  },
+  {
+   "tr": "alfa",
+   "en": "alpha",
+   "pos": "Noun",
+   "rank": 2052
+  },
+  {
+   "tr": "kurbağa",
+   "en": "frog",
+   "pos": "Noun",
+   "rank": 2053
+  },
+  {
+   "tr": "mahal",
+   "en": "place",
+   "pos": "Noun",
+   "rank": 2054
+  },
+  {
+   "tr": "tel",
+   "en": "wire",
+   "pos": "Noun",
+   "rank": 2055,
+   "example": "tambur teli",
+   "example_en": "string of a tambur"
+  },
+  {
+   "tr": "balon",
+   "en": "balloon",
+   "pos": "Noun",
+   "rank": 2056
+  },
+  {
+   "tr": "sığınak",
+   "en": "shelter",
+   "pos": "Noun",
+   "rank": 2057,
+   "example": "tek sığınağı gece olanlar",
+   "example_en": "those whose only shelter is night"
+  },
+  {
+   "tr": "boşalmak",
+   "en": "to discharge",
+   "pos": "Verb",
+   "rank": 2058,
+   "example": "Oda birden boşalıverdi, anlamadım...",
+   "example_en": "I don't get it... the room got empty all of a sudden."
+  },
+  {
+   "tr": "zirve",
+   "en": "mountaintop",
+   "pos": "Noun",
+   "rank": 2059
+  },
+  {
+   "tr": "klinik",
+   "en": "clinic (medical facility",
+   "pos": "Noun",
+   "rank": 2060
+  },
+  {
+   "tr": "halı",
+   "en": "carpet (a fabric used as a floor coveri…",
+   "pos": "Noun",
+   "rank": 2061
+  },
+  {
+   "tr": "duyar",
+   "en": "innervated",
+   "pos": "Adj",
+   "rank": 2062
+  },
+  {
+   "tr": "rekabet",
+   "en": "competition",
+   "pos": "Noun",
+   "rank": 2063
+  },
+  {
+   "tr": "basketbol",
+   "en": "basketball (sports)",
+   "pos": "Noun",
+   "rank": 2064
+  },
+  {
+   "tr": "mahvolmak",
+   "en": "to be ruined",
+   "pos": "Verb",
+   "rank": 2065
+  },
+  {
+   "tr": "ümit",
+   "en": "hope",
+   "pos": "Noun",
+   "rank": 2066
+  },
+  {
+   "tr": "kıl",
+   "en": "peevish",
+   "pos": "Adj",
+   "rank": 2067
+  },
+  {
+   "tr": "gitar",
+   "en": "guitar",
+   "pos": "Noun",
+   "rank": 2068
+  },
+  {
+   "tr": "piyasa",
+   "en": "market",
+   "pos": "Noun",
+   "rank": 2069
+  },
+  {
+   "tr": "kola",
+   "en": "cola (plant)",
+   "pos": "Noun",
+   "rank": 2070
+  },
+  {
+   "tr": "yepyeni",
+   "en": "brand new",
+   "pos": "Adj",
+   "rank": 2071,
+   "example": "Yepyeni bir fikrimiz var.",
+   "example_en": "We have a brand new idea."
+  },
+  {
+   "tr": "tıraş",
+   "en": "shave",
+   "pos": "Noun",
+   "rank": 2072
+  },
+  {
+   "tr": "mürettebat",
+   "en": "crew (of a vessel)",
+   "pos": "Noun",
+   "rank": 2073,
+   "example": "Vapurun mürettebatından üç ve İspanyollardan 20 kişi yaralanmıştır.",
+   "example_en": "Three from the boat's crew and 20 Spanish people were injured."
+  },
+  {
+   "tr": "sapan",
+   "en": "slingshot",
+   "pos": "Noun",
+   "rank": 2075
+  },
+  {
+   "tr": "radyasyon",
+   "en": "radiation",
+   "pos": "Noun",
+   "rank": 2076
+  },
+  {
+   "tr": "penis",
+   "en": "penis",
+   "pos": "Noun",
+   "rank": 2077,
+   "example": "Onun penisinde aşağı doğru bir eğrilik var.",
+   "example_en": "His penis has a downward curvature."
+  },
+  {
+   "tr": "vaftiz",
+   "en": "baptism",
+   "pos": "Noun",
+   "rank": 2078
+  },
+  {
+   "tr": "acıkmak",
+   "en": "to have a strong desire for something",
+   "pos": "Verb",
+   "rank": 2080
+  },
+  {
+   "tr": "girişim",
+   "en": "attempt",
+   "pos": "Noun",
+   "rank": 2081,
+   "example": "girişimde bulunmak",
+   "example_en": "to attempt"
+  },
+  {
+   "tr": "topluluk",
+   "en": "community",
+   "pos": "Noun",
+   "rank": 2082
+  },
+  {
+   "tr": "acilen",
+   "en": "In an urgent manner",
+   "pos": "Adv",
+   "rank": 2083
+  },
+  {
+   "tr": "karmak",
+   "en": "to mix",
+   "pos": "Verb",
+   "rank": 2084,
+   "example": "Kartları kim kardıysa bir daha karmasın lütfen.",
+   "example_en": "Whoever shuffled the cards please don't ever shuffle again."
+  },
+  {
+   "tr": "filo",
+   "en": "fleet",
+   "pos": "Noun",
+   "rank": 2085
+  },
+  {
+   "tr": "yatırmak",
+   "en": "to lay down",
+   "pos": "Verb",
+   "rank": 2086
+  },
+  {
+   "tr": "nesne",
+   "en": "object",
+   "pos": "Noun",
+   "rank": 2087
+  },
+  {
+   "tr": "marka",
+   "en": "brand",
+   "pos": "Noun",
+   "rank": 2088
+  },
+  {
+   "tr": "giyinmek",
+   "en": "to get dressed",
+   "pos": "Verb",
+   "rank": 2089
+  },
+  {
+   "tr": "miras",
+   "en": "inheritance",
+   "pos": "Noun",
+   "rank": 2090
+  },
+  {
+   "tr": "dinî",
+   "en": "religious",
+   "pos": "Adj",
+   "rank": 2091
+  },
+  {
+   "tr": "tanım",
+   "en": "description (sketch or account of anyth…",
+   "pos": "Noun",
+   "rank": 2092
+  },
+  {
+   "tr": "madalya",
+   "en": "medal",
+   "pos": "Noun",
+   "rank": 2093
+  },
+  {
+   "tr": "gözetim",
+   "en": "supervision",
+   "pos": "Noun",
+   "rank": 2094,
+   "example": "gözetim altında tutmak",
+   "example_en": "to keep under observation"
+  },
+  {
+   "tr": "poker",
+   "en": "poker",
+   "pos": "Noun",
+   "rank": 2095
+  },
+  {
+   "tr": "roket",
+   "en": "rocket",
+   "pos": "Noun",
+   "rank": 2096
+  },
+  {
+   "tr": "asil",
+   "en": "noble",
+   "pos": "Adj",
+   "rank": 2097
+  },
+  {
+   "tr": "masal",
+   "en": "fairy tale",
+   "pos": "Noun",
+   "rank": 2098,
+   "example": "bu masalda hiç iyi karakter yok",
+   "example_en": "there aren't any good characters in this fairy tale"
+  },
+  {
+   "tr": "dikiş",
+   "en": "seam",
+   "pos": "Noun",
+   "rank": 2099
+  },
+  {
+   "tr": "mantar",
+   "en": "mushroom",
+   "pos": "Noun",
+   "rank": 2100
+  },
+  {
+   "tr": "balina",
+   "en": "whale",
+   "pos": "Noun",
+   "rank": 2101
+  },
+  {
+   "tr": "kurum",
+   "en": "pride",
+   "pos": "Noun",
+   "rank": 2102
+  },
+  {
+   "tr": "alerji",
+   "en": "allergy",
+   "pos": "Noun",
+   "rank": 2103
+  },
+  {
+   "tr": "şövalye",
+   "en": "knight",
+   "pos": "Noun",
+   "rank": 2104
+  },
+  {
+   "tr": "çalıntı",
+   "en": "stolen",
+   "pos": "Adj",
+   "rank": 2105
+  },
+  {
+   "tr": "felç",
+   "en": "paralysis",
+   "pos": "Noun",
+   "rank": 2106
+  },
+  {
+   "tr": "organize",
+   "en": "organized",
+   "pos": "Adj",
+   "rank": 2107
+  },
+  {
+   "tr": "tenis",
+   "en": "tennis",
+   "pos": "Noun",
+   "rank": 2109
+  },
+  {
+   "tr": "irtibat",
+   "en": "The act of connecting",
+   "pos": "Noun",
+   "rank": 2110
+  },
+  {
+   "tr": "kongre",
+   "en": "congress",
+   "pos": "Noun",
+   "rank": 2111
+  },
+  {
+   "tr": "saldırgan",
+   "en": "aggressive",
+   "pos": "Adj",
+   "rank": 2112
+  },
+  {
+   "tr": "takas",
+   "en": "trade",
+   "pos": "Noun",
+   "rank": 2113
+  },
+  {
+   "tr": "kumandan",
+   "en": "commander",
+   "pos": "Noun",
+   "rank": 2114
+  },
+  {
+   "tr": "denk",
+   "en": "equivalent",
+   "pos": "Adj",
+   "rank": 2115
+  },
+  {
+   "tr": "doku",
+   "en": "tissue (aggregation of cells)",
+   "pos": "Noun",
+   "rank": 2116
+  },
+  {
+   "tr": "lavabo",
+   "en": "washbasin",
+   "pos": "Noun",
+   "rank": 2117
+  },
+  {
+   "tr": "edinmek",
+   "en": "to obtain",
+   "pos": "Verb",
+   "rank": 2118
+  },
+  {
+   "tr": "rozet",
+   "en": "cockade",
+   "pos": "Noun",
+   "rank": 2119
+  },
+  {
+   "tr": "tasarım",
+   "en": "design (specification",
+   "pos": "Noun",
+   "rank": 2120,
+   "example": "Yazılım tasarımı ve uygulaması",
+   "example_en": "Software design and implementation"
+  },
+  {
+   "tr": "batmak",
+   "en": "to sink",
+   "pos": "Verb",
+   "rank": 2121,
+   "example": "Sen de olmazsan eğer, batar artık bu gemi.",
+   "example_en": "Now if you too aren't here, this ship will sink."
+  },
+  {
+   "tr": "şayet",
+   "en": "if (supposing that)",
+   "pos": "Conj",
+   "rank": 2122
+  },
+  {
+   "tr": "koleksiyon",
+   "en": "collection (set of items)",
+   "pos": "Noun",
+   "rank": 2123
+  },
+  {
+   "tr": "kalkışmak",
+   "en": "to begin a task",
+   "pos": "Verb",
+   "rank": 2124,
+   "example": "1941 April 30, headline on page 1 of En Son Havâdis",
+   "example_en": "It is a martial necessity for Germany to capture Gibraltar"
+  },
+  {
+   "tr": "eroin",
+   "en": "heroin",
+   "pos": "Noun",
+   "rank": 2125
+  },
+  {
+   "tr": "yas",
+   "en": "mourning",
+   "pos": "Noun",
+   "rank": 2126
+  },
+  {
+   "tr": "sözcük",
+   "en": "word",
+   "pos": "Noun",
+   "rank": 2127
+  },
+  {
+   "tr": "bakıcı",
+   "en": "nanny",
+   "pos": "Noun",
+   "rank": 2128
+  },
+  {
+   "tr": "beklenmedik",
+   "en": "unexpected",
+   "pos": "Adj",
+   "rank": 2129
+  },
+  {
+   "tr": "memnuniyetle",
+   "en": "with pleasure",
+   "pos": "Adv",
+   "rank": 2130
+  },
+  {
+   "tr": "performans",
+   "en": "performance",
+   "pos": "Noun",
+   "rank": 2131
+  },
+  {
+   "tr": "damat",
+   "en": "bridegroom",
+   "pos": "Noun",
+   "rank": 2132
+  },
+  {
+   "tr": "fakülte",
+   "en": "faculty (division of a university)",
+   "pos": "Noun",
+   "rank": 2133
+  },
+  {
+   "tr": "çeşitli",
+   "en": "varied",
+   "pos": "Adj",
+   "rank": 2134
+  },
+  {
+   "tr": "hayli",
+   "en": "much",
+   "pos": "Adj",
+   "rank": 2135,
+   "example": "Asi nehri üzerindeki köprü bir hayli kalabalıktı.",
+   "example_en": "The bridge over the Orontes River was quite crowded."
+  },
+  {
+   "tr": "yanlışlıkla",
+   "en": "mistakenly",
+   "pos": "Adv",
+   "rank": 2136
+  },
+  {
+   "tr": "taşak",
+   "en": "ball",
+   "pos": "Noun",
+   "rank": 2137,
+   "example": "Taşşağıma top geldi, çocuğum olmayacak...",
+   "example_en": "I got hit on the balls, I won't be able to have children anymore..."
+  },
+  {
+   "tr": "işgal",
+   "en": "occupation (the control of a country or…",
+   "pos": "Noun",
+   "rank": 2138
+  },
+  {
+   "tr": "gözaltı",
+   "en": "custody",
+   "pos": "Noun",
+   "rank": 2139,
+   "example": "gözaltına almak",
+   "example_en": "to take under custody"
+  },
+  {
+   "tr": "çamur",
+   "en": "muddy",
+   "pos": "Adj",
+   "rank": 2141
+  },
+  {
+   "tr": "sıçan",
+   "en": "mouse",
+   "pos": "Noun",
+   "rank": 2142
+  },
+  {
+   "tr": "amiral",
+   "en": "admiral",
+   "pos": "Noun",
+   "rank": 2143
+  },
+  {
+   "tr": "yerli",
+   "en": "local",
+   "pos": "Adj",
+   "rank": 2144
+  },
+  {
+   "tr": "kürek",
+   "en": "oar",
+   "pos": "Noun",
+   "rank": 2145
+  },
+  {
+   "tr": "mesai",
+   "en": "work",
+   "pos": "Noun",
+   "rank": 2146
+  },
+  {
+   "tr": "makale",
+   "en": "article (story",
+   "pos": "Noun",
+   "rank": 2147
+  },
+  {
+   "tr": "inatçı",
+   "en": "stubborn",
+   "pos": "Adj",
+   "rank": 2148
+  },
+  {
+   "tr": "fener",
+   "en": "lantern",
+   "pos": "Noun",
+   "rank": 2149
+  },
+  {
+   "tr": "küçücük",
+   "en": "tiny",
+   "pos": "Adj",
+   "rank": 2150
+  },
+  {
+   "tr": "donanmak",
+   "en": "to dress up",
+   "pos": "Verb",
+   "rank": 2151
+  },
+  {
+   "tr": "kabuk",
+   "en": "The hard layer over or around something…",
+   "pos": "Noun",
+   "rank": 2152
+  },
+  {
+   "tr": "had",
+   "en": "limit",
+   "pos": "Noun",
+   "rank": 2153
+  },
+  {
+   "tr": "gülünç",
+   "en": "laughable",
+   "pos": "Adj",
+   "rank": 2154
+  },
+  {
+   "tr": "sımak",
+   "en": "to break",
+   "pos": "Verb",
+   "rank": 2155
+  },
+  {
+   "tr": "salim",
+   "en": "safe",
+   "pos": "Adj",
+   "rank": 2156
+  },
+  {
+   "tr": "kapılmak",
+   "en": "to drift",
+   "pos": "Verb",
+   "rank": 2157,
+   "example": "Ben onun sözlerine kapıldım.",
+   "example_en": "I was carried away by his/her words."
+  },
+  {
+   "tr": "firma",
+   "en": "firm",
+   "pos": "Noun",
+   "rank": 2158
+  },
+  {
+   "tr": "kafes",
+   "en": "cage",
+   "pos": "Noun",
+   "rank": 2159
+  },
+  {
+   "tr": "dehşet",
+   "en": "magnificent",
+   "pos": "Adj",
+   "rank": 2160,
+   "example": "büyüdükçe dehşet bir şey oluyorsun!",
+   "example_en": "you are becoming something magnificent as you grow up!"
+  },
+  {
+   "tr": "ağ",
+   "en": "a mesh of string",
+   "pos": "Noun",
+   "rank": 2161,
+   "example": "tenis ağı",
+   "example_en": "tennis net"
+  },
+  {
+   "tr": "tabut",
+   "en": "coffin",
+   "pos": "Noun",
+   "rank": 2162
+  },
+  {
+   "tr": "koparmak",
+   "en": "to pluck",
+   "pos": "Verb",
+   "rank": 2163,
+   "example": "gülmekten koparmak",
+   "example_en": "to make someone laugh hysterically"
+  },
+  {
+   "tr": "mafya",
+   "en": "mafia",
+   "pos": "Noun",
+   "rank": 2165
+  },
+  {
+   "tr": "göbek",
+   "en": "navel",
+   "pos": "Noun",
+   "rank": 2166
+  },
+  {
+   "tr": "eylem",
+   "en": "act",
+   "pos": "Noun",
+   "rank": 2167,
+   "example": "terör eylemi",
+   "example_en": "act of terrorism"
+  },
+  {
+   "tr": "şafak",
+   "en": "dawn",
+   "pos": "Noun",
+   "rank": 2168,
+   "example": "Şafak kaç kanka? — On gün.",
+   "example_en": "How long until you come home, bro?\n Ten days."
+  },
+  {
+   "tr": "telsiz",
+   "en": "walkie-talkie",
+   "pos": "Noun",
+   "rank": 2169
+  },
+  {
+   "tr": "başlık",
+   "en": "hat",
+   "pos": "Noun",
+   "rank": 2170
+  },
+  {
+   "tr": "kefalet",
+   "en": "bail",
+   "pos": "Noun",
+   "rank": 2171
+  },
+  {
+   "tr": "ahır",
+   "en": "stable",
+   "pos": "Noun",
+   "rank": 2172
+  },
+  {
+   "tr": "lezbiyen",
+   "en": "lesbian",
+   "pos": "Adj",
+   "rank": 2173
+  },
+  {
+   "tr": "ahlak",
+   "en": "morality (moral behaviour)",
+   "pos": "Noun",
+   "rank": 2174
+  },
+  {
+   "tr": "çeki",
+   "en": "cheki",
+   "pos": "Noun",
+   "rank": 2175
+  },
+  {
+   "tr": "kravat",
+   "en": "necktie",
+   "pos": "Noun",
+   "rank": 2176
+  },
+  {
+   "tr": "apartman",
+   "en": "apartment building",
+   "pos": "Noun",
+   "rank": 2177
+  },
+  {
+   "tr": "zombi",
+   "en": "zombie",
+   "pos": "Noun",
+   "rank": 2178
+  },
+  {
+   "tr": "profil",
+   "en": "profile (shape",
+   "pos": "Noun",
+   "rank": 2179
+  },
+  {
+   "tr": "elektronik",
+   "en": "electronic",
+   "pos": "Adj",
+   "rank": 2180
+  },
+  {
+   "tr": "uğratmak",
+   "en": "to cause",
+   "pos": "Verb",
+   "rank": 2181
+  },
+  {
+   "tr": "çadır",
+   "en": "tent",
+   "pos": "Noun",
+   "rank": 2182,
+   "example": "Çadırı kurmuşsun.",
+   "example_en": "(literally) So, you set up the tent."
+  },
+  {
+   "tr": "ısırmak",
+   "en": "to bite",
+   "pos": "Verb",
+   "rank": 2183,
+   "example": "1936 October 23, advertisement for pest control in Akşam, page 12",
+   "example_en": "Annoying flies are biting your children."
+  },
+  {
+   "tr": "ter",
+   "en": "sweat",
+   "pos": "Noun",
+   "rank": 2184
+  },
+  {
+   "tr": "kılık",
+   "en": "appearance",
+   "pos": "Noun",
+   "rank": 2185
+  },
+  {
+   "tr": "çağ",
+   "en": "era",
+   "pos": "Noun",
+   "rank": 2186
+  },
+  {
+   "tr": "favori",
+   "en": "favourite (UK) / favorite (US)",
+   "pos": "Adj",
+   "rank": 2187
+  },
+  {
+   "tr": "cömert",
+   "en": "generous",
+   "pos": "Adj",
+   "rank": 2188
+  },
+  {
+   "tr": "tümör",
+   "en": "tumor",
+   "pos": "Noun",
+   "rank": 2189
+  },
+  {
+   "tr": "âlem",
+   "en": "world",
+   "pos": "Noun",
+   "rank": 2190,
+   "example": "hayvanlar âlemi",
+   "example_en": "the animal kingdom"
+  },
+  {
+   "tr": "ilişkin",
+   "en": "regarding",
+   "pos": "Postp",
+   "rank": 2191
+  },
+  {
+   "tr": "akademi",
+   "en": "academy",
+   "pos": "Noun",
+   "rank": 2192
+  },
+  {
+   "tr": "gözlem",
+   "en": "observation",
+   "pos": "Noun",
+   "rank": 2193
+  },
+  {
+   "tr": "fren",
+   "en": "brake",
+   "pos": "Noun",
+   "rank": 2194,
+   "example": "el/park/imdat freni",
+   "example_en": "hand/parking/emergency brake"
+  },
+  {
+   "tr": "ikiz",
+   "en": "twin",
+   "pos": "Noun",
+   "rank": 2195
+  },
+  {
+   "tr": "palyaço",
+   "en": "clown",
+   "pos": "Noun",
+   "rank": 2196
+  },
+  {
+   "tr": "ıslak",
+   "en": "wet",
+   "pos": "Adj",
+   "rank": 2197,
+   "example": "Ne olur ıslak ıslak, bakma öyle",
+   "example_en": "Please don’t look at me with your watery eyes"
+  },
+  {
+   "tr": "tohum",
+   "en": "seed (fertilized grain)",
+   "pos": "Noun",
+   "rank": 2198,
+   "example": "tohum zarı",
+   "example_en": "pericarp"
+  },
+  {
+   "tr": "papel",
+   "en": "money",
+   "pos": "Noun",
+   "rank": 2199
+  },
+  {
+   "tr": "tarla",
+   "en": "plantation field",
+   "pos": "Noun",
+   "rank": 2200
+  },
+  {
+   "tr": "öd",
+   "en": "gall",
+   "pos": "Noun",
+   "rank": 2201
+  },
+  {
+   "tr": "afiyet",
+   "en": "health",
+   "pos": "Noun",
+   "rank": 2202
+  },
+  {
+   "tr": "esrar",
+   "en": "marijuana",
+   "pos": "Noun",
+   "rank": 2203
+  },
+  {
+   "tr": "lüks",
+   "en": "luxury",
+   "pos": "Adj",
+   "rank": 2204
+  },
+  {
+   "tr": "takdim",
+   "en": "introduction to a writing",
+   "pos": "Noun",
+   "rank": 2205
+  },
+  {
+   "tr": "kopmak",
+   "en": "to break",
+   "pos": "Verb",
+   "rank": 2206
+  },
+  {
+   "tr": "tükenmek",
+   "en": "to be exhausted",
+   "pos": "Verb",
+   "rank": 2207
+  },
+  {
+   "tr": "fişek",
+   "en": "cartridge",
+   "pos": "Noun",
+   "rank": 2208
+  },
+  {
+   "tr": "antik",
+   "en": "antique",
+   "pos": "Adj",
+   "rank": 2209
+  },
+  {
+   "tr": "atmosfer",
+   "en": "atmosphere (gases surrounding the Earth)",
+   "pos": "Noun",
+   "rank": 2210
+  },
+  {
+   "tr": "baskın",
+   "en": "more powerful",
+   "pos": "Adj",
+   "rank": 2211
+  },
+  {
+   "tr": "fiş",
+   "en": "sales receipt",
+   "pos": "Noun",
+   "rank": 2212
+  },
+  {
+   "tr": "çatışmak",
+   "en": "to clash",
+   "pos": "Verb",
+   "rank": 2213
+  },
+  {
+   "tr": "toplu",
+   "en": "collective",
+   "pos": "Adj",
+   "rank": 2214,
+   "example": "toplu yaşam",
+   "example_en": "collective life"
+  },
+  {
+   "tr": "aya",
+   "en": "palm (of hand)",
+   "pos": "Noun",
+   "rank": 2215
+  },
+  {
+   "tr": "titremek",
+   "en": "to tremble",
+   "pos": "Verb",
+   "rank": 2216
+  },
+  {
+   "tr": "değersiz",
+   "en": "worthless",
+   "pos": "Adj",
+   "rank": 2217
+  },
+  {
+   "tr": "negatif",
+   "en": "negative (not constructive)",
+   "pos": "Adj",
+   "rank": 2219
+  },
+  {
+   "tr": "gey",
+   "en": "a gay",
+   "pos": "Noun",
+   "rank": 2220
+  },
+  {
+   "tr": "kesik",
+   "en": "Having been cut",
+   "pos": "Adj",
+   "rank": 2222
+  },
+  {
+   "tr": "cephe",
+   "en": "façade",
+   "pos": "Noun",
+   "rank": 2223
+  },
+  {
+   "tr": "yargılamak",
+   "en": "to judge",
+   "pos": "Verb",
+   "rank": 2224
+  },
+  {
+   "tr": "plaj",
+   "en": "sandy beach",
+   "pos": "Noun",
+   "rank": 2225,
+   "example": "Halk parasız plâjlarda nasıl eğlenip zevk sürüyor?",
+   "example_en": "How do people have fun and enjoy themselves on free beaches?"
+  },
+  {
+   "tr": "saklı",
+   "en": "secret",
+   "pos": "Adj",
+   "rank": 2226
+  },
+  {
+   "tr": "tahrik",
+   "en": "An act of arousing sexual desire",
+   "pos": "Noun",
+   "rank": 2227
+  },
+  {
+   "tr": "varsaymak",
+   "en": "to assume",
+   "pos": "Verb",
+   "rank": 2228
+  },
+  {
+   "tr": "psikopat",
+   "en": "psychopath",
+   "pos": "Noun",
+   "rank": 2229
+  },
+  {
+   "tr": "kel",
+   "en": "bald",
+   "pos": "Adj",
+   "rank": 2230
+  },
+  {
+   "tr": "farz",
+   "en": "supposition",
+   "pos": "Noun",
+   "rank": 2231
+  },
+  {
+   "tr": "batman",
+   "en": "A unit of weight formerly used in the O…",
+   "pos": "Noun",
+   "rank": 2232
+  },
+  {
+   "tr": "geliştirmek",
+   "en": "to advance",
+   "pos": "Verb",
+   "rank": 2233
+  },
+  {
+   "tr": "canlanmak",
+   "en": "to be brought to life",
+   "pos": "Verb",
+   "rank": 2234
+  },
+  {
+   "tr": "pound",
+   "en": "pound (unit of currency used in the Uni…",
+   "pos": "Noun",
+   "rank": 2235
+  },
+  {
+   "tr": "egzersiz",
+   "en": "exercise",
+   "pos": "Noun",
+   "rank": 2237
+  },
+  {
+   "tr": "sal",
+   "en": "raft",
+   "pos": "Noun",
+   "rank": 2238
+  },
+  {
+   "tr": "taramak",
+   "en": "to comb",
+   "pos": "Verb",
+   "rank": 2239
+  },
+  {
+   "tr": "tabak",
+   "en": "dish",
+   "pos": "Noun",
+   "rank": 2240
+  },
+  {
+   "tr": "kucak",
+   "en": "embrace",
+   "pos": "Noun",
+   "rank": 2241,
+   "example": "Yalnız kalan kadın titriyor, hıçkırarak kucağındaki yavrusunu sıkıyor.",
+   "example_en": "The lonely woman is shaking, sobbing and squeezing her baby in her arms."
+  },
+  {
+   "tr": "erişim",
+   "en": "access",
+   "pos": "Noun",
+   "rank": 2242
+  },
+  {
+   "tr": "emmek",
+   "en": "to suck",
+   "pos": "Verb",
+   "rank": 2243,
+   "example": "Vampirler kan emen hayalî yaratıklardır.",
+   "example_en": "Vampires are imaginary blood sucking creatures."
+  },
+  {
+   "tr": "mezuniyet",
+   "en": "graduation",
+   "pos": "Noun",
+   "rank": 2244
+  },
+  {
+   "tr": "enfeksiyon",
+   "en": "infection",
+   "pos": "Noun",
+   "rank": 2245
+  },
+  {
+   "tr": "düş",
+   "en": "dream",
+   "pos": "Noun",
+   "rank": 2246
+  },
+  {
+   "tr": "komünist",
+   "en": "communist (of",
+   "pos": "Noun",
+   "rank": 2247
+  },
+  {
+   "tr": "pozitif",
+   "en": "positive",
+   "pos": "Adj",
+   "rank": 2248
+  },
+  {
+   "tr": "yürek",
+   "en": "heart",
+   "pos": "Noun",
+   "rank": 2249,
+   "example": "Ah, kimin için atıyor bu yürek? / Söyle, kimin için atıyor bu yürek?",
+   "example_en": "Ah, for whom does this heart beat? / Tell me, for whom does this heart beat?"
+  },
+  {
+   "tr": "ölçü",
+   "en": "measurement",
+   "pos": "Noun",
+   "rank": 2250
+  },
+  {
+   "tr": "insanoğlu",
+   "en": "mankind",
+   "pos": "Noun",
+   "rank": 2251
+  },
+  {
+   "tr": "antrenman",
+   "en": "training",
+   "pos": "Noun",
+   "rank": 2252
+  },
+  {
+   "tr": "kokteyl",
+   "en": "cocktail (alcoholic beverage)",
+   "pos": "Noun",
+   "rank": 2253
+  },
+  {
+   "tr": "indirim",
+   "en": "discount (reduction in price)",
+   "pos": "Noun",
+   "rank": 2254
+  },
+  {
+   "tr": "sosis",
+   "en": "sausage",
+   "pos": "Noun",
+   "rank": 2255
+  },
+  {
+   "tr": "portakal",
+   "en": "orange (tree and fruit)",
+   "pos": "Noun",
+   "rank": 2256
+  },
+  {
+   "tr": "muhabir",
+   "en": "correspondent",
+   "pos": "Noun",
+   "rank": 2257
+  },
+  {
+   "tr": "barınmak",
+   "en": "to shelter",
+   "pos": "Verb",
+   "rank": 2258
+  },
+  {
+   "tr": "sefil",
+   "en": "miserable",
+   "pos": "Adj",
+   "rank": 2260
+  },
+  {
+   "tr": "sözde",
+   "en": "so-called",
+   "pos": "Adj",
+   "rank": 2261
+  },
+  {
+   "tr": "dolandırıcı",
+   "en": "scammer",
+   "pos": "Noun",
+   "rank": 2262
+  },
+  {
+   "tr": "kavuşmak",
+   "en": "to meet",
+   "pos": "Verb",
+   "rank": 2263,
+   "example": "Biz tüm hedeflerimize kavuştuk.",
+   "example_en": "We have achieved all our goals."
+  },
+  {
+   "tr": "nedense",
+   "en": "Due to an unknown",
+   "pos": "Adv",
+   "rank": 2264
+  },
+  {
+   "tr": "koşu",
+   "en": "run",
+   "pos": "Noun",
+   "rank": 2265
+  },
+  {
+   "tr": "layık",
+   "en": "worthy",
+   "pos": "Adj",
+   "rank": 2266
+  },
+  {
+   "tr": "keçi",
+   "en": "synonym of inatçı (“stubborn",
+   "pos": "Adj",
+   "rank": 2267
+  },
+  {
+   "tr": "öncelik",
+   "en": "priority",
+   "pos": "Noun",
+   "rank": 2269
+  },
+  {
+   "tr": "aranmak",
+   "en": "passive of aramak:",
+   "pos": "Verb",
+   "rank": 2270
+  },
+  {
+   "tr": "muz",
+   "en": "banana",
+   "pos": "Noun",
+   "rank": 2271
+  },
+  {
+   "tr": "sade",
+   "en": "plain",
+   "pos": "Adj",
+   "rank": 2272
+  },
+  {
+   "tr": "rekor",
+   "en": "record (most extreme known value of som…",
+   "pos": "Noun",
+   "rank": 2273
+  },
+  {
+   "tr": "tereddüt",
+   "en": "hesitation",
+   "pos": "Noun",
+   "rank": 2274
+  },
+  {
+   "tr": "ısı",
+   "en": "heat",
+   "pos": "Noun",
+   "rank": 2275
+  },
+  {
+   "tr": "teşvik",
+   "en": "incentive",
+   "pos": "Noun",
+   "rank": 2276
+  },
+  {
+   "tr": "doğan",
+   "en": "hawk",
+   "pos": "Noun",
+   "rank": 2277
+  },
+  {
+   "tr": "soyunmak",
+   "en": "to undress",
+   "pos": "Verb",
+   "rank": 2278,
+   "example": "şimdi de öğretmenliğe soyunmuş",
+   "example_en": "he now declared himself a teacher"
+  },
+  {
+   "tr": "boğa",
+   "en": "bull",
+   "pos": "Noun",
+   "rank": 2279
+  },
+  {
+   "tr": "ekran",
+   "en": "monitor",
+   "pos": "Noun",
+   "rank": 2280,
+   "example": "ekran görüntüsü",
+   "example_en": "screenshot"
+  },
+  {
+   "tr": "zalim",
+   "en": "cruel",
+   "pos": "Adj",
+   "rank": 2281
+  },
+  {
+   "tr": "feci",
+   "en": "disastrous",
+   "pos": "Adj",
+   "rank": 2282
+  },
+  {
+   "tr": "gelişim",
+   "en": "growth",
+   "pos": "Noun",
+   "rank": 2283
+  },
+  {
+   "tr": "sayım",
+   "en": "an act of counting",
+   "pos": "Noun",
+   "rank": 2284
+  },
+  {
+   "tr": "kalça",
+   "en": "butt",
+   "pos": "Noun",
+   "rank": 2285
+  },
+  {
+   "tr": "şarj",
+   "en": "charge",
+   "pos": "Noun",
+   "rank": 2286
+  },
+  {
+   "tr": "dönüm",
+   "en": "a turn",
+   "pos": "Noun",
+   "rank": 2287,
+   "example": "dönüm noktası",
+   "example_en": "turning point"
+  },
+  {
+   "tr": "kazara",
+   "en": "randomly",
+   "pos": "Adv",
+   "rank": 2288
+  },
+  {
+   "tr": "sanık",
+   "en": "suspect",
+   "pos": "Noun",
+   "rank": 2289
+  },
+  {
+   "tr": "battaniye",
+   "en": "blanket",
+   "pos": "Noun",
+   "rank": 2290
+  },
+  {
+   "tr": "tabur",
+   "en": "battalion",
+   "pos": "Noun",
+   "rank": 2291
+  },
+  {
+   "tr": "motel",
+   "en": "motel",
+   "pos": "Noun",
+   "rank": 2292
+  },
+  {
+   "tr": "santim",
+   "en": "centime (unit of currency in various co…",
+   "pos": "Noun",
+   "rank": 2293
+  },
+  {
+   "tr": "ulu",
+   "en": "grand",
+   "pos": "Adj",
+   "rank": 2294,
+   "example": "Ulu babamız, bizi işit ve bize hayır eyle.",
+   "example_en": "Our great father, hear us and do us good."
+  },
+  {
+   "tr": "kiralamak",
+   "en": "to rent",
+   "pos": "Verb",
+   "rank": 2295
+  },
+  {
+   "tr": "saygın",
+   "en": "respected",
+   "pos": "Adj",
+   "rank": 2296
+  },
+  {
+   "tr": "aşçı",
+   "en": "cook",
+   "pos": "Noun",
+   "rank": 2297
+  },
+  {
+   "tr": "çizim",
+   "en": "drawing",
+   "pos": "Noun",
+   "rank": 2298
+  },
+  {
+   "tr": "boks",
+   "en": "boxing",
+   "pos": "Noun",
+   "rank": 2299
+  },
+  {
+   "tr": "paramparça",
+   "en": "shattered",
+   "pos": "Adj",
+   "rank": 2300
+  },
+  {
+   "tr": "şüphelenmek",
+   "en": "to doubt",
+   "pos": "Verb",
+   "rank": 2301
+  },
+  {
+   "tr": "aldırmak",
+   "en": "causative of almak (transitive)",
+   "pos": "Verb",
+   "rank": 2302,
+   "example": "böbrek taşı aldırmak",
+   "example_en": "to have kidney stones removed"
+  },
+  {
+   "tr": "küvet",
+   "en": "bathtub",
+   "pos": "Noun",
+   "rank": 2303
+  },
+  {
+   "tr": "bavul",
+   "en": "suitcase",
+   "pos": "Noun",
+   "rank": 2304
+  },
+  {
+   "tr": "mülk",
+   "en": "country",
+   "pos": "Noun",
+   "rank": 2305
+  },
+  {
+   "tr": "ellemek",
+   "en": "to handle",
+   "pos": "Verb",
+   "rank": 2306
+  },
+  {
+   "tr": "rehin",
+   "en": "pledge",
+   "pos": "Noun",
+   "rank": 2307
+  },
+  {
+   "tr": "doğrulamak",
+   "en": "to verify",
+   "pos": "Verb",
+   "rank": 2308
+  },
+  {
+   "tr": "sektör",
+   "en": "sector",
+   "pos": "Noun",
+   "rank": 2309
+  },
+  {
+   "tr": "çember",
+   "en": "an empty circle",
+   "pos": "Noun",
+   "rank": 2310
+  },
+  {
+   "tr": "avantaj",
+   "en": "advantage",
+   "pos": "Noun",
+   "rank": 2311
+  },
+  {
+   "tr": "kutup",
+   "en": "pole",
+   "pos": "Noun",
+   "rank": 2312
+  },
+  {
+   "tr": "rastlamak",
+   "en": "to encounter",
+   "pos": "Verb",
+   "rank": 2313
+  },
+  {
+   "tr": "karavan",
+   "en": "caravan (a furnished vehicle towed behi…",
+   "pos": "Noun",
+   "rank": 2314
+  },
+  {
+   "tr": "örgüt",
+   "en": "organization",
+   "pos": "Noun",
+   "rank": 2315,
+   "example": "terör örgütleri",
+   "example_en": "terrorist organisations, terror groups"
+  },
+  {
+   "tr": "gözetlemek",
+   "en": "to surveil",
+   "pos": "Verb",
+   "rank": 2316
+  },
+  {
+   "tr": "vaktinde",
+   "en": "in time",
+   "pos": "Adv",
+   "rank": 2317
+  },
+  {
+   "tr": "suikast",
+   "en": "malice aforethought",
+   "pos": "Noun",
+   "rank": 2318
+  },
+  {
+   "tr": "sirk",
+   "en": "circus",
+   "pos": "Noun",
+   "rank": 2319
+  },
+  {
+   "tr": "mekik",
+   "en": "shuttle",
+   "pos": "Noun",
+   "rank": 2320
+  },
+  {
+   "tr": "kuzu",
+   "en": "lamb",
+   "pos": "Noun",
+   "rank": 2321
+  },
+  {
+   "tr": "atom",
+   "en": "atom",
+   "pos": "Noun",
+   "rank": 2322
+  },
+  {
+   "tr": "direksiyon",
+   "en": "steering wheel",
+   "pos": "Noun",
+   "rank": 2323
+  },
+  {
+   "tr": "asmak",
+   "en": "to drape",
+   "pos": "Verb",
+   "rank": 2324
+  },
+  {
+   "tr": "tanış",
+   "en": "familiar",
+   "pos": "Adj",
+   "rank": 2325
+  },
+  {
+   "tr": "izlem",
+   "en": "follow-up",
+   "pos": "Noun",
+   "rank": 2326
+  },
+  {
+   "tr": "aklamak",
+   "en": "to clear",
+   "pos": "Verb",
+   "rank": 2327
+  },
+  {
+   "tr": "çöplük",
+   "en": "rathole",
+   "pos": "Noun",
+   "rank": 2328
+  },
+  {
+   "tr": "tipik",
+   "en": "typical",
+   "pos": "Adj",
+   "rank": 2329
+  },
+  {
+   "tr": "trajik",
+   "en": "disastrous",
+   "pos": "Adj",
+   "rank": 2330
+  },
+  {
+   "tr": "batırmak",
+   "en": "to mess up",
+   "pos": "Verb",
+   "rank": 2331
+  },
+  {
+   "tr": "kumarhane",
+   "en": "gaming house",
+   "pos": "Noun",
+   "rank": 2332
+  },
+  {
+   "tr": "rastgele",
+   "en": "random",
+   "pos": "Adj",
+   "rank": 2333
+  },
+  {
+   "tr": "tipi",
+   "en": "blizzard",
+   "pos": "Noun",
+   "rank": 2334
+  },
+  {
+   "tr": "karışım",
+   "en": "mixture",
+   "pos": "Noun",
+   "rank": 2335
+  },
+  {
+   "tr": "sörf",
+   "en": "surfing",
+   "pos": "Noun",
+   "rank": 2336
+  },
+  {
+   "tr": "yalamak",
+   "en": "to sweep",
+   "pos": "Verb",
+   "rank": 2337,
+   "example": "Küçük kızımı yerdeki kırık kavanozdan reçel yalarken gördüm.",
+   "example_en": "I saw my little daughter while she was licking jam from the broken jar on the floor."
+  },
+  {
+   "tr": "votka",
+   "en": "vodka",
+   "pos": "Noun",
+   "rank": 2338
+  },
+  {
+   "tr": "elçi",
+   "en": "ambassador",
+   "pos": "Noun",
+   "rank": 2339,
+   "example": "elçi göndermek",
+   "example_en": "to send a messenger"
+  },
+  {
+   "tr": "böbrek",
+   "en": "kidney (an organ in the body)",
+   "pos": "Noun",
+   "rank": 2340
+  },
+  {
+   "tr": "tembel",
+   "en": "lazy",
+   "pos": "Adj",
+   "rank": 2341
+  },
+  {
+   "tr": "kurul",
+   "en": "board (of directors",
+   "pos": "Noun",
+   "rank": 2342,
+   "example": "BM Genel Kurulu",
+   "example_en": "UN General Assembly"
+  },
+  {
+   "tr": "çiş",
+   "en": "urine",
+   "pos": "Noun",
+   "rank": 2343
+  },
+  {
+   "tr": "şaşmak",
+   "en": "to be amazed at",
+   "pos": "Verb",
+   "rank": 2344
+  },
+  {
+   "tr": "kâse",
+   "en": "bowl",
+   "pos": "Noun",
+   "rank": 2345
+  },
+  {
+   "tr": "vefat",
+   "en": "passing away",
+   "pos": "Noun",
+   "rank": 2346
+  },
+  {
+   "tr": "kelepçe",
+   "en": "handcuffs",
+   "pos": "Noun",
+   "rank": 2347,
+   "example": "İlhan abim çekirdek gibi çitler o ters kelepçeyi.",
+   "example_en": "Our brother İlhan is gonna break those handcuffs as easily as cracking sunflower seeds."
+  },
+  {
+   "tr": "kazanç",
+   "en": "profit",
+   "pos": "Noun",
+   "rank": 2348
+  },
+  {
+   "tr": "yörünge",
+   "en": "orbit (path of one object around anothe…",
+   "pos": "Noun",
+   "rank": 2349
+  },
+  {
+   "tr": "parfüm",
+   "en": "perfume",
+   "pos": "Noun",
+   "rank": 2350
+  },
+  {
+   "tr": "bilgin",
+   "en": "A learned person",
+   "pos": "Noun",
+   "rank": 2351
+  },
+  {
+   "tr": "yapay",
+   "en": "artificial",
+   "pos": "Adj",
+   "rank": 2352
+  },
+  {
+   "tr": "temsilci",
+   "en": "envoy",
+   "pos": "Noun",
+   "rank": 2353
+  },
+  {
+   "tr": "yeraltı",
+   "en": "underground",
+   "pos": "Adj",
+   "rank": 2354
+  },
+  {
+   "tr": "yarasa",
+   "en": "bat (winged mammal)",
+   "pos": "Noun",
+   "rank": 2355
+  },
+  {
+   "tr": "kıyamet",
+   "en": "judgement day",
+   "pos": "Noun",
+   "rank": 2356,
+   "example": "1947 November 25, Jeep advertisement in Cumhuriyet",
+   "example_en": "Kar kıyamet vızgelir\nHandles snow and bad weather with ease"
+  },
+  {
+   "tr": "çekinmek",
+   "en": "to hesitate to do",
+   "pos": "Verb",
+   "rank": 2358
+  },
+  {
+   "tr": "uzanmak",
+   "en": "to lie (be in a horizontal position)",
+   "pos": "Verb",
+   "rank": 2359
+  },
+  {
+   "tr": "potansiyel",
+   "en": "potential",
+   "pos": "Adj",
+   "rank": 2360
+  },
+  {
+   "tr": "kolej",
+   "en": "college",
+   "pos": "Noun",
+   "rank": 2361
+  },
+  {
+   "tr": "zarif",
+   "en": "elegant (exhibiting elegance)",
+   "pos": "Adj",
+   "rank": 2362
+  },
+  {
+   "tr": "sakal",
+   "en": "beard",
+   "pos": "Noun",
+   "rank": 2363
+  },
+  {
+   "tr": "millî",
+   "en": "national",
+   "pos": "Adj",
+   "rank": 2364
+  },
+  {
+   "tr": "bataklık",
+   "en": "swamp",
+   "pos": "Noun",
+   "rank": 2365
+  },
+  {
+   "tr": "terör",
+   "en": "terroristic action",
+   "pos": "Noun",
+   "rank": 2366
+  },
+  {
+   "tr": "teselli",
+   "en": "consolation",
+   "pos": "Noun",
+   "rank": 2367
+  },
+  {
+   "tr": "öykü",
+   "en": "story",
+   "pos": "Noun",
+   "rank": 2368
+  },
+  {
+   "tr": "anmak",
+   "en": "to make mention of",
+   "pos": "Verb",
+   "rank": 2369,
+   "example": "Onu buralarda ”Aslan” diye anarlar.",
+   "example_en": "They call him “Aslan” here."
+  },
+  {
+   "tr": "yoksun",
+   "en": "deprived",
+   "pos": "Adj",
+   "rank": 2370
+  },
+  {
+   "tr": "tokat",
+   "en": "slap (a blow)",
+   "pos": "Noun",
+   "rank": 2371
+  },
+  {
+   "tr": "olgun",
+   "en": "mature",
+   "pos": "Adj",
+   "rank": 2372
+  },
+  {
+   "tr": "hamburger",
+   "en": "hamburger",
+   "pos": "Noun",
+   "rank": 2373
+  },
+  {
+   "tr": "çıkarım",
+   "en": "inference",
+   "pos": "Noun",
+   "rank": 2374
+  },
+  {
+   "tr": "nüfus",
+   "en": "population",
+   "pos": "Noun",
+   "rank": 2375
+  },
+  {
+   "tr": "yağı",
+   "en": "enemy",
+   "pos": "Noun",
+   "rank": 2376
+  },
+  {
+   "tr": "re",
+   "en": "The name of the Latin script letter R/r",
+   "pos": "Noun",
+   "rank": 2377
+  },
+  {
+   "tr": "deyiş",
+   "en": "idiom",
+   "pos": "Noun",
+   "rank": 2378
+  },
+  {
+   "tr": "bez",
+   "en": "cloth",
+   "pos": "Noun",
+   "rank": 2379
+  },
+  {
+   "tr": "tema",
+   "en": "theme",
+   "pos": "Noun",
+   "rank": 2380
+  },
+  {
+   "tr": "sabıka",
+   "en": "criminal record",
+   "pos": "Noun",
+   "rank": 2381
+  },
+  {
+   "tr": "ekonomik",
+   "en": "economic",
+   "pos": "Adj",
+   "rank": 2382
+  },
+  {
+   "tr": "âdeta",
+   "en": "almost",
+   "pos": "Adv",
+   "rank": 2383
+  },
+  {
+   "tr": "zarf",
+   "en": "envelope",
+   "pos": "Noun",
+   "rank": 2384
+  },
+  {
+   "tr": "ekonomi",
+   "en": "economy",
+   "pos": "Noun",
+   "rank": 2385
+  },
+  {
+   "tr": "yapışmak",
+   "en": "to stick (to)",
+   "pos": "Verb",
+   "rank": 2386
+  },
+  {
+   "tr": "alkış",
+   "en": "applause",
+   "pos": "Noun",
+   "rank": 2387,
+   "example": "Sana alkış yok anca finger snap",
+   "example_en": "No applause to you, only finger snap."
+  },
+  {
+   "tr": "kumanda",
+   "en": "order",
+   "pos": "Noun",
+   "rank": 2388
+  },
+  {
+   "tr": "sakız",
+   "en": "chewing gum",
+   "pos": "Noun",
+   "rank": 2389
+  },
+  {
+   "tr": "ezmek",
+   "en": "to crush",
+   "pos": "Verb",
+   "rank": 2390,
+   "example": "10k ezdiğimiz gecenin sabahı",
+   "example_en": "the morning after the night we blew 10 grand"
+  },
+  {
+   "tr": "acınmak",
+   "en": "to be pitied",
+   "pos": "Verb",
+   "rank": 2391
+  },
+  {
+   "tr": "başkent",
+   "en": "capital",
+   "pos": "Noun",
+   "rank": 2392
+  },
+  {
+   "tr": "balayı",
+   "en": "honeymoon",
+   "pos": "Noun",
+   "rank": 2393
+  },
+  {
+   "tr": "arı",
+   "en": "clean",
+   "pos": "Adj",
+   "rank": 2394
+  },
+  {
+   "tr": "beter",
+   "en": "worse",
+   "pos": "Adj",
+   "rank": 2395,
+   "example": "beter ol!",
+   "example_en": "go to hell! (literally, “become worse”)"
+  },
+  {
+   "tr": "başvuru",
+   "en": "appeal",
+   "pos": "Noun",
+   "rank": 2396
+  },
+  {
+   "tr": "tamamlamak",
+   "en": "to complete",
+   "pos": "Verb",
+   "rank": 2397
+  },
+  {
+   "tr": "iken",
+   "en": "while",
+   "pos": "Adv",
+   "rank": 2398,
+   "example": "19 yaşımda iken",
+   "example_en": "when I was 19"
+  },
+  {
+   "tr": "terapist",
+   "en": "therapist",
+   "pos": "Noun",
+   "rank": 2399
+  },
+  {
+   "tr": "tıkmak",
+   "en": "to stuff",
+   "pos": "Verb",
+   "rank": 2400
+  },
+  {
+   "tr": "kontrat",
+   "en": "contract",
+   "pos": "Noun",
+   "rank": 2401
+  },
+  {
+   "tr": "üretim",
+   "en": "production (act of producing",
+   "pos": "Noun",
+   "rank": 2402
+  },
+  {
+   "tr": "katkı",
+   "en": "contribution",
+   "pos": "Noun",
+   "rank": 2403
+  },
+  {
+   "tr": "kaplumbağa",
+   "en": "turtle",
+   "pos": "Noun",
+   "rank": 2404,
+   "example": "kara kaplumbağası",
+   "example_en": "tortoise"
+  },
+  {
+   "tr": "tekrarlamak",
+   "en": "to do something again",
+   "pos": "Verb",
+   "rank": 2405
+  },
+  {
+   "tr": "solunum",
+   "en": "respiration (process of inhaling and ex…",
+   "pos": "Noun",
+   "rank": 2406
+  },
+  {
+   "tr": "sanal",
+   "en": "virtual",
+   "pos": "Adj",
+   "rank": 2407
+  },
+  {
+   "tr": "belirtmek",
+   "en": "causative of belirmek",
+   "pos": "Verb",
+   "rank": 2408
+  },
+  {
+   "tr": "menajer",
+   "en": "manager",
+   "pos": "Noun",
+   "rank": 2409
+  },
+  {
+   "tr": "itibar",
+   "en": "consideration",
+   "pos": "Noun",
+   "rank": 2410
+  },
+  {
+   "tr": "uçurum",
+   "en": "cliff",
+   "pos": "Noun",
+   "rank": 2411
+  },
+  {
+   "tr": "şöhret",
+   "en": "fame",
+   "pos": "Noun",
+   "rank": 2412
+  },
+  {
+   "tr": "asit",
+   "en": "acid",
+   "pos": "Noun",
+   "rank": 2413
+  },
+  {
+   "tr": "büyükelçi",
+   "en": "ambassador",
+   "pos": "Noun",
+   "rank": 2414
+  },
+  {
+   "tr": "maça",
+   "en": "♠",
+   "pos": "Noun",
+   "rank": 2415
+  },
+  {
+   "tr": "hokey",
+   "en": "hockey",
+   "pos": "Noun",
+   "rank": 2416
+  },
+  {
+   "tr": "evcil",
+   "en": "domestic",
+   "pos": "Adj",
+   "rank": 2417
+  },
+  {
+   "tr": "sis",
+   "en": "fog",
+   "pos": "Noun",
+   "rank": 2418
+  },
+  {
+   "tr": "üzüm",
+   "en": "grape",
+   "pos": "Noun",
+   "rank": 2419
+  },
+  {
+   "tr": "mevsim",
+   "en": "season (part of a year)",
+   "pos": "Noun",
+   "rank": 2420
+  },
+  {
+   "tr": "ufacık",
+   "en": "tiny",
+   "pos": "Adj",
+   "rank": 2421
+  },
+  {
+   "tr": "yıkım",
+   "en": "destruction",
+   "pos": "Noun",
+   "rank": 2422
+  },
+  {
+   "tr": "otopark",
+   "en": "parking lot",
+   "pos": "Noun",
+   "rank": 2423
+  },
+  {
+   "tr": "bedenî",
+   "en": "physical",
+   "pos": "Adj",
+   "rank": 2424
+  },
+  {
+   "tr": "olağan",
+   "en": "usual",
+   "pos": "Adj",
+   "rank": 2425
+  },
+  {
+   "tr": "yen",
+   "en": "sleeve (part of a garment that covers t…",
+   "pos": "Noun",
+   "rank": 2426,
+   "example": "Kısa yenli bir gömlek.",
+   "example_en": "A shirt with short sleeves."
+  },
+  {
+   "tr": "biber",
+   "en": "pepper (vegetable",
+   "pos": "Noun",
+   "rank": 2427
+  },
+  {
+   "tr": "cilt",
+   "en": "skin",
+   "pos": "Noun",
+   "rank": 2428
+  },
+  {
+   "tr": "bahşiş",
+   "en": "baksheesh",
+   "pos": "Noun",
+   "rank": 2429
+  },
+  {
+   "tr": "değerlendirmek",
+   "en": "to evaluate",
+   "pos": "Verb",
+   "rank": 2430,
+   "example": "O halde durma değerlendir hadi eline geçen bütün fırsatları",
+   "example_en": "So don't wait—go ahead and make the most of every opportunity that comes your way"
+  },
+  {
+   "tr": "taban",
+   "en": "sole (of a foot)",
+   "pos": "Noun",
+   "rank": 2431,
+   "example": "ayak tabanı",
+   "example_en": "foot sole"
+  },
+  {
+   "tr": "nezaket",
+   "en": "civility",
+   "pos": "Noun",
+   "rank": 2432
+  },
+  {
+   "tr": "katliam",
+   "en": "massacre",
+   "pos": "Noun",
+   "rank": 2433
+  },
+  {
+   "tr": "diri",
+   "en": "alive",
+   "pos": "Adj",
+   "rank": 2434
+  },
+  {
+   "tr": "ajans",
+   "en": "agency",
+   "pos": "Noun",
+   "rank": 2435
+  },
+  {
+   "tr": "kukla",
+   "en": "puppet (string puppet)",
+   "pos": "Noun",
+   "rank": 2436
+  },
+  {
+   "tr": "ortalama",
+   "en": "average",
+   "pos": "Adj",
+   "rank": 2437
+  },
+  {
+   "tr": "dönenmek",
+   "en": "to circle in a continuous manner",
+   "pos": "Verb",
+   "rank": 2438
+  },
+  {
+   "tr": "ciğer",
+   "en": "general name of lung and liver",
+   "pos": "Noun",
+   "rank": 2439
+  },
+  {
+   "tr": "kelle",
+   "en": "bullion-shaped confectionery",
+   "pos": "Noun",
+   "rank": 2440,
+   "example": "Akşam yemeği olarak koyun kellesi yedik.",
+   "example_en": "We ate sheep head as dinner."
+  },
+  {
+   "tr": "seçkin",
+   "en": "exclusive",
+   "pos": "Adj",
+   "rank": 2441
+  },
+  {
+   "tr": "sığır",
+   "en": "cattle",
+   "pos": "Noun",
+   "rank": 2442
+  },
+  {
+   "tr": "doğurmak",
+   "en": "to breed",
+   "pos": "Verb",
+   "rank": 2443,
+   "example": "Üç çocuk doğurmasına rağmen nasıl böyle seksi göründüğünü anlamıyorum.",
+   "example_en": "I don't understand how she can look so sexy despite having had three kids."
+  },
+  {
+   "tr": "sakat",
+   "en": "disabled",
+   "pos": "Adj",
+   "rank": 2444,
+   "example": "Merdiveni oraya dayama, her an düşebilir, yaptığın çok sakat bir iş.",
+   "example_en": "Don't lean the ladder there, it can fall any moment, what you're doing is very risky."
+  },
+  {
+   "tr": "süslü",
+   "en": "fancy",
+   "pos": "Adj",
+   "rank": 2445,
+   "example": "Şu süslü ağaca yılbaşı ağacı denir",
+   "example_en": "That decorated tree is called a christmas tree"
+  },
+  {
+   "tr": "vardiya",
+   "en": "watch on a board ship",
+   "pos": "Noun",
+   "rank": 2446
+  },
+  {
+   "tr": "plak",
+   "en": "gramophone record",
+   "pos": "Noun",
+   "rank": 2447
+  },
+  {
+   "tr": "pil",
+   "en": "battery",
+   "pos": "Noun",
+   "rank": 2448
+  },
+  {
+   "tr": "ameliyathane",
+   "en": "operating theatre",
+   "pos": "Noun",
+   "rank": 2449
+  },
+  {
+   "tr": "mama",
+   "en": "baby food",
+   "pos": "Noun",
+   "rank": 2450
+  },
+  {
+   "tr": "satranç",
+   "en": "chess",
+   "pos": "Noun",
+   "rank": 2451,
+   "example": "altıgen satranç",
+   "example_en": "hexagonal chess"
+  },
+  {
+   "tr": "nü",
+   "en": "A nude painting",
+   "pos": "Noun",
+   "rank": 2452
+  },
+  {
+   "tr": "kapamak",
+   "en": "to close",
+   "pos": "Verb",
+   "rank": 2454
+  },
+  {
+   "tr": "hakikaten",
+   "en": "really",
+   "pos": "Adv",
+   "rank": 2455
+  },
+  {
+   "tr": "yak",
+   "en": "yak (ox-like mammal)",
+   "pos": "Noun",
+   "rank": 2456
+  },
+  {
+   "tr": "nefis",
+   "en": "delicious",
+   "pos": "Adj",
+   "rank": 2457
+  },
+  {
+   "tr": "izlenim",
+   "en": "impression",
+   "pos": "Noun",
+   "rank": 2458,
+   "example": "ilk izlenim",
+   "example_en": "first impression"
+  },
+  {
+   "tr": "vatan",
+   "en": "homeland",
+   "pos": "Noun",
+   "rank": 2459
+  },
+  {
+   "tr": "mikrofon",
+   "en": "microphone",
+   "pos": "Noun",
+   "rank": 2460
+  },
+  {
+   "tr": "burs",
+   "en": "scholarship (grant to student)",
+   "pos": "Noun",
+   "rank": 2461
+  },
+  {
+   "tr": "saçmak",
+   "en": "to scatter",
+   "pos": "Verb",
+   "rank": 2462
+  },
+  {
+   "tr": "özgü",
+   "en": "peculiar to",
+   "pos": "Adj",
+   "rank": 2463
+  },
+  {
+   "tr": "tırmanmak",
+   "en": "to cling with the claws or fingertips",
+   "pos": "Verb",
+   "rank": 2464
+  },
+  {
+   "tr": "jet",
+   "en": "jet",
+   "pos": "Noun",
+   "rank": 2465
+  },
+  {
+   "tr": "terketmek",
+   "en": "to forsake",
+   "pos": "Verb",
+   "rank": 2466
+  },
+  {
+   "tr": "koordinat",
+   "en": "coordinate",
+   "pos": "Noun",
+   "rank": 2467
+  },
+  {
+   "tr": "grip",
+   "en": "flu",
+   "pos": "Noun",
+   "rank": 2468
+  },
+  {
+   "tr": "kaçınılmaz",
+   "en": "unavoidable",
+   "pos": "Adj",
+   "rank": 2469
+  },
+  {
+   "tr": "küfür",
+   "en": "blasphemy",
+   "pos": "Noun",
+   "rank": 2470
+  },
+  {
+   "tr": "ziyade",
+   "en": "many",
+   "pos": "Adj",
+   "rank": 2471
+  },
+  {
+   "tr": "zira",
+   "en": "because",
+   "pos": "Conj",
+   "rank": 2472
+  },
+  {
+   "tr": "bütçe",
+   "en": "budget",
+   "pos": "Noun",
+   "rank": 2473
+  },
+  {
+   "tr": "şahin",
+   "en": "buzzard",
+   "pos": "Noun",
+   "rank": 2474,
+   "example": "Rize'de atmaca ve şahin güzellik festivali düzenlendi",
+   "example_en": "Hawk and sparrowhawk beauty festival organized in Rize"
+  },
+  {
+   "tr": "haç",
+   "en": "Christian cross",
+   "pos": "Noun",
+   "rank": 2475
+  },
+  {
+   "tr": "onbaşı",
+   "en": "corporal",
+   "pos": "Noun",
+   "rank": 2476
+  },
+  {
+   "tr": "depresyon",
+   "en": "depression",
+   "pos": "Noun",
+   "rank": 2477
+  },
+  {
+   "tr": "gök",
+   "en": "blue",
+   "pos": "Adj",
+   "rank": 2478,
+   "example": "gök gözlü",
+   "example_en": "blue-eyed"
+  },
+  {
+   "tr": "has",
+   "en": "inherent in",
+   "pos": "Adj",
+   "rank": 2479
+  },
+  {
+   "tr": "rezervasyon",
+   "en": "reservation",
+   "pos": "Noun",
+   "rank": 2480
+  },
+  {
+   "tr": "sürüklemek",
+   "en": "to drag (pull along the ground)",
+   "pos": "Verb",
+   "rank": 2481
+  },
+  {
+   "tr": "pusu",
+   "en": "ambush",
+   "pos": "Noun",
+   "rank": 2482
+  },
+  {
+   "tr": "küresel",
+   "en": "spherical",
+   "pos": "Adj",
+   "rank": 2483
+  },
+  {
+   "tr": "mevzu",
+   "en": "topic",
+   "pos": "Noun",
+   "rank": 2484
+  },
+  {
+   "tr": "gezinti",
+   "en": "A stroll",
+   "pos": "Noun",
+   "rank": 2485
+  },
+  {
+   "tr": "kargaşa",
+   "en": "confusion",
+   "pos": "Noun",
+   "rank": 2486
+  },
+  {
+   "tr": "infaz",
+   "en": "execution",
+   "pos": "Noun",
+   "rank": 2487
+  },
+  {
+   "tr": "rezalet",
+   "en": "disaster",
+   "pos": "Noun",
+   "rank": 2488
+  },
+  {
+   "tr": "ipek",
+   "en": "silken",
+   "pos": "Adj",
+   "rank": 2489
+  },
+  {
+   "tr": "dostluk",
+   "en": "friendship",
+   "pos": "Noun",
+   "rank": 2490
+  },
+  {
+   "tr": "turnuva",
+   "en": "tournament",
+   "pos": "Noun",
+   "rank": 2491
+  },
+  {
+   "tr": "komisyon",
+   "en": "commission",
+   "pos": "Noun",
+   "rank": 2492
+  },
+  {
+   "tr": "revir",
+   "en": "infirmary",
+   "pos": "Noun",
+   "rank": 2493
+  },
+  {
+   "tr": "öneri",
+   "en": "suggestion",
+   "pos": "Noun",
+   "rank": 2494
+  },
+  {
+   "tr": "saygıdeğer",
+   "en": "worthy to be respected",
+   "pos": "Adj",
+   "rank": 2495,
+   "example": "Saygıdeğer kabine üyeleri...",
+   "example_en": "Honorable cabinet members..."
+  },
+  {
+   "tr": "partner",
+   "en": "partner",
+   "pos": "Noun",
+   "rank": 2496
+  },
+  {
+   "tr": "görsel",
+   "en": "Relating to the sense of vision",
+   "pos": "Adj",
+   "rank": 2497
+  },
+  {
+   "tr": "fasulye",
+   "en": "bean",
+   "pos": "Noun",
+   "rank": 2498
+  },
+  {
+   "tr": "kaçakçı",
+   "en": "smuggler",
+   "pos": "Noun",
+   "rank": 2499
+  },
+  {
+   "tr": "yüzleşmek",
+   "en": "to face (one's fears",
+   "pos": "Verb",
+   "rank": 2500,
+   "example": "Ben onunla her zaman yüzleşebilirim.",
+   "example_en": "I can always face him."
+  },
+  {
+   "tr": "oylamak",
+   "en": "to elect",
+   "pos": "Verb",
+   "rank": 2501
+  },
+  {
+   "tr": "karmaşa",
+   "en": "chaos",
+   "pos": "Noun",
+   "rank": 2502
+  },
+  {
+   "tr": "mühim",
+   "en": "important (having relevant and crucial…",
+   "pos": "Adj",
+   "rank": 2503
+  },
+  {
+   "tr": "karınca",
+   "en": "ant",
+   "pos": "Noun",
+   "rank": 2504
+  },
+  {
+   "tr": "karaciğer",
+   "en": "liver (organ of the body)",
+   "pos": "Noun",
+   "rank": 2505
+  },
+  {
+   "tr": "gizlemek",
+   "en": "to camouflage",
+   "pos": "Verb",
+   "rank": 2506
+  },
+  {
+   "tr": "manyetik",
+   "en": "magnetic",
+   "pos": "Adj",
+   "rank": 2507
+  },
+  {
+   "tr": "yelken",
+   "en": "sail",
+   "pos": "Noun",
+   "rank": 2508
+  },
+  {
+   "tr": "dük",
+   "en": "duke (male ruler of a duchy)",
+   "pos": "Noun",
+   "rank": 2509
+  },
+  {
+   "tr": "kaşık",
+   "en": "spoon",
+   "pos": "Noun",
+   "rank": 2510
+  },
+  {
+   "tr": "ayin",
+   "en": "rite",
+   "pos": "Noun",
+   "rank": 2511
+  },
+  {
+   "tr": "konuk",
+   "en": "guest",
+   "pos": "Noun",
+   "rank": 2512
+  },
+  {
+   "tr": "tahammül",
+   "en": "endurance",
+   "pos": "Noun",
+   "rank": 2513
+  },
+  {
+   "tr": "prosedür",
+   "en": "procedure",
+   "pos": "Noun",
+   "rank": 2514
+  },
+  {
+   "tr": "yüzüstü",
+   "en": "face-down",
+   "pos": "Adv",
+   "rank": 2515,
+   "example": "Dişçi, kendini yüzüstü bir kanepeye attı.",
+   "example_en": "The dentist, threw himself on the sofa face-down."
+  },
+  {
+   "tr": "seslenmek",
+   "en": "to call (to cry or shout)",
+   "pos": "Verb",
+   "rank": 2516
+  },
+  {
+   "tr": "enkaz",
+   "en": "ruins",
+   "pos": "Noun",
+   "rank": 2517
+  },
+  {
+   "tr": "cezaevi",
+   "en": "prison (place of long-term confinement…",
+   "pos": "Noun",
+   "rank": 2518
+  },
+  {
+   "tr": "kabile",
+   "en": "tribe",
+   "pos": "Noun",
+   "rank": 2519
+  },
+  {
+   "tr": "güvercin",
+   "en": "dove",
+   "pos": "Noun",
+   "rank": 2520
+  },
+  {
+   "tr": "barmen",
+   "en": "barkeeper",
+   "pos": "Noun",
+   "rank": 2521
+  },
+  {
+   "tr": "kayak",
+   "en": "ski",
+   "pos": "Noun",
+   "rank": 2522
+  },
+  {
+   "tr": "atılgan",
+   "en": "aggressive",
+   "pos": "Adj",
+   "rank": 2523,
+   "example": "Yıldız Gemisi Atılgan",
+   "example_en": "Starship Enterprise"
+  },
+  {
+   "tr": "bağırsak",
+   "en": "intestine",
+   "pos": "Noun",
+   "rank": 2524
+  },
+  {
+   "tr": "bant",
+   "en": "tape",
+   "pos": "Noun",
+   "rank": 2525
+  },
+  {
+   "tr": "yıkamak",
+   "en": "to wash",
+   "pos": "Verb",
+   "rank": 2526,
+   "example": "Arabamı yıkayacağım.",
+   "example_en": "I will wash my car."
+  },
+  {
+   "tr": "diken",
+   "en": "thorn (sharp protective spine of a plan…",
+   "pos": "Noun",
+   "rank": 2527
+  },
+  {
+   "tr": "rehabilitasyon",
+   "en": "rehabilitation",
+   "pos": "Noun",
+   "rank": 2528
+  },
+  {
+   "tr": "inci",
+   "en": "pearl",
+   "pos": "Adj",
+   "rank": 2529
+  },
+  {
+   "tr": "dönüşüm",
+   "en": "transformation",
+   "pos": "Noun",
+   "rank": 2530
+  },
+  {
+   "tr": "örtbas",
+   "en": "cover-up",
+   "pos": "Noun",
+   "rank": 2531,
+   "example": "Bu kadar büyük bir örtbas görmemiştim",
+   "example_en": "I haven't seen a cover-up this big"
+  },
+  {
+   "tr": "versiyon",
+   "en": "version",
+   "pos": "Noun",
+   "rank": 2532
+  },
+  {
+   "tr": "menü",
+   "en": "menu",
+   "pos": "Noun",
+   "rank": 2533,
+   "example": "Menüyü görebilir miyim, lütfen?",
+   "example_en": "May I see the menu, please?"
+  },
+  {
+   "tr": "kaos",
+   "en": "chaos (state of disorder)",
+   "pos": "Noun",
+   "rank": 2534
+  },
+  {
+   "tr": "vekil",
+   "en": "agent",
+   "pos": "Noun",
+   "rank": 2535
+  },
+  {
+   "tr": "odun",
+   "en": "rude",
+   "pos": "Adj",
+   "rank": 2536,
+   "example": "Ne odunsun be!",
+   "example_en": "You're so obtuse!"
+  },
+  {
+   "tr": "gerzek",
+   "en": "idiotic",
+   "pos": "Adj",
+   "rank": 2537
+  },
+  {
+   "tr": "inme",
+   "en": "stroke",
+   "pos": "Noun",
+   "rank": 2538
+  },
+  {
+   "tr": "taç",
+   "en": "crown",
+   "pos": "Noun",
+   "rank": 2539
+  },
+  {
+   "tr": "tansiyon",
+   "en": "tension",
+   "pos": "Noun",
+   "rank": 2540
+  },
+  {
+   "tr": "organik",
+   "en": "organic",
+   "pos": "Adj",
+   "rank": 2541
+  },
+  {
+   "tr": "teyit",
+   "en": "supporting",
+   "pos": "Noun",
+   "rank": 2542
+  },
+  {
+   "tr": "kin",
+   "en": "grudge",
+   "pos": "Noun",
+   "rank": 2543
+  },
+  {
+   "tr": "buluş",
+   "en": "finding",
+   "pos": "Noun",
+   "rank": 2544
+  },
+  {
+   "tr": "sperm",
+   "en": "semen (male reproductory fluid)",
+   "pos": "Noun",
+   "rank": 2545
+  },
+  {
+   "tr": "kristal",
+   "en": "made of crystal",
+   "pos": "Adj",
+   "rank": 2546
+  },
+  {
+   "tr": "ayırt",
+   "en": "A difference",
+   "pos": "Noun",
+   "rank": 2547
+  },
+  {
+   "tr": "kuyu",
+   "en": "any deep hole dug into the ground",
+   "pos": "Noun",
+   "rank": 2548
+  },
+  {
+   "tr": "telgraf",
+   "en": "telegraph",
+   "pos": "Noun",
+   "rank": 2549
+  },
+  {
+   "tr": "soylu",
+   "en": "noble",
+   "pos": "Adj",
+   "rank": 2550
+  },
+  {
+   "tr": "lisans",
+   "en": "licence",
+   "pos": "Noun",
+   "rank": 2551
+  },
+  {
+   "tr": "fidye",
+   "en": "ransom",
+   "pos": "Noun",
+   "rank": 2552
+  },
+  {
+   "tr": "şapşal",
+   "en": "silly",
+   "pos": "Adj",
+   "rank": 2553,
+   "example": "Pisi pisi, gel buraya seni küçük şapşal şey, gel buraya!",
+   "example_en": "Pss psst, come here you silly little thing, come here!"
+  },
+  {
+   "tr": "domates",
+   "en": "tomato",
+   "pos": "Noun",
+   "rank": 2554
+  },
+  {
+   "tr": "sabun",
+   "en": "soap",
+   "pos": "Noun",
+   "rank": 2555
+  },
+  {
+   "tr": "enteresan",
+   "en": "interesting",
+   "pos": "Adj",
+   "rank": 2556
+  },
+  {
+   "tr": "ayrılık",
+   "en": "separation",
+   "pos": "Noun",
+   "rank": 2557
+  },
+  {
+   "tr": "ahlaki",
+   "en": "moral",
+   "pos": "Adj",
+   "rank": 2558
+  },
+  {
+   "tr": "yuvarlak",
+   "en": "round (circular or cylindrical)",
+   "pos": "Adj",
+   "rank": 2559
+  },
+  {
+   "tr": "disiplin",
+   "en": "discipline (controlled behaviour)",
+   "pos": "Noun",
+   "rank": 2560
+  },
+  {
+   "tr": "perişan",
+   "en": "scattered",
+   "pos": "Adj",
+   "rank": 2561
+  },
+  {
+   "tr": "yürütmek",
+   "en": "to conduct",
+   "pos": "Verb",
+   "rank": 2562
+  },
+  {
+   "tr": "malum",
+   "en": "known",
+   "pos": "Adj",
+   "rank": 2563
+  },
+  {
+   "tr": "çiğnemek",
+   "en": "to chew",
+   "pos": "Verb",
+   "rank": 2564
+  },
+  {
+   "tr": "yaşlanmak",
+   "en": "to age",
+   "pos": "Verb",
+   "rank": 2565
+  },
+  {
+   "tr": "köstebek",
+   "en": "mole",
+   "pos": "Noun",
+   "rank": 2566
+  },
+  {
+   "tr": "diyar",
+   "en": "country",
+   "pos": "Noun",
+   "rank": 2567
+  },
+  {
+   "tr": "komedi",
+   "en": "comedy (dramatic work that is light and…",
+   "pos": "Noun",
+   "rank": 2568
+  },
+  {
+   "tr": "ısınmak",
+   "en": "to get warm",
+   "pos": "Verb",
+   "rank": 2569
+  },
+  {
+   "tr": "poz",
+   "en": "pose",
+   "pos": "Noun",
+   "rank": 2570
+  },
+  {
+   "tr": "etiket",
+   "en": "label",
+   "pos": "Noun",
+   "rank": 2571
+  },
+  {
+   "tr": "tost",
+   "en": "melt sandwich",
+   "pos": "Noun",
+   "rank": 2572
+  },
+  {
+   "tr": "evrim",
+   "en": "evolution",
+   "pos": "Noun",
+   "rank": 2573
+  },
+  {
+   "tr": "kasten",
+   "en": "intentionally",
+   "pos": "Adv",
+   "rank": 2574
+  },
+  {
+   "tr": "deprem",
+   "en": "earthquake",
+   "pos": "Noun",
+   "rank": 2575
+  },
+  {
+   "tr": "matmazel",
+   "en": "mademoiselle",
+   "pos": "Noun",
+   "rank": 2576
+  },
+  {
+   "tr": "uşak",
+   "en": "male servant",
+   "pos": "Noun",
+   "rank": 2577
+  },
+  {
+   "tr": "çizme",
+   "en": "boot",
+   "pos": "Noun",
+   "rank": 2578
+  },
+  {
+   "tr": "bekçi",
+   "en": "guard",
+   "pos": "Noun",
+   "rank": 2579
+  },
+  {
+   "tr": "yanık",
+   "en": "Something that is burnt or burning",
+   "pos": "Adj",
+   "rank": 2581
+  },
+  {
+   "tr": "etek",
+   "en": "skirt",
+   "pos": "Noun",
+   "rank": 2582
+  },
+  {
+   "tr": "müddet",
+   "en": "period of time",
+   "pos": "Noun",
+   "rank": 2583
+  },
+  {
+   "tr": "makas",
+   "en": "scissors",
+   "pos": "Noun",
+   "rank": 2584,
+   "example": "makasla kesmek",
+   "example_en": "to cut with scissors"
+  },
+  {
+   "tr": "blöf",
+   "en": "bluff",
+   "pos": "Noun",
+   "rank": 2585
+  },
+  {
+   "tr": "teşebbüs",
+   "en": "effort",
+   "pos": "Noun",
+   "rank": 2586
+  },
+  {
+   "tr": "memleket",
+   "en": "homeland",
+   "pos": "Noun",
+   "rank": 2587,
+   "example": "Memleket nere?",
+   "example_en": "Where are you from?"
+  },
+  {
+   "tr": "efsanevi",
+   "en": "legendary",
+   "pos": "Adj",
+   "rank": 2588
+  },
+  {
+   "tr": "finansal",
+   "en": "financial",
+   "pos": "Adj",
+   "rank": 2589
+  },
+  {
+   "tr": "soluk",
+   "en": "Having lost color",
+   "pos": "Adj",
+   "rank": 2590
+  },
+  {
+   "tr": "sızıntı",
+   "en": "A leak",
+   "pos": "Noun",
+   "rank": 2591
+  },
+  {
+   "tr": "ilkel",
+   "en": "primal",
+   "pos": "Adj",
+   "rank": 2592,
+   "example": "ilkel aletler",
+   "example_en": "primitive tools"
+  },
+  {
+   "tr": "opera",
+   "en": "opera",
+   "pos": "Noun",
+   "rank": 2593
+  },
+  {
+   "tr": "piknik",
+   "en": "picnic (outdoor meal)",
+   "pos": "Noun",
+   "rank": 2594
+  },
+  {
+   "tr": "ideal",
+   "en": "ideal",
+   "pos": "Adj",
+   "rank": 2595
+  },
+  {
+   "tr": "balta",
+   "en": "axe",
+   "pos": "Noun",
+   "rank": 2596,
+   "example": "Balta bilemek",
+   "example_en": "to sharpen an axe"
+  },
+  {
+   "tr": "frekans",
+   "en": "frequency",
+   "pos": "Noun",
+   "rank": 2597
+  },
+  {
+   "tr": "skandal",
+   "en": "scandal (incident that brings disgrace)",
+   "pos": "Noun",
+   "rank": 2598
+  },
+  {
+   "tr": "ispat",
+   "en": "proof",
+   "pos": "Noun",
+   "rank": 2599
+  },
+  {
+   "tr": "ifşa",
+   "en": "exposé",
+   "pos": "Noun",
+   "rank": 2600
+  },
+  {
+   "tr": "lazer",
+   "en": "laser",
+   "pos": "Noun",
+   "rank": 2601
+  },
+  {
+   "tr": "kıskanç",
+   "en": "jealous",
+   "pos": "Adj",
+   "rank": 2602
+  },
+  {
+   "tr": "argo",
+   "en": "slang",
+   "pos": "Noun",
+   "rank": 2603
+  },
+  {
+   "tr": "çim",
+   "en": "grass",
+   "pos": "Noun",
+   "rank": 2604
+  },
+  {
+   "tr": "susamak",
+   "en": "to feel the need to drink water",
+   "pos": "Verb",
+   "rank": 2605,
+   "example": "Ekonomi, onların sahip olduğu becerilere susamıştı.",
+   "example_en": "The economy longed for the skills they possessed."
+  },
+  {
+   "tr": "yaygın",
+   "en": "widespread",
+   "pos": "Adj",
+   "rank": 2606
+  },
+  {
+   "tr": "motosiklet",
+   "en": "motorcycle",
+   "pos": "Noun",
+   "rank": 2607
+  },
+  {
+   "tr": "övgü",
+   "en": "compliment",
+   "pos": "Noun",
+   "rank": 2608,
+   "example": "övgü yağdırmak",
+   "example_en": "to drown with compliments, praise, etc."
+  },
+  {
+   "tr": "ziyan",
+   "en": "Damage",
+   "pos": "Noun",
+   "rank": 2609
+  },
+  {
+   "tr": "içgüdü",
+   "en": "instinct",
+   "pos": "Noun",
+   "rank": 2610
+  },
+  {
+   "tr": "hâliyle",
+   "en": "as it is",
+   "pos": "Adv",
+   "rank": 2611
+  },
+  {
+   "tr": "yayınlamak",
+   "en": "synonym of yayımlamak",
+   "pos": "Verb",
+   "rank": 2612
+  },
+  {
+   "tr": "striptiz",
+   "en": "striptease",
+   "pos": "Noun",
+   "rank": 2613
+  },
+  {
+   "tr": "diyet",
+   "en": "diet",
+   "pos": "Noun",
+   "rank": 2614
+  },
+  {
+   "tr": "grev",
+   "en": "strike (labor action)",
+   "pos": "Noun",
+   "rank": 2615
+  },
+  {
+   "tr": "paça",
+   "en": "trotter (feet of animals used as food)",
+   "pos": "Noun",
+   "rank": 2616
+  },
+  {
+   "tr": "deyim",
+   "en": "phrase",
+   "pos": "Noun",
+   "rank": 2617
+  },
+  {
+   "tr": "turist",
+   "en": "tourist",
+   "pos": "Noun",
+   "rank": 2618
+  },
+  {
+   "tr": "akis",
+   "en": "reverse",
+   "pos": "Noun",
+   "rank": 2619
+  },
+  {
+   "tr": "acemi",
+   "en": "inexperienced",
+   "pos": "Adj",
+   "rank": 2620
+  },
+  {
+   "tr": "cümle",
+   "en": "sentence",
+   "pos": "Noun",
+   "rank": 2621
+  },
+  {
+   "tr": "ısırık",
+   "en": "bite",
+   "pos": "Noun",
+   "rank": 2622
+  },
+  {
+   "tr": "manken",
+   "en": "mannequin",
+   "pos": "Noun",
+   "rank": 2623
+  },
+  {
+   "tr": "ihmal",
+   "en": "negligence",
+   "pos": "Noun",
+   "rank": 2624
+  },
+  {
+   "tr": "halim",
+   "en": "gentle",
+   "pos": "Adj",
+   "rank": 2625
+  },
+  {
+   "tr": "zorunlu",
+   "en": "mandatory",
+   "pos": "Adj",
+   "rank": 2626
+  },
+  {
+   "tr": "tanrıça",
+   "en": "goddess",
+   "pos": "Noun",
+   "rank": 2627
+  },
+  {
+   "tr": "federasyon",
+   "en": "federation",
+   "pos": "Noun",
+   "rank": 2628
+  },
+  {
+   "tr": "dayanıklı",
+   "en": "heavy-duty",
+   "pos": "Adj",
+   "rank": 2629
+  },
+  {
+   "tr": "mobilya",
+   "en": "furniture",
+   "pos": "Noun",
+   "rank": 2630
+  },
+  {
+   "tr": "utangaç",
+   "en": "shy",
+   "pos": "Adj",
+   "rank": 2631
+  },
+  {
+   "tr": "trajedi",
+   "en": "tragedy",
+   "pos": "Noun",
+   "rank": 2632
+  },
+  {
+   "tr": "kampüs",
+   "en": "campus (the grounds or property of a sc…",
+   "pos": "Noun",
+   "rank": 2633
+  },
+  {
+   "tr": "biçmek",
+   "en": "to cut",
+   "pos": "Verb",
+   "rank": 2634
+  },
+  {
+   "tr": "boşanmak",
+   "en": "to get divorce (by the help of a judge",
+   "pos": "Verb",
+   "rank": 2635
+  },
+  {
+   "tr": "vaat",
+   "en": "promise",
+   "pos": "Noun",
+   "rank": 2636
+  },
+  {
+   "tr": "savunmak",
+   "en": "to defend",
+   "pos": "Verb",
+   "rank": 2637
+  },
+  {
+   "tr": "manastır",
+   "en": "abbey",
+   "pos": "Noun",
+   "rank": 2638
+  },
+  {
+   "tr": "nam",
+   "en": "reputation",
+   "pos": "Noun",
+   "rank": 2639
+  },
+  {
+   "tr": "gangster",
+   "en": "gangster",
+   "pos": "Noun",
+   "rank": 2640
+  },
+  {
+   "tr": "sinsi",
+   "en": "sneaky",
+   "pos": "Adj",
+   "rank": 2641
+  },
+  {
+   "tr": "ziyafet",
+   "en": "feast",
+   "pos": "Noun",
+   "rank": 2642
+  },
+  {
+   "tr": "duyarlı",
+   "en": "sensitive",
+   "pos": "Adj",
+   "rank": 2643
+  },
+  {
+   "tr": "bölük",
+   "en": "Braid",
+   "pos": "Noun",
+   "rank": 2644
+  },
+  {
+   "tr": "reis",
+   "en": "captain of a small boat",
+   "pos": "Noun",
+   "rank": 2645
+  },
+  {
+   "tr": "süvari",
+   "en": "rider",
+   "pos": "Noun",
+   "rank": 2646,
+   "example": "1939 September 3, Cumhuriyet, page 1 photo caption",
+   "example_en": "A cavalry detachment belonging to the Polish army."
+  },
+  {
+   "tr": "taht",
+   "en": "throne",
+   "pos": "Noun",
+   "rank": 2647
+  },
+  {
+   "tr": "davetiye",
+   "en": "invitation",
+   "pos": "Noun",
+   "rank": 2648
+  },
+  {
+   "tr": "röntgen",
+   "en": "Photograph made with X-rays",
+   "pos": "Noun",
+   "rank": 2649
+  },
+  {
+   "tr": "te",
+   "en": "The name of the Latin script letter T/t",
+   "pos": "Noun",
+   "rank": 2650
+  },
+  {
+   "tr": "leziz",
+   "en": "delicious",
+   "pos": "Adj",
+   "rank": 2651
+  },
+  {
+   "tr": "davul",
+   "en": "synonym of bateri (“drum kit”)",
+   "pos": "Noun",
+   "rank": 2652
+  },
+  {
+   "tr": "harap",
+   "en": "ruined",
+   "pos": "Adj",
+   "rank": 2653
+  },
+  {
+   "tr": "makarna",
+   "en": "pasta",
+   "pos": "Noun",
+   "rank": 2654
+  },
+  {
+   "tr": "nadiren",
+   "en": "rarely",
+   "pos": "Adv",
+   "rank": 2655
+  },
+  {
+   "tr": "baron",
+   "en": "baron (title of nobility in Europe betw…",
+   "pos": "Noun",
+   "rank": 2656
+  },
+  {
+   "tr": "azgın",
+   "en": "angry",
+   "pos": "Adj",
+   "rank": 2657
+  },
+  {
+   "tr": "eziyet",
+   "en": "torment",
+   "pos": "Noun",
+   "rank": 2658
+  },
+  {
+   "tr": "müzisyen",
+   "en": "musician",
+   "pos": "Noun",
+   "rank": 2659
+  },
+  {
+   "tr": "üzüntü",
+   "en": "sadness",
+   "pos": "Noun",
+   "rank": 2660
+  },
+  {
+   "tr": "söndürmek",
+   "en": "to extinguish",
+   "pos": "Verb",
+   "rank": 2661,
+   "example": "ateş söndürmek",
+   "example_en": "to extinguish fire"
+  },
+  {
+   "tr": "dinozor",
+   "en": "dinosaur",
+   "pos": "Noun",
+   "rank": 2662
+  },
+  {
+   "tr": "çakmak",
+   "en": "to knock in",
+   "pos": "Verb",
+   "rank": 2663
+  },
+  {
+   "tr": "soğan",
+   "en": "scallion",
+   "pos": "Noun",
+   "rank": 2664,
+   "example": "lale soğanları",
+   "example_en": "tulip bulbs"
+  },
+  {
+   "tr": "satılık",
+   "en": "for sale",
+   "pos": "Adj",
+   "rank": 2665,
+   "example": "Bu ev satılık.",
+   "example_en": "This house is for sale."
+  },
+  {
+   "tr": "netice",
+   "en": "consequence",
+   "pos": "Noun",
+   "rank": 2666
+  },
+  {
+   "tr": "arıza",
+   "en": "malfunction",
+   "pos": "Noun",
+   "rank": 2667
+  },
+  {
+   "tr": "uyuşmak",
+   "en": "to be suitable with one another",
+   "pos": "Verb",
+   "rank": 2668
+  },
+  {
+   "tr": "limon",
+   "en": "lemon (citrus fruit)",
+   "pos": "Noun",
+   "rank": 2669
+  },
+  {
+   "tr": "göçmen",
+   "en": "migratory",
+   "pos": "Adj",
+   "rank": 2670
+  },
+  {
+   "tr": "ressam",
+   "en": "painter (artist)",
+   "pos": "Noun",
+   "rank": 2671
+  },
+  {
+   "tr": "tanı",
+   "en": "diagnosis",
+   "pos": "Noun",
+   "rank": 2672
+  },
+  {
+   "tr": "hain",
+   "en": "traitor",
+   "pos": "Noun",
+   "rank": 2673
+  },
+  {
+   "tr": "küp",
+   "en": "large earthenware jug with a narrow neck",
+   "pos": "Noun",
+   "rank": 2674
+  },
+  {
+   "tr": "kurnaz",
+   "en": "sly",
+   "pos": "Adj",
+   "rank": 2675,
+   "example": "Tilki gibi kurnaz.",
+   "example_en": "Sly as a fox."
+  },
+  {
+   "tr": "bariz",
+   "en": "obvious",
+   "pos": "Adj",
+   "rank": 2676
+  },
+  {
+   "tr": "ekipman",
+   "en": "equipment",
+   "pos": "Noun",
+   "rank": 2677
+  },
+  {
+   "tr": "kardinal",
+   "en": "cardinal",
+   "pos": "Noun",
+   "rank": 2678
+  },
+  {
+   "tr": "çapraz",
+   "en": "diagonal",
+   "pos": "Adj",
+   "rank": 2679
+  },
+  {
+   "tr": "kazık",
+   "en": "very difficult",
+   "pos": "Adj",
+   "rank": 2680
+  },
+  {
+   "tr": "cips",
+   "en": "crisps",
+   "pos": "Noun",
+   "rank": 2681
+  },
+  {
+   "tr": "stil",
+   "en": "style (manner of doing something)",
+   "pos": "Noun",
+   "rank": 2682
+  },
+  {
+   "tr": "dümen",
+   "en": "administration",
+   "pos": "Noun",
+   "rank": 2683
+  },
+  {
+   "tr": "dağınık",
+   "en": "scruffy",
+   "pos": "Adj",
+   "rank": 2684
+  },
+  {
+   "tr": "amatör",
+   "en": "amateurish",
+   "pos": "Adj",
+   "rank": 2685
+  },
+  {
+   "tr": "mühür",
+   "en": "seal",
+   "pos": "Noun",
+   "rank": 2686
+  },
+  {
+   "tr": "beceriksiz",
+   "en": "inept",
+   "pos": "Adj",
+   "rank": 2687
+  },
+  {
+   "tr": "özen",
+   "en": "Attention and care given to a task at h…",
+   "pos": "Noun",
+   "rank": 2688
+  },
+  {
+   "tr": "kutsamak",
+   "en": "to bless",
+   "pos": "Verb",
+   "rank": 2689
+  },
+  {
+   "tr": "kısmen",
+   "en": "partly",
+   "pos": "Adv",
+   "rank": 2691
+  },
+  {
+   "tr": "protesto",
+   "en": "protest",
+   "pos": "Noun",
+   "rank": 2692
+  },
+  {
+   "tr": "çürük",
+   "en": "Rotten",
+   "pos": "Adj",
+   "rank": 2693
+  },
+  {
+   "tr": "aydın",
+   "en": "intellectual",
+   "pos": "Noun",
+   "rank": 2694
+  },
+  {
+   "tr": "çarpışmak",
+   "en": "to fight",
+   "pos": "Verb",
+   "rank": 2695,
+   "example": "1936 April 30, headline in Ulusal Birlik page 4",
+   "example_en": "Two ships collided in the English Channel"
+  },
+  {
+   "tr": "strateji",
+   "en": "strategy",
+   "pos": "Noun",
+   "rank": 2696
+  },
+  {
+   "tr": "ayık",
+   "en": "vigilant",
+   "pos": "Adj",
+   "rank": 2697
+  },
+  {
+   "tr": "alışık",
+   "en": "accustomed",
+   "pos": "Adj",
+   "rank": 2698,
+   "example": "ben bunlara alışığım",
+   "example_en": "I'm used to these"
+  },
+  {
+   "tr": "tutunmak",
+   "en": "to hold on",
+   "pos": "Verb",
+   "rank": 2699
+  },
+  {
+   "tr": "tuş",
+   "en": "button (mechanical device meant to be p…",
+   "pos": "Noun",
+   "rank": 2700
+  },
+  {
+   "tr": "gömülü",
+   "en": "buried",
+   "pos": "Adj",
+   "rank": 2701
+  },
+  {
+   "tr": "karma",
+   "en": "mixed",
+   "pos": "Adj",
+   "rank": 2702,
+   "example": "karma eğitim",
+   "example_en": "mixed education (coeducation)"
+  },
+  {
+   "tr": "dal",
+   "en": "branch",
+   "pos": "Noun",
+   "rank": 2703
+  },
+  {
+   "tr": "kasırga",
+   "en": "cyclone",
+   "pos": "Noun",
+   "rank": 2704
+  },
+  {
+   "tr": "havalanmak",
+   "en": "to be ventilated",
+   "pos": "Verb",
+   "rank": 2705
+  },
+  {
+   "tr": "muhasebe",
+   "en": "accounting",
+   "pos": "Noun",
+   "rank": 2706
+  },
+  {
+   "tr": "kimya",
+   "en": "chemistry",
+   "pos": "Noun",
+   "rank": 2707
+  },
+  {
+   "tr": "belirgin",
+   "en": "distinct",
+   "pos": "Adj",
+   "rank": 2708
+  },
+  {
+   "tr": "sivri",
+   "en": "sharp (able to pierce easily)",
+   "pos": "Adj",
+   "rank": 2709
+  },
+  {
+   "tr": "çoğunluk",
+   "en": "majority",
+   "pos": "Noun",
+   "rank": 2710
+  },
+  {
+   "tr": "organizasyon",
+   "en": "organization",
+   "pos": "Noun",
+   "rank": 2711
+  },
+  {
+   "tr": "aksan",
+   "en": "accent",
+   "pos": "Noun",
+   "rank": 2712,
+   "example": "Türk aksanıyla konuşuyor.",
+   "example_en": "He/she speaks with a Turkish accent."
+  },
+  {
+   "tr": "zırh",
+   "en": "armor",
+   "pos": "Noun",
+   "rank": 2713
+  },
+  {
+   "tr": "lobi",
+   "en": "lobby (all senses)",
+   "pos": "Noun",
+   "rank": 2714
+  },
+  {
+   "tr": "lig",
+   "en": "league (organization of sports teams)",
+   "pos": "Noun",
+   "rank": 2715
+  },
+  {
+   "tr": "okur",
+   "en": "literate person",
+   "pos": "Noun",
+   "rank": 2716
+  },
+  {
+   "tr": "bellemek",
+   "en": "to keep in mind",
+   "pos": "Verb",
+   "rank": 2717
+  },
+  {
+   "tr": "şato",
+   "en": "château",
+   "pos": "Noun",
+   "rank": 2718
+  },
+  {
+   "tr": "sulu",
+   "en": "aqueous",
+   "pos": "Adj",
+   "rank": 2719
+  },
+  {
+   "tr": "güreş",
+   "en": "wrestling",
+   "pos": "Noun",
+   "rank": 2720
+  },
+  {
+   "tr": "sıska",
+   "en": "skinny",
+   "pos": "Adj",
+   "rank": 2721
+  },
+  {
+   "tr": "bilge",
+   "en": "wise",
+   "pos": "Adj",
+   "rank": 2722
+  },
+  {
+   "tr": "pençe",
+   "en": "paw",
+   "pos": "Noun",
+   "rank": 2723
+  },
+  {
+   "tr": "oy",
+   "en": "vote",
+   "pos": "Noun",
+   "rank": 2724
+  },
+  {
+   "tr": "karides",
+   "en": "shrimp",
+   "pos": "Noun",
+   "rank": 2725
+  },
+  {
+   "tr": "çekmece",
+   "en": "drawer",
+   "pos": "Noun",
+   "rank": 2726
+  },
+  {
+   "tr": "parazit",
+   "en": "parasite",
+   "pos": "Noun",
+   "rank": 2727
+  },
+  {
+   "tr": "fırça",
+   "en": "brush",
+   "pos": "Noun",
+   "rank": 2728
+  },
+  {
+   "tr": "dijital",
+   "en": "digital",
+   "pos": "Adj",
+   "rank": 2729
+  },
+  {
+   "tr": "aktivite",
+   "en": "activity",
+   "pos": "Noun",
+   "rank": 2730
+  },
+  {
+   "tr": "tekmelemek",
+   "en": "to kick",
+   "pos": "Verb",
+   "rank": 2731
+  },
+  {
+   "tr": "bit",
+   "en": "louse belonging to genus Pediculus",
+   "pos": "Noun",
+   "rank": 2732
+  },
+  {
+   "tr": "gıda",
+   "en": "food",
+   "pos": "Noun",
+   "rank": 2733
+  },
+  {
+   "tr": "çip",
+   "en": "chip",
+   "pos": "Noun",
+   "rank": 2734
+  },
+  {
+   "tr": "mastürbasyon",
+   "en": "masturbation",
+   "pos": "Noun",
+   "rank": 2735
+  },
+  {
+   "tr": "cezalandırmak",
+   "en": "to punish",
+   "pos": "Verb",
+   "rank": 2736,
+   "example": "öğretmenim beni cezalandırdı",
+   "example_en": "my teacher has punished me"
+  },
+  {
+   "tr": "il",
+   "en": "province",
+   "pos": "Noun",
+   "rank": 2737,
+   "example": "İllerin idaresi yetki genişliği esasına dayanır.",
+   "example_en": "The administration of the provinces is based on the principle of delegation of authority."
+  },
+  {
+   "tr": "endüstri",
+   "en": "industry (businesses that produce goods)",
+   "pos": "Noun",
+   "rank": 2738
+  },
+  {
+   "tr": "acıklı",
+   "en": "Causing sadness",
+   "pos": "Adj",
+   "rank": 2739
+  },
+  {
+   "tr": "apaçık",
+   "en": "intensive form of açık (“clear”)",
+   "pos": "Adj",
+   "rank": 2740
+  },
+  {
+   "tr": "soğumak",
+   "en": "to get cold",
+   "pos": "Verb",
+   "rank": 2741
+  },
+  {
+   "tr": "orkestra",
+   "en": "orchestra (large group of musicians who…",
+   "pos": "Noun",
+   "rank": 2742
+  },
+  {
+   "tr": "sterlin",
+   "en": "pound sterling",
+   "pos": "Noun",
+   "rank": 2743
+  },
+  {
+   "tr": "kovan",
+   "en": "beehive",
+   "pos": "Noun",
+   "rank": 2744
+  },
+  {
+   "tr": "muhtaç",
+   "en": "needy",
+   "pos": "Adj",
+   "rank": 2745,
+   "example": "Gitme, sana muhtacım!",
+   "example_en": "Don't go, I need you (i.e. I am dependent on you)!"
+  },
+  {
+   "tr": "sendrom",
+   "en": "syndrome (recognizable pattern of sympt…",
+   "pos": "Noun",
+   "rank": 2746
+  },
+  {
+   "tr": "anormal",
+   "en": "abnormal",
+   "pos": "Adj",
+   "rank": 2747
+  },
+  {
+   "tr": "stajyer",
+   "en": "trainee",
+   "pos": "Noun",
+   "rank": 2748
+  },
+  {
+   "tr": "hristiyan",
+   "en": "a Christian",
+   "pos": "Noun",
+   "rank": 2749
+  },
+  {
+   "tr": "galeri",
+   "en": "gallery",
+   "pos": "Noun",
+   "rank": 2750
+  },
+  {
+   "tr": "alış",
+   "en": "purchase",
+   "pos": "Noun",
+   "rank": 2751
+  },
+  {
+   "tr": "sihirbaz",
+   "en": "wizard",
+   "pos": "Noun",
+   "rank": 2752
+  },
+  {
+   "tr": "geçenlerde",
+   "en": "recently",
+   "pos": "Adv",
+   "rank": 2753
+  },
+  {
+   "tr": "zehirlemek",
+   "en": "to poison",
+   "pos": "Verb",
+   "rank": 2754
+  },
+  {
+   "tr": "parlamak",
+   "en": "to shine",
+   "pos": "Verb",
+   "rank": 2755
+  },
+  {
+   "tr": "küstah",
+   "en": "impudent",
+   "pos": "Adj",
+   "rank": 2756
+  },
+  {
+   "tr": "iskele",
+   "en": "wharf",
+   "pos": "Noun",
+   "rank": 2757
+  },
+  {
+   "tr": "zıplamak",
+   "en": "to bounce",
+   "pos": "Verb",
+   "rank": 2758
+  },
+  {
+   "tr": "alıntı",
+   "en": "quote",
+   "pos": "Noun",
+   "rank": 2759
+  },
+  {
+   "tr": "anlık",
+   "en": "momentary",
+   "pos": "Adj",
+   "rank": 2760,
+   "example": "Anlık bir öfke sonucu yazdın sanırım bu mesajı.",
+   "example_en": "I think you wrote that message in a moment of anger."
+  },
+  {
+   "tr": "sürgün",
+   "en": "banishment",
+   "pos": "Noun",
+   "rank": 2761
+  },
+  {
+   "tr": "uzunluk",
+   "en": "length",
+   "pos": "Noun",
+   "rank": 2762
+  },
+  {
+   "tr": "köfte",
+   "en": "kofta",
+   "pos": "Noun",
+   "rank": 2763
+  },
+  {
+   "tr": "pat",
+   "en": "synonym of kasımpatı (“chrysanthemum”)",
+   "pos": "Noun",
+   "rank": 2764
+  },
+  {
+   "tr": "istilâ",
+   "en": "dated spelling of istila",
+   "pos": "Noun",
+   "rank": 2765
+  },
+  {
+   "tr": "edebiyat",
+   "en": "literature",
+   "pos": "Noun",
+   "rank": 2766
+  },
+  {
+   "tr": "radar",
+   "en": "radar",
+   "pos": "Noun",
+   "rank": 2767
+  },
+  {
+   "tr": "ıssız",
+   "en": "deserted",
+   "pos": "Adj",
+   "rank": 2768,
+   "example": "Uyandığımda kendimi ıssız bir adada buldum.",
+   "example_en": "When I woke up I found myself on a deserted island."
+  },
+  {
+   "tr": "akciğer",
+   "en": "lung",
+   "pos": "Noun",
+   "rank": 2769,
+   "example": "Sigara içmek akciğer hastalıklarına sebep olur.",
+   "example_en": "Smoking leads to lung diseases."
+  },
+  {
+   "tr": "ağı",
+   "en": "poison",
+   "pos": "Noun",
+   "rank": 2770
+  },
+  {
+   "tr": "mendil",
+   "en": "handkerchief",
+   "pos": "Noun",
+   "rank": 2771
+  },
+  {
+   "tr": "tazminat",
+   "en": "damages",
+   "pos": "Noun",
+   "rank": 2772
+  },
+  {
+   "tr": "çevirmen",
+   "en": "interpreter",
+   "pos": "Noun",
+   "rank": 2773
+  },
+  {
+   "tr": "sendika",
+   "en": "trade union (organization)",
+   "pos": "Noun",
+   "rank": 2774
+  },
+  {
+   "tr": "izci",
+   "en": "camper students who attend camps to lea…",
+   "pos": "Noun",
+   "rank": 2775,
+   "example": "Biz izci kızlar olarak sizi aramıza katılmaya çağırıyoruz!",
+   "example_en": "As girl scouts, we invite you to join us!"
+  },
+  {
+   "tr": "ödlek",
+   "en": "cowardly",
+   "pos": "Adj",
+   "rank": 2776
+  },
+  {
+   "tr": "davetsiz",
+   "en": "uninvited",
+   "pos": "Adj",
+   "rank": 2777
+  },
+  {
+   "tr": "yoga",
+   "en": "yoga",
+   "pos": "Noun",
+   "rank": 2778
+  },
+  {
+   "tr": "keman",
+   "en": "violin",
+   "pos": "Noun",
+   "rank": 2779
+  },
+  {
+   "tr": "süs",
+   "en": "frippery",
+   "pos": "Noun",
+   "rank": 2780
+  },
+  {
+   "tr": "kehanet",
+   "en": "oracle",
+   "pos": "Noun",
+   "rank": 2781
+  },
+  {
+   "tr": "idrar",
+   "en": "urine",
+   "pos": "Noun",
+   "rank": 2782
+  },
+  {
+   "tr": "askı",
+   "en": "hanger",
+   "pos": "Noun",
+   "rank": 2783
+  },
+  {
+   "tr": "duyuru",
+   "en": "announcement",
+   "pos": "Noun",
+   "rank": 2784,
+   "example": "Bu duyuruyu dün gördüm.",
+   "example_en": "I saw this announcement yesterday."
+  },
+  {
+   "tr": "sincap",
+   "en": "squirrel (rodent)",
+   "pos": "Noun",
+   "rank": 2785
+  },
+  {
+   "tr": "güya",
+   "en": "supposedly",
+   "pos": "Adv",
+   "rank": 2786,
+   "example": "güya kolu kırılmış",
+   "example_en": "supposedly, his arm was broken"
+  },
+  {
+   "tr": "cahil",
+   "en": "ignorant",
+   "pos": "Adj",
+   "rank": 2787
+  },
+  {
+   "tr": "tesadüfen",
+   "en": "by chance",
+   "pos": "Adv",
+   "rank": 2788,
+   "example": "Travnik benim tesadüfen keşfettiğim bir şehir.",
+   "example_en": "Travnik is a city I discovered as a result of a coincidence."
+  },
+  {
+   "tr": "yasaklamak",
+   "en": "to ban",
+   "pos": "Verb",
+   "rank": 2789
+  },
+  {
+   "tr": "rıza",
+   "en": "consent",
+   "pos": "Noun",
+   "rank": 2790
+  },
+  {
+   "tr": "öpüşmek",
+   "en": "reciprocal of öpmek",
+   "pos": "Verb",
+   "rank": 2791,
+   "example": "Sınıf'a girdiğimde Arda'yla öpüşüyordun!",
+   "example_en": "When I walked into the classroom you and Arda were kissing!"
+  },
+  {
+   "tr": "hıyar",
+   "en": "rude",
+   "pos": "Adj",
+   "rank": 2792
+  },
+  {
+   "tr": "dindar",
+   "en": "religious",
+   "pos": "Adj",
+   "rank": 2793
+  },
+  {
+   "tr": "vasiyet",
+   "en": "will (a legal document that states who…",
+   "pos": "Noun",
+   "rank": 2794
+  },
+  {
+   "tr": "denli",
+   "en": "dignified",
+   "pos": "Adj",
+   "rank": 2795
+  },
+  {
+   "tr": "mahrum",
+   "en": "deprived",
+   "pos": "Adj",
+   "rank": 2796
+  },
+  {
+   "tr": "suçsuz",
+   "en": "innocent",
+   "pos": "Adj",
+   "rank": 2797
+  },
+  {
+   "tr": "oyalamak",
+   "en": "to amuse",
+   "pos": "Verb",
+   "rank": 2798
+  },
+  {
+   "tr": "palavra",
+   "en": "nonsense",
+   "pos": "Noun",
+   "rank": 2799,
+   "example": "Palavraların burada sökmez.",
+   "example_en": "Your bullshit don't fly here."
+  },
+  {
+   "tr": "kaldırım",
+   "en": "pavement",
+   "pos": "Noun",
+   "rank": 2800
+  },
+  {
+   "tr": "varis",
+   "en": "varicose vein",
+   "pos": "Noun",
+   "rank": 2801
+  },
+  {
+   "tr": "beklenti",
+   "en": "expectation",
+   "pos": "Noun",
+   "rank": 2802
+  },
+  {
+   "tr": "cinsiyet",
+   "en": "sexuality",
+   "pos": "Noun",
+   "rank": 2803
+  },
+  {
+   "tr": "kısacası",
+   "en": "in short",
+   "pos": "Adv",
+   "rank": 2804
+  },
+  {
+   "tr": "dadı",
+   "en": "nanny",
+   "pos": "Noun",
+   "rank": 2805
+  },
+  {
+   "tr": "nakliye",
+   "en": "transportation (act of transporting)",
+   "pos": "Noun",
+   "rank": 2806
+  },
+  {
+   "tr": "ortaklık",
+   "en": "partnership",
+   "pos": "Noun",
+   "rank": 2807
+  },
+  {
+   "tr": "gösterim",
+   "en": "theatrical release",
+   "pos": "Noun",
+   "rank": 2808,
+   "example": "Gösteriminden beri yılın en çok izlenen filmi oldu",
+   "example_en": "Since its theatrical release, it has been the most viewed movie of the year"
+  },
+  {
+   "tr": "manuel",
+   "en": "manual (operated by hand",
+   "pos": "Adj",
+   "rank": 2809
+  },
+  {
+   "tr": "but",
+   "en": "thigh",
+   "pos": "Noun",
+   "rank": 2810
+  },
+  {
+   "tr": "onlarca",
+   "en": "tens of",
+   "pos": "Adj",
+   "rank": 2811
+  },
+  {
+   "tr": "göç",
+   "en": "migration",
+   "pos": "Noun",
+   "rank": 2812
+  },
+  {
+   "tr": "kahkaha",
+   "en": "laughter",
+   "pos": "Noun",
+   "rank": 2813
+  },
+  {
+   "tr": "çarşaf",
+   "en": "bedsheet (short form of yatak çarşafı)",
+   "pos": "Noun",
+   "rank": 2814
+  },
+  {
+   "tr": "buhar",
+   "en": "steam",
+   "pos": "Noun",
+   "rank": 2815
+  },
+  {
+   "tr": "germek",
+   "en": "to stretch out",
+   "pos": "Verb",
+   "rank": 2816
+  },
+  {
+   "tr": "keşiş",
+   "en": "monk",
+   "pos": "Noun",
+   "rank": 2817,
+   "example": "Budist keşiş",
+   "example_en": "Buddhist monk"
+  },
+  {
+   "tr": "uydurma",
+   "en": "fabricated",
+   "pos": "Adj",
+   "rank": 2818
+  },
+  {
+   "tr": "emlak",
+   "en": "estate",
+   "pos": "Noun",
+   "rank": 2819
+  },
+  {
+   "tr": "tasarlamak",
+   "en": "to devise",
+   "pos": "Verb",
+   "rank": 2820
+  },
+  {
+   "tr": "penguen",
+   "en": "penguin",
+   "pos": "Noun",
+   "rank": 2821
+  },
+  {
+   "tr": "tasarruf",
+   "en": "use",
+   "pos": "Noun",
+   "rank": 2822
+  },
+  {
+   "tr": "morfin",
+   "en": "morphine",
+   "pos": "Noun",
+   "rank": 2823
+  },
+  {
+   "tr": "çetin",
+   "en": "hard",
+   "pos": "Adj",
+   "rank": 2824,
+   "example": "çetin adam",
+   "example_en": "complicated person"
+  },
+  {
+   "tr": "ayar",
+   "en": "setting",
+   "pos": "Noun",
+   "rank": 2825
+  },
+  {
+   "tr": "hergele",
+   "en": "impolite",
+   "pos": "Adj",
+   "rank": 2826
+  },
+  {
+   "tr": "puro",
+   "en": "cigar",
+   "pos": "Noun",
+   "rank": 2827
+  },
+  {
+   "tr": "tetikçi",
+   "en": "hired gun",
+   "pos": "Noun",
+   "rank": 2828
+  },
+  {
+   "tr": "peruk",
+   "en": "wig (head of artificial hair)",
+   "pos": "Noun",
+   "rank": 2829
+  },
+  {
+   "tr": "palto",
+   "en": "overcoat",
+   "pos": "Noun",
+   "rank": 2830
+  },
+  {
+   "tr": "vagon",
+   "en": "wagon",
+   "pos": "Noun",
+   "rank": 2831
+  },
+  {
+   "tr": "çiğ",
+   "en": "raw",
+   "pos": "Adj",
+   "rank": 2832
+  },
+  {
+   "tr": "karantina",
+   "en": "quarantine",
+   "pos": "Noun",
+   "rank": 2833
+  },
+  {
+   "tr": "nan",
+   "en": "bread",
+   "pos": "Noun",
+   "rank": 2834
+  },
+  {
+   "tr": "yitirmek",
+   "en": "to lose",
+   "pos": "Verb",
+   "rank": 2835
+  },
+  {
+   "tr": "usul",
+   "en": "the way of doing things",
+   "pos": "Noun",
+   "rank": 2836
+  },
+  {
+   "tr": "hobi",
+   "en": "hobby (activity done for enjoyment in s…",
+   "pos": "Noun",
+   "rank": 2837
+  },
+  {
+   "tr": "bulaşıcı",
+   "en": "contagious (of a disease",
+   "pos": "Adj",
+   "rank": 2838,
+   "example": "Gülmek bulaşıcıdır.",
+   "example_en": "Laughing is contagious."
+  },
+  {
+   "tr": "otoyol",
+   "en": "highway",
+   "pos": "Noun",
+   "rank": 2839
+  },
+  {
+   "tr": "akım",
+   "en": "streamflow",
+   "pos": "Noun",
+   "rank": 2840
+  },
+  {
+   "tr": "rutin",
+   "en": "routine",
+   "pos": "Adj",
+   "rank": 2841
+  },
+  {
+   "tr": "yaslamak",
+   "en": "to lean",
+   "pos": "Verb",
+   "rank": 2842
+  },
+  {
+   "tr": "ebedî",
+   "en": "eternal",
+   "pos": "Adj",
+   "rank": 2843
+  },
+  {
+   "tr": "vites",
+   "en": "gear",
+   "pos": "Noun",
+   "rank": 2844
+  },
+  {
+   "tr": "felsefe",
+   "en": "philosophy",
+   "pos": "Noun",
+   "rank": 2845
+  },
+  {
+   "tr": "karşıt",
+   "en": "opposite",
+   "pos": "Noun",
+   "rank": 2846
+  },
+  {
+   "tr": "orgazm",
+   "en": "orgasm (the peak of sexual pleasure)",
+   "pos": "Noun",
+   "rank": 2847
+  },
+  {
+   "tr": "gerilim",
+   "en": "tension",
+   "pos": "Noun",
+   "rank": 2848,
+   "example": "Masada gerilim yükseldi.",
+   "example_en": "The tension increased at the table."
+  },
+  {
+   "tr": "psikoloji",
+   "en": "psychology",
+   "pos": "Noun",
+   "rank": 2849
+  },
+  {
+   "tr": "eczane",
+   "en": "drugstore",
+   "pos": "Noun",
+   "rank": 2850
+  },
+  {
+   "tr": "estetik",
+   "en": "aesthetic",
+   "pos": "Adj",
+   "rank": 2851
+  },
+  {
+   "tr": "prezervatif",
+   "en": "condom",
+   "pos": "Noun",
+   "rank": 2852
+  },
+  {
+   "tr": "kavram",
+   "en": "concept",
+   "pos": "Noun",
+   "rank": 2853
+  },
+  {
+   "tr": "çivi",
+   "en": "nail (spike-shaped metal fastener used…",
+   "pos": "Noun",
+   "rank": 2854
+  },
+  {
+   "tr": "paskalya",
+   "en": "Easter",
+   "pos": "Noun",
+   "rank": 2855
+  },
+  {
+   "tr": "başlı",
+   "en": "headed",
+   "pos": "Adj",
+   "rank": 2856
+  },
+  {
+   "tr": "kesim",
+   "en": "part",
+   "pos": "Noun",
+   "rank": 2857
+  },
+  {
+   "tr": "sözlü",
+   "en": "oral (spoken)",
+   "pos": "Adj",
+   "rank": 2858
+  },
+  {
+   "tr": "tedirgin",
+   "en": "nervous",
+   "pos": "Adj",
+   "rank": 2859
+  },
+  {
+   "tr": "hortum",
+   "en": "snout",
+   "pos": "Noun",
+   "rank": 2860,
+   "example": "İblis'in, köpeğin hortumu gibi bir hortumu vardır.",
+   "example_en": "Iblis has a snout like the snout of a dog."
+  },
+  {
+   "tr": "meğer",
+   "en": "Indicates a situation that becomes appa…",
+   "pos": "Conj",
+   "rank": 2861,
+   "example": "Sert görünüşünün ardında meğer yumuşacık bir kalbi varmış.",
+   "example_en": "It turns out that he had a soft heart under his tough appearance."
+  },
+  {
+   "tr": "yaşarmak",
+   "en": "to become wet",
+   "pos": "Verb",
+   "rank": 2862
+  },
+  {
+   "tr": "sekmek",
+   "en": "to bounce",
+   "pos": "Verb",
+   "rank": 2863
+  },
+  {
+   "tr": "benzerlik",
+   "en": "similarity",
+   "pos": "Noun",
+   "rank": 2864
+  },
+  {
+   "tr": "mutlak",
+   "en": "absolute",
+   "pos": "Adj",
+   "rank": 2865
+  },
+  {
+   "tr": "yazılım",
+   "en": "software",
+   "pos": "Noun",
+   "rank": 2866
+  },
+  {
+   "tr": "takviye",
+   "en": "strengthening",
+   "pos": "Noun",
+   "rank": 2867
+  },
+  {
+   "tr": "balkon",
+   "en": "balcony",
+   "pos": "Noun",
+   "rank": 2868
+  },
+  {
+   "tr": "sıçramak",
+   "en": "to spring",
+   "pos": "Verb",
+   "rank": 2869
+  },
+  {
+   "tr": "yeğlemek",
+   "en": "to prefer",
+   "pos": "Verb",
+   "rank": 2870
+  },
+  {
+   "tr": "esmer",
+   "en": "having a rich olive skin tone",
+   "pos": "Adj",
+   "rank": 2871
+  },
+  {
+   "tr": "karbon",
+   "en": "carbon (chemical element)",
+   "pos": "Noun",
+   "rank": 2872
+  },
+  {
+   "tr": "forma",
+   "en": "form",
+   "pos": "Noun",
+   "rank": 2873
+  },
+  {
+   "tr": "selamlamak",
+   "en": "to greet",
+   "pos": "Verb",
+   "rank": 2874
+  },
+  {
+   "tr": "lake",
+   "en": "Polished with lacquer",
+   "pos": "Adj",
+   "rank": 2875
+  },
+  {
+   "tr": "küre",
+   "en": "sphere",
+   "pos": "Noun",
+   "rank": 2876
+  },
+  {
+   "tr": "eyvallah",
+   "en": "acceptance",
+   "pos": "Noun",
+   "rank": 2877,
+   "example": "Hadi 2,000 liraya da eyvallah, ama 2,500 lira nedir?",
+   "example_en": "Okay, I can still agree to 2,000 lira, but 2,500 lira? Come on!"
+  },
+  {
+   "tr": "sunum",
+   "en": "presentation",
+   "pos": "Noun",
+   "rank": 2878
+  },
+  {
+   "tr": "dokunaklı",
+   "en": "touching",
+   "pos": "Adj",
+   "rank": 2879,
+   "example": "Çok dokunaklı bir filmdi",
+   "example_en": "It was a very touching movie"
+  },
+  {
+   "tr": "pul",
+   "en": "stamp",
+   "pos": "Noun",
+   "rank": 2880
+  },
+  {
+   "tr": "sarsıntı",
+   "en": "A sudden shake",
+   "pos": "Noun",
+   "rank": 2881
+  },
+  {
+   "tr": "küpe",
+   "en": "earring",
+   "pos": "Noun",
+   "rank": 2882
+  },
+  {
+   "tr": "editör",
+   "en": "editor",
+   "pos": "Noun",
+   "rank": 2883
+  },
+  {
+   "tr": "etkin",
+   "en": "second-person singular single-possessio…",
+   "pos": "Noun",
+   "rank": 2884
+  },
+  {
+   "tr": "pastırma",
+   "en": "pastirma",
+   "pos": "Noun",
+   "rank": 2885
+  },
+  {
+   "tr": "beceri",
+   "en": "skill",
+   "pos": "Noun",
+   "rank": 2886
+  },
+  {
+   "tr": "saman",
+   "en": "hay",
+   "pos": "Noun",
+   "rank": 2887
+  },
+  {
+   "tr": "azmak",
+   "en": "to go astray",
+   "pos": "Verb",
+   "rank": 2888
+  },
+  {
+   "tr": "kürtaj",
+   "en": "abortion",
+   "pos": "Noun",
+   "rank": 2889
+  },
+  {
+   "tr": "kibrit",
+   "en": "match (device to make fire)",
+   "pos": "Noun",
+   "rank": 2890
+  },
+  {
+   "tr": "paraşüt",
+   "en": "parachute",
+   "pos": "Noun",
+   "rank": 2891
+  },
+  {
+   "tr": "tereyağı",
+   "en": "butter",
+   "pos": "Noun",
+   "rank": 2892
+  },
+  {
+   "tr": "skor",
+   "en": "score",
+   "pos": "Noun",
+   "rank": 2893
+  },
+  {
+   "tr": "gerekçe",
+   "en": "ground",
+   "pos": "Noun",
+   "rank": 2894
+  },
+  {
+   "tr": "milyarlarca",
+   "en": "billions of",
+   "pos": "Adj",
+   "rank": 2895
+  },
+  {
+   "tr": "bulvar",
+   "en": "boulevard",
+   "pos": "Noun",
+   "rank": 2896
+  },
+  {
+   "tr": "inandırıcı",
+   "en": "convincing",
+   "pos": "Adj",
+   "rank": 2897
+  },
+  {
+   "tr": "çevirme",
+   "en": "Animals like lamb",
+   "pos": "Noun",
+   "rank": 2898
+  },
+  {
+   "tr": "çabalamak",
+   "en": "to endeavor",
+   "pos": "Verb",
+   "rank": 2899
+  },
+  {
+   "tr": "seneye",
+   "en": "next year",
+   "pos": "Adv",
+   "rank": 2900,
+   "example": "seneye köye gideceğiz",
+   "example_en": "we are going to go to the village next year"
+  },
+  {
+   "tr": "kontes",
+   "en": "countess",
+   "pos": "Noun",
+   "rank": 2901
+  },
+  {
+   "tr": "bilardo",
+   "en": "billiards",
+   "pos": "Noun",
+   "rank": 2902
+  },
+  {
+   "tr": "günlerce",
+   "en": "day after day",
+   "pos": "Adv",
+   "rank": 2903
+  },
+  {
+   "tr": "besin",
+   "en": "food",
+   "pos": "Noun",
+   "rank": 2904
+  },
+  {
+   "tr": "çocukça",
+   "en": "childish",
+   "pos": "Adj",
+   "rank": 2905
+  },
+  {
+   "tr": "serin",
+   "en": "between warm and cold",
+   "pos": "Adj",
+   "rank": 2906
+  },
+  {
+   "tr": "sınırsız",
+   "en": "borderless",
+   "pos": "Adj",
+   "rank": 2907
+  },
+  {
+   "tr": "koloni",
+   "en": "colony (region or governmental unit)",
+   "pos": "Noun",
+   "rank": 2908
+  },
+  {
+   "tr": "tesisat",
+   "en": "plant",
+   "pos": "Noun",
+   "rank": 2909,
+   "example": "1947 November 8, advertisement in Cumhuriet",
+   "example_en": "(please add an English translation of this quotation)"
+  },
+  {
+   "tr": "eksi",
+   "en": "minus (being negative or zero rather th…",
+   "pos": "Adj",
+   "rank": 2910
+  },
+  {
+   "tr": "değişmez",
+   "en": "fixed",
+   "pos": "Adj",
+   "rank": 2911
+  },
+  {
+   "tr": "atım",
+   "en": "an act of throwing",
+   "pos": "Noun",
+   "rank": 2912
+  },
+  {
+   "tr": "gayret",
+   "en": "effort",
+   "pos": "Noun",
+   "rank": 2913
+  },
+  {
+   "tr": "sprey",
+   "en": "spray",
+   "pos": "Noun",
+   "rank": 2914
+  },
+  {
+   "tr": "barışmak",
+   "en": "to stop war or battle",
+   "pos": "Verb",
+   "rank": 2915
+  },
+  {
+   "tr": "tahminî",
+   "en": "estimated",
+   "pos": "Adj",
+   "rank": 2916
+  },
+  {
+   "tr": "bıyık",
+   "en": "moustache",
+   "pos": "Noun",
+   "rank": 2917
+  },
+  {
+   "tr": "kumsal",
+   "en": "beach",
+   "pos": "Noun",
+   "rank": 2918
+  },
+  {
+   "tr": "lokma",
+   "en": "bite",
+   "pos": "Noun",
+   "rank": 2919
+  },
+  {
+   "tr": "krem",
+   "en": "cream (product to apply to the skin)",
+   "pos": "Noun",
+   "rank": 2920
+  },
+  {
+   "tr": "asi",
+   "en": "rebellious",
+   "pos": "Adj",
+   "rank": 2921
+  },
+  {
+   "tr": "eğilmek",
+   "en": "to bend over",
+   "pos": "Verb",
+   "rank": 2922
+  },
+  {
+   "tr": "hoşnut",
+   "en": "satisfied",
+   "pos": "Adj",
+   "rank": 2923
+  },
+  {
+   "tr": "ufaklık",
+   "en": "smallness",
+   "pos": "Noun",
+   "rank": 2924
+  },
+  {
+   "tr": "demokrasi",
+   "en": "democracy",
+   "pos": "Noun",
+   "rank": 2925
+  },
+  {
+   "tr": "santral",
+   "en": "power plant",
+   "pos": "Noun",
+   "rank": 2926
+  },
+  {
+   "tr": "lakap",
+   "en": "moniker",
+   "pos": "Noun",
+   "rank": 2927
+  },
+  {
+   "tr": "yelek",
+   "en": "waistcoat",
+   "pos": "Noun",
+   "rank": 2928
+  },
+  {
+   "tr": "şube",
+   "en": "branch",
+   "pos": "Noun",
+   "rank": 2929
+  },
+  {
+   "tr": "dağıtım",
+   "en": "distribution",
+   "pos": "Noun",
+   "rank": 2930
+  },
+  {
+   "tr": "yummak",
+   "en": "to close",
+   "pos": "Verb",
+   "rank": 2931,
+   "example": "Açtı ağzını yumdu gözünü.",
+   "example_en": "He flew into a rage. (Lit. He opened his mouth, closed his eye(s).)"
+  },
+  {
+   "tr": "bulmaca",
+   "en": "puzzle",
+   "pos": "Noun",
+   "rank": 2932
+  },
+  {
+   "tr": "gökkuşağı",
+   "en": "rainbow",
+   "pos": "Noun",
+   "rank": 2933
+  },
+  {
+   "tr": "taklidî",
+   "en": "imitative",
+   "pos": "Adj",
+   "rank": 2934
+  },
+  {
+   "tr": "özür",
+   "en": "apology",
+   "pos": "Noun",
+   "rank": 2935,
+   "example": "Sana bir özür borçluyum.",
+   "example_en": "I owe you an apology."
+  },
+  {
+   "tr": "astronot",
+   "en": "astronaut",
+   "pos": "Noun",
+   "rank": 2936
+  },
+  {
+   "tr": "koz",
+   "en": "trump",
+   "pos": "Noun",
+   "rank": 2937
+  },
+  {
+   "tr": "borsa",
+   "en": "stock market",
+   "pos": "Noun",
+   "rank": 2938
+  },
+  {
+   "tr": "kuşak",
+   "en": "cummerbund",
+   "pos": "Noun",
+   "rank": 2939
+  },
+  {
+   "tr": "piyango",
+   "en": "A lottery",
+   "pos": "Noun",
+   "rank": 2940
+  },
+  {
+   "tr": "etik",
+   "en": "ethical",
+   "pos": "Adj",
+   "rank": 2941
+  },
+  {
+   "tr": "başrol",
+   "en": "lead (the actor who plays the main role",
+   "pos": "Noun",
+   "rank": 2942
+  },
+  {
+   "tr": "teneke",
+   "en": "tin-plated",
+   "pos": "Adj",
+   "rank": 2943
+  },
+  {
+   "tr": "galip",
+   "en": "victorious",
+   "pos": "Adj",
+   "rank": 2944
+  },
+  {
+   "tr": "armağan",
+   "en": "gift",
+   "pos": "Noun",
+   "rank": 2945
+  },
+  {
+   "tr": "bale",
+   "en": "ballet",
+   "pos": "Noun",
+   "rank": 2946
+  },
+  {
+   "tr": "post",
+   "en": "fur",
+   "pos": "Noun",
+   "rank": 2947
+  },
+  {
+   "tr": "dolunay",
+   "en": "full moon",
+   "pos": "Noun",
+   "rank": 2948
+  },
+  {
+   "tr": "azap",
+   "en": "torment",
+   "pos": "Noun",
+   "rank": 2949
+  },
+  {
+   "tr": "paten",
+   "en": "roller skate",
+   "pos": "Noun",
+   "rank": 2950
+  },
+  {
+   "tr": "meşru",
+   "en": "legitimate",
+   "pos": "Adj",
+   "rank": 2951
+  },
+  {
+   "tr": "ruhsat",
+   "en": "authorization",
+   "pos": "Noun",
+   "rank": 2952
+  },
+  {
+   "tr": "sızmak",
+   "en": "to percolate",
+   "pos": "Verb",
+   "rank": 2953,
+   "example": "Tavandan su sızıyor.",
+   "example_en": "Water is leaking through the ceiling."
+  },
+  {
+   "tr": "barut",
+   "en": "gunpowder",
+   "pos": "Noun",
+   "rank": 2954
+  },
+  {
+   "tr": "yapışkan",
+   "en": "sticky",
+   "pos": "Adj",
+   "rank": 2955
+  },
+  {
+   "tr": "nice",
+   "en": "many",
+   "pos": "Adj",
+   "rank": 2956
+  },
+  {
+   "tr": "baygın",
+   "en": "fainted",
+   "pos": "Adj",
+   "rank": 2957
+  },
+  {
+   "tr": "yapayalnız",
+   "en": "A more intense version of yalnız (\"alon…",
+   "pos": "Adj",
+   "rank": 2958,
+   "example": "bugün ilk defa yapayalnız olduğumu hissettim",
+   "example_en": "today I felt for the first time that I was completely/totally alone"
+  },
+  {
+   "tr": "ambar",
+   "en": "barn",
+   "pos": "Noun",
+   "rank": 2959
+  },
+  {
+   "tr": "sergi",
+   "en": "A display platform for a variety of pro…",
+   "pos": "Noun",
+   "rank": 2960
+  },
+  {
+   "tr": "örtü",
+   "en": "A cloth used to cover and protect an ob…",
+   "pos": "Noun",
+   "rank": 2961
+  },
+  {
+   "tr": "samuray",
+   "en": "samurai",
+   "pos": "Noun",
+   "rank": 2962
+  },
+  {
+   "tr": "caz",
+   "en": "jazz (musical art form)",
+   "pos": "Noun",
+   "rank": 2963
+  },
+  {
+   "tr": "başıboş",
+   "en": "idle",
+   "pos": "Adj",
+   "rank": 2964
+  },
+  {
+   "tr": "mekanik",
+   "en": "mechanic",
+   "pos": "Adj",
+   "rank": 2965
+  },
+  {
+   "tr": "harekât",
+   "en": "operation",
+   "pos": "Noun",
+   "rank": 2966
+  },
+  {
+   "tr": "alıştırma",
+   "en": "exercise",
+   "pos": "Noun",
+   "rank": 2967
+  },
+  {
+   "tr": "üşmek",
+   "en": "synonym of üşüşmek (“to swarm”)",
+   "pos": "Verb",
+   "rank": 2968
+  },
+  {
+   "tr": "atışmak",
+   "en": "to bicker",
+   "pos": "Verb",
+   "rank": 2969
+  },
+  {
+   "tr": "müstakbel",
+   "en": "future",
+   "pos": "Adj",
+   "rank": 2970
+  },
+  {
+   "tr": "keder",
+   "en": "angst",
+   "pos": "Noun",
+   "rank": 2971
+  },
+  {
+   "tr": "narin",
+   "en": "thin",
+   "pos": "Adj",
+   "rank": 2972
+  },
+  {
+   "tr": "yenilgi",
+   "en": "defeat",
+   "pos": "Noun",
+   "rank": 2973
+  },
+  {
+   "tr": "terim",
+   "en": "term (word or phrase",
+   "pos": "Noun",
+   "rank": 2974
+  },
+  {
+   "tr": "tercüme",
+   "en": "translation",
+   "pos": "Noun",
+   "rank": 2975
+  },
+  {
+   "tr": "krema",
+   "en": "cream (oily part of milk)",
+   "pos": "Noun",
+   "rank": 2976
+  },
+  {
+   "tr": "altüst",
+   "en": "upside down",
+   "pos": "Adj",
+   "rank": 2977
+  },
+  {
+   "tr": "seans",
+   "en": "séance",
+   "pos": "Noun",
+   "rank": 2978
+  },
+  {
+   "tr": "zam",
+   "en": "surcharge",
+   "pos": "Noun",
+   "rank": 2979,
+   "example": "Benzinden sonra dizeli de zam vurdu.",
+   "example_en": "After gasoline an increase in price also hit diesel."
+  },
+  {
+   "tr": "poşet",
+   "en": "bag (a flexible container made of plast…",
+   "pos": "Noun",
+   "rank": 2980
+  },
+  {
+   "tr": "sabote",
+   "en": "sabotage",
+   "pos": "Noun",
+   "rank": 2981
+  },
+  {
+   "tr": "hançer",
+   "en": "dagger",
+   "pos": "Noun",
+   "rank": 2982
+  },
+  {
+   "tr": "horoz",
+   "en": "rooster",
+   "pos": "Noun",
+   "rank": 2983
+  },
+  {
+   "tr": "teşkil",
+   "en": "shaping",
+   "pos": "Noun",
+   "rank": 2984
+  },
+  {
+   "tr": "yırtmak",
+   "en": "to split foldable",
+   "pos": "Verb",
+   "rank": 2985
+  },
+  {
+   "tr": "torpido",
+   "en": "torpedo",
+   "pos": "Noun",
+   "rank": 2986
+  },
+  {
+   "tr": "birey",
+   "en": "individual",
+   "pos": "Noun",
+   "rank": 2987
+  },
+  {
+   "tr": "usanmak",
+   "en": "to get tired of",
+   "pos": "Verb",
+   "rank": 2988,
+   "example": "Bir iskele kuşu gibi bir aşağı bir yukarı dolaşmaktan da usandım.",
+   "example_en": "I'm tired of wandering up and down like a pier bird."
+  },
+  {
+   "tr": "tüccar",
+   "en": "merchant",
+   "pos": "Noun",
+   "rank": 2989
+  },
+  {
+   "tr": "biricik",
+   "en": "one and only",
+   "pos": "Adj",
+   "rank": 2990
+  },
+  {
+   "tr": "keyfî",
+   "en": "arbitrary",
+   "pos": "Adj",
+   "rank": 2991
+  },
+  {
+   "tr": "muhafaza",
+   "en": "defending",
+   "pos": "Noun",
+   "rank": 2992
+  },
+  {
+   "tr": "ender",
+   "en": "rare",
+   "pos": "Adj",
+   "rank": 2993
+  },
+  {
+   "tr": "çizik",
+   "en": "Having been scratched or marked with a…",
+   "pos": "Adj",
+   "rank": 2994
+  },
+  {
+   "tr": "kask",
+   "en": "helmet",
+   "pos": "Noun",
+   "rank": 2995
+  },
+  {
+   "tr": "kuantum",
+   "en": "quantum",
+   "pos": "Noun",
+   "rank": 2996
+  },
+  {
+   "tr": "medyum",
+   "en": "psychic",
+   "pos": "Noun",
+   "rank": 2997
+  },
+  {
+   "tr": "akıntı",
+   "en": "The act of flowing",
+   "pos": "Noun",
+   "rank": 2998,
+   "example": "Kuzey Pasifik Akıntısı",
+   "example_en": "The North Pacific Current"
+  },
+  {
+   "tr": "yunus",
+   "en": "dolphin",
+   "pos": "Noun",
+   "rank": 2999,
+   "example": "Yunus balığı insanın dostudur. Onu yemez.",
+   "example_en": "The dolphin is the man's friend. He won't eat him."
+  },
+  {
+   "tr": "gözde",
+   "en": "favourite / favorite",
+   "pos": "Adj",
+   "rank": 3000
+  }
+ ]
+}

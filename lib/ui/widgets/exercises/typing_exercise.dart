@@ -39,11 +39,13 @@ class _TypingExerciseState extends State<TypingExercise> {
     final exact = a == b;
     final diacriticOnly = !exact && stripDiacritics(a) == stripDiacritics(b);
     setState(() => _checked = true);
-    widget.onAnswered(AnswerResult(
-      correct: exact || diacriticOnly,
-      took: _clock.elapsed,
-      diacriticOnly: diacriticOnly,
-    ));
+    widget.onAnswered(
+      AnswerResult(
+        correct: exact || diacriticOnly,
+        took: _clock.elapsed,
+        diacriticOnly: diacriticOnly,
+      ),
+    );
   }
 
   @override
@@ -53,11 +55,16 @@ class _TypingExerciseState extends State<TypingExercise> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text('Writing', style: tt.labelLarge?.copyWith(color: Colors.grey)),
-        Text('Type the Turkish for this meaning',
-            style: tt.bodySmall?.copyWith(color: Colors.grey)),
+        Text(
+          'Type the Turkish for this meaning',
+          style: tt.bodySmall?.copyWith(color: Colors.grey),
+        ),
         const SizedBox(height: 20),
-        Text(widget.word.english,
-            textAlign: TextAlign.center, style: tt.displaySmall),
+        Text(
+          widget.word.english,
+          textAlign: TextAlign.center,
+          style: tt.displaySmall,
+        ),
         const SizedBox(height: 24),
         TextField(
           controller: _ctrl,
@@ -66,7 +73,9 @@ class _TypingExerciseState extends State<TypingExercise> {
           textInputAction: TextInputAction.done,
           onSubmitted: (_) => _check(),
           decoration: const InputDecoration(
-              border: OutlineInputBorder(), labelText: 'Turkish'),
+            border: OutlineInputBorder(),
+            labelText: 'Turkish',
+          ),
         ),
         const SizedBox(height: 12),
         if (!_checked)

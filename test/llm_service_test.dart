@@ -41,7 +41,7 @@ void main() {
     await svc.translate('x');
     await svc.translate('y');
     expect(a.calls, 1, reason: 'skipped while cooling down');
-    t = t.add(const Duration(minutes: 3));
+    t = t.add(const Duration(minutes: 11));
     await svc.translate('z');
     expect(a.calls, 2);
   });

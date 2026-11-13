@@ -23,8 +23,12 @@ class AnalysisJob {
         for (final word in batch) {
           if (word.kind == 'word') {
             final r = await morphology.analyze(word.turkish);
-            await repo.applyAnalysis(word.id,
-                lemma: r.lemma, pos: r.pos, morphemes: r.morphemes);
+            await repo.applyAnalysis(
+              word.id,
+              lemma: r.lemma,
+              pos: r.pos,
+              morphemes: r.morphemes,
+            );
           } else {
             // Phrases/sentences: store the lemmas only; per-word suffix
             // breakdowns would be confusing on a multi-word card.
@@ -32,8 +36,11 @@ class AnalysisJob {
             final lemma = parts.isEmpty
                 ? word.turkish
                 : parts.map((p) => p.lemma).join(' ');
-            await repo.applyAnalysis(word.id,
-                lemma: lemma, morphemes: const []);
+            await repo.applyAnalysis(
+              word.id,
+              lemma: lemma,
+              morphemes: const [],
+            );
           }
         }
         // Yield to the event loop between batches.

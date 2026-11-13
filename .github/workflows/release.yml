@@ -1,0 +1,74 @@
+name: Release
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: 3.47.2
+          channel: stable
+          cache: true
+
+      - name: Tag matches pubspec version
+        run: tool/check_release_version.sh "$GITHUB_REF_NAME"
+
+      - name: Patch notes from CHANGELOG.md
+        run: tool/extract_changelog.sh "${GITHUB_REF_NAME#v}" > notes.md
+
+      - run: flutter pub get
+      - run: flutter analyze
+      - run: flutter test
+
+      - name: Signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          STORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.jks"
+          {
+            echo "storeFile=$RUNNER_TEMP/release.jks"
+            echo "storePassword=$STORE_PASSWORD"
+            echo "keyPassword=$KEY_PASSWORD"
+            echo "keyAlias=$KEY_ALIAS"
+          } > android/key.properties
+
+      # build.gradle.kts throws when CI=true and key.properties is missing.
+      - name: Build signed APK
+        run: flutter build apk --release --split-per-abi --target-platform android-arm64
+
+      - name: version.json
+        run: |
+          apk=build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+          full="${GITHUB_REF_NAME#v}"
+          jq -n \
+            --arg version "${full%%+*}" \
+            --argjson build "${full##*+}" \
+            --arg apk "$(basename "$apk")" \
+            --arg sha "$(sha256sum "$apk" | cut -d' ' -f1)" \
+            --rawfile notes notes.md \
+            --arg published "$(date -u +%F)" \
+            '{version:$version, build:$build, apk:$apk, sha256:$sha, notes:$notes, published:$published}' \
+            > version.json
+          cat version.json
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          body_path: notes.md
+          files: |
+            build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+            version.json

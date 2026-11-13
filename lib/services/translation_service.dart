@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 /// Free TR→EN translation via MyMemory (no API key needed, 1 000 req/day).
@@ -11,8 +12,7 @@ class TranslationService {
         'https://api.mymemory.translated.net/get'
         '?q=${Uri.encodeComponent(trimmed)}&langpair=tr|en',
       );
-      final response =
-          await http.get(uri).timeout(const Duration(seconds: 8));
+      final response = await http.get(uri).timeout(const Duration(seconds: 8));
       if (response.statusCode == 200) {
         final json = jsonDecode(response.body) as Map<String, dynamic>;
         final data = json['responseData'] as Map<String, dynamic>?;

@@ -12,7 +12,11 @@ class AnswerOutcome {
   /// Brainstorm only: the word just passed its last step.
   final bool wordCompleted;
   final int mistakes;
-  const AnswerOutcome({this.grade, this.wordCompleted = false, this.mistakes = 0});
+  const AnswerOutcome({
+    this.grade,
+    this.wordCompleted = false,
+    this.mistakes = 0,
+  });
 }
 
 /// Builds multiple-choice options: 1 correct + up to 4 distractors, drawn
@@ -36,8 +40,7 @@ List<String> buildChoiceOptions({
       final key = trNormalize(text);
       if (key.isEmpty || seen.contains(key)) continue;
       if (strict &&
-          (p.kind != word.kind ||
-              (text.length - correct.length).abs() > 3)) {
+          (p.kind != word.kind || (text.length - correct.length).abs() > 3)) {
         continue;
       }
       seen.add(key);
@@ -94,23 +97,23 @@ class BrainstormSession {
     List<VocabItem> pool = const [],
     bool typingEnabled = false,
     Random? rng,
-  })  : pool = [...pool, ...words],
-        _rng = rng ?? Random(),
-        _entries = [
-          for (final w in words)
-            _Entry(w, [
-              if (w.isSimple) ...[
-                ExerciseType.chooseMeaning,
-                ExerciseType.chooseTurkish,
-                ExerciseType.listenChoose,
-                ExerciseType.construct,
-                if (typingEnabled) ExerciseType.typing,
-              ] else ...[
-                ExerciseType.reveal,
-                ExerciseType.listenChoose,
-              ],
-            ]),
-        ];
+  }) : pool = [...pool, ...words],
+       _rng = rng ?? Random(),
+       _entries = [
+         for (final w in words)
+           _Entry(w, [
+             if (w.isSimple) ...[
+               ExerciseType.chooseMeaning,
+               ExerciseType.chooseTurkish,
+               ExerciseType.listenChoose,
+               ExerciseType.construct,
+               if (typingEnabled) ExerciseType.typing,
+             ] else ...[
+               ExerciseType.reveal,
+               ExerciseType.listenChoose,
+             ],
+           ]),
+       ];
 
   int get totalSteps => _entries.fold(0, (s, e) => s + e.steps.length);
   int get doneSteps => _entries.fold(0, (s, e) => s + e.stepIndex);
@@ -153,22 +156,39 @@ class BrainstormSession {
       case ExerciseType.chooseMeaning:
       case ExerciseType.listenChoose:
         final opts = buildChoiceOptions(
-            word: w, pool: pool, pick: (x) => x.english, rng: _rng);
+          word: w,
+          pool: pool,
+          pick: (x) => x.english,
+          rng: _rng,
+        );
         if (opts.length < 2) return _reveal(w);
         return Exercise(
-            wordId: w.id, type: type, options: opts, answer: w.english);
+          wordId: w.id,
+          type: type,
+          options: opts,
+          answer: w.english,
+        );
       case ExerciseType.chooseTurkish:
         final opts = buildChoiceOptions(
-            word: w, pool: pool, pick: (x) => x.turkish, rng: _rng);
+          word: w,
+          pool: pool,
+          pick: (x) => x.turkish,
+          rng: _rng,
+        );
         if (opts.length < 2) return _reveal(w);
         return Exercise(
-            wordId: w.id, type: type, options: opts, answer: w.turkish);
+          wordId: w.id,
+          type: type,
+          options: opts,
+          answer: w.turkish,
+        );
       case ExerciseType.construct:
         return Exercise(
-            wordId: w.id,
-            type: type,
-            options: constructLetters(w.turkish, _rng),
-            answer: trLower(w.turkish));
+          wordId: w.id,
+          type: type,
+          options: constructLetters(w.turkish, _rng),
+          answer: trLower(w.turkish),
+        );
       case ExerciseType.typing:
         return Exercise(wordId: w.id, type: type, answer: w.turkish);
       case ExerciseType.reveal:

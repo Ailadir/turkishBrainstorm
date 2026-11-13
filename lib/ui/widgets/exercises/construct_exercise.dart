@@ -22,8 +22,10 @@ class ConstructExercise extends StatefulWidget {
 
 class _ConstructExerciseState extends State<ConstructExercise> {
   final _clock = Stopwatch()..start();
-  late final List<bool> _used =
-      List.filled(widget.exercise.options.length, false);
+  late final List<bool> _used = List.filled(
+    widget.exercise.options.length,
+    false,
+  );
   int _placed = 0;
   int _wrongTaps = 0;
   int? _flashWrong;
@@ -51,8 +53,13 @@ class _ConstructExerciseState extends State<ConstructExercise> {
 
   void _finish(bool correct) {
     _finished = true;
-    widget.onAnswered(AnswerResult(
-        correct: correct, took: _clock.elapsed, wrongTaps: _wrongTaps));
+    widget.onAnswered(
+      AnswerResult(
+        correct: correct,
+        took: _clock.elapsed,
+        wrongTaps: _wrongTaps,
+      ),
+    );
   }
 
   @override
@@ -63,11 +70,16 @@ class _ConstructExerciseState extends State<ConstructExercise> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text('Spelling', style: tt.labelLarge?.copyWith(color: Colors.grey)),
-        Text('Tap the letters in order',
-            style: tt.bodySmall?.copyWith(color: Colors.grey)),
+        Text(
+          'Tap the letters in order',
+          style: tt.bodySmall?.copyWith(color: Colors.grey),
+        ),
         const SizedBox(height: 20),
-        Text(widget.word.english,
-            textAlign: TextAlign.center, style: tt.headlineMedium),
+        Text(
+          widget.word.english,
+          textAlign: TextAlign.center,
+          style: tt.headlineMedium,
+        ),
         const SizedBox(height: 20),
         Text(
           _answer.substring(0, _placed).padRight(_answer.length, '_'),
@@ -92,15 +104,16 @@ class _ConstructExerciseState extends State<ConstructExercise> {
                     foregroundColor: _used[i] ? cs.outline : null,
                   ),
                   onPressed: _used[i] || _finished ? null : () => _tap(i),
-                  child: Text(widget.exercise.options[i],
-                      style: tt.titleLarge),
+                  child: Text(widget.exercise.options[i], style: tt.titleLarge),
                 ),
               ),
           ],
         ),
         const SizedBox(height: 8),
-        Text('Wrong taps: $_wrongTaps / 2',
-            style: tt.bodySmall?.copyWith(color: Colors.grey)),
+        Text(
+          'Wrong taps: $_wrongTaps / 2',
+          style: tt.bodySmall?.copyWith(color: Colors.grey),
+        ),
       ],
     );
   }
