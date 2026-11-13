@@ -17,6 +17,45 @@ const piperVoices = {
 
 const _vowels = 'aeıioöuüâîû';
 
+/// Spoken before every word, then cut off (see [finishPiperAudio]).
+const _carrier = 'evet,';
+
+/// Cuts the "evet," lead-in off [full] at the quietest 10 ms near where the
+/// lead-in alone ended ([leadLength] samples), fades the edges so nothing
+/// clicks, and adds 0.15 s of silence on both sides.
+Float32List finishPiperAudio(Float32List full, int leadLength, int sampleRate) {
+  final win = sampleRate ~/ 100;
+  final from = (leadLength - sampleRate * 0.12).round().clamp(0, full.length);
+  final to = (leadLength + sampleRate * 0.12).round().clamp(
+    0,
+    full.length - win,
+  );
+  var cut = 0;
+  var best = double.infinity;
+  for (var i = from; i < to; i += win ~/ 2) {
+    var e = 0.0;
+    for (var j = i; j < i + win; j++) {
+      e += full[j] * full[j];
+    }
+    if (e < best) {
+      best = e;
+      cut = i;
+    }
+  }
+  final word = Float32List.fromList(full.sublist(cut));
+  final fadeIn = (sampleRate * 0.015).round().clamp(0, word.length);
+  final fadeOut = (sampleRate * 0.04).round().clamp(0, word.length);
+  for (var i = 0; i < fadeIn; i++) {
+    word[i] *= i / fadeIn;
+  }
+  for (var i = 0; i < fadeOut; i++) {
+    word[word.length - 1 - i] *= i / fadeOut;
+  }
+  final pad = (sampleRate * 0.15).round();
+  return Float32List(word.length + 2 * pad)
+    ..setRange(pad, pad + word.length, word);
+}
+
 /// Text and speed actually sent to Piper. Piper swallows short words said
 /// alone: "ve" lasts 0.09 s and "altı" starts with a made-up "f". Tested by
 /// ear with fahrettin: an exclamation mark fixes short words, and a held
@@ -24,16 +63,13 @@ const _vowels = 'aeıioöuüâîû';
 ({String text, double speed}) piperInput(String raw, double speed) {
   final t = raw.trim();
   if (t.contains(' ') || t.length > 5) {
-    return (
-      text: RegExp(r'[.!?…]$').hasMatch(t) ? t : '$t.',
-      speed: speed,
-    );
+    return (text: RegExp(r'[.!?…]$').hasMatch(t) ? t : '$t.', speed: speed);
   }
   var word = t.replaceFirst(RegExp(r'[.!?…,]+$'), '');
   if (word.length <= 2) {
-    final i = word.split('').lastIndexWhere(
-      (c) => _vowels.contains(c.toLowerCase()),
-    );
+    final i = word
+        .split('')
+        .lastIndexWhere((c) => _vowels.contains(c.toLowerCase()));
     if (i >= 0) {
       word = word.substring(0, i + 1) + word[i] * 2 + word.substring(i + 1);
     }
@@ -178,6 +214,7 @@ void _worker(List<Object> args) {
   toMain.send(inbox.sendPort);
 
   sherpa.OfflineTts? tts;
+  final carrierLength = <double, int>{};
   inbox.listen((msg) {
     final m = msg as List;
     final reply = m[3] as SendPort;
@@ -199,15 +236,22 @@ void _worker(List<Object> args) {
         ),
       );
       final input = piperInput(m[0] as String, m[2] as double);
-      final audio = tts!.generate(text: input.text, speed: input.speed);
+      // Said alone, a word starts mid-attack and short ones get garbled
+      // ("altı" -> "artı"). Said after "evet," it comes out right, so we
+      // generate both and cut the lead-in off at the pause between them.
+      final lead = carrierLength[input.speed] ??= tts!
+          .generate(text: _carrier, speed: input.speed)
+          .samples
+          .length;
+      final audio = tts!.generate(
+        text: '$_carrier ${input.text}',
+        speed: input.speed,
+      );
       if (audio.samples.isEmpty) {
         reply.send('The voice produced no audio for "${m[0]}"');
         return;
       }
-      // Silence around the word so the player doesn't swallow its start.
-      final pad = (audio.sampleRate * 0.15).round();
-      final samples = Float32List(audio.samples.length + 2 * pad)
-        ..setRange(pad, pad + audio.samples.length, audio.samples);
+      final samples = finishPiperAudio(audio.samples, lead, audio.sampleRate);
       final ok = sherpa.writeWave(
         filename: m[1] as String,
         samples: samples,

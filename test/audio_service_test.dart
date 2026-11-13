@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -145,5 +146,23 @@ void main() {
     expect(piperInput('merhaba', 0.8).speed, 0.8);
     expect(piperInput('iyi günler', 0.8).text, 'iyi günler.');
     expect(piperInput('Nasılsın?', 0.8).text, 'Nasılsın?');
+  });
+
+  test('finishPiperAudio cuts the lead-in at the pause and pads', () {
+    const sr = 1000;
+    // 300 loud (lead-in), 40 silent (the pause), 200 loud (the word).
+    final full = Float32List.fromList([
+      ...List.filled(300, 0.5),
+      ...List.filled(40, 0.0),
+      ...List.filled(200, 0.5),
+    ]);
+    final out = finishPiperAudio(full, 310, sr);
+    final pad = 150;
+    // Word (plus some of the pause) is kept, lead-in is gone.
+    final body = out.sublist(pad, out.length - pad);
+    expect(body.length, inInclusiveRange(200, 240));
+    expect(body.where((x) => x == 0.5).length, greaterThan(150));
+    expect(out.first, 0.0);
+    expect(out.last, 0.0);
   });
 }

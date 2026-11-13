@@ -154,7 +154,7 @@ class TtsService {
   /// Includes the speed, because Piper bakes it into the audio.
   String offlineFileName(String text) =>
       'piper_${offline?.voice ?? 'x'}_${_sha(text)}'
-      '_s${(_settings.speechSpeed * 100).round()}_2.wav';
+      '_s${(_settings.speechSpeed * 100).round()}_3.wav';
 
   Future<File?> _cached(String text) async {
     final dir = await cacheDir();
