@@ -1,5 +1,6 @@
 package com.turkishvocab.turkish_vocab
 
+import java.util.Locale
 import zemberek.morphology.TurkishMorphology
 import zemberek.morphology.analysis.AnalysisCache
 import zemberek.morphology.lexicon.RootLexicon
@@ -20,7 +21,7 @@ object MorphologyPlugin {
 
     fun analyze(word: String): Map<String, Any>? {
         return try {
-            val analysis = morphology.analyze(word)
+            val analysis = morphology.analyze(word.lowercase(Locale.forLanguageTag("tr")))
             val results = analysis.analysisResults
             if (results.isEmpty()) return null
             val best = results[0]

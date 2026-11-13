@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../data/word_repository.dart';
 import '../../domain/practice_mode.dart';
 import '../../services/tts_service.dart';
@@ -46,51 +47,60 @@ class _RecognitionCardState extends State<RecognitionCard> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-        Text(
-          widget.card.mode.label,
-          style: tt.labelLarge?.copyWith(color: Colors.grey),
-        ),
-        const SizedBox(height: 24),
-        Text(prompt, style: tt.displaySmall),
-        if (_isTrEn) ...[
-          const SizedBox(height: 8),
-          IconButton(
-            icon: const Icon(Icons.volume_up),
-            iconSize: 32,
-            onPressed: () => widget.tts.speak(word.turkish),
-          ),
-        ],
-        if (word.note != null && _revealed) ...[
-          const SizedBox(height: 12),
-          Text(
-            word.note!,
-            style: tt.bodySmall?.copyWith(
-              fontStyle: FontStyle.italic,
-              color: Colors.grey,
+            Text(
+              widget.card.mode.label,
+              style: tt.labelLarge?.copyWith(color: Colors.grey),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
-        const SizedBox(height: 32),
-        if (!_revealed)
-          FilledButton(
-            onPressed: () => setState(() => _revealed = true),
-            child: const Text('Show answer'),
-          )
-        else ...[
-          Text(answer, style: tt.headlineMedium),
-          if (!_isTrEn) ...[
-            const SizedBox(height: 8),
-            IconButton(
-              icon: const Icon(Icons.volume_up),
-              iconSize: 28,
-              onPressed: () => widget.tts.speak(word.turkish),
+            Text(
+              _isTrEn
+                  ? 'Recall the English meaning'
+                  : 'Recall the Turkish word',
+              style: tt.bodySmall?.copyWith(color: Colors.grey),
             ),
+            const SizedBox(height: 24),
+            Text(prompt, style: tt.displaySmall),
+            if (_isTrEn) ...[
+              const SizedBox(height: 8),
+              IconButton(
+                icon: const Icon(Icons.volume_up),
+                iconSize: 32,
+                onPressed: () => widget.tts.speak(word.turkish),
+              ),
+            ],
+            if (word.note != null && _revealed) ...[
+              const SizedBox(height: 12),
+              Text(
+                word.note!,
+                style: tt.bodySmall?.copyWith(
+                  fontStyle: FontStyle.italic,
+                  color: Colors.grey,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ],
+            const SizedBox(height: 32),
+            if (!_revealed)
+              FilledButton(
+                onPressed: () {
+                  setState(() => _revealed = true);
+                  widget.tts.speak(word.turkish);
+                },
+                child: const Text('Show answer'),
+              )
+            else ...[
+              Text(answer, style: tt.headlineMedium),
+              if (!_isTrEn) ...[
+                const SizedBox(height: 8),
+                IconButton(
+                  icon: const Icon(Icons.volume_up),
+                  iconSize: 28,
+                  onPressed: () => widget.tts.speak(word.turkish),
+                ),
+              ],
+              const SizedBox(height: 24),
+              GradeButtons(onGrade: widget.onGrade),
+            ],
           ],
-          const SizedBox(height: 24),
-          GradeButtons(onGrade: widget.onGrade),
-        ],
-      ],
         ),
       ),
     );

@@ -3,6 +3,7 @@ import 'package:drift/drift.dart';
 import '../domain/mastery.dart';
 import '../domain/practice_mode.dart';
 import '../domain/srs.dart';
+import '../domain/turkish_text.dart';
 import 'database.dart';
 
 /// A due card: the word plus one of its practice states, ready to review.
@@ -33,7 +34,7 @@ class WordRepository {
 
   /// Add a word and immediately create its two recognition practice states
   /// (plan §2: writing/listening are created lazily later).
-  Future<int> addWord({
+  Future<({int id, bool existed})> addWord({
     required String turkish,
     required String english,
     String root = '',
@@ -42,15 +43,22 @@ class WordRepository {
     String? source,
     DateTime? now,
   }) async {
-    final normalized = turkish.trim().toLowerCase();
-    final existing = await (db.select(db.words)
-          ..where((w) => w.turkish.lower().equals(normalized)))
-        .getSingleOrNull();
-    if (existing != null) return existing.id;
+    final normalized = trNormalize(turkish);
+    // Compare in Dart: SQLite's lower()/LIKE are not Turkish-aware (İ/I/ı/i).
+    final all = await (db.selectOnly(
+      db.words,
+    )..addColumns([db.words.id, db.words.turkish])).get();
+    for (final row in all) {
+      if (trNormalize(row.read(db.words.turkish)!) == normalized) {
+        return (id: row.read(db.words.id)!, existed: true);
+      }
+    }
 
     final at = now ?? DateTime.now();
     return db.transaction(() async {
-      final wordId = await db.into(db.words).insert(
+      final wordId = await db
+          .into(db.words)
+          .insert(
             WordsCompanion.insert(
               turkish: turkish,
               english: english,
@@ -63,7 +71,7 @@ class WordRepository {
       for (final mode in PracticeMode.initialModes) {
         await _insertState(wordId, mode, at);
       }
-      return wordId;
+      return (id: wordId, existed: false);
     });
   }
 
@@ -95,11 +103,16 @@ class WordRepository {
   }
 
   /// Lazily create a writing/listening state the first time the user opts in.
-  Future<void> ensureModeState(int wordId, PracticeMode mode,
-      {DateTime? now}) async {
-    final existing = await (db.select(db.practiceStates)
-          ..where((s) => s.wordId.equals(wordId) & s.mode.equals(mode.dbValue)))
-        .getSingleOrNull();
+  Future<void> ensureModeState(
+    int wordId,
+    PracticeMode mode, {
+    DateTime? now,
+  }) async {
+    final existing =
+        await (db.select(db.practiceStates)..where(
+              (s) => s.wordId.equals(wordId) & s.mode.equals(mode.dbValue),
+            ))
+            .getSingleOrNull();
     if (existing == null) {
       await _insertState(wordId, mode, now ?? DateTime.now());
     }
@@ -107,7 +120,9 @@ class WordRepository {
 
   Future<void> _insertState(int wordId, PracticeMode mode, DateTime at) async {
     final fresh = SrsState.fresh(now: at);
-    await db.into(db.practiceStates).insert(
+    await db
+        .into(db.practiceStates)
+        .insert(
           PracticeStatesCompanion.insert(
             wordId: wordId,
             mode: mode.dbValue,
@@ -121,34 +136,64 @@ class WordRepository {
 
   // ---- Review queue ----
 
-  /// All practice states due now, interleaved across modes and words
-  /// (plan §4: mixed queue beats blocking by mode). Ordered by due date.
+  static const _modePriority = [
+    PracticeMode.recognitionTrEn,
+    PracticeMode.recognitionEnTr,
+    PracticeMode.listening,
+    PracticeMode.writing,
+  ];
+
+  /// Due cards, **at most one per word** (so siblings never come back to
+  /// back), preferring the earliest mode in [_modePriority]. Deterministic:
+  /// ordered by due date, then word id.
   Future<List<ReviewCard>> dueQueue({DateTime? now, int? limit}) async {
     final at = now ?? DateTime.now();
-    final query = db.select(db.practiceStates).join([
-      innerJoin(db.words, db.words.id.equalsExp(db.practiceStates.wordId)),
-    ])
-      ..where(db.practiceStates.dueAt.isSmallerOrEqualValue(at))
-      ..orderBy([OrderingTerm.asc(db.practiceStates.dueAt)]);
-    if (limit != null) query.limit(limit);
+    final query =
+        db.select(db.practiceStates).join([
+            innerJoin(
+              db.words,
+              db.words.id.equalsExp(db.practiceStates.wordId),
+            ),
+          ])
+          ..where(db.practiceStates.dueAt.isSmallerOrEqualValue(at))
+          ..orderBy([
+            OrderingTerm.asc(db.practiceStates.dueAt),
+            OrderingTerm.asc(db.practiceStates.wordId),
+            OrderingTerm.asc(db.practiceStates.id),
+          ]);
 
     final rows = await query.get();
-    return rows
-        .map((r) => ReviewCard(
-              r.readTable(db.words),
-              r.readTable(db.practiceStates),
-            ))
-        .toList();
+    final best = <int, ReviewCard>{};
+    for (final r in rows) {
+      final card = ReviewCard(
+        r.readTable(db.words),
+        r.readTable(db.practiceStates),
+      );
+      final cur = best[card.word.id];
+      if (cur == null ||
+          _modePriority.indexOf(card.mode) < _modePriority.indexOf(cur.mode)) {
+        best[card.word.id] = card;
+      }
+    }
+    final cards = best.values.toList()
+      ..sort((a, b) {
+        final c = a.state.dueAt.compareTo(b.state.dueAt);
+        return c != 0 ? c : a.word.id.compareTo(b.word.id);
+      });
+    return limit != null && cards.length > limit
+        ? cards.sublist(0, limit)
+        : cards;
   }
 
+  /// Number of words with at least one due state.
   Future<int> dueCount({DateTime? now}) async {
     final at = now ?? DateTime.now();
-    final count = db.practiceStates.id.count();
+    final distinctWords = db.practiceStates.wordId.count(distinct: true);
     final query = db.selectOnly(db.practiceStates)
-      ..addColumns([count])
+      ..addColumns([distinctWords])
       ..where(db.practiceStates.dueAt.isSmallerOrEqualValue(at));
     final row = await query.getSingle();
-    return row.read(count) ?? 0;
+    return row.read(distinctWords) ?? 0;
   }
 
   /// Apply a grade to a card: recompute SM-2 state, persist, and log it.
@@ -168,20 +213,26 @@ class WordRepository {
     final next = SrsScheduler.review(current, grade, card.mode, now: at);
 
     await db.transaction(() async {
-      await (db.update(db.practiceStates)
-            ..where((s) => s.id.equals(card.state.id)))
-          .write(PracticeStatesCompanion(
-        intervalDays: Value(next.intervalDays),
-        easeFactor: Value(next.easeFactor),
-        repetitions: Value(next.repetitions),
-        dueAt: Value(next.dueAt!),
-        lastReviewedAt: Value(next.lastReviewedAt),
-      ));
-      await db.into(db.reviewLog).insert(ReviewLogCompanion.insert(
-            wordId: card.word.id,
-            mode: card.mode.dbValue,
-            result: grade.dbValue,
-          ));
+      await (db.update(
+        db.practiceStates,
+      )..where((s) => s.id.equals(card.state.id))).write(
+        PracticeStatesCompanion(
+          intervalDays: Value(next.intervalDays),
+          easeFactor: Value(next.easeFactor),
+          repetitions: Value(next.repetitions),
+          dueAt: Value(next.dueAt!),
+          lastReviewedAt: Value(next.lastReviewedAt),
+        ),
+      );
+      await db
+          .into(db.reviewLog)
+          .insert(
+            ReviewLogCompanion.insert(
+              wordId: card.word.id,
+              mode: card.mode.dbValue,
+              result: grade.dbValue,
+            ),
+          );
     });
   }
 
@@ -213,17 +264,13 @@ class WordRepository {
 
   /// A word with its derived mastery indicator (plan §3).
   Future<WordWithMastery> withMastery(Word word) async {
-    final states = await (db.select(db.practiceStates)
-          ..where((s) => s.wordId.equals(word.id)))
-        .get();
+    final states = await (db.select(
+      db.practiceStates,
+    )..where((s) => s.wordId.equals(word.id))).get();
     final byMode = <PracticeMode, int>{
       for (final s in states) PracticeMode.fromDb(s.mode): s.repetitions,
     };
-    return WordWithMastery(
-      word,
-      Mastery.overall(byMode),
-      byMode.keys.toList(),
-    );
+    return WordWithMastery(word, Mastery.overall(byMode), byMode.keys.toList());
   }
 
   /// Aggregate stats for the dashboard.
@@ -233,13 +280,13 @@ class WordRepository {
     final due = await dueCount(now: at);
     final states = await db.select(db.practiceStates).get();
     final reviewsToday = await _reviewsSince(
-        DateTime(at.year, at.month, at.day));
+      DateTime(at.year, at.month, at.day),
+    );
 
     // Group repetitions by word to compute an average mastery.
     final byWord = <int, Map<PracticeMode, int>>{};
     for (final s in states) {
-      byWord
-          .putIfAbsent(s.wordId, () => {})[PracticeMode.fromDb(s.mode)] =
+      byWord.putIfAbsent(s.wordId, () => {})[PracticeMode.fromDb(s.mode)] =
           s.repetitions;
     }
     final masteries = byWord.values.map(Mastery.overall).toList();
@@ -260,28 +307,27 @@ class WordRepository {
 
   /// Three random English translations from words other than [exceptWordId],
   /// used as distractors in listening multiple-choice (plan §4.4).
-  Future<List<String>> randomEnglishDistractors(
-      int exceptWordId, int n) async {
-    final rows = await (db.select(db.words)
-          ..where((w) => w.id.equals(exceptWordId).not())
-          ..orderBy([(w) => OrderingTerm(
-                expression: FunctionCallExpression('random', []),
-              )])
-          ..limit(n))
-        .get();
+  Future<List<String>> randomEnglishDistractors(int exceptWordId, int n) async {
+    final rows =
+        await (db.select(db.words)
+              ..where((w) => w.id.equals(exceptWordId).not())
+              ..orderBy([
+                (w) => OrderingTerm(
+                  expression: FunctionCallExpression('random', []),
+                ),
+              ])
+              ..limit(n))
+            .get();
     return rows.map((w) => w.english).toList();
   }
 
-  /// Per-mode due counts for the stats screen.
+  /// Per-mode due counts for the stats screen (one card per word, as in the
+  /// review queue).
   Future<Map<PracticeMode, int>> dueCountByMode({DateTime? now}) async {
-    final at = now ?? DateTime.now();
-    final states = await (db.select(db.practiceStates)
-          ..where((s) => s.dueAt.isSmallerOrEqualValue(at)))
-        .get();
+    final queue = await dueQueue(now: now);
     final result = <PracticeMode, int>{};
-    for (final s in states) {
-      final mode = PracticeMode.fromDb(s.mode);
-      result[mode] = (result[mode] ?? 0) + 1;
+    for (final c in queue) {
+      result[c.mode] = (result[c.mode] ?? 0) + 1;
     }
     return result;
   }
@@ -297,8 +343,9 @@ class WordRepository {
 
   static String _encodeSuffixes(List<String> suffixes) {
     // Simple JSON array of strings.
-    final escaped =
-        suffixes.map((s) => '"${s.replaceAll('"', '\\"')}"').join(',');
+    final escaped = suffixes
+        .map((s) => '"${s.replaceAll('"', '\\"')}"')
+        .join(',');
     return '[$escaped]';
   }
 }

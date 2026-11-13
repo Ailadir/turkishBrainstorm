@@ -947,7 +947,7 @@ validated in Phase 5, and own words can be re-analyzed or edited.
 
 ## Status
 
-- [ ] Phase 1: Stop the bleeding (no schema change)
+- [x] Phase 1: Stop the bleeding (no schema change). Done 2026-11-13: `flutter analyze` clean, 41 tests pass. Deviation: `addWord` dedupes by loading all `turkish` values and comparing with `trNormalize` in Dart (SQLite `like` is not Turkish-aware, so `IŞIK` vs `ışık` would miss). Kotlin changes are not compiled or device-tested yet.
 - [ ] Phase 2: Public repo, CI/CD releases, in-app updater with one-time patch-notes alert
 - [ ] Phase 3: Fresh schema v2, morphology IDs, breakdown on cards
 - [ ] Phase 4: Brainstorm + per-word review

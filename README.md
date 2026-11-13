@@ -16,7 +16,7 @@ with SM-2 spaced repetition.
 - **Browse & edit** — search your word list, see mastery bars, edit any field,
   enable writing/listening modes per word, delete words.
 - **Stats** — total words, due counts by mode, reviews today, average mastery.
-- **Fully offline** — no backend, no network, no API costs.
+- **Offline core** — morphology (bundled Zemberek) and review work offline. Gemini / MyMemory translation and ElevenLabs audio are optional online services.
 
 ## How to run
 
@@ -29,10 +29,9 @@ flutter pub get
 flutter run
 ```
 
-### Morphological analysis (optional, recommended)
-Out of the box the app uses the whole word as the root (fallback). To get real
-Turkish morphology, follow the steps in `android/app/libs/README.md` to bundle
-the Zemberek jar — takes ~5 minutes.
+### Morphological analysis
+Zemberek is bundled (`android/app/libs/zemberek-full.jar`). If it fails to load,
+the app falls back to using the whole word as the root.
 
 ### TTS (Turkish voice)
 Uses Android's built-in TTS engine. On most Android devices, go to

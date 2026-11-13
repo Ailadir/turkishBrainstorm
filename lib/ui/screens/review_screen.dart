@@ -20,6 +20,7 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
   int _index = 0;
   int _reviewed = 0;
   bool _loading = true;
+  final Set<int> _requeued = {};
 
   @override
   void initState() {
@@ -29,12 +30,22 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
 
   Future<void> _load() async {
     final queue = await ref.read(wordRepositoryProvider).dueQueue();
-    if (mounted) setState(() { _queue = queue; _loading = false; });
+    if (mounted) {
+      setState(() {
+        _queue = queue;
+        _loading = false;
+      });
+    }
   }
 
   Future<void> _grade(ReviewGrade grade) async {
     final card = _queue![_index];
     await ref.read(wordRepositoryProvider).applyReview(card, grade);
+    // A missed card comes back once more at the end of this session.
+    if (grade == ReviewGrade.again && !_requeued.contains(card.word.id)) {
+      _requeued.add(card.word.id);
+      _queue!.add(card);
+    }
     setState(() {
       _reviewed++;
       _index++;
@@ -60,11 +71,16 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Icon(Icons.check_circle_outline,
-                  size: 80, color: Colors.green),
+              const Icon(
+                Icons.check_circle_outline,
+                size: 80,
+                color: Colors.green,
+              ),
               const SizedBox(height: 16),
-              Text('Done! Reviewed $_reviewed cards.',
-                  style: Theme.of(context).textTheme.headlineSmall),
+              Text(
+                'Done! Reviewed $_reviewed cards.',
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
               const SizedBox(height: 24),
               FilledButton(
                 onPressed: () => Navigator.pop(context),
@@ -100,19 +116,19 @@ class _ReviewScreenState extends ConsumerState<ReviewScreen> {
 
   Widget _buildCard(ReviewCard card, dynamic tts, WordRepository repo) {
     return switch (card.mode) {
-      PracticeMode.recognitionTrEn ||
-      PracticeMode.recognitionEnTr =>
+      PracticeMode.recognitionTrEn || PracticeMode.recognitionEnTr =>
         RecognitionCard(card: card, tts: tts, onGrade: _grade),
-      PracticeMode.writing =>
-        WritingCard(card: card, tts: tts, onGrade: _grade),
-      PracticeMode.listening =>
-        ListeningCard(
-          card: card,
-          tts: tts,
-          fetchDistractors: (id, n) =>
-              repo.randomEnglishDistractors(id, n),
-          onGrade: _grade,
-        ),
+      PracticeMode.writing => WritingCard(
+        card: card,
+        tts: tts,
+        onGrade: _grade,
+      ),
+      PracticeMode.listening => ListeningCard(
+        card: card,
+        tts: tts,
+        fetchDistractors: (id, n) => repo.randomEnglishDistractors(id, n),
+        onGrade: _grade,
+      ),
     };
   }
 }

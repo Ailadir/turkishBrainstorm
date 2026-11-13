@@ -13,18 +13,16 @@ enum PracticeMode {
   static const List<PracticeMode> initialModes = [
     recognitionTrEn,
     recognitionEnTr,
-    writing,
   ];
 
-  bool get isRecognition =>
-      this == recognitionTrEn || this == recognitionEnTr;
+  bool get isRecognition => this == recognitionTrEn || this == recognitionEnTr;
 
   String get label => switch (this) {
-        recognitionTrEn => 'Recognition TR→EN',
-        recognitionEnTr => 'Recognition EN→TR',
-        writing => 'Writing',
-        listening => 'Listening',
-      };
+    recognitionTrEn => 'Recognition TR→EN',
+    recognitionEnTr => 'Recognition EN→TR',
+    writing => 'Writing',
+    listening => 'Listening',
+  };
 
   /// Stable string used to persist the enum in the DB.
   String get dbValue => name;
@@ -47,11 +45,11 @@ enum ReviewGrade {
 
   /// SM-2 quality value in the 0–5 range. `again` is a lapse (< 3).
   int get quality => switch (this) {
-        again => 2,
-        hard => 3,
-        good => 4,
-        easy => 5,
-      };
+    again => 2,
+    hard => 3,
+    good => 4,
+    easy => 5,
+  };
 
   bool get isPass => quality >= 3;
 }

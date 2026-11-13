@@ -9,9 +9,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
 
+  final container = ProviderContainer(
+    overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+  );
+  // Warm up the Zemberek bridge once (fire-and-forget; falls back gracefully).
+  container.read(morphologyServiceProvider).analyze('test').ignore();
+
   runApp(
-    ProviderScope(
-      overrides: [sharedPreferencesProvider.overrideWithValue(prefs)],
+    UncontrolledProviderScope(
+      container: container,
       child: const TurkishVocabApp(),
     ),
   );
@@ -22,10 +28,6 @@ class TurkishVocabApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // Warm up morphology bridge on startup (fire-and-forget).
-    // Ignore errors — the service falls back gracefully.
-    ref.read(morphologyServiceProvider).analyze('test').ignore();
-
     return MaterialApp(
       title: 'Turkish Vocab',
       debugShowCheckedModeBanner: false,

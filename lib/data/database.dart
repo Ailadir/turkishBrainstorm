@@ -26,8 +26,7 @@ class Words extends Table {
   /// Where the word was found (e.g. manhwa title), optional.
   TextColumn get source => text().nullable()();
 
-  DateTimeColumn get createdAt =>
-      dateTime().withDefault(currentDateAndTime)();
+  DateTimeColumn get createdAt => dateTime().withDefault(currentDateAndTime)();
 }
 
 /// One row per `(word, mode)` — the core of the "separate skill per mode"
@@ -50,8 +49,8 @@ class PracticeStates extends Table {
 
   @override
   List<Set<Column>> get uniqueKeys => [
-        {wordId, mode},
-      ];
+    {wordId, mode},
+  ];
 }
 
 /// Append-only log of reviews, used for stats and recomputing mastery.
@@ -68,17 +67,30 @@ class ReviewLog extends Table {
   /// Persisted as the [ReviewGrade] enum name.
   TextColumn get result => text()();
 
-  DateTimeColumn get reviewedAt =>
-      dateTime().withDefault(currentDateAndTime)();
+  DateTimeColumn get reviewedAt => dateTime().withDefault(currentDateAndTime)();
 }
 
 @DriftDatabase(tables: [Words, PracticeStates, ReviewLog])
 class AppDatabase extends _$AppDatabase {
-  AppDatabase([QueryExecutor? executor])
-      : super(executor ?? _open());
+  AppDatabase([QueryExecutor? executor]) : super(executor ?? _open());
 
   @override
   int get schemaVersion => 1;
+
+  @override
+  MigrationStrategy get migration => MigrationStrategy(
+    beforeOpen: (details) async {
+      // SQLite ignores foreign keys unless asked; without this, cascades
+      // never fire and deleted words leave orphan states behind.
+      await customStatement('PRAGMA foreign_keys = ON');
+      await customStatement(
+        'DELETE FROM practice_states WHERE word_id NOT IN (SELECT id FROM words)',
+      );
+      await customStatement(
+        'DELETE FROM review_log WHERE word_id NOT IN (SELECT id FROM words)',
+      );
+    },
+  );
 
   static QueryExecutor _open() {
     // Offline-first local SQLite in the app's documents dir.

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+
 import '../../data/word_repository.dart';
 import '../../domain/edit_distance.dart';
 import '../../domain/practice_mode.dart';
+import '../../domain/turkish_text.dart';
 import '../../services/tts_service.dart';
 import 'grade_buttons.dart';
 
@@ -25,7 +27,6 @@ class _WritingCardState extends State<WritingCard> {
   final _controller = TextEditingController();
   bool _checked = false;
   ReviewGrade? _autoGrade;
-  bool _ttsPlayed = false;
 
   @override
   void didUpdateWidget(WritingCard oldWidget) {
@@ -34,7 +35,6 @@ class _WritingCardState extends State<WritingCard> {
       _controller.clear();
       _checked = false;
       _autoGrade = null;
-      _ttsPlayed = false;
     }
   }
 
@@ -48,9 +48,12 @@ class _WritingCardState extends State<WritingCard> {
     final input = _controller.text;
     final expected = widget.card.word.turkish;
     ReviewGrade grade;
-    if (input.trim().toLowerCase() == expected.trim().toLowerCase()) {
+    final a = trNormalize(input);
+    final b = trNormalize(expected);
+    if (a == b) {
       grade = ReviewGrade.good;
-    } else if (EditDistance.isCloseEnough(input, expected)) {
+    } else if (stripDiacritics(a) == stripDiacritics(b) ||
+        EditDistance.isCloseEnough(input, expected)) {
       grade = ReviewGrade.hard;
     } else {
       grade = ReviewGrade.again;
@@ -59,6 +62,7 @@ class _WritingCardState extends State<WritingCard> {
       _checked = true;
       _autoGrade = grade;
     });
+    widget.tts.speak(expected);
   }
 
   @override
@@ -71,56 +75,49 @@ class _WritingCardState extends State<WritingCard> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-        Text('Writing', style: tt.labelLarge?.copyWith(color: Colors.grey)),
-        const SizedBox(height: 24),
-        Text(word.english, style: tt.displaySmall),
-        const SizedBox(height: 8),
-        TextButton.icon(
-          icon: const Icon(Icons.volume_up),
-          label: const Text('Hear it once'),
-          onPressed: _ttsPlayed
-              ? null
-              : () {
-                  widget.tts.speak(word.turkish);
-                  setState(() => _ttsPlayed = true);
-                },
-        ),
-        const SizedBox(height: 24),
-        if (!_checked) ...[
-          TextField(
-            controller: _controller,
-            autofocus: true,
-            textInputAction: TextInputAction.done,
-            onSubmitted: (_) => _check(),
-            decoration: const InputDecoration(
-              border: OutlineInputBorder(),
-              labelText: 'Type the Turkish word',
+            Text('Writing', style: tt.labelLarge?.copyWith(color: Colors.grey)),
+            Text(
+              'Type the Turkish for this meaning',
+              style: tt.bodySmall?.copyWith(color: Colors.grey),
             ),
-          ),
-          const SizedBox(height: 16),
-          FilledButton(onPressed: _check, child: const Text('Check')),
-        ] else ...[
-          _ResultBanner(grade: _autoGrade!, correct: word.turkish),
-          const SizedBox(height: 24),
-          if (_autoGrade == ReviewGrade.good)
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                FilledButton(
-                  onPressed: () => widget.onGrade(ReviewGrade.good),
-                  child: const Text('Good'),
+            const SizedBox(height: 24),
+            Text(word.english, style: tt.displaySmall),
+            const SizedBox(height: 24),
+            if (!_checked) ...[
+              TextField(
+                controller: _controller,
+                autofocus: true,
+                textInputAction: TextInputAction.done,
+                onSubmitted: (_) => _check(),
+                decoration: const InputDecoration(
+                  border: OutlineInputBorder(),
+                  labelText: 'Type the Turkish word',
                 ),
-                const SizedBox(width: 12),
-                OutlinedButton(
-                  onPressed: () => widget.onGrade(ReviewGrade.hard),
-                  child: const Text('Was hard'),
-                ),
-              ],
-            )
-          else
-            GradeButtons(onGrade: widget.onGrade),
-        ],
-      ],
+              ),
+              const SizedBox(height: 16),
+              FilledButton(onPressed: _check, child: const Text('Check')),
+            ] else ...[
+              _ResultBanner(grade: _autoGrade!, correct: word.turkish),
+              const SizedBox(height: 24),
+              if (_autoGrade == ReviewGrade.good)
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    FilledButton(
+                      onPressed: () => widget.onGrade(ReviewGrade.good),
+                      child: const Text('Good'),
+                    ),
+                    const SizedBox(width: 12),
+                    OutlinedButton(
+                      onPressed: () => widget.onGrade(ReviewGrade.hard),
+                      child: const Text('Was hard'),
+                    ),
+                  ],
+                )
+              else
+                GradeButtons(onGrade: widget.onGrade),
+            ],
+          ],
         ),
       ),
     );
@@ -140,9 +137,7 @@ class _ResultBanner extends StatelessWidget {
       decoration: BoxDecoration(
         color: isPass ? Colors.green.shade50 : Colors.red.shade50,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: isPass ? Colors.green : Colors.red,
-        ),
+        border: Border.all(color: isPass ? Colors.green : Colors.red),
       ),
       child: Column(
         children: [
@@ -156,8 +151,7 @@ class _ResultBanner extends StatelessWidget {
           ),
           if (!isPass) ...[
             const SizedBox(height: 8),
-            Text('Correct: $correct',
-                style: const TextStyle(fontSize: 16)),
+            Text('Correct: $correct', style: const TextStyle(fontSize: 16)),
           ],
         ],
       ),

@@ -3,10 +3,15 @@ package com.turkishvocab.turkish_vocab
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
+import android.os.Handler
+import android.os.Looper
+import java.util.concurrent.Executors
 
 class MainActivity : FlutterActivity() {
 
     private val channel = "turkish_morphology"
+    private val executor = Executors.newSingleThreadExecutor()
+    private val mainHandler = Handler(Looper.getMainLooper())
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -22,12 +27,11 @@ class MainActivity : FlutterActivity() {
             when (call.method) {
                 "analyze" -> {
                     val word = call.argument<String>("word") ?: ""
-                    val analysis = MorphologyPlugin.analyze(word)
-                    if (analysis != null) {
-                        result.success(analysis)
-                    } else {
+                    // Zemberek is slow on first use: keep it off the main thread.
+                    executor.execute {
+                        val analysis = MorphologyPlugin.analyze(word)
                         // null → Dart side uses its fallback (root = word)
-                        result.success(null)
+                        mainHandler.post { result.success(analysis) }
                     }
                 }
                 else -> result.notImplemented()

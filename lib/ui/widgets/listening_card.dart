@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../data/word_repository.dart';
 import '../../domain/practice_mode.dart';
 import '../../services/tts_service.dart';
@@ -47,8 +48,7 @@ class _ListeningCardState extends State<ListeningCard> {
   }
 
   Future<void> _loadOptions() async {
-    final distractors =
-        await widget.fetchDistractors(widget.card.word.id, 3);
+    final distractors = await widget.fetchDistractors(widget.card.word.id, 3);
     final all = [widget.card.word.english, ...distractors];
     all.shuffle();
     if (mounted) setState(() => _options = all);
@@ -62,10 +62,9 @@ class _ListeningCardState extends State<ListeningCard> {
     });
   }
 
-  ReviewGrade get _grade =>
-      _selected == widget.card.word.english
-          ? ReviewGrade.good
-          : ReviewGrade.again;
+  ReviewGrade get _grade => _selected == widget.card.word.english
+      ? ReviewGrade.good
+      : ReviewGrade.again;
 
   @override
   Widget build(BuildContext context) {
@@ -76,60 +75,88 @@ class _ListeningCardState extends State<ListeningCard> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-        Text('Listening', style: tt.labelLarge?.copyWith(color: Colors.grey)),
-        const SizedBox(height: 24),
-        IconButton(
-          icon: const Icon(Icons.hearing, size: 64),
-          onPressed: () {
-            widget.tts.speak(widget.card.word.turkish);
-            setState(() => _ttsPlayed = true);
-          },
-        ),
-        Text('Tap to hear', style: tt.bodySmall?.copyWith(color: Colors.grey)),
-        const SizedBox(height: 32),
-        if (_options == null)
-          const CircularProgressIndicator()
-        else ...[
-          ..._options!.map((opt) => _OptionTile(
-                option: opt,
-                selected: _selected == opt,
-                correct: _answered && opt == widget.card.word.english,
-                wrong: _answered && _selected == opt &&
-                    opt != widget.card.word.english,
-                onTap: _answered ? null : () => _select(opt),
-              )),
-          const SizedBox(height: 24),
-          if (_answered) ...[
             Text(
-              _grade == ReviewGrade.good ? 'Correct!' : 'Incorrect',
-              style: TextStyle(
-                color: _grade == ReviewGrade.good ? Colors.green : Colors.red,
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+              'Listening',
+              style: tt.labelLarge?.copyWith(color: Colors.grey),
             ),
-            const SizedBox(height: 16),
-            if (_grade == ReviewGrade.good)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FilledButton(
-                    onPressed: () => widget.onGrade(ReviewGrade.good),
-                    child: const Text('Good'),
+            Text(
+              'Listen, then pick the English meaning',
+              style: tt.bodySmall?.copyWith(color: Colors.grey),
+            ),
+            const SizedBox(height: 24),
+            IconButton(
+              icon: const Icon(Icons.hearing, size: 64),
+              onPressed: () {
+                widget.tts.speak(widget.card.word.turkish);
+                setState(() => _ttsPlayed = true);
+              },
+            ),
+            Text(
+              'Tap to hear',
+              style: tt.bodySmall?.copyWith(color: Colors.grey),
+            ),
+            const SizedBox(height: 32),
+            if (_options == null)
+              const CircularProgressIndicator()
+            else ...[
+              ..._options!.map(
+                (opt) => _OptionTile(
+                  option: opt,
+                  selected: _selected == opt,
+                  correct: _answered && opt == widget.card.word.english,
+                  wrong:
+                      _answered &&
+                      _selected == opt &&
+                      opt != widget.card.word.english,
+                  onTap: _answered ? null : () => _select(opt),
+                ),
+              ),
+              const SizedBox(height: 24),
+              if (_answered) ...[
+                Text(
+                  _grade == ReviewGrade.good ? 'Correct!' : 'Incorrect',
+                  style: TextStyle(
+                    color: _grade == ReviewGrade.good
+                        ? Colors.green
+                        : Colors.red,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 18,
                   ),
-                  const SizedBox(width: 12),
-                  OutlinedButton(
-                    onPressed: () => widget.onGrade(ReviewGrade.hard),
-                    child: const Text('Was hard'),
-                  ),
-                ],
-              )
-            else
-              GradeButtons(onGrade: widget.onGrade),
-          ] else if (!_ttsPlayed)
-            const Text('Listen first, then pick'),
-        ],
-      ],
+                ),
+                const SizedBox(height: 12),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(widget.card.word.turkish, style: tt.headlineSmall),
+                    IconButton(
+                      icon: const Icon(Icons.volume_up),
+                      onPressed: () =>
+                          widget.tts.speak(widget.card.word.turkish),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 8),
+                if (_grade == ReviewGrade.good)
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FilledButton(
+                        onPressed: () => widget.onGrade(ReviewGrade.good),
+                        child: const Text('Good'),
+                      ),
+                      const SizedBox(width: 12),
+                      OutlinedButton(
+                        onPressed: () => widget.onGrade(ReviewGrade.hard),
+                        child: const Text('Was hard'),
+                      ),
+                    ],
+                  )
+                else
+                  GradeButtons(onGrade: widget.onGrade),
+              ] else if (!_ttsPlayed)
+                const Text('Listen first, then pick'),
+            ],
+          ],
         ),
       ),
     );
@@ -164,7 +191,9 @@ class _OptionTile extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8),
           side: BorderSide(
-            color: selected ? Theme.of(context).colorScheme.primary : Colors.grey.shade300,
+            color: selected
+                ? Theme.of(context).colorScheme.primary
+                : Colors.grey.shade300,
           ),
         ),
         title: Text(option),
