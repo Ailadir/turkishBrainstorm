@@ -4,6 +4,9 @@ Add a section at the top for every release: `## <version>+<build>` matching
 `version:` in pubspec.yaml, then `- ` bullet lines. The release workflow fails
 if the section is missing.
 
+## 1.1.2+4
+- Fixed the update check: the app always said it was up to date
+
 ## 1.1.1+3
 - Fixed the offline voice: it installed but played nothing
 - The voice download no longer freezes the app while unpacking
