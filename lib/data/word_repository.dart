@@ -42,6 +42,12 @@ class WordRepository {
     String? source,
     DateTime? now,
   }) async {
+    final normalized = turkish.trim().toLowerCase();
+    final existing = await (db.select(db.words)
+          ..where((w) => w.turkish.lower().equals(normalized)))
+        .getSingleOrNull();
+    if (existing != null) return existing.id;
+
     final at = now ?? DateTime.now();
     return db.transaction(() async {
       final wordId = await db.into(db.words).insert(
