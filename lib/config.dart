@@ -1,7 +1,7 @@
 /// GitHub `owner/repo` that hosts releases and `packs/index.json`.
 /// Leave empty until the repo exists; the app then hides update/download
 /// features instead of failing.
-const String kReleaseRepo = '';
+const String kReleaseRepo = 'Ailadir/turkishBrainstorm';
 
 /// Raw URL of the pack index, derived from [kReleaseRepo].
 String defaultPackIndexUrl() => kReleaseRepo.isEmpty
